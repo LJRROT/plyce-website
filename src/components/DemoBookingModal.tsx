@@ -18,8 +18,8 @@ type DemoBookingModalProps = {
 };
 
 const DEMO_EMAIL = "mail@plyce.app";
-const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
-const useWeb3Forms = Boolean(web3formsKey && web3formsKey.trim().length > 0);
+
+const demoApiUrl = (import.meta.env.VITE_DEMO_REQUEST_API_URL as string | undefined)?.trim() || "/api/send-demo-request";
 
 const scrollLockGapProps = [
   "margin-right",
@@ -116,33 +116,34 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
       return;
     }
 
-    if (!useWeb3Forms) {
-      openMailto();
-      return;
-    }
-
     setIsSubmitting(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(demoApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: web3formsKey,
-          subject: `Demo-Anfrage plyce — ${name.trim()}`,
           name: name.trim(),
           email: email.trim(),
-          replyto: email.trim(),
-          message: buildMessageBody(name.trim(), email.trim(), company.trim(), phone.trim(), message.trim()),
+          company: company.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
         }),
       });
-      const data = (await res.json()) as { success?: boolean; message?: string };
-      if (!data.success) {
-        throw new Error(data.message || "Senden ist fehlgeschlagen.");
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+      if (!res.ok || !data.ok) {
+        const msg = typeof data.message === "string" ? data.message : "Senden ist fehlgeschlagen.";
+        throw new Error(msg);
       }
       setSuccess(true);
       window.setTimeout(() => handleOpenChange(false), 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Senden ist fehlgeschlagen. Bitte versuchen Sie es später erneut.");
+      if (err instanceof TypeError) {
+        setError(
+          "Verbindung zum Server fehlgeschlagen. Prüfen Sie die Netzwerkverbindung oder nutzen Sie die E-Mail-Alternative unten.",
+        );
+      } else {
+        setError(err instanceof Error ? err.message : "Senden ist fehlgeschlagen. Bitte versuchen Sie es später erneut.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -163,17 +164,11 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
             <DialogHeader>
               <DialogTitle>Request Demo</DialogTitle>
               <DialogDescription>
-                Hinterlassen Sie Ihre Kontaktdaten — wir melden uns für eine persönliche Demo bei{" "}
+                Hinterlassen Sie Ihre Kontaktdaten — wir senden Ihre Anfrage per E-Mail an unser Team und melden uns bei{" "}
                 <a href={`mailto:${DEMO_EMAIL}`} className="font-medium text-primary hover:underline">
                   {DEMO_EMAIL}
                 </a>
-                .
-                {!useWeb3Forms ? (
-                  <>
-                    {" "}
-                    Beim Absenden öffnet sich Ihr E-Mail-Programm mit einer vorgefüllten Nachricht.
-                  </>
-                ) : null}
+                . Alternativ können Sie Ihr E-Mail-Programm mit einer vorgefüllten Nachricht öffnen.
               </DialogDescription>
             </DialogHeader>
 
@@ -255,13 +250,14 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
                 Abbrechen
               </Button>
               <Button type="submit" form="demo-booking-form" disabled={isSubmitting}>
-                {isSubmitting
-                  ? "Wird gesendet …"
-                  : useWeb3Forms
-                    ? "Anfrage senden"
-                    : "E-Mail mit Anfrage öffnen"}
+                {isSubmitting ? "Wird gesendet …" : "Anfrage senden"}
               </Button>
             </DialogFooter>
+            <p className="text-center text-sm text-muted-foreground -mt-1">
+              <button type="button" className="text-primary underline underline-offset-4 hover:text-primary/90" onClick={openMailto}>
+                Stattdessen E-Mail-App öffnen
+              </button>
+            </p>
           </>
         )}
       </DialogContent>

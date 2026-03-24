@@ -71,7 +71,7 @@ const ImplementierungPage = () => {
                   </div>
                   <div className="flex items-center gap-2.5 mb-4">
                     <div className="h-9 w-9 rounded-xl bg-primary-light flex items-center justify-center">
-                      <phase.icon className="h-4.5 w-4.5 text-primary" />
+                      <phase.icon className="h-5 w-5 text-primary" />
                     </div>
                     <h2 className="text-base font-semibold">{phase.title}</h2>
                   </div>
@@ -94,7 +94,7 @@ const ImplementierungPage = () => {
               <ul className="space-y-3">
                 {deliverables.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-muted-foreground">
-                    <CheckCircle2 className="h-4.5 w-4.5 text-primary mt-0.5 shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

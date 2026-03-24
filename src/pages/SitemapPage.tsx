@@ -26,10 +26,13 @@ const SitemapPage = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={80}>
-            <ul className="space-y-3">
+            <ul className="space-y-1">
               {links.map((item) => (
                 <li key={item.to}>
-                  <Link to={item.to} className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                  <Link
+                    to={item.to}
+                    className="flex min-h-11 items-center text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -37,7 +40,7 @@ const SitemapPage = () => {
               <li>
                 <button
                   type="button"
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors text-left"
+                  className="flex min-h-11 w-full items-center text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
                   onClick={() => window.dispatchEvent(new Event("plyce-open-cookie-settings"))}
                 >
                   Cookie-Einstellungen

@@ -1,8 +1,7 @@
 import ScrollReveal from "@/components/ScrollReveal";
-import { Button } from "@/components/ui/button";
 import {
   Shield, Lock, Server, RefreshCcw, Eye, Brain,
-  Users as UsersIcon, Scale, Activity, ArrowRight, CheckCircle2, Database
+  Users as UsersIcon, Scale, Activity, CheckCircle2, Database
 } from "lucide-react";
 
 const sections = [
@@ -160,19 +159,16 @@ const DataProtectionPage = () => {
       <section className="py-20 section-padding">
         <div className="container-tight">
           <ScrollReveal>
-            <div className="rounded-3xl bg-muted/50 border border-border p-12 md:p-16 text-center">
+            <div className="rounded-3xl bg-muted/50 border border-border px-6 py-10 sm:p-10 md:p-16 text-center">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 Ihre Daten gehören Ihnen
               </h2>
               <p className="text-lg text-muted-foreground max-w-md mx-auto mb-2">
                 Jederzeit exportierbar. Jederzeit löschbar.
               </p>
-              <p className="text-muted-foreground max-w-md mx-auto mb-8">
+              <p className="text-muted-foreground max-w-md mx-auto">
                 Keine Abhängigkeiten. Volle Kontrolle.
               </p>
-              <Button variant="hero" size="xl">
-                Jetzt testen <ArrowRight className="h-4 w-4" />
-              </Button>
             </div>
           </ScrollReveal>
         </div>

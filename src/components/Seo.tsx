@@ -147,6 +147,7 @@ const Seo = () => {
 
   useEffect(() => {
     const base = getSiteUrl();
+    const isKnownRoute = Object.prototype.hasOwnProperty.call(routeSeo, pathname);
     const seo =
       routeSeo[pathname] ??
       ({ title: "plyce – Seite nicht gefunden", description: defaultDescription } satisfies RouteSeo);
@@ -157,7 +158,12 @@ const Seo = () => {
 
     setMetaByName("description", seo.description);
     setMetaByName("keywords", seoKeywords);
-    setMetaByName("robots", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+    setMetaByName(
+      "robots",
+      isKnownRoute
+        ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        : "noindex, nofollow",
+    );
 
     setMetaByProperty("og:title", seo.title);
     setMetaByProperty("og:description", seo.description);

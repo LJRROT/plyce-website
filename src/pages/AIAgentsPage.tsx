@@ -1,5 +1,7 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import { Button } from "@/components/ui/button";
 import {
+  ArrowRight,
   Building2,
   Contact2,
   Database,
@@ -262,10 +264,19 @@ const AIAgentsPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-4">
                 Alle Agenten live erleben
               </h2>
-              <p className="text-primary-foreground/60 max-w-md mx-auto">
+              <p className="text-primary-foreground/60 max-w-md mx-auto mb-8">
                 In einer persönlichen Demo zeigen wir, wie Sourcing, CV-Intelligence, Matching und Reporting in plyce
                 zusammenspielen.
               </p>
+              <Button
+                variant="hero"
+                size="lg"
+                type="button"
+                className="border-2 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 whitespace-normal text-center max-sm:px-4 sm:whitespace-nowrap"
+                onClick={() => window.dispatchEvent(new Event("plyce-open-demo-modal"))}
+              >
+                Request Demo <ArrowRight className="h-4 w-4 shrink-0" />
+              </Button>
             </div>
           </ScrollReveal>
         </div>

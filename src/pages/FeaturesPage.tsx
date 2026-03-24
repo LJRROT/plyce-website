@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { featureSections } from "@/data/featuresTiles";
@@ -68,16 +67,15 @@ const FeaturesPage = () => {
                 Plyce live erleben
               </h2>
               <p className="text-primary-foreground/85 max-w-lg mx-auto mb-8 text-sm md:text-base leading-relaxed">
-                Request a demo or get started — we’ll show you the modules that matter for your agency.
+                In einer persönlichen Demo zeigen wir die Module, die für Ihre Agentur relevant sind.
               </p>
               <Button
                 size="lg"
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/92 font-semibold"
-                asChild
+                type="button"
+                className="bg-primary-foreground text-primary hover:bg-primary-foreground/92 font-semibold whitespace-normal text-center max-sm:px-4 sm:whitespace-nowrap"
+                onClick={() => window.dispatchEvent(new Event("plyce-open-demo-modal"))}
               >
-                <Link to="/">
-                  Mehr erfahren <ArrowRight className="h-4 w-4" />
-                </Link>
+                Request Demo <ArrowRight className="h-4 w-4 shrink-0" />
               </Button>
             </div>
           </ScrollReveal>

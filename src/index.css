@@ -63,6 +63,7 @@
   /* Keeps layout width stable when Radix locks body scroll (modal open). */
   html {
     scrollbar-gutter: stable;
+    overflow-x: clip;
   }
 
   body {

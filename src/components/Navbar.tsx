@@ -33,6 +33,15 @@ const Navbar = () => {
     return () => window.removeEventListener("plyce-open-demo-modal", onOpenDemo);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container-wide section-padding">
@@ -75,9 +84,11 @@ const Navbar = () => {
 
           {/* Mobile toggle */}
           <button
+            type="button"
             className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors"
             onClick={() => setOpen(!open)}
-            aria-label="Menu"
+            aria-label={open ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={open}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -100,10 +111,10 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="flex gap-2 mt-2 px-3">
-                <Button variant="ghost" size="sm" className="flex-1" type="button" onClick={openLogin}>
+                <Button variant="ghost" size="sm" className="flex-1 whitespace-normal text-center" type="button" onClick={openLogin}>
                   Login
                 </Button>
-                <Button variant="default" size="sm" className="flex-1" type="button" onClick={openDemo}>
+                <Button variant="default" size="sm" className="flex-1 whitespace-normal text-center text-xs sm:text-sm" type="button" onClick={openDemo}>
                   Request Demo
                 </Button>
               </div>

@@ -187,10 +187,10 @@ const FaqPage = () => {
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 Ihre Frage ist nicht dabei? Schreiben Sie uns oder buchen Sie eine kurze Vorstellung.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-stretch sm:items-center">
                 <a
                   href="mailto:info@plyce.io?subject=Frage%20zu%20plyce"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline sm:min-h-0"
                 >
                   info@plyce.io
                 </a>
@@ -199,7 +199,7 @@ const FaqPage = () => {
                 </span>
                 <button
                   type="button"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline sm:min-h-0"
                   onClick={() => window.dispatchEvent(new Event("plyce-open-demo-modal"))}
                 >
                   Request Demo

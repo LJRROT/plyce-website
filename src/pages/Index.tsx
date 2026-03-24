@@ -117,9 +117,9 @@ const Index = () => {
 
           <ScrollReveal delay={350}>
             <div className="text-center mt-12">
-              <Button variant="hero" size="lg" asChild>
+              <Button variant="hero" size="lg" asChild className="whitespace-normal text-center max-sm:px-4 sm:whitespace-nowrap">
                 <Link to="/ai-agents">
-                  Alle AI Agents entdecken <ArrowRight className="h-4 w-4" />
+                  Alle AI Agents entdecken <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
               </Button>
             </div>
@@ -191,9 +191,9 @@ const Index = () => {
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" size="lg" asChild>
+                <Button variant="outline" size="lg" asChild className="whitespace-normal text-center max-sm:px-4 sm:whitespace-nowrap">
                   <Link to="/data-protection">
-                    Mehr erfahren <ArrowRight className="h-4 w-4" />
+                    Mehr erfahren <ArrowRight className="h-4 w-4 shrink-0" />
                   </Link>
                 </Button>
               </div>
@@ -207,9 +207,12 @@ const Index = () => {
                     { label: "Backup-Frequenz", value: "Täglich" },
                     { label: "Standort", value: "Frankfurt, DE" },
                   ].map((item) => (
-                    <div key={item.label} className="flex justify-between items-center pb-4 border-b border-border last:border-0 last:pb-0">
+                    <div
+                      key={item.label}
+                      className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 pb-4 border-b border-border last:border-0 last:pb-0"
+                    >
                       <span className="text-sm text-muted-foreground">{item.label}</span>
-                      <span className="text-sm font-semibold">{item.value}</span>
+                      <span className="text-sm font-semibold sm:text-right tabular-nums">{item.value}</span>
                     </div>
                   ))}
                 </div>
