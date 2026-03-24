@@ -39,9 +39,50 @@ const Index = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={160}>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-0 leading-relaxed">
-                ATS/CRM für kleine bis mittlere Recruting Agenturen.
-              </p>
+              <div className="mx-auto max-w-xl text-center">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
+                  ATS/CRM für kleine bis mittlere Recruiting-Agenturen.
+                </p>
+
+                <div className="mx-auto mt-9 max-w-sm">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-border/60" aria-hidden />
+                    <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/60">
+                      Powered by
+                    </span>
+                    <span className="h-px flex-1 bg-border/60" aria-hidden />
+                  </div>
+
+                  <div className="grid grid-cols-2 divide-x divide-border/50 overflow-hidden rounded-xl border border-border/55 bg-card/80 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px]">
+                    <Link
+                      to="/ai-agents"
+                      className="group flex min-h-[4.25rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
+                      aria-label="OpenAI — KI-Modelle"
+                    >
+                      <img
+                        src="/logos/openai-wordmark.svg"
+                        alt=""
+                        className="h-7 w-auto max-w-[min(118px,28vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
+                        width={118}
+                        height={28}
+                      />
+                    </Link>
+                    <Link
+                      to="/ai-agents"
+                      className="group flex min-h-[4.25rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
+                      aria-label="Mistral AI — KI-Modelle"
+                    >
+                      <img
+                        src="/logos/mistral-wordmark.svg"
+                        alt=""
+                        className="h-7 w-auto max-w-[min(138px,30vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
+                        width={138}
+                        height={28}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </ScrollReveal>
           </div>
         </div>
@@ -174,30 +215,6 @@ const Index = () => {
               </div>
             </ScrollReveal>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 md:py-28 section-padding">
-        <div className="container-tight">
-          <ScrollReveal>
-            <div className="rounded-3xl bg-primary p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-4">
-                Bereit, effizienter zu recruiten?
-              </h2>
-              <p className="text-primary-foreground/80 max-w-md mx-auto mb-8">
-                Starten Sie kostenlos oder buchen Sie eine persönliche Demo mit unserem Team.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button variant="hero-outline" size="xl" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/50">
-                  Demo buchen
-                </Button>
-                <Button size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                  Kostenlos starten <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
     </div>
