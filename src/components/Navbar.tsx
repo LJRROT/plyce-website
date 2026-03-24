@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LoginModal from "@/components/LoginModal";
+import DemoBookingModal from "@/components/DemoBookingModal";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -13,12 +14,24 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
   const location = useLocation();
 
   const openLogin = () => {
     setOpen(false);
     setLoginOpen(true);
   };
+
+  const openDemo = () => {
+    setOpen(false);
+    setDemoOpen(true);
+  };
+
+  useEffect(() => {
+    const onOpenDemo = () => setDemoOpen(true);
+    window.addEventListener("plyce-open-demo-modal", onOpenDemo);
+    return () => window.removeEventListener("plyce-open-demo-modal", onOpenDemo);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -55,7 +68,9 @@ const Navbar = () => {
             <Button variant="ghost" size="sm" type="button" onClick={() => setLoginOpen(true)}>
               Login
             </Button>
-            <Button variant="default" size="sm">Demo buchen</Button>
+            <Button variant="default" size="sm" type="button" onClick={() => setDemoOpen(true)}>
+              Request Demo
+            </Button>
           </div>
 
           {/* Mobile toggle */}
@@ -88,13 +103,16 @@ const Navbar = () => {
                 <Button variant="ghost" size="sm" className="flex-1" type="button" onClick={openLogin}>
                   Login
                 </Button>
-                <Button variant="default" size="sm" className="flex-1">Demo buchen</Button>
+                <Button variant="default" size="sm" className="flex-1" type="button" onClick={openDemo}>
+                  Request Demo
+                </Button>
               </div>
             </div>
           </div>
         )}
       </div>
       <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
+      <DemoBookingModal open={demoOpen} onOpenChange={setDemoOpen} />
     </nav>
   );
 };

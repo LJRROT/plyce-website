@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
 import FeaturesPage from "./pages/FeaturesPage";
@@ -36,6 +37,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <Seo />
         <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />

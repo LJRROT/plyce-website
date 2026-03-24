@@ -1,128 +1,84 @@
+import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
-import {
-  Users, FileSearch, BarChart3, Mail, Zap, Target,
-  Briefcase, Calendar, Globe, MessageSquare, Settings,
-  ArrowRight, CheckCircle2, Layers, PieChart, FolderOpen
-} from "lucide-react";
+import { featureSections } from "@/data/featuresTiles";
+import { ArrowRight } from "lucide-react";
 
-const allFeatures = [
-  {
-    category: "Kandidatenmanagement",
-    items: [
-      { icon: Users, title: "Candidate Dossiers", desc: "Strukturierte Kandidatenprofile mit Skills, Erfahrung, Gehaltsvorstellungen und Verfügbarkeit. Professionelle Dossiers auf Knopfdruck generieren.", highlights: ["Automatische Profilanalyse", "Exportierbare Dossiers", "Skill-Tagging"] },
-      { icon: FileSearch, title: "CV Parsing", desc: "Automatische Extraktion aller relevanten Daten aus Lebensläufen. PDFs, Word-Dokumente und LinkedIn-Profile werden in Sekunden analysiert.", highlights: ["Multi-Format Support", "95%+ Genauigkeit", "Batch-Import"] },
-      { icon: Layers, title: "Talentpool", desc: "Aufbau und Pflege eines strukturierten Talentpools. Kandidaten segmentieren, taggen und bei passenden Vakanzen sofort matchen.", highlights: ["Smart Tags", "Automatisches Matching", "Wiedervorlage-System"] },
-    ],
-  },
-  {
-    category: "Projekte & Vakanzen",
-    items: [
-      { icon: Briefcase, title: "Vakanzmanagement", desc: "Alle offenen Positionen im Überblick. Anforderungsprofile definieren, Kunden zuordnen und den Besetzungsprozess transparent abbilden.", highlights: ["Anforderungsprofile", "Kundenzuordnung", "Deadline-Tracking"] },
-      { icon: Target, title: "Pipeline Management", desc: "Visuelles Kanban-Board für jeden Recruiting-Prozess. Von Longlist über Shortlist bis Placement – volle Kontrolle.", highlights: ["Drag & Drop Kanban", "Status-Automatisierung", "Deal Value Tracking"] },
-      { icon: PieChart, title: "Deal Tracking", desc: "Umsatzprognosen, Platzierungswahrscheinlichkeiten und Pipeline-Werte auf einen Blick. Für bessere Forecasts und mehr Placements.", highlights: ["Revenue Forecasting", "Wahrscheinlichkeiten", "Provision-Tracking"] },
-    ],
-  },
-  {
-    category: "Kommunikation & Outreach",
-    items: [
-      { icon: Mail, title: "E-Mail Integration", desc: "Nahtlose Integration mit Google Workspace und Microsoft 365. E-Mails direkt aus dem System senden, empfangen und tracken.", highlights: ["Gmail & Outlook", "E-Mail Templates", "Tracking & Analytics"] },
-      { icon: MessageSquare, title: "WhatsApp Integration", desc: "Kandidaten dort erreichen, wo sie sind. WhatsApp-Nachrichten direkt aus plyce senden und empfangen.", highlights: ["Direkte Kommunikation", "Template-Nachrichten", "Verlauf im System"] },
-      { icon: Globe, title: "Stellenanzeigen", desc: "KI-generierte Stellenanzeigen in Sekunden. Automatische Veröffentlichung auf relevanten Plattformen.", highlights: ["KI-Generierung", "Multi-Channel Posting", "Performance Tracking"] },
-    ],
-  },
-  {
-    category: "Analytics & Automatisierung",
-    items: [
-      { icon: BarChart3, title: "Reporting & KPIs", desc: "Echtzeit-Dashboards mit allen relevanten KPIs. Time-to-Fill, Placement-Rate, Pipeline-Velocity und mehr.", highlights: ["Live Dashboards", "Custom Reports", "Team-Performance"] },
-      { icon: Zap, title: "Workflow-Automatisierung", desc: "Repetitive Aufgaben automatisieren. Trigger-basierte Workflows für Follow-ups, Statusänderungen und Benachrichtigungen.", highlights: ["Trigger & Actions", "Auto-Follow-ups", "Benachrichtigungen"] },
-      { icon: Calendar, title: "Kalender & Termine", desc: "Interview-Scheduling und Terminmanagement direkt im System. Synchronisation mit Google & Microsoft Kalender.", highlights: ["Kalender-Sync", "Interview-Scheduling", "Reminder"] },
-    ],
-  },
-  {
-    category: "System & Verwaltung",
-    items: [
-      { icon: FolderOpen, title: "Kundenverwaltung (CRM)", desc: "Kunden, Ansprechpartner und Rahmenverträge zentral verwalten. Vollständige Kundenhistorie und Kontaktmanagement.", highlights: ["Kontaktmanagement", "Vertragsübersicht", "Kundenhistorie"] },
-      { icon: Settings, title: "Flexibles Setup", desc: "Schnelle Einrichtung und Anpassung an Ihre Prozesse. Eigene Felder, Workflows und Rollen definieren.", highlights: ["Custom Fields", "Rollen & Rechte", "API-Zugang"] },
-    ],
-  },
-];
+const allFeatureTiles = featureSections.flatMap((section) => section.tiles);
 
 const FeaturesPage = () => {
   return (
     <div className="min-h-screen pt-24">
-      {/* Hero */}
-      <section className="py-16 md:py-24 section-padding">
+      <section className="py-14 md:py-20 section-padding border-b border-border/40">
         <div className="container-tight text-center">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[0.95] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[0.95] mb-5 text-balance text-gradient-hero">
               Alle Features im Überblick
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={80}>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-              plyce bildet den gesamten Recruiting-Prozess ab – von der Kandidatensuche bis zum Placement.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              plyce bündelt Kandidaten, Projekte, Kunden, E-Mail und Analytics — modular, aber aus einem Guss.
             </p>
-          </ScrollReveal>
-          <ScrollReveal delay={160}>
-            <Button variant="hero" size="xl">
-              Kostenlos testen <ArrowRight className="h-4 w-4" />
-            </Button>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Feature categories */}
-      {allFeatures.map((category, ci) => (
-        <section
-          key={category.category}
-          className={`py-16 md:py-24 section-padding ${ci % 2 === 0 ? "" : "bg-muted/30"}`}
-        >
-          <div className="container-tight">
-            <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-12">{category.category}</h2>
-            </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.items.map((f, i) => (
-                <ScrollReveal key={f.title} delay={i * 100}>
-                  <div className="group h-full p-6 rounded-2xl border border-border/50 bg-card hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light mb-4 group-hover:bg-primary/10 transition-colors">
-                      <f.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h3 className="text-base font-semibold mb-2">{f.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{f.desc}</p>
-                    <ul className="space-y-1.5">
-                      {f.highlights.map((h) => (
-                        <li key={h} className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <CheckCircle2 className="h-3 w-3 text-primary flex-shrink-0" />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
+      <section className="py-14 md:py-20 section-padding">
+        <div className="container-tight">
+          <h2 className="sr-only">Vollständige Feature-Liste</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+            {allFeatureTiles.map((tile, ti) => (
+              <ScrollReveal key={`${ti}-${tile.title}`} delay={Math.min(ti % 12, 8) * 25}>
+                <article className="group relative flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-sm transition-all duration-300 hover:border-primary/22 hover:shadow-md hover:-translate-y-0.5">
+                  <div
+                    className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    aria-hidden
+                  />
+                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/[0.09] text-primary ring-1 ring-primary/10 transition-colors group-hover:bg-primary/12">
+                    <tile.icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={2} aria-hidden />
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                  <h3 className="text-[0.9375rem] font-semibold tracking-tight leading-snug text-foreground">
+                    {tile.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{tile.tagline}</p>
+                  <ul className="mt-4 space-y-2 border-t border-border/50 pt-4">
+                    {tile.bullets.map((line) => (
+                      <li key={line} className="flex gap-2 text-xs leading-snug text-muted-foreground">
+                        <span
+                          className="mt-[0.35rem] h-1 w-1 shrink-0 rounded-full bg-primary/45"
+                          aria-hidden
+                        />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </ScrollReveal>
+            ))}
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
-      {/* CTA */}
-      <section className="py-20 section-padding">
+      <section className="py-16 md:py-24 section-padding">
         <div className="container-tight">
           <ScrollReveal>
-            <div className="rounded-3xl bg-primary p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-4">
-                Überzeugt? Starten Sie jetzt.
+            <div className="rounded-3xl bg-gradient-to-br from-primary to-primary/85 px-8 py-12 md:px-14 md:py-16 text-center shadow-lg shadow-primary/15">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground tracking-tight mb-3">
+                Plyce live erleben
               </h2>
-              <p className="text-primary-foreground/80 max-w-md mx-auto mb-8">
-                Testen Sie plyce kostenlos oder lassen Sie sich persönlich beraten.
+              <p className="text-primary-foreground/85 max-w-lg mx-auto mb-8 text-sm md:text-base leading-relaxed">
+                Request a demo or get started — we’ll show you the modules that matter for your agency.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                  Kostenlos starten <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
+              <Button
+                size="lg"
+                className="bg-primary-foreground text-primary hover:bg-primary-foreground/92 font-semibold"
+                asChild
+              >
+                <Link to="/">
+                  Mehr erfahren <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </ScrollReveal>
         </div>

@@ -1,7 +1,5 @@
 import ScrollReveal from "@/components/ScrollReveal";
-import { Button } from "@/components/ui/button";
 import {
-  ArrowRight,
   BadgePercent,
   CheckCircle2,
   GraduationCap,
@@ -96,21 +94,10 @@ const PartnerprogrammPage = () => {
               <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
                 Wachsen Sie mit plyce – gemeinsam mit Recruiting-Agenturen
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                 plyce ist das ATS/CRM für kleine bis mittlere Recruiting-Agenturen – mit integrierter KI-Automatisierung.
                 Als Partner begleiten Sie Kunden beim digitalen Recruiting und profitieren von einer strukturierten Zusammenarbeit.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="lg" asChild>
-                  <a href="mailto:info@plyce.io?subject=Partnerprogramm%20plyce">
-                    Partner werden
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <a href="mailto:info@plyce.io?subject=Rückfrage%20Partnerprogramm%20plyce">Fragen stellen</a>
-                </Button>
-              </div>
             </div>
           </ScrollReveal>
 

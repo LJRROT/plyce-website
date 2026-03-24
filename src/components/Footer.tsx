@@ -106,19 +106,20 @@ const Footer = () => {
                 </a>
               </li>
               <li className="text-sm text-muted-foreground">
-                <a
-                  href="mailto:info@plyce.io?subject=Kontaktanfrage%20plyce"
-                  className="hover:text-primary transition-colors"
+                <button
+                  type="button"
+                  className="text-inherit hover:text-primary transition-colors text-left w-full"
+                  onClick={() => window.dispatchEvent(new Event("plyce-open-demo-modal"))}
                 >
-                  Kontaktformular
-                </a>
+                  Request Demo
+                </button>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} plyce – Eine Marke von WECO Experts GmbH. Alle Rechte vorbehalten.</p>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} plyce. Alle Rechte vorbehalten.</p>
           <div className="flex gap-6">
             <Link to="/impressum" className="text-xs text-muted-foreground hover:text-primary transition-colors">Impressum</Link>
             <Link to="/datenschutz" className="text-xs text-muted-foreground hover:text-primary transition-colors">Datenschutz</Link>
