@@ -12,6 +12,11 @@ import AIAgentsPage from "./pages/AIAgentsPage";
 import DataProtectionPage from "./pages/DataProtectionPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
+import AGBPage from "./pages/AGBPage";
+import SitemapPage from "./pages/SitemapPage";
+import FaqPage from "./pages/FaqPage";
+import ImplementierungPage from "./pages/ImplementierungPage";
+import PartnerprogrammPage from "./pages/PartnerprogrammPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -39,6 +44,11 @@ const App = () => (
           <Route path="/data-protection" element={<DataProtectionPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
+          <Route path="/agb" element={<AGBPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/implementierung" element={<ImplementierungPage />} />
+          <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

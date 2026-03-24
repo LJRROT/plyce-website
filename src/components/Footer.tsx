@@ -4,20 +4,22 @@ const Footer = () => {
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container-wide section-padding py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <span className="text-sm font-bold text-primary-foreground">P</span>
-              </div>
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <img
+                src="/plyce-logo-mark.png"
+                alt=""
+                width={32}
+                height={40}
+                className="h-8 w-auto object-contain object-left"
+                decoding="async"
+              />
               <span className="text-xl font-bold tracking-tight">plyce</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Das ATS/CRM für Personalberater und Recruiting-Teams. Mehr Placements, weniger Admin.
-            </p>
-            <p className="text-xs text-muted-foreground mt-4">
-              Eine Marke von WECO Experts GmbH
             </p>
           </div>
 
@@ -31,26 +33,85 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Informationen */}
+          <div>
+            <h4 className="text-sm font-semibold mb-4">Informationen</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link to="/data-protection" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Datenschutz nach EU-DSGVO
+                </Link>
+              </li>
+              <li>
+                <Link to="/implementierung" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Implementierungsprozess
+                </Link>
+              </li>
+              <li>
+                <Link to="/partnerprogramm" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Partnerprogramme
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Rechtliches */}
           <div>
             <h4 className="text-sm font-semibold mb-4">Rechtliches</h4>
             <ul className="space-y-2.5">
-              <li><Link to="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">Impressum</Link></li>
-              <li><Link to="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors">Datenschutzerklärung</Link></li>
+              <li>
+                <Link to="/agb" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  AGB
+                </Link>
+              </li>
+              <li>
+                <Link to="/datenschutz" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Datenschutzerklärung
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                  onClick={() => window.dispatchEvent(new Event("plyce-open-cookie-settings"))}
+                >
+                  Cookie-Einstellungen
+                </button>
+              </li>
+              <li>
+                <Link to="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Impressum
+                </Link>
+              </li>
+              <li>
+                <Link to="/sitemap" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Site Map
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Kontakt */}
           <div>
-            <h4 className="text-sm font-semibold mb-4">Kontakt</h4>
+            <h4 className="text-sm font-semibold mb-4">Noch kein Kunde?</h4>
             <ul className="space-y-2.5">
               <li className="text-sm text-muted-foreground">
-                <span className="block">Telefon:</span>
-                <a href="tel:+498937040096" className="hover:text-primary transition-colors">+49 (0)89 370 400 96</a>
+                <a href="tel:+498937040096" className="hover:text-primary transition-colors">
+                  +49 89 370 400 96
+                </a>
               </li>
               <li className="text-sm text-muted-foreground">
-                <span className="block">E-Mail:</span>
-                <a href="mailto:info@plyce.io" className="hover:text-primary transition-colors">info@plyce.io</a>
+                <a
+                  href="mailto:info@plyce.io?subject=Kontaktanfrage%20plyce"
+                  className="hover:text-primary transition-colors"
+                >
+                  Kontaktformular
+                </a>
               </li>
             </ul>
           </div>

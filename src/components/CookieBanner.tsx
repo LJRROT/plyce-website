@@ -19,19 +19,44 @@ const CookieBanner = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const openFromFooter = () => {
+      const raw = localStorage.getItem("plyce-cookie-consent");
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw) as { analytics?: boolean; marketing?: boolean };
+          setPreferences({
+            necessary: true,
+            analytics: !!parsed.analytics,
+            marketing: !!parsed.marketing,
+          });
+        } catch {
+          /* keep current preferences */
+        }
+      }
+      setVisible(true);
+      setShowSettings(true);
+    };
+    window.addEventListener("plyce-open-cookie-settings", openFromFooter);
+    return () => window.removeEventListener("plyce-open-cookie-settings", openFromFooter);
+  }, []);
+
   const acceptAll = () => {
     localStorage.setItem("plyce-cookie-consent", JSON.stringify({ necessary: true, analytics: true, marketing: true }));
     setVisible(false);
+    setShowSettings(false);
   };
 
   const rejectAll = () => {
     localStorage.setItem("plyce-cookie-consent", JSON.stringify({ necessary: true, analytics: false, marketing: false }));
     setVisible(false);
+    setShowSettings(false);
   };
 
   const saveSettings = () => {
     localStorage.setItem("plyce-cookie-consent", JSON.stringify(preferences));
     setVisible(false);
+    setShowSettings(false);
   };
 
   if (!visible) return null;

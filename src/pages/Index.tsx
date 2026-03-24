@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import {
   Users, FileSearch, BarChart3, Mail, Zap, Target,
-  Brain, Shield, ArrowRight, CheckCircle2, Sparkles
+  Shield, ArrowRight, CheckCircle2, Heart,
 } from "lucide-react";
 
 const features = [
@@ -15,78 +15,71 @@ const features = [
   { icon: Zap, title: "Automatisierung", desc: "Workflows automatisieren und repetitive Aufgaben eliminieren." },
 ];
 
-const stats = [
-  { value: "10+", label: "KI-Agenten" },
-  { value: "3x", label: "Schnellere Besetzung" },
-  { value: "70%", label: "Weniger Admin" },
-  { value: "DSGVO", label: "Konform" },
-];
-
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 section-padding">
+      {/* Hero — headline & tagline */}
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 section-padding">
         <div className="container-tight">
           <div className="max-w-3xl mx-auto text-center">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary-light border border-primary/20 px-4 py-1.5 mb-6">
-                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-medium text-primary">Jetzt mit 10+ KI-Agenten</span>
-              </div>
-            </ScrollReveal>
-
             <ScrollReveal delay={80}>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95] mb-6">
-                Recruiting, das<br />
-                <span className="text-gradient">wirklich liefert.</span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-center">
+                <span className="inline-flex flex-col items-center gap-2 md:gap-2.5">
+                  <span className="inline-flex items-center justify-center gap-x-2 md:gap-x-2.5">
+                    <span className="text-gradient-hero">plyce</span>
+                    <Heart
+                      className="shrink-0 inline-block h-[0.84em] w-[0.84em] text-black fill-black stroke-black"
+                      strokeWidth={1.5}
+                      aria-hidden
+                    />
+                  </span>
+                  <span className="text-gradient-hero text-balance">AI &amp; Automation</span>
+                </span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={160}>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
-                Das ATS/CRM für Personalberater. Kandidaten managen, Prozesse automatisieren, schneller platzieren – mit KI.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-0 leading-relaxed">
+                ATS/CRM für kleine bis mittlere Recruting Agenturen.
               </p>
             </ScrollReveal>
-
-            <ScrollReveal delay={240}>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button variant="hero" size="xl">
-                  Kostenlos testen
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-                <Button variant="hero-outline" size="xl">
-                  Demo buchen
-                </Button>
-              </div>
-            </ScrollReveal>
           </div>
-
-          {/* Stats bar */}
-          <ScrollReveal delay={360}>
-            <div className="mt-16 md:mt-20 flex flex-wrap justify-center gap-8 md:gap-16">
-              {stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-foreground">{s.value}</div>
-                  <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
-      {/* Social proof */}
-      <section className="py-12 border-y border-border/50 bg-muted/30">
-        <div className="container-wide section-padding">
+      {/* AI Section — directly under ATS/CRM tagline */}
+      <section className="py-20 md:py-28 section-padding bg-foreground text-primary-foreground">
+        <div className="container-tight">
           <ScrollReveal>
-            <p className="text-center text-sm text-muted-foreground mb-6">Vertraut von Personalberatungen in ganz DACH</p>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                11 vollintegrierte KI Agenten arbeiten für dich
+              </h2>
+            </div>
           </ScrollReveal>
-          <ScrollReveal delay={80}>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-40">
-              {["WECO Experts", "HSE Experts", "TechRecruit", "BioStaff", "PharmaPro"].map((name) => (
-                <span key={name} className="text-lg font-semibold tracking-tight">{name}</span>
-              ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+            {[
+              { title: "CV Parser Agent", desc: "Analysiert Lebensläufe automatisch und extrahiert strukturierte Daten." },
+              { title: "Matching Agent", desc: "Gleicht Kandidatenprofile mit offenen Positionen ab." },
+              { title: "Dossier Agent", desc: "Erstellt professionelle Kandidaten-Dossiers auf Knopfdruck." },
+            ].map((agent, i) => (
+              <ScrollReveal key={agent.title} delay={i * 100} className="h-full">
+                <div className="flex h-full flex-col p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-primary/30 transition-all duration-300">
+                  <h3 className="text-sm font-semibold mb-2">{agent.title}</h3>
+                  <p className="text-sm text-primary-foreground/60 leading-relaxed">{agent.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal delay={350}>
+            <div className="text-center mt-12">
+              <Button variant="hero" size="lg" asChild>
+                <Link to="/ai-agents">
+                  Alle AI Agents entdecken <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </ScrollReveal>
         </div>
@@ -125,51 +118,6 @@ const Index = () => {
               <Button variant="outline" size="lg" asChild>
                 <Link to="/features">
                   Alle Features entdecken <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* AI Section */}
-      <section className="py-20 md:py-28 section-padding bg-foreground text-primary-foreground">
-        <div className="container-tight">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 mb-6">
-                <Brain className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-medium text-primary">KI-gestützt</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                10+ KI-Agenten arbeiten für dich
-              </h2>
-              <p className="text-primary-foreground/60 max-w-lg mx-auto">
-                Ein Senior Personalberater kann so effizient arbeiten wie ein ganzes Team. Junior Recruiter erreichen schneller ein Senior-Level.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { title: "CV Parser Agent", desc: "Analysiert Lebensläufe automatisch und extrahiert strukturierte Daten." },
-              { title: "Matching Agent", desc: "Gleicht Kandidatenprofile mit offenen Positionen ab." },
-              { title: "Dossier Agent", desc: "Erstellt professionelle Kandidaten-Dossiers auf Knopfdruck." },
-            ].map((agent, i) => (
-              <ScrollReveal key={agent.title} delay={i * 100}>
-                <div className="p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-primary/30 transition-all duration-300">
-                  <h3 className="text-sm font-semibold mb-2">{agent.title}</h3>
-                  <p className="text-sm text-primary-foreground/60 leading-relaxed">{agent.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ScrollReveal delay={350}>
-            <div className="text-center mt-12">
-              <Button variant="hero" size="lg" asChild>
-                <Link to="/ai-agents">
-                  Alle AI Agents entdecken <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
