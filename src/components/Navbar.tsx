@@ -17,10 +17,15 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container-wide section-padding">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-sm font-bold text-primary-foreground">P</span>
-            </div>
+          <Link to="/" className="flex items-center gap-2.5">
+            <img
+              src="/plyce-logo-mark.png"
+              alt=""
+              width={32}
+              height={40}
+              className="h-8 w-auto object-contain object-left"
+              decoding="async"
+            />
             <span className="text-xl font-bold tracking-tight text-foreground">plyce</span>
           </Link>
 
