@@ -41,8 +41,8 @@ const Index = () => {
             <ScrollReveal delay={160}>
               <div className="mx-auto max-w-xl text-center">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-                  Applicant Tracking System (ATS) und CRM für kleine bis mittlere Recruiting-Agenturen und
-                  Personalberatungen – Bewerber- und Kundenprozesse in einer Plattform.
+                  KI-native ATS & CRM für Recruiting-Agenturen<br />
+                  Mehr Placements. Weniger Admin. Mehr Umsatz.
                 </p>
 
                 <div className="mx-auto mt-9 max-w-sm">
