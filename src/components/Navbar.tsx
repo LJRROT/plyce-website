@@ -49,7 +49,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2.5">
             <img
               src="/plyce-logo-mark.png"
-              alt=""
+              alt="plyce Logo – ATS und CRM für Recruiting-Agenturen"
               width={32}
               height={40}
               className="h-8 w-auto object-contain object-left"
