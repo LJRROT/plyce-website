@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
     mode === "development" && componentTagger(),
     {
       name: "html-inject-site-url",
-      transformIndexHtml(html) {
+      transformIndexHtml(html: string) {
         return html.replaceAll("%SITE_URL%", siteUrl);
       },
     },
