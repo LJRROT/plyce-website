@@ -53,8 +53,8 @@ export default defineConfig(({ mode }) => {
     },
     mode === "development" && {
       name: "demo-request-resend-dev",
-      configureServer(server: { middlewares: { use: (handler: (req: IncomingMessage & { url?: string }, res: import("node:http").ServerResponse, next: () => void) => void) => void } }) {
-        server.middlewares.use(async (req: IncomingMessage & { url?: string }, res: import("node:http").ServerResponse, next: () => void) => {
+      configureServer(server: { middlewares: { use: (handler: (req: IncomingMessage & { url?: string }, res: ServerResponse, next: () => void) => void) => void } }) {
+        server.middlewares.use(async (req: IncomingMessage & { url?: string }, res: ServerResponse, next: () => void) => {
           const pathname = req.url?.split("?")[0] ?? "";
           if (pathname !== "/api/send-demo-request" || req.method !== "POST") {
             return next();
