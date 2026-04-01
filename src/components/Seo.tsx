@@ -55,7 +55,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Kann ich plyce testen?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Ja. Fordern Sie über „Request Demo" eine persönliche Vorstellung an – wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind.",
+          text: 'Ja. Fordern Sie über \u201ERequest Demo\u201C eine persönliche Vorstellung an \u2013 wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind.',
         },
       },
     ],
