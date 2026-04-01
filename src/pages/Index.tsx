@@ -1,18 +1,80 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
+import type { LucideIcon } from "lucide-react";
 import {
-  Users, FileSearch, BarChart3, Mail, Zap, Target,
-  Shield, ArrowRight, CheckCircle2, Heart,
+  BarChart3,
+  Mail,
+  Zap,
+  Shield,
+  ArrowRight,
+  CheckCircle2,
+  Heart,
+  MessagesSquare,
+  PieChart,
+  Plug,
 } from "lucide-react";
 
-const features = [
-  { icon: Users, title: "Candidate Dossiers", desc: "Strukturierte Kandidatenprofile mit allen relevanten Daten auf einen Blick." },
-  { icon: FileSearch, title: "CV Parsing", desc: "Automatische Extraktion von Lebenslaufdaten – in Sekunden statt Stunden." },
-  { icon: Target, title: "Pipeline Management", desc: "Von Longlist bis Placement – volle Transparenz über jeden Prozessschritt." },
-  { icon: Mail, title: "E-Mail Integration", desc: "Google & Microsoft Integration. Kommunikation direkt im System." },
-  { icon: BarChart3, title: "Reporting & KPIs", desc: "Echtzeit-Analytics für fundierte Entscheidungen und mehr Umsatz." },
-  { icon: Zap, title: "Automatisierung", desc: "Workflows automatisieren und repetitive Aufgaben eliminieren." },
+const features: {
+  icon: LucideIcon;
+  title: string;
+  tagline: string;
+  bullets: string[];
+}[] = [
+  {
+    icon: MessagesSquare,
+    title: "WhatsApp Integration",
+    tagline: "Erreiche Kandidaten dort, wo sie wirklich reagieren",
+    bullets: [
+      "Direkte Kommunikation, schnellere Rückmeldungen, höhere Response-Raten",
+      "Nahtlos in deine Recruiting-Workflows integriert",
+    ],
+  },
+  {
+    icon: Mail,
+    title: "E-Mail Konnektivität (Microsoft 365 & Google)",
+    tagline: "Volle Synchronisation aller ein- und ausgehenden E-Mails",
+    bullets: [
+      "Keine Weiterleitungen, keine Copy-Paste-Prozesse",
+      "Alle Kommunikation zentral im System dokumentiert",
+    ],
+  },
+  {
+    icon: Zap,
+    title: "Business Development Automatisierung",
+    tagline: "Mehrstufige Kampagnen über Wochen oder Monate automatisieren",
+    bullets: [
+      "Vorkonfigurierte Touchpoints für nachhaltigen Kundenaufbau",
+      "Skaliere dein BD ohne zusätzlichen manuellen Aufwand",
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "Reporting & Performance Tracking",
+    tagline: "Alle KPIs in Echtzeit und direkt vergleichbar",
+    bullets: [
+      "Vom einzelnen Recruiter bis zur gesamten Pipeline",
+      "Transparenz, die echte Steuerung ermöglicht",
+    ],
+  },
+  {
+    icon: PieChart,
+    title: "Analytics & Teamsteuerung",
+    tagline: "Maximale Übersicht über Prozesse, Auslastung und Fortschritt",
+    bullets: [
+      "Bessere Planbarkeit für Teams und Projekte",
+      "Alle relevanten Daten an einem Ort",
+    ],
+  },
+  {
+    icon: Plug,
+    title: "Jobboard & API Schnittstellen",
+    tagline: "Eigene Karriereseite inklusive",
+    bullets: [
+      "Jobs automatisch veröffentlichen und synchronisieren",
+      "Offen für Integrationen in deine bestehende Systemlandschaft",
+    ],
+  },
 ];
 
 const Index = () => {
@@ -95,16 +157,16 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                11 vollintegrierte KI Agenten arbeiten für dich
+                10 vollintegrierte KI Agenten arbeiten für dich
               </h2>
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {[
-              { title: "CV Parser Agent", desc: "Analysiert Lebensläufe automatisch und extrahiert strukturierte Daten." },
-              { title: "Matching Agent", desc: "Gleicht Kandidatenprofile mit offenen Positionen ab." },
-              { title: "Dossier Agent", desc: "Erstellt professionelle Kandidaten-Dossiers auf Knopfdruck." },
+              { title: "AI CV Analyzer", desc: "Analysiert CVs strukturiert mit Tags und Skills; anonymisiert Kandidaten-, Unternehmens- und Branchenangaben im CV." },
+              { title: "AI Candidate Match", desc: "Bewertet und rankt Kandidaten nach Passung zu einem Projekt (Score 0–100 mit Begründung)." },
+              { title: "AI Dossier Highlights", desc: "Highlights aus Kandidat und Projekt, mit Fokus auf die Passung zur Rolle." },
             ].map((agent, i) => (
               <ScrollReveal key={agent.title} delay={i * 100} className="h-full">
                 <div className="flex h-full flex-col p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-primary/30 transition-all duration-300">
@@ -133,35 +195,53 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Die Infrastruktur für skalierbares Recruiting
+                Infrastruktur für skalierbares Recruiting
               </h2>
-              <p className="text-muted-foreground max-w-lg mx-auto">
-                plyce verbindet Kommunikation, Vertrieb und Delivery in einem KI-native System.
+              <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
+                Vom ersten Kontakt bis zum Placement: plyce begleitet den gesamten Kandidaten-Bewerbungs-Lebenszyklus und verbindet Kommunikation, Vertrieb und Delivery in einem KI-native System.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {features.map((f, i) => (
-              <ScrollReveal key={f.title} delay={i * 80}>
-                <div className="group p-6 rounded-2xl border border-border/50 bg-card hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light mb-4 group-hover:bg-primary/10 transition-colors">
+              <ScrollReveal key={f.title} delay={i * 80} className="h-full min-h-0">
+                <Link
+                  to="/features"
+                  className="group flex h-full min-h-0 flex-col rounded-2xl border border-border/50 bg-card p-6 text-inherit no-underline shadow-sm transition-all duration-300 hover:border-primary/20 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light mb-4 transition-colors group-hover:bg-primary/10">
                     <f.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <h3 className="text-base font-semibold mb-2">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
+                  <h3 className="text-base font-semibold mb-2 leading-snug">{f.title}</h3>
+                  <p className="text-sm text-foreground/90 font-medium leading-relaxed mb-3">{f.tagline}</p>
+                  <ul className="mt-auto space-y-2.5">
+                    {f.bullets.map((line) => (
+                      <li key={line} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
 
           <ScrollReveal delay={500}>
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/features">
-                  Alle Features entdecken <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+            <div className="mt-12 w-full">
+              <div className="mx-auto w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
+                <Button
+                  variant="secondary"
+                  size="xl"
+                  asChild
+                  className="w-full shadow-md ring-1 ring-border/60 hover:shadow-lg hover:ring-border"
+                >
+                  <Link to="/features">
+                    Alle Features entdecken <ArrowRight className="h-4 w-4 shrink-0" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -178,13 +258,19 @@ const Index = () => {
                   <span className="text-xs font-medium text-primary">Enterprise-Level Sicherheit</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                  Ihre Daten sind sicher. Punkt.
+                  Ihre Daten sind sicher.
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   DSGVO-konform, Ende-zu-Ende verschlüsselt, gehostet in der EU. Volle Kontrolle über Ihre Daten – jederzeit exportierbar, jederzeit löschbar.
                 </p>
                 <ul className="space-y-3 mb-8">
-                  {["DSGVO-konforme Verarbeitung", "Ende-zu-Ende-Verschlüsselung", "EU-Hosting (Frankfurt)", "Vollständiger Audit Trail"].map((item) => (
+                  {[
+                    "DSGVO-konforme Verarbeitung",
+                    "End-to-End-Verschlüsselung",
+                    "EU-Hosting (Frankfurt)",
+                    "Vollständiger Audit Trail",
+                    "Frei wählbare KI: US (OpenAI) oder EU (Mistral AI)",
+                  ].map((item) => (
                     <li key={item} className="flex items-center gap-2.5 text-sm">
                       <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                       {item}

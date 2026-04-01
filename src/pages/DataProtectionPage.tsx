@@ -1,7 +1,7 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import {
   Shield, Lock, Server, RefreshCcw, Eye, Brain,
-  Users as UsersIcon, Scale, Activity, CheckCircle2, Database
+  Scale, Activity, CheckCircle2,
 } from "lucide-react";
 
 const sections = [
@@ -29,10 +29,9 @@ const sections = [
     icon: Server,
     title: "Hosting & Datenstandort",
     items: [
-      "Hosting innerhalb der EU möglich",
-      "Klare Datenisolierung pro Kunde (Multi-Tenant-Sicherheit)",
+      "Hosting und Datenspeicherung bei AWS in der Region Frankfurt (eu-central-1)",
       "Wahl der AI-Verarbeitung: EU oder USA",
-      "Keine Vermischung von Kundendaten",
+      "Speicher- und Verarbeitungsorte sowie eingebundene Dienstleister für Sie nachvollziehbar dokumentiert",
     ],
   },
   {
@@ -62,24 +61,6 @@ const sections = [
       "Keine ungefragte Weitergabe sensibler Daten",
       "Transparente Datenverarbeitung",
       "Optionale Nutzung europäischer AI-Modelle",
-    ],
-  },
-  {
-    icon: Database,
-    title: "Mandantentrennung",
-    items: [
-      "Strikte Trennung aller Kundendaten",
-      "Kein Zugriff zwischen Mandanten",
-      "Sichere, isolierte Datenräume",
-    ],
-  },
-  {
-    icon: UsersIcon,
-    title: "Kandidatenrechte",
-    items: [
-      "DSGVO-konforme Einwilligungsprozesse",
-      "Widerruf jederzeit möglich",
-      "Transparente Kommunikation mit Kandidaten",
     ],
   },
   {
@@ -115,13 +96,14 @@ const DataProtectionPage = () => {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={80}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[0.95] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-1 mb-6 text-balance text-gradient-hero">
               Datenschutz &<br />Datensicherheit
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={160}>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Wir schützen Ihre sensibelsten Daten – von Kandidatenprofilen bis hin zu Geschäftsprozessen. Vollständig DSGVO-konform, transparent und sicher.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+              Personenbezogene Daten DSGVO-konform verarbeiten und mit höchsten Standards für Datenschutz und
+              Informationssicherheit absichern.
             </p>
           </ScrollReveal>
         </div>
@@ -163,11 +145,8 @@ const DataProtectionPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 Ihre Daten gehören Ihnen
               </h2>
-              <p className="text-lg text-muted-foreground max-w-md mx-auto mb-2">
+              <p className="text-lg text-muted-foreground max-w-md mx-auto">
                 Jederzeit exportierbar. Jederzeit löschbar.
-              </p>
-              <p className="text-muted-foreground max-w-md mx-auto">
-                Keine Abhängigkeiten. Volle Kontrolle.
               </p>
             </div>
           </ScrollReveal>

@@ -10,6 +10,8 @@ type RouteSeo = {
   title: string;
   description: string;
   breadcrumbLabel: string;
+  /** Wenn gesetzt: Seite nicht in Suchmaschinen indexieren (z. B. versteckte Landingpages). */
+  noindex?: boolean;
   jsonLdExtra?: () => Record<string, unknown>[];
 };
 
@@ -124,6 +126,13 @@ const routeSeo: Record<string, RouteSeo> = {
     title: "Sitemap | plyce",
     description: "Alle Seiten von plyce – ATS und CRM Software für Personalberatung und Recruiting-Agenturen.",
     breadcrumbLabel: "Sitemap",
+  },
+  "/pricing3fRs": {
+    title: "Preise & Founding Partner | plyce",
+    description:
+      "ATS mit KI für Personalberatungen: Launch, Scale und Pro – transparente Preise und Founding-Partner-Vorteile.",
+    breadcrumbLabel: "Pricing",
+    noindex: true,
   },
 };
 
@@ -264,9 +273,11 @@ const Seo = () => {
     setMetaByName("keywords", seoKeywords);
     setMetaByName(
       "robots",
-      isKnownRoute
-        ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        : "noindex, nofollow",
+      seo.noindex
+        ? "noindex, nofollow"
+        : isKnownRoute
+          ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          : "noindex, nofollow",
     );
 
     // OG
