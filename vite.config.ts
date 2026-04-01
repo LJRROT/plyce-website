@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import type { IncomingMessage } from "node:http";
+import type { IncomingMessage, ServerResponse } from "node:http";
 import path from "node:path";
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
@@ -47,14 +47,14 @@ export default defineConfig(({ mode }) => {
     mode === "development" && componentTagger(),
     {
       name: "html-inject-site-url",
-      transformIndexHtml(html) {
+      transformIndexHtml(html: string) {
         return html.replaceAll("%SITE_URL%", siteUrl);
       },
     },
     mode === "development" && {
       name: "demo-request-resend-dev",
-      configureServer(server) {
-        server.middlewares.use(async (req, res, next) => {
+      configureServer(server: { middlewares: { use: (handler: (req: IncomingMessage & { url?: string }, res: ServerResponse, next: () => void) => void) => void } }) {
+        server.middlewares.use(async (req: IncomingMessage & { url?: string }, res: ServerResponse, next: () => void) => {
           const pathname = req.url?.split("?")[0] ?? "";
           if (pathname !== "/api/send-demo-request" || req.method !== "POST") {
             return next();
