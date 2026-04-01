@@ -133,10 +133,10 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Alles, was Recruiter brauchen
+                Die Infrastruktur für skalierbares Recruiting
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
-                Ein System für den gesamten Recruiting-Prozess – von Kandidatenaufnahme bis Placement.
+                plyce verbindet Kommunikation, Vertrieb und Delivery in einem KI-native System.
               </p>
             </div>
           </ScrollReveal>
