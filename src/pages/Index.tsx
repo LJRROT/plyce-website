@@ -26,7 +26,7 @@ const Index = () => {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-center">
                 <span className="inline-flex flex-col items-center gap-2 md:gap-2.5">
                   <span className="inline-flex items-center justify-center gap-x-2 md:gap-x-2.5">
-                    <span className="text-gradient-hero">plyce</span>
+                    <span className="text-gradient-hero my-0 py-[5px]">plyce</span>
                     <Heart
                       className="shrink-0 inline-block h-[0.84em] w-[0.84em] text-black fill-black stroke-black"
                       strokeWidth={1.5}
