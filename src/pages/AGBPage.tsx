@@ -27,7 +27,7 @@ const AGBPage = () => {
                   <strong className="text-foreground font-medium">plyce</strong> (nachfolgend „plyce“ oder „Leistung“).
                 </p>
                 <p className="mb-3">
-                  (2) plyce ist ein cloudbasiertes ATS/CRM-System für Personalberatungen und Recruiting-Agenturen mit
+                  (2) plyce ist ein cloudbasiertes ATS/CRM-System für Personalberatungen und Recruiter mit
                   Funktionen u. a. für Kandidaten-, Projekt- und Unternehmensverwaltung, Kommunikation, Reporting sowie
                   optional KI-gestützte Assistenzfunktionen.
                 </p>
@@ -299,8 +299,8 @@ const AGBPage = () => {
                     Impressum
                   </Link>
                   . Für vertragliche und organisatorische Anfragen:{" "}
-                  <a href="mailto:info@plyce.io" className="text-primary font-medium hover:underline">
-                    info@plyce.io
+                  <a href="mailto:info@plyce.app" className="text-primary font-medium hover:underline">
+                    info@plyce.app
                   </a>
                   .
                 </p>

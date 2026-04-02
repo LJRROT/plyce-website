@@ -58,8 +58,8 @@ function MarketEntryPriceBlock({
 const launchFeatures = ["ATS & Pipeline", "CV Parsing", "AI Dossiers", "Standard Workflows"];
 
 const scaleExtra = [
-  "KI Matching Agent",
-  "KI Analytics",
+  "AI Matching Agent",
+  "AI Analytics",
   "Custom Job Board (API)",
   "WhatsApp Integration",
   "Besseres SLA",
@@ -75,7 +75,7 @@ const scaleSetupIncludes = [
 const proExtra = [
   "Erweiterte Migration (Activities, Projekte, Skills)",
   "Datenbereinigung & Deduplication",
-  "KI CV Reprocessing",
+  "AI CV Reprocessing",
   "Custom Workflows & Felder",
   "Individuelle Integrationen",
 ];

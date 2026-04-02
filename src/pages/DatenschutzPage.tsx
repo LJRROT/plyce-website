@@ -37,8 +37,8 @@ const DatenschutzPage = () => {
                   </a>
                   <br />
                   E-Mail:{" "}
-                  <a href="mailto:info@plyce.io" className="text-primary font-medium hover:underline">
-                    info@plyce.io
+                  <a href="mailto:info@plyce.app" className="text-primary font-medium hover:underline">
+                    info@plyce.app
                   </a>
                   <br />
                   (Organisatorisch / technisch):{" "}
@@ -55,7 +55,7 @@ const DatenschutzPage = () => {
               <section>
                 <h2 className="text-base font-semibold text-foreground mb-3">2. Welche Daten wir verarbeiten und wofür</h2>
                 <p className="mb-3">
-                  plyce ist ein ATS/CRM für Personalberatungen und Recruiting-Teams. Abhängig davon, ob Sie unsere Website
+                  plyce ist ein ATS/CRM für Personalberatungen und Recruiter. Abhängig davon, ob Sie unsere Website
                   besuchen, mit uns in Kontakt treten oder plyce als Kunde nutzen, verarbeiten wir unterschiedliche Daten –
                   grundsätzlich nur, soweit ein Zweck besteht und eine Rechtsgrundlage nach Art. 6 DSGVO vorliegt.
                 </p>

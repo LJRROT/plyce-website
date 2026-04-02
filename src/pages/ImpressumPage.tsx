@@ -43,8 +43,8 @@ const ImpressumPage = () => {
                   <strong className="text-foreground font-medium">plyce (Produkt &amp; Website plyce)</strong>
                   <br />
                   E-Mail:{" "}
-                  <a href="mailto:info@plyce.io" className="text-primary font-medium hover:underline">
-                    info@plyce.io
+                  <a href="mailto:info@plyce.app" className="text-primary font-medium hover:underline">
+                    info@plyce.app
                   </a>
                 </p>
                 <p className="mb-3">

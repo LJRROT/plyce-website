@@ -24,10 +24,10 @@ const features: {
   {
     icon: MessagesSquare,
     title: "WhatsApp Integration",
-    tagline: "Erreiche Kandidaten dort, wo sie wirklich reagieren",
+    tagline: "WhatsApp als Kanal mit hoher Response-Rate bei Kandidaten",
     bullets: [
       "Direkte Kommunikation, schnellere Rückmeldungen, höhere Response-Raten",
-      "Nahtlos in deine Recruiting-Workflows integriert",
+      "Nahtlose Einbindung in Recruiting-Workflows",
     ],
   },
   {
@@ -42,10 +42,10 @@ const features: {
   {
     icon: Zap,
     title: "Business Development Automatisierung",
-    tagline: "Mehrstufige Kampagnen über Wochen oder Monate automatisieren",
+    tagline: "Automatisierte mehrstufige Kampagnen über Wochen oder Monate",
     bullets: [
       "Vorkonfigurierte Touchpoints für nachhaltigen Kundenaufbau",
-      "Skaliere dein BD ohne zusätzlichen manuellen Aufwand",
+      "Skalierung des BD ohne zusätzlichen manuellen Aufwand",
     ],
   },
   {
@@ -72,7 +72,7 @@ const features: {
     tagline: "Eigene Karriereseite inklusive",
     bullets: [
       "Jobs automatisch veröffentlichen und synchronisieren",
-      "Offen für Integrationen in deine bestehende Systemlandschaft",
+      "Offen für Integrationen in bestehende Systemlandschaften",
     ],
   },
 ];
@@ -103,8 +103,8 @@ const Index = () => {
             <ScrollReveal delay={160}>
               <div className="mx-auto max-w-xl text-center">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-                  KI-native ATS & CRM für Recruiting-Agenturen<br />
-                  Mehr Placements. Weniger Admin. Mehr Umsatz.
+                  AI-native ATS & CRM für Recruiting-Agenturen<br />
+                  Mehr Placements. Weniger Admin.
                 </p>
 
                 <div className="mx-auto mt-9 max-w-sm">
@@ -157,7 +157,7 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                10 vollintegrierte KI Agenten arbeiten für dich
+                10 AI Agents arbeiten für dich
               </h2>
             </div>
           </ScrollReveal>
@@ -198,7 +198,7 @@ const Index = () => {
                 Infrastruktur für skalierbares Recruiting
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
-                Vom ersten Kontakt bis zum Placement: plyce begleitet den gesamten Kandidaten-Bewerbungs-Lebenszyklus und verbindet Kommunikation, Vertrieb und Delivery in einem KI-native System.
+                Vom ersten Kontakt bis zum Placement: plyce begleitet den gesamten Recruitment Lifecycle und verbindet Kommunikation, Vertrieb und Delivery in einem AI-native System.
               </p>
             </div>
           </ScrollReveal>
@@ -208,14 +208,16 @@ const Index = () => {
               <ScrollReveal key={f.title} delay={i * 80} className="h-full min-h-0">
                 <Link
                   to="/features"
-                  className="group flex h-full min-h-0 flex-col rounded-2xl border border-border/50 bg-card p-6 text-inherit no-underline shadow-sm transition-all duration-300 hover:border-primary/20 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="group flex h-full min-h-0 flex-col gap-5 rounded-2xl border border-border/50 bg-card p-6 text-inherit no-underline shadow-sm transition-all duration-300 hover:border-primary/20 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light mb-4 transition-colors group-hover:bg-primary/10">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light transition-colors group-hover:bg-primary/10">
                     <f.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <h3 className="text-base font-semibold mb-2 leading-snug">{f.title}</h3>
-                  <p className="text-sm text-foreground/90 font-medium leading-relaxed mb-3">{f.tagline}</p>
-                  <ul className="mt-auto space-y-2.5">
+                  <div className="flex min-h-0 flex-col gap-2">
+                    <h3 className="text-base font-semibold leading-snug">{f.title}</h3>
+                    <p className="text-sm text-foreground/90 font-medium leading-relaxed">{f.tagline}</p>
+                  </div>
+                  <ul className="space-y-2.5">
                     {f.bullets.map((line) => (
                       <li key={line} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
                         <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />

@@ -25,7 +25,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Was ist plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und kleinere bis mittlere Recruiting-Agenturen. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
+          text: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
         },
       },
       {
@@ -49,7 +49,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Welche KI-Funktionen bietet plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce unterstützt u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Agenten-Funktionen.",
+          text: "plyce unterstützt u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Funktionen der AI Agents.",
         },
       },
       {
@@ -77,9 +77,9 @@ const routeSeo: Record<string, RouteSeo> = {
     breadcrumbLabel: "Features",
   },
   "/ai-agents": {
-    title: "KI im Recruiting: ATS-Automatisierung | plyce",
+    title: "AI Agents im Recruiting: ATS-Automatisierung | plyce",
     description:
-      "KI-Agenten für CV-Parsing, Matching, Dossiers und Sourcing – integriert in Ihr ATS/CRM für effizienteres Recruiting in der Agentur.",
+      "AI Agents für CV-Parsing, Matching, Dossiers und Sourcing – integriert in Ihr ATS/CRM für effizienteres Recruiting in der Agentur.",
     breadcrumbLabel: "AI Agents",
   },
   "/data-protection": {

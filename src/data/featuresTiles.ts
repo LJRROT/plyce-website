@@ -246,7 +246,7 @@ export const featureSections: FeatureSectionDef[] = [
         "Strukturierte Infos",
         "Direkt nutzbar",
       ]),
-      i(Bell, "Kontaktkadenz", "Follow-ups automatisieren", [
+      i(Bell, "Kontaktkadenz", "Automatisierte Follow-up-Kadenzen", [
         "Erinnerungen bei Inaktivität",
         "Bessere Kundenpflege",
         "Kein Lead geht verloren",
@@ -296,7 +296,7 @@ export const featureSections: FeatureSectionDef[] = [
       i(Fingerprint, "Signatur Extraktion", "Kontaktdaten automatisch erkennen", [
         "Aus E-Mail Signaturen",
         "KI-gestützt",
-        "Spart Zeit",
+        "Zeitersparnis",
       ]),
       i(Tags, "Kontakt Tags", "Kontakte segmentieren", [
         "Flexible Tags",
@@ -350,7 +350,7 @@ export const featureSections: FeatureSectionDef[] = [
         "Einfache Einrichtung",
         "Hohe Sicherheit",
       ]),
-      i(Zap, "Mail Automationen", "Follow-ups automatisieren", [
+      i(Zap, "Mail Automationen", "Automatisierte Follow-up-Kadenzen", [
         "Mehrstufige Sequenzen",
         "Bis zu 10 Touchpoints",
         "Zeitgesteuert",
@@ -360,7 +360,7 @@ export const featureSections: FeatureSectionDef[] = [
         "Klare To-Dos",
         "Effizienter Workflow",
       ]),
-      i(ClipboardList, "Aufgabenübersicht", "Alles im Blick behalten", [
+      i(ClipboardList, "Aufgabenübersicht", "Zentrale Übersicht über Aufgaben", [
         "Zentrale To-Do Liste",
         "Fälligkeiten sichtbar",
         "Priorisierung",
@@ -382,7 +382,7 @@ export const featureSections: FeatureSectionDef[] = [
         "Eigene Domain",
         "Professioneller Auftritt",
       ]),
-      i(Briefcase, "Stellenanzeigen", "Jobs einfach veröffentlichen", [
+      i(Briefcase, "Stellenanzeigen", "Strukturierte Veröffentlichung von Jobs", [
         "Strukturierte Anzeigen",
         "Anforderungen & Benefits",
         "Schnell live",
@@ -424,10 +424,10 @@ export const featureSections: FeatureSectionDef[] = [
         "Echtzeit Daten",
         "Individuell",
       ]),
-      i(PieChart, "Pipeline Analyse", "Recruiting sichtbar machen", [
+      i(PieChart, "Pipeline Analyse", "Transparenz über Recruiting-Funnels", [
         "Funnel Analyse",
         "Engpässe erkennen",
-        "Optimieren",
+        "Optimierungspotenziale",
       ]),
       i(Radar, "Sourcing Übersicht", "Fortschritt tracken", [
         "Kandidaten je Projekt",
@@ -452,9 +452,9 @@ export const featureSections: FeatureSectionDef[] = [
       i(Mic, "Telefon Integration", "Anrufer sofort erkennen", [
         "Caller Lookup",
         "Kandidatenzuordnung",
-        "Schnell reagieren",
+        "Kurze Reaktionszeiten",
       ]),
-      i(Zap, "Quick Actions", "Direkt reagieren", [
+      i(Zap, "Quick Actions", "Direkte Folgeaktionen", [
         "Kontakte anlegen",
         "Kandidaten erstellen",
         "Sofort nutzbar",
@@ -481,12 +481,12 @@ export const featureSections: FeatureSectionDef[] = [
     title: "Administration & Sicherheit",
     subtitle: "Rechte, Branding, Compliance und Import.",
     tiles: [
-      i(UserCog, "Benutzerverwaltung", "User zentral steuern", [
+      i(UserCog, "Benutzerverwaltung", "Zentrale Steuerung von Nutzerkonten", [
         "Anlegen und bearbeiten",
         "Sperren möglich",
         "Einfach administrieren",
       ]),
-      i(Shield, "Rollenmodell", "Zugriffe steuern", [
+      i(Shield, "Rollenmodell", "Kontrollierte Zugriffssteuerung", [
         "5 Rollen",
         "Klar definiert",
         "Sicher",
@@ -503,8 +503,8 @@ export const featureSections: FeatureSectionDef[] = [
       ]),
       i(Sparkles, "KI Prompt Steuerung", "AI individuell konfigurieren", [
         "Prompts anpassen",
-        "Optimieren",
-        "Kontrolle behalten",
+        "Optimierungspotenziale",
+        "Kontrollierte Steuerung",
       ]),
       i(LayoutGrid, "Design Anpassung", "Branding integrieren", [
         "Logo",
@@ -521,17 +521,17 @@ export const featureSections: FeatureSectionDef[] = [
         "Revisionssicher",
         "Transparenz",
       ]),
-      i(Timer, "Rate Limiting", "System schützen", [
+      i(Timer, "Rate Limiting", "Stabiler Schutz vor Missbrauch", [
         "API Schutz",
         "Missbrauch verhindern",
         "Stabilität sichern",
       ]),
-      i(Search, "Globale Suche", "Alles sofort finden", [
+      i(Search, "Globale Suche", "Schneller Zugriff auf Systeminhalte", [
         "Systemweite Suche",
         "Schnelle Navigation",
         "Effizient",
       ]),
-      i(Database, "Datenimport", "Einfach migrieren", [
+      i(Database, "Datenimport", "Strukturierte Datenmigration", [
         "JSON Upload",
         "Feld Mapping",
         "Validierung",

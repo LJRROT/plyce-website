@@ -12,7 +12,7 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Was ist plyce?",
-        a: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und kleinere bis mittlere Recruiting-Agenturen. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
+        a: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
       },
       {
         q: "Für wen eignet sich plyce?",
@@ -24,11 +24,11 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Was unterscheidet plyce von einem reinen ATS?",
-        a: "plyce verbindet klassische ATS-Funktionen (Kandidaten, Pipeline, Jobs) mit CRM-Logik für Unternehmen und Kontakte, Kommunikationstools und optionalen KI-Agenten. So bleiben Daten und Aktivitäten über den gesamten Recruiting-Zyklus zusammenhängend.",
+        a: "plyce verbindet klassische ATS-Funktionen (Kandidaten, Pipeline, Jobs) mit CRM-Logik für Unternehmen und Kontakte, Kommunikationstools und optional integrierten AI Agents. So bleiben Daten und Aktivitäten über den gesamten Recruiting-Zyklus zusammenhängend.",
       },
       {
         q: "Kann ich plyce testen?",
-        a: "Ja. Fordern Sie über „Request Demo“ eine persönliche Vorstellung an – wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind, und besprechen den Einstieg.",
+        a: "Ja. Fordern Sie über „Request Demo“ eine persönliche Vorstellung an, wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind, und besprechen den Einstieg.",
       },
     ],
   },
@@ -37,7 +37,7 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Wie läuft der Einstieg typischerweise ab?",
-        a: "Nach Vertragsabschluss richten wir Ihren Mandanten ein, legen Nutzer und Rollen an und unterstützen beim Import bestehender Daten. Umfang und Tempo stimmen wir mit Ihnen ab – von schlankem Start bis zu umfangreicher Migration.",
+        a: "Nach Vertragsabschluss richten wir Ihren Mandanten ein, legen Nutzer und Rollen an und unterstützen beim Import bestehender Daten. Umfang und Tempo stimmen wir mit Ihnen ab, von schlankem Start bis zu umfangreicher Migration.",
       },
       {
         q: "Kann ich bestehende Daten übernehmen?",
@@ -62,7 +62,7 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Wie ist die DSGVO-Einordnung bei Kandidatendaten?",
-        a: "Ihre Agentur ist in der Regel Verantwortliche für die Daten Ihrer Kandidaten und Kunden. plyce wird in diesem Kontext typischerweise als Auftragsverarbeiter eingesetzt – geregelt in einer Vereinbarung zur Auftragsverarbeitung. So können Sie Ihre Informationspflichten und Prozesse sauber abbilden.",
+        a: "Ihre Agentur ist in der Regel Verantwortliche für die Daten Ihrer Kandidaten und Kunden. plyce wird in diesem Kontext typischerweise als Auftragsverarbeiter eingesetzt, geregelt in einer Vereinbarung zur Auftragsverarbeitung. So können Sie Ihre Informationspflichten und Prozesse sauber abbilden.",
       },
       {
         q: "Wie sicher ist der Zugriff?",
@@ -79,11 +79,11 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Welche KI-Funktionen bietet plyce?",
-        a: "plyce kann u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Agenten-Funktionen unterstützen. Der genaue Umfang hängt von Ihrer Buchung und Konfiguration ab.",
+        a: "plyce kann u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Funktionen der AI Agents unterstützen. Der genaue Umfang hängt von Ihrer Buchung und Konfiguration ab.",
       },
       {
         q: "Kann ich zwischen Sprachmodellen wählen?",
-        a: "Ja. plyce kann so konfiguriert werden, dass unterschiedliche Sprachmodell-Anbieter genutzt werden – z. B. mit Fokus auf Performance oder auf europäische Anbindung. Details besprechen wir im Rahmen von Vertrag und Datenschutz.",
+        a: "Ja. plyce kann so konfiguriert werden, dass unterschiedliche Sprachmodell-Anbieter genutzt werden, z. B. mit Fokus auf Performance oder auf europäische Anbindung. Details besprechen wir im Rahmen von Vertrag und Datenschutz.",
       },
       {
         q: "Wer haftet für KI-generierte Inhalte?",
@@ -96,7 +96,7 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Gibt es E-Mail-Anbindung?",
-        a: "Ja. plyce unterstützt die Anbindung gängiger E-Mail-Umgebungen (z. B. Google und Microsoft), damit Versand, Sync und Zuordnung zu Kandidaten und Projekten im System möglich sind – im Rahmen der technisch unterstützten Funktionen.",
+        a: "Ja. plyce unterstützt die Anbindung gängiger E-Mail-Umgebungen (z. B. Google und Microsoft), damit Versand, Sync und Zuordnung zu Kandidaten und Projekten im System möglich sind, im Rahmen der technisch unterstützten Funktionen.",
       },
       {
         q: "Kann ich eigene Karriereseiten / Jobboards nutzen?",
@@ -117,7 +117,7 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Welchen Support erhalte ich?",
-        a: "Der Supportumfang (Kanäle, Zeiten, ggf. Prioritäten) wird im Vertrag oder einer Servicevereinbarung festgelegt. Für allgemeine Fragen vor dem Kauf erreichen Sie uns unter info@plyce.io.",
+        a: "Der Supportumfang (Kanäle, Zeiten, ggf. Prioritäten) wird im Vertrag oder einer Servicevereinbarung festgelegt. Für allgemeine Fragen vor dem Kauf erreichen Sie uns unter info@plyce.app.",
       },
       {
         q: "Wo finde ich AGB und Datenschutz?",
@@ -149,12 +149,11 @@ const FaqPage = () => {
       <section className="py-14 md:py-20 section-padding border-b border-border/40">
         <div className="container-tight max-w-3xl">
           <ScrollReveal>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-balance text-gradient-hero">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] pt-1 pb-1 mb-5 text-balance text-gradient-hero">
               FAQ
             </h1>
-            <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
-              Antworten zu Produkt, Einführung, Daten, KI und Vertrag – speziell für Personalberatungen und
-              Recruiting-Teams, die mit plyce arbeiten.
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto text-pretty">
+              Antworten zu Produkt, Einführung, Daten, KI und Vertrag, speziell für Personalberatungen und Recruiter.
             </p>
           </ScrollReveal>
         </div>
@@ -189,10 +188,10 @@ const FaqPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-stretch sm:items-center">
                 <a
-                  href="mailto:info@plyce.io?subject=Frage%20zu%20plyce"
+                  href="mailto:info@plyce.app?subject=Frage%20zu%20plyce"
                   className="inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline sm:min-h-0"
                 >
-                  info@plyce.io
+                  info@plyce.app
                 </a>
                 <span className="hidden sm:inline text-muted-foreground/50" aria-hidden>
                   ·
