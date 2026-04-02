@@ -12,7 +12,7 @@ const sections = [
       "DSGVO-konforme Verarbeitung aller Kandidaten- und Kundendaten",
       "Einwilligungsmanagement inkl. Dokumentation",
       "Unterstützung von Auskunft, Löschung und Berichtigung",
-      "Rechtssichere Datenhaltung für Personalberater",
+      "Rechtssichere Datenhaltung für Personalberatungen und Recruiter",
     ],
   },
   {

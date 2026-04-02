@@ -8,8 +8,8 @@ const phases = [
     title: "Kickoff & Zielbild",
     points: [
       "Kickoff mit Ihrem Team und Definition der Zielprozesse",
-      "Rollen, Rechte und Pipeline-Struktur festlegen",
-      "Implementierungsplan mit klaren Verantwortlichkeiten",
+      "Festlegung von Rollen, Rechten und Pipeline-Struktur",
+      "Ausarbeitung des Implementierungsplans mit klaren Verantwortlichkeiten",
     ],
   },
   {
@@ -28,7 +28,7 @@ const phases = [
     title: "Qualität, DSGVO & Go-Live",
     points: [
       "Tests aller Kernprozesse inklusive Freigaben",
-      "Datenschutz-Checks und Rechteprüfung",
+      "Durchführung von Datenschutz-Checks und Rechteprüfung",
       "Go-Live mit begleitetem Start im operativen Betrieb",
     ],
   },
@@ -36,8 +36,8 @@ const phases = [
 
 const deliverables = [
   "Produktive ATS/CRM-Umgebung für Ihr Team",
-  "Definierte Recruiting-Workflows inkl. Automatisierungen",
-  "Geschulte User mit klaren Rollen und Best Practices",
+  "Definierte Recruiting-Workflows inklusive Automatisierungen",
+  "Geschulte Nutzer mit klaren Rollen und Best Practices",
   "Abnahmefähige Dokumentation für Prozesse und Datenschutz",
 ];
 
@@ -52,12 +52,11 @@ const ImplementierungPage = () => {
                 <Rocket className="h-3.5 w-3.5 text-primary" />
                 <span className="text-xs font-medium text-primary">Implementierung mit Plan</span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Implementierungsprozess mit plyce
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-2 mb-3 text-gradient-hero text-balance">
+                Implementierungsprozess
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                Wie bei modernen SaaS-Plattformen: strukturiert, transparent und schnell produktiv.
-                Wir führen Ihr Team Schritt für Schritt von der Erstkonfiguration bis zum stabilen Go-Live.
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-pretty max-w-2xl mx-auto">
+                Strukturiert. Transparent. Schnell produktiv. Vom Setup bis zum Go-Live.
               </p>
             </div>
           </ScrollReveal>

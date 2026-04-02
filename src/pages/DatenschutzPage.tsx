@@ -72,7 +72,7 @@ const DatenschutzPage = () => {
                 </p>
                 <p>
                   <strong className="text-foreground font-medium">Nutzung von plyce als Kunde:</strong> Verarbeitet der
-                  Kunde (z. B. Ihre Agentur) personenbezogene Daten von Kandidaten, Kontakten oder Mitarbeitenden in
+                  Kunde (z. B. Ihre Personalberatung) personenbezogene Daten von Kandidaten, Kontakten oder Mitarbeitenden in
                   plyce, ist der Kunde in der Regel der „Verantwortliche“ und wir verarbeiten diese Daten als{" "}
                   <strong className="text-foreground font-medium">Auftragsverarbeiter</strong> ausschließlich nach
                   Weisung des Kunden und auf Grundlage einer Vereinbarung zur Auftragsverarbeitung (Art. 28 DSGVO). Die
@@ -230,7 +230,7 @@ const DatenschutzPage = () => {
                   </li>
                 </ul>
                 <p className="mt-3">
-                  <strong className="text-foreground font-medium">Hinweis für Kandidaten, die über eine Agentur in plyce
+                  <strong className="text-foreground font-medium">Hinweis für Kandidaten, die über eine Personalberatung in plyce
                   gespeichert sind:</strong> Wenden Sie sich für Auskunft oder Löschung in erster Linie an die
                   jeweilige Personalberatung bzw. den plyce-Kunden. Wir unterstützen unsere Kunden bei der technischen
                   Umsetzung von Betroffenenanfragen im Rahmen der Vereinbarung.

@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getSiteUrl } from "@/lib/siteUrl";
 
-/** Primary copy targets: ATS/CRM, Recruiting-Agenturen, Personalberatung, Bewerbermanagement (DE search intent). */
+/** Primary copy targets: ATS/CRM, Personalberatungen, Recruiter, Bewerbermanagement (DE search intent). */
 const defaultDescription =
-  "plyce: ATS und CRM speziell für Recruiting-Agenturen und Personalberater. Applicant Tracking System (ATS) mit Kandidatenmanagement, Projekten, Pipeline, E-Mail und KI – für kleine bis mittlere Agenturen in Deutschland.";
+  "plyce: ATS und CRM speziell für Personalberatungen und Recruiter. Applicant Tracking System (ATS) mit Kandidatenmanagement, Projekten, Pipeline, E-Mail und KI – für den professionellen Einsatz in Deutschland.";
 
 type RouteSeo = {
   title: string;
@@ -25,7 +25,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Was ist plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
+          text: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
         },
       },
       {
@@ -33,7 +33,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Für wen eignet sich plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Für Teams, die strukturiert arbeiten möchten: von der Kandidatenakte über die Suchmandate bis zu E-Mail, Aufgaben und Auswertungen. plyce richtet sich an Agenturen, die weniger Tool-Wechsel und mehr durchgängige Prozesse wollen.",
+          text: "Für Teams, die strukturiert arbeiten möchten: von der Kandidatenakte über die Suchmandate bis zu E-Mail, Aufgaben und Auswertungen. plyce richtet sich an Personalberatungen und Recruiter, die weniger Tool-Wechsel, mehr durchgängige Prozesse und volle AI-Integration wollen.",
         },
       },
       {
@@ -41,7 +41,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Wo werden meine Daten gespeichert?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die Verarbeitung erfolgt in professioneller Cloud-Infrastruktur innerhalb der EU bzw. des EWR, soweit nicht im Einzelfall etwas anderes ausdrücklich vereinbart ist.",
+          text: "Ihre Daten werden bei Amazon Web Services (AWS) in der Region eu-central-1 (Frankfurt) in der EU gespeichert und verarbeitet und unterliegen damit den Anforderungen der EU-DSGVO. Abweichungen nur bei ausdrücklicher Vereinbarung (z. B. bestimmte KI-Anbindungen).",
         },
       },
       {
@@ -49,7 +49,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Welche KI-Funktionen bietet plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce unterstützt u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Funktionen der AI Agents.",
+          text: "plyce unterstützt u. a. CV-Parsing, Zusammenfassungen, Matching-Vorschläge, Textgenerierung (z. B. Anschreiben, Reports) und weitere Automatisierungen. Technisch sind u. a. Anbindungen an OpenAI (https://openai.com) und Mistral AI (https://mistral.ai) vorgesehen. Die eingesetzten AI Agents und ihre Leistungsfähigkeit sind auf der Produktseite AI Agents beschrieben.",
         },
       },
       {
@@ -57,7 +57,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Kann ich plyce testen?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: 'Ja. Fordern Sie über \u201ERequest Demo\u201C eine persönliche Vorstellung an \u2013 wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind.',
+          text: 'Ja. Fordern Sie über \u201ERequest Demo\u201C eine persönliche Vorstellung an \u2013 wir zeigen Ihnen die Module, die für Sie relevant sind.',
         },
       },
     ],
@@ -66,20 +66,20 @@ const faqStructuredData = (): Record<string, unknown>[] => [
 
 const routeSeo: Record<string, RouteSeo> = {
   "/": {
-    title: "plyce – ATS & CRM für Recruiting-Agenturen | Personalberatung Software",
+    title: "plyce – ATS & CRM für Personalberatungen und Recruiter | Software",
     description: defaultDescription,
     breadcrumbLabel: "Startseite",
   },
   "/features": {
-    title: "ATS & CRM Funktionen für Agenturen | plyce",
+    title: "ATS & CRM Funktionen für Personalberatungen und Recruiter | plyce",
     description:
-      "Alle Funktionen: Kandidatenmanagement, Bewerbermanagement, Suchmandate, CRM für Kunden, E-Mail, Karriereseite, Reporting und KI – ATS/CRM für Personalberatung und Recruiting-Agenturen.",
+      "Alle Funktionen: Kandidatenmanagement, Bewerbermanagement, Suchmandate, CRM für Kunden, E-Mail, Karriereseite, Reporting und KI – ATS/CRM für Personalberatungen und Recruiter.",
     breadcrumbLabel: "Features",
   },
   "/ai-agents": {
     title: "AI Agents im Recruiting: ATS-Automatisierung | plyce",
     description:
-      "AI Agents für CV-Parsing, Matching, Dossiers und Sourcing – integriert in Ihr ATS/CRM für effizienteres Recruiting in der Agentur.",
+      "AI Agents für CV-Parsing, Matching, Dossiers und Sourcing – integriert in Ihr ATS/CRM für Personalberatungen und Recruiter.",
     breadcrumbLabel: "AI Agents",
   },
   "/data-protection": {
@@ -95,7 +95,7 @@ const routeSeo: Record<string, RouteSeo> = {
   },
   "/impressum": {
     title: "Impressum | plyce",
-    description: "Impressum und Kontakt der WECO Experts GmbH (Marke plyce, ATS/CRM für Recruiting-Agenturen).",
+    description: "Impressum und Kontakt der WECO Experts GmbH (Marke plyce, ATS/CRM für Personalberatungen und Recruiter).",
     breadcrumbLabel: "Impressum",
   },
   "/agb": {
@@ -106,38 +106,38 @@ const routeSeo: Record<string, RouteSeo> = {
   "/faq": {
     title: "FAQ: ATS, CRM & Einführung | plyce",
     description:
-      "Antworten zu plyce als ATS und CRM für Agenturen: Funktionen, Daten, KI, Integrationen, Vertrag und Einführung.",
+      "Antworten zu plyce als ATS und CRM für Personalberatungen und Recruiter: Funktionen, Daten, KI, Integrationen, Vertrag und Einführung.",
     breadcrumbLabel: "FAQ",
     jsonLdExtra: faqStructuredData,
   },
   "/implementierung": {
-    title: "Einführung ATS/CRM in der Agentur | plyce",
+    title: "Einführung ATS/CRM in der Personalberatung | plyce",
     description:
-      "So starten Sie mit plyce: Onboarding, Datenübernahme und produktiver Einsatz Ihres ATS/CRM für Recruiting.",
+      "So starten Sie mit plyce: Onboarding, Datenübernahme und produktiver Einsatz Ihres ATS/CRM für Personalberatungen und Recruiter.",
     breadcrumbLabel: "Implementierung",
   },
   "/partnerprogramm": {
-    title: "Partnerprogramm Recruiting-Software | plyce",
+    title: "Partnerprogramm | plyce ATS & CRM",
     description:
-      "Partner für Beratungen und Netzwerke: gemeinsam Agenturen bei ATS, CRM und digitalem Recruiting unterstützen.",
+      "Partnerprogramm für plyce: Empfehlung, Projektbegleitung oder Technologiepartnerschaft für Personalberatungen und Recruiter, mit klarem Ablauf und Regeln.",
     breadcrumbLabel: "Partnerprogramm",
   },
   "/sitemap": {
     title: "Sitemap | plyce",
-    description: "Alle Seiten von plyce – ATS und CRM Software für Personalberatung und Recruiting-Agenturen.",
+    description: "Alle Seiten von plyce – ATS und CRM Software für Personalberatungen und Recruiter.",
     breadcrumbLabel: "Sitemap",
   },
   "/pricing3fRs": {
     title: "Preise & Founding Partner | plyce",
     description:
-      "ATS mit KI für Personalberatungen: Launch, Scale und Pro – transparente Preise und Founding-Partner-Vorteile.",
-    breadcrumbLabel: "Pricing",
+      "Einstieg, Wachstum und Pro: transparente Nutzer- und Basispreise für Personalberatungen und Recruiter. Market-Entry-Angebot mit 30 % Rabatt in 2026.",
+    breadcrumbLabel: "Preise",
     noindex: true,
   },
 };
 
 const seoKeywords =
-  "ATS, CRM, Recruiting Software, Applicant Tracking System, Personalberatung, Recruiting-Agentur, Bewerbermanagement, Kandidatenmanagement, Headhunter Software, HR Software Agentur";
+  "ATS, CRM, Recruiting Software, Applicant Tracking System, Personalberatung, Personalberatungen, Recruiter, Recruiting-Agentur, Bewerbermanagement, Kandidatenmanagement, Headhunter Software, HR Software Agentur";
 
 /* ---------- helpers ---------- */
 
@@ -287,7 +287,7 @@ const Seo = () => {
     setMetaByProperty("og:image", imageUrl);
     setMetaByProperty("og:image:width", "1200");
     setMetaByProperty("og:image:height", "630");
-    setMetaByProperty("og:image:alt", "plyce – ATS und CRM für Recruiting-Agenturen");
+    setMetaByProperty("og:image:alt", "plyce – ATS und CRM für Personalberatungen und Recruiter");
     setMetaByProperty("og:type", "website");
     setMetaByProperty("og:locale", "de_DE");
     setMetaByProperty("og:site_name", "plyce");

@@ -163,12 +163,15 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
           <>
             <DialogHeader>
               <DialogTitle>Request Demo</DialogTitle>
-              <DialogDescription>
-                Hinterlassen Sie Ihre Kontaktdaten — wir senden Ihre Anfrage per E-Mail an unser Team und melden uns bei{" "}
+              <DialogDescription className="text-pretty">
+                Bitte hinterlassen Sie Ihre Kontaktdaten. Wir melden uns zeitnah bei Ihnen.
+                <br />
+                <br />
+                Ihre Anfrage wird direkt an unser Team unter{" "}
                 <a href={`mailto:${DEMO_EMAIL}`} className="font-medium text-primary hover:underline">
                   {DEMO_EMAIL}
-                </a>
-                . Alternativ können Sie Ihr E-Mail-Programm mit einer vorgefüllten Nachricht öffnen.
+                </a>{" "}
+                weitergeleitet. Alternativ können Sie Ihr E-Mail-Programm mit einer vorgefertigten Nachricht öffnen.
               </DialogDescription>
             </DialogHeader>
 

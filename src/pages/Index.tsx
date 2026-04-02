@@ -103,7 +103,7 @@ const Index = () => {
             <ScrollReveal delay={160}>
               <div className="mx-auto max-w-xl text-center">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-                  AI-native ATS & CRM für Recruiting-Agenturen<br />
+                  AI-native ATS & CRM für Personalberatungen und Recruiter.<br />
                   Mehr Placements. Weniger Admin.
                 </p>
 
@@ -145,6 +145,72 @@ const Index = () => {
                     </Link>
                   </div>
                 </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Produkt kurz erklärt — SaaS-Verlauf Weiß/Primary, Karten wie Hero */}
+      <section
+        className="relative overflow-hidden bg-gradient-to-b from-background from-0% via-primary-light/85 via-45% to-background to-100% pb-14 pt-2 md:pb-20 md:pt-4 section-padding"
+        aria-labelledby="intro-was-ist-plyce intro-fuer-wen"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_65%_at_50%_-10%,hsl(var(--primary)/0.16),transparent_58%)]"
+          aria-hidden
+        />
+        <div className="container-tight relative z-[1]">
+          <div
+            className="mx-auto mb-8 md:mb-10 h-px max-w-md bg-gradient-to-r from-transparent via-border/55 to-transparent"
+            aria-hidden
+          />
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
+            <ScrollReveal>
+              <div className="h-full rounded-xl border border-border/55 bg-card/80 p-6 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px] md:p-8">
+                <h2
+                  id="intro-was-ist-plyce"
+                  className="mb-3 text-balance text-lg font-bold tracking-tight text-foreground md:text-xl"
+                >
+                  Was ist plyce?
+                </h2>
+                <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
+                  <p>
+                    <span className="font-medium text-foreground/90">AI-natives ATS &amp; CRM</span> für
+                    Personalberatungen und Recruiter: Kandidaten, Mandate, Kunden und Kommunikation an einem Ort.
+                  </p>
+                  <p>
+                    KI für Parsing, Matching, Texte und Reporting — eingebaut, ohne Insellösungen.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={80}>
+              <div className="flex h-full flex-col rounded-xl border border-border/55 bg-card/80 p-6 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px] md:p-8">
+                <h2
+                  id="intro-fuer-wen"
+                  className="mb-3 text-balance text-lg font-bold tracking-tight text-foreground md:text-xl"
+                >
+                  Für wen eignet sich plyce?
+                </h2>
+                <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
+                  <p>
+                    Für Teams, die von der Akte bis zum Mandat sauber dokumentieren — E-Mail, Aufgaben und Auswertungen
+                    im selben System.
+                  </p>
+                  <p>
+                    Wenn weniger Tool-Wechsel und durchgängige, KI-unterstützte Abläufe für Sie zählen.
+                  </p>
+                </div>
+                <p className="mt-auto border-t border-border/40 pt-6 md:pt-7">
+                  <Link
+                    to="/faq"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-4"
+                  >
+                    Alle Antworten im FAQ
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                  </Link>
+                </p>
               </div>
             </ScrollReveal>
           </div>

@@ -19,7 +19,7 @@ const Footer = () => {
               <span className="text-xl font-bold tracking-tight">plyce</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Das ATS/CRM für Personalberater und Recruiting-Teams. Mehr Placements, weniger Admin.
+              AI-native ATS & CRM für Personalberatungen und Recruiter. Mehr Placements. Weniger Admin.
             </p>
           </div>
 
@@ -30,7 +30,7 @@ const Footer = () => {
               <li><Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
               <li>
                 <Link to="/pricing3fRs" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Pricing
+                  Preise
                 </Link>
               </li>
               <li><Link to="/ai-agents" className="text-sm text-muted-foreground hover:text-primary transition-colors">AI Agents</Link></li>
@@ -59,7 +59,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/partnerprogramm" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Partnerprogramme
+                  Partnerprogramm
                 </Link>
               </li>
             </ul>
@@ -118,13 +118,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} plyce. Alle Rechte vorbehalten.</p>
-          <div className="flex gap-6">
-            <Link to="/impressum" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-              Impressum
-            </Link>
-          </div>
+        <div className="mt-12 pt-8 border-t border-border">
+          <p className="text-center text-xs text-muted-foreground leading-relaxed sm:text-left">
+            © {new Date().getFullYear()} plyce · Alle Rechte vorbehalten
+          </p>
         </div>
       </div>
     </footer>

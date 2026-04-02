@@ -16,6 +16,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 type AgentDef = {
+  id: string;
   icon: LucideIcon;
   name: string;
   tagline: string;
@@ -25,6 +26,7 @@ type AgentDef = {
 /** Reihenfolge: Kern-Recruiting & Delivery zuerst, dann Kommunikation/Reports, Marketing & BD, Produktivität. */
 const agents: AgentDef[] = [
   {
+    id: "ai-cv-analyzer",
     icon: ScanSearch,
     name: "AI CV Analyzer",
     tagline:
@@ -39,6 +41,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-candidate-match",
     icon: GitCompare,
     name: "AI Candidate Match",
     tagline:
@@ -53,6 +56,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-outreach-messages",
     icon: SendHorizontal,
     name: "AI Outreach Messages",
     tagline:
@@ -67,6 +71,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-dossier-highlights",
     icon: Highlighter,
     name: "AI Dossier Highlights",
     tagline:
@@ -81,6 +86,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-cv-formatter",
     icon: LayoutTemplate,
     name: "AI CV Formatter",
     tagline:
@@ -95,6 +101,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-project-report",
     icon: Presentation,
     name: "AI Project Report",
     tagline:
@@ -109,6 +116,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-company-status-report",
     icon: Kanban,
     name: "AI Company Status Report",
     tagline:
@@ -123,6 +131,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-job-post-builder",
     icon: Briefcase,
     name: "AI Job Post Builder",
     tagline: "Anonymisierte, publikationsreife Stellenanzeige aus Mandatsdaten",
@@ -136,6 +145,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-company-enrichment",
     icon: Globe,
     name: "AI Company Enrichment",
     tagline:
@@ -150,6 +160,7 @@ const agents: AgentDef[] = [
     ],
   },
   {
+    id: "ai-signature-parser",
     icon: FileSignature,
     name: "AI Signature Parser",
     tagline: "Strukturierte Kontaktdaten aus E-Mail-Signaturen mit Übernahmevorschlag",
@@ -161,6 +172,8 @@ const agents: AgentDef[] = [
     ],
   },
 ];
+
+export const aiAgentsNav = agents.map(({ id, name }) => ({ id, title: name }));
 
 const AIAgentsPage = () => {
   return (
@@ -178,7 +191,7 @@ const AIAgentsPage = () => {
           <ScrollReveal delay={160}>
             <div className="mt-6 md:mt-8 max-w-4xl mx-auto text-left">
               <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
-                Ihre Präferenz entscheidet. OpenAI oder Mistral – passend zu DSGVO, Datenstandort und Performance-Anforderungen
+                Ihre Präferenz entscheidet. OpenAI oder Mistral, passend zu DSGVO, Datenstandort und Performance-Anforderungen.
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="rounded-2xl border border-border/60 bg-card/80 p-8 md:p-9 shadow-sm hover:border-primary/25 transition-colors">
@@ -217,7 +230,10 @@ const AIAgentsPage = () => {
         <div className="container-tight space-y-6 md:space-y-8">
           {agents.map((agent, i) => (
             <ScrollReveal key={agent.name} delay={0}>
-              <article className="rounded-2xl border border-border/50 bg-card overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+              <article
+                id={agent.id}
+                className="scroll-mt-28 rounded-2xl border border-border/50 bg-card overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+              >
                 <div className="p-8 md:p-10">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                     <div className="flex-shrink-0">

@@ -17,7 +17,7 @@ const FeaturesPage = () => {
           </ScrollReveal>
           <ScrollReveal delay={80}>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Eine Plattform für den gesamten Recruiting-Workflow
+              Eine Plattform für den gesamten Recruiting-Workflow.
             </p>
           </ScrollReveal>
         </div>

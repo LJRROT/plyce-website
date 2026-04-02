@@ -13,71 +13,48 @@ import {
 const benefits = [
   {
     icon: BadgePercent,
-    title: "Attraktive Vergütung",
-    desc: "Klare, vertraglich geregelte Modelle – abgestimmt auf Ihren Kanal (Empfehlung, Beratung, gemeinsamer Vertrieb).",
+    title: "Klare Vergütung",
+    desc: "Modelle nach Empfehlung, Beratungseinbindung oder gemeinsamem Vertrieb. Konditionen und Regeln sind vertraglich festgelegt.",
   },
   {
     icon: Headphones,
-    title: "Partnerbetreuung",
-    desc: "Ansprechpartner für Produktfragen, Onboarding-Hilfen und gemeinsame Kundentermine nach Bedarf.",
+    title: "Fester Ansprechpartner",
+    desc: "Unterstützung bei Produktfragen, bei Bedarf gemeinsame Termine mit Ihren Kundinnen und Kunden.",
   },
   {
     icon: GraduationCap,
-    title: "Enablement & Wissen",
-    desc: "Unterstützung bei Positionierung: Messaging, Einwandbehandlung, Demo-Storyline – passend zu plyce.",
+    title: "Unterlagen und Demo",
+    desc: "Kernbotschaften, Einwandhilfen und ein nachvollziehbarer Demo-Ablauf für Ihre Gespräche.",
   },
   {
     icon: Puzzle,
-    title: "Zukunftssicher integrieren",
-    desc: "Für Tech- und Service-Partner: sinnvolle Anknüpfungspunkte zu Email, Kalender und Ihrem Tech-Stack.",
+    title: "Technische Ergänzung",
+    desc: "Für Integratoren: sinnvolle Schnittstellen und Anknüpfung an E-Mail, Kalender und übliche Systeme.",
   },
 ];
 
 const models = [
   {
-    title: "Referral & Empfehlung",
-    desc: "Sie empfehlen plyce an Agenturen, die ein schlankes ATS/CRM mit KI-Automatisierung suchen – wir kümmern uns um Vertrieb und Einführung.",
-    bullets: ["Ideal für Netzwerke und Berater mit Vertrauenszugang", "Geringer operativer Aufwand für Sie"],
+    title: "Empfehlung",
+    desc: "Weiterleitung von Interessentinnen und Interessenten an plyce. Angebot, Vertrag und Einführung liegen bei uns.",
+    bullets: ["Geringer eigener Aufwand", "Geeignet bei Netzwerk und bestehendem Vertrauen"],
   },
   {
-    title: "Beratung & gemeinsames Arbeiten",
-    desc: "Sie begleiten den Rollout (Prozess, Daten, Change) – plyce als Plattform. Gemeinsame Angebote für Ihre Kunden.",
-    bullets: ["Perfekt für HR-/Recruiting-Beratungen", "Klare Rollen: Sie Prozess, wir Produkt"],
+    title: "Projektbegleitung",
+    desc: "Sie steuern Prozess, Daten und Change beim Kunden. plyce ist die eingesetzte Plattform.",
+    bullets: ["Für Beratungen mit Rollout-Verantwortung", "Rollentrennung: Sie begleiten den Wechsel, wir liefern das Produkt"],
   },
   {
-    title: "Technologie & Ökosystem",
-    desc: "Tools, Datenanbindungen oder ergänzende Services, die Recruiting-Agenturen mit plyce produktiver machen.",
-    bullets: ["Integrations- und Use-Case-Fokus", "Gemeinsame Roadmap je nach Relevanz"],
-  },
-];
-
-const steps = [
-  {
-    step: "1",
-    title: "Kennenlernen",
-    desc: "Kurzes Gespräch zu Passthrough, Zielgruppe und wie wir plyce gemeinsam positionieren.",
-  },
-  {
-    step: "2",
-    title: "Freigabe & Rahmen",
-    desc: "Abstimmung des Partnermodells, rechtlicher Rahmen und nächste Schritte.",
-  },
-  {
-    step: "3",
-    title: "Enablement",
-    desc: "Onboarding-Inhalte, Demo-Flow und Materialien – damit Sie sicher im Gespräch sind.",
-  },
-  {
-    step: "4",
-    title: "Go-to-Market",
-    desc: "Gemeinsame Opportunities, nachvollziehbare Pipeline und laufender Austausch.",
+    title: "Technologiepartner",
+    desc: "Ihr Tool, Ihre Datenanbindung oder Ihr Service ergänzt plyce für Personalberatungen und Recruiter.",
+    bullets: ["Schwerpunkt auf Integration und Nutzen", "Priorisierung der Themen gemeinsam mit uns"],
   },
 ];
 
 const audiences = [
-  "Personal- und Recruiting-Beratungen mit Fokus auf KMU-Agenturen",
-  "Freelancer und Boutique-Shops, die Kunden bei Tooling begleiten",
-  "Technologie- und Service-Partner mit klarer Nutzenstory für Recruiting-Teams",
+  "Netzwerke und Beratungen mit Zugang zu Personalberatungen und Recruiter",
+  "Einzelpersonen und kleine Teams bei Software- und Projektauswahl für Kunden",
+  "Anbieter von Tools, Schnittstellen oder Dienstleistungen im Recruiting-Umfeld",
 ];
 
 const PartnerprogrammPage = () => {
@@ -91,12 +68,12 @@ const PartnerprogrammPage = () => {
                 <Handshake className="h-3.5 w-3.5 text-primary" />
                 <span className="text-xs font-medium text-primary">Partnerprogramm</span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                Wachsen Sie mit plyce – gemeinsam mit Recruiting-Agenturen
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-2 mb-3 text-gradient-hero text-balance">
+                Partner für plyce
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                plyce ist das ATS/CRM für kleine bis mittlere Recruiting-Agenturen – mit integrierter KI-Automatisierung.
-                Als Partner begleiten Sie Kunden beim digitalen Recruiting und profitieren von einer strukturierten Zusammenarbeit.
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-pretty max-w-2xl mx-auto">
+                plyce ist das ATS und CRM für Personalberatungen und Recruiter, inklusive integrierter KI-Funktionen.
+                Als Partner bringen Sie passende Kunden mit, wir liefern Produkt, Einführung und faire, verlässliche Regeln.
               </p>
             </div>
           </ScrollReveal>
@@ -119,11 +96,11 @@ const PartnerprogrammPage = () => {
             <div className="text-center max-w-2xl mx-auto mb-10">
               <div className="inline-flex items-center gap-2 text-primary mb-2">
                 <Sparkles className="h-4 w-4" />
-                <span className="text-xs font-semibold uppercase tracking-wide">Kooperationsmodelle</span>
+                <span className="text-xs font-semibold uppercase tracking-wide">Zusammenarbeit</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">So arbeiten wir mit Partnern</h2>
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">Drei Wege zur Partnerschaft</h2>
               <p className="text-sm md:text-base text-muted-foreground">
-                Wählen Sie das Modell, das zu Ihrer Arbeit passt – von der einfachen Empfehlung bis zur tiefen Zusammenarbeit.
+                Einfache Empfehlung, begleiteter Rollout oder technische Ergänzung. Wir stimmen das Modell auf Ihre Rolle ab.
               </p>
             </div>
           </ScrollReveal>
@@ -147,44 +124,29 @@ const PartnerprogrammPage = () => {
             ))}
           </div>
 
-          <div className="mt-16 md:mt-20 rounded-2xl border border-border/60 bg-card overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <ScrollReveal className="p-6 md:p-10">
-                <div className="flex items-center gap-2 mb-4">
+          <ScrollReveal className="mt-16 md:mt-20">
+            <div className="mx-auto max-w-2xl rounded-2xl border border-border/60 bg-muted/25 px-6 py-8 md:p-10">
+              <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 mb-6">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-light">
                   <Users className="h-5 w-5 text-primary" />
-                  <h2 className="text-xl md:text-2xl font-bold tracking-tight">Ablauf: von der Anfrage zum gemeinsamen Go-to-Market</h2>
                 </div>
-                <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
-                  Transparente Schritte – ähnlich wie bei etablierten SaaS-Partnerprogrammen, aber auf die Realität von Agenturen und Beratungen zugeschnitten.
-                </p>
-                <ol className="space-y-6">
-                  {steps.map((s) => (
-                    <li key={s.step} className="flex gap-4">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
-                        {s.step}
-                      </span>
-                      <div>
-                        <h3 className="font-semibold mb-1">{s.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </ScrollReveal>
-              <ScrollReveal delay={80} className="p-6 md:p-10 bg-muted/30 border-t lg:border-t-0 lg:border-l border-border/60">
-                <h3 className="text-lg font-semibold mb-4">Für wen ist das Programm gedacht?</h3>
-                <ul className="space-y-3">
-                  {audiences.map((a) => (
-                    <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </ScrollReveal>
+                <div className="space-y-1.5">
+                  <h2 className="text-xl md:text-2xl font-bold tracking-tight">Für wen das Programm gedacht ist</h2>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-prose mx-auto sm:mx-0">
+                    Typische Partnerprofile rund um Personalberatungen und Recruiter.
+                  </p>
+                </div>
+              </div>
+              <ul className="space-y-3.5">
+                {audiences.map((a) => (
+                  <li key={a} className="flex gap-3 text-sm text-muted-foreground leading-relaxed text-left">
+                    <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                    <span>{a}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
+          </ScrollReveal>
         </div>
       </section>
     </div>

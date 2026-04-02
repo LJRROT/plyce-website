@@ -8,7 +8,7 @@ const links = [
   { to: "/data-protection", label: "Data Protection" },
   { to: "/faq", label: "FAQ" },
   { to: "/implementierung", label: "Implementierungsprozess" },
-  { to: "/partnerprogramm", label: "Partnerprogramme" },
+  { to: "/partnerprogramm", label: "Partnerprogramm" },
   { to: "/agb", label: "AGB" },
   { to: "/datenschutz", label: "Datenschutzerklärung" },
   { to: "/impressum", label: "Impressum" },

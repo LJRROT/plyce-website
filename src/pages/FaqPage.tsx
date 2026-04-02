@@ -4,19 +4,20 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 type FaqItem = { q: string; a: ReactNode };
-type FaqGroup = { title: string; items: FaqItem[] };
+type FaqGroup = { id: string; title: string; items: FaqItem[] };
 
 const faqGroups: FaqGroup[] = [
   {
+    id: "produkt-einsatzbereich",
     title: "Produkt & Einsatzbereich",
     items: [
       {
         q: "Was ist plyce?",
-        a: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen für Parsing, Matching, Texte und Reporting.",
+        a: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
       },
       {
         q: "Für wen eignet sich plyce?",
-        a: "Für Teams, die strukturiert arbeiten möchten: von der Kandidatenakte über die Suchmandate bis zu E-Mail, Aufgaben und Auswertungen. plyce richtet sich an Agenturen, die weniger Tool-Wechsel und mehr durchgängige Prozesse wollen.",
+        a: "Für Teams, die strukturiert arbeiten möchten: von der Kandidatenakte über die Suchmandate bis zu E-Mail, Aufgaben und Auswertungen. plyce richtet sich an Personalberatungen und Recruiter, die weniger Tool-Wechsel, mehr durchgängige Prozesse und volle AI-Integration wollen.",
       },
       {
         q: "Muss ich Software installieren?",
@@ -24,15 +25,16 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Was unterscheidet plyce von einem reinen ATS?",
-        a: "plyce verbindet klassische ATS-Funktionen (Kandidaten, Pipeline, Jobs) mit CRM-Logik für Unternehmen und Kontakte, Kommunikationstools und optional integrierten AI Agents. So bleiben Daten und Aktivitäten über den gesamten Recruiting-Zyklus zusammenhängend.",
+        a: "plyce verbindet klassische ATS-Funktionen (Kandidaten, Pipeline, Jobs) mit CRM-Logik für Unternehmen und Kontakte, Kommunikationstools und optional integrierten AI Agents. So bleiben Daten und Aktivitäten über den gesamten Recruiting-Zyklus zusammenhängend, und Sie können strukturiert sowie effizient arbeiten.",
       },
       {
         q: "Kann ich plyce testen?",
-        a: "Ja. Fordern Sie über „Request Demo“ eine persönliche Vorstellung an, wir zeigen Ihnen die Module, die für Ihre Agentur relevant sind, und besprechen den Einstieg.",
+        a: "Ja. Fordern Sie über „Request Demo“ eine persönliche Vorstellung an, wir zeigen Ihnen die Module, die für Sie relevant sind, und besprechen den Einstieg.",
       },
     ],
   },
   {
+    id: "implementierung-arbeit",
     title: "Implementierung & Arbeit im Alltag",
     items: [
       {
@@ -41,7 +43,7 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Kann ich bestehende Daten übernehmen?",
-        a: "In der Regel ja. plyce bietet Möglichkeiten zum strukturierten Datenimport (z. B. über definierte Formate und Mapping). Welche Felder und Quellen möglich sind, klären wir im Projekt mit Ihnen.",
+        a: "Ja. plyce unterstützt strukturierten Datenimport, z. B. über definierte Formate und Mapping. In einer einfachen Migration übernehmen wir typischerweise Unternehmen, Kontakte und Kandidaten, je nach Anforderung sind aber auch umfangreichere und komplexere Migrationen möglich. Welche Felder und Quellen dafür infrage kommen, stimmen wir mit Ihnen im Projekt ab.",
       },
       {
         q: "Wie viele Nutzer sind möglich?",
@@ -49,20 +51,21 @@ const faqGroups: FaqGroup[] = [
       },
       {
         q: "Gibt es Schulungen oder Dokumentation?",
-        a: "Ja, Hilfetexte und Dokumentation sind in der Anwendung verfügbar. Darüber hinaus können Schulungen und Begleitung im Rahmen Ihres Vertrags vereinbart werden.",
+        a: "Ja. In plyce stehen Ihnen umfangreiche Dokumentation, Hilfetexte und kontextbezogene Hilfen direkt in der Anwendung zur Verfügung. Zusätzlich gibt es einen systeminternen Helpdesk, über den Nutzer Supportanfragen einreichen können. Schulungen und persönliche Begleitung vereinbaren wir bei Bedarf im Rahmen Ihres Vertrags.",
       },
     ],
   },
   {
+    id: "daten-sicherheit-datenschutz",
     title: "Daten, Sicherheit & Datenschutz",
     items: [
       {
         q: "Wo werden meine Daten gespeichert?",
-        a: "Die Verarbeitung erfolgt in professioneller Cloud-Infrastruktur. Schwerpunkt ist die EU bzw. der EWR, soweit nicht im Einzelfall etwas anderes ausdrücklich vereinbart ist (z. B. bestimmte KI-Anbindungen). Details finden Sie in der Datenschutzerklärung und im Vertrag.",
+        a: "Ihre Daten werden bei Amazon Web Services (AWS) in der Region eu-central-1 (Frankfurt) gespeichert und verarbeitet. Der Standort liegt in der Europäischen Union und erfüllt damit die strengen Anforderungen an Speicherort und Auftragsverarbeitung nach EU-DSGVO. Soweit im Einzelfall etwas anderes ausdrücklich vereinbart ist (z. B. bestimmte KI-Anbindungen), bezieht sich das auf den jeweils beschriebenen Umfang. Details finden Sie in der Datenschutzerklärung und im Vertrag.",
       },
       {
         q: "Wie ist die DSGVO-Einordnung bei Kandidatendaten?",
-        a: "Ihre Agentur ist in der Regel Verantwortliche für die Daten Ihrer Kandidaten und Kunden. plyce wird in diesem Kontext typischerweise als Auftragsverarbeiter eingesetzt, geregelt in einer Vereinbarung zur Auftragsverarbeitung. So können Sie Ihre Informationspflichten und Prozesse sauber abbilden.",
+        a: "Ihre Personalberatung ist in der Regel Verantwortliche für die Daten Ihrer Kandidaten und Kunden. plyce wird in diesem Kontext typischerweise als Auftragsverarbeiter eingesetzt, geregelt in einer Vereinbarung zur Auftragsverarbeitung. So können Sie Ihre Informationspflichten und Prozesse sauber abbilden.",
       },
       {
         q: "Wie sicher ist der Zugriff?",
@@ -75,15 +78,66 @@ const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    id: "ki-automatisierung",
     title: "KI & Automatisierung",
     items: [
       {
         q: "Welche KI-Funktionen bietet plyce?",
-        a: "plyce kann u. a. bei CV-Parsing, Zusammenfassungen, Matching-Vorschlägen, Textgenerierung (z. B. Anschreiben, Reports) und weiteren Funktionen der AI Agents unterstützen. Der genaue Umfang hängt von Ihrer Buchung und Konfiguration ab.",
+        a: (
+          <>
+            plyce unterstützt u. a. CV-Parsing, Zusammenfassungen, Matching-Vorschläge, Textgenerierung (z. B. Anschreiben,
+            Reports) und weitere Automatisierungen. Welche{" "}
+            <Link to="/ai-agents" className="text-primary font-medium hover:underline">
+              AI Agents
+            </Link>{" "}
+            dazu eingesetzt werden und was sie leisten, ist auf der zugehörigen Produktseite beschrieben. Technisch werden
+            die KI-Funktionen u. a. über Anbindungen an die Sprachmodellanbieter{" "}
+            <a
+              href="https://openai.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium hover:underline"
+            >
+              OpenAI
+            </a>{" "}
+            und{" "}
+            <a
+              href="https://mistral.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium hover:underline"
+            >
+              Mistral AI
+            </a>{" "}
+            realisiert (u. a. Performance vs. europäischer Fokus).
+          </>
+        ),
       },
       {
         q: "Kann ich zwischen Sprachmodellen wählen?",
-        a: "Ja. plyce kann so konfiguriert werden, dass unterschiedliche Sprachmodell-Anbieter genutzt werden, z. B. mit Fokus auf Performance oder auf europäische Anbindung. Details besprechen wir im Rahmen von Vertrag und Datenschutz.",
+        a: (
+          <>
+            Ja. plyce kann so konfiguriert werden, dass unterschiedliche Sprachmodell-Anbieter genutzt werden, namentlich{" "}
+            <a
+              href="https://openai.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium hover:underline"
+            >
+              OpenAI
+            </a>{" "}
+            (stark bei anspruchsvollen Texten und breitem Modellangebot) sowie{" "}
+            <a
+              href="https://mistral.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium hover:underline"
+            >
+              Mistral AI
+            </a>{" "}
+            (Europa-Fokus, regulierungsnahe Nutzung). Welche Anbindung für Sie passt, klären wir im Rahmen von Vertrag und Datenschutz.
+          </>
+        ),
       },
       {
         q: "Wer haftet für KI-generierte Inhalte?",
@@ -92,6 +146,7 @@ const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    id: "integrationen-schnittstellen",
     title: "Integrationen & Schnittstellen",
     items: [
       {
@@ -109,6 +164,7 @@ const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    id: "vertrag-abrechnung-support",
     title: "Vertrag, Abrechnung & Support",
     items: [
       {
@@ -143,16 +199,20 @@ const faqGroups: FaqGroup[] = [
   },
 ];
 
+export const faqCategoryNav = faqGroups.map(({ id, title }) => ({ id, title }));
+
 const FaqPage = () => {
   return (
     <div className="min-h-screen pt-24">
       <section className="py-14 md:py-20 section-padding border-b border-border/40">
-        <div className="container-tight max-w-3xl">
+        <div className="container-tight text-center">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] pt-1 pb-1 mb-5 text-balance text-gradient-hero">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.18] pt-1 pb-1 mb-5 text-balance text-gradient-hero">
               FAQ
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto text-pretty">
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Antworten zu Produkt, Einführung, Daten, KI und Vertrag, speziell für Personalberatungen und Recruiter.
             </p>
           </ScrollReveal>
@@ -163,7 +223,7 @@ const FaqPage = () => {
         <div className="container-tight max-w-3xl space-y-14">
           {faqGroups.map((group, gi) => (
             <ScrollReveal key={group.title} delay={Math.min(gi * 40, 120)}>
-              <div>
+              <div id={group.id} className="scroll-mt-28">
                 <h2 className="text-lg font-semibold text-foreground mb-4">{group.title}</h2>
                 <Accordion type="single" collapsible className="w-full">
                   {group.items.map((item, i) => (
