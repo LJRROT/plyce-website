@@ -1,7 +1,9 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import { CheckCircle2, Flame } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const OFF_2026_FACTOR = 0.7;
+const OFF_2026_FACTOR = 0.8;
+const LIST_PRICE = 125;
 
 function formatEuro(value: number, withDecimals: boolean) {
   return new Intl.NumberFormat("de-DE", {
@@ -12,84 +14,20 @@ function formatEuro(value: number, withDecimals: boolean) {
   }).format(value);
 }
 
-function MarketEntryPriceBlock({
-  listUserPerMonth,
-  listBase,
-}: {
-  listUserPerMonth: number;
-  listBase?: number;
-}) {
-  const userOffer = listUserPerMonth * OFF_2026_FACTOR;
-  const baseOffer = listBase != null ? listBase * OFF_2026_FACTOR : undefined;
-  const userNeedsDecimals = !Number.isInteger(userOffer);
-  const baseNeedsDecimals = baseOffer != null && !Number.isInteger(baseOffer);
-
-  return (
-    <div className="mb-1">
-      <p className="mb-3">
-        <span className="inline-flex rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
-          Einstieg 2026
-        </span>
-      </p>
-      <p className="text-3xl font-extrabold tracking-tight text-foreground">
-        {formatEuro(userOffer, userNeedsDecimals)}{" "}
-        <span className="text-lg font-semibold text-muted-foreground">/ Nutzer / Monat</span>
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">
-        <span className="line-through decoration-muted-foreground/70">{formatEuro(listUserPerMonth, false)}</span>
-        <span className="mx-1.5 text-muted-foreground/50">·</span>
-        <span>30 % Rabatt in 2026</span>
-      </p>
-      {listBase != null && baseOffer != null && (
-        <div className="mt-3">
-          <p className="text-sm font-semibold text-foreground">
-            + {formatEuro(baseOffer, baseNeedsDecimals)} Basis
-          </p>
-          <p className="text-xs text-muted-foreground">
-            <span className="line-through decoration-muted-foreground/70">{formatEuro(listBase, false)}</span> Listenpreis
-            Basis
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-const launchFeatures = ["ATS & Pipeline", "CV-Parsing", "KI-Dossiers", "Standard-Workflows"];
-
-const scaleExtra = [
-  "KI-Matching-Agent",
-  "KI-Analytics",
-  "Eigenes Jobboard (API)",
-  "WhatsApp-Integration",
-  "Besseres SLA",
-];
-
-const scaleSetupIncludes = [
-  "Datenmigration (Kandidaten, Kunden, Firmen)",
-  "Templates (Dossiers, E-Mails)",
-  "Workflow Setup",
-  "Onboarding",
-];
-
-const proExtra = [
-  "Erweiterte Migration (Aktivitäten, Projekte, Skills)",
-  "Datenbereinigung & Deduplizierung",
-  "KI-CV-Nachverarbeitung",
-  "Eigene Workflows & Felder",
-  "Individuelle Integrationen",
-];
-
 const trustPoints = [
   "AI-natives ATS und CRM: Kandidaten, Mandate und Kunden in einer Plattform statt eines fragmentierten Tool-Stacks.",
-  "Attraktive Gesamtkosten und klare Preise — weniger versteckte Zusatzmodule, mehr Transparenz für Ihr Budget.",
+  "Keine versteckten Zusatzkosten — ein Produkt, ein Preis, volle Transparenz.",
   "Routine mit KI entlasten: weniger Admin, mehr Zeit für Beratung, Sourcing und Placements.",
   "Datenmigration und Einstieg strukturiert: Kerndaten sicher übernommen, ohne monatelange Umstellungsprojekte.",
+  "Alle Features und AI-Agenten sind im Produkt inkludiert — ohne Aufpreis.",
 ];
 
 const Pricing3fRsPage = () => {
+  const offerPrice = LIST_PRICE * OFF_2026_FACTOR;
+
   return (
     <div className="min-h-screen pt-24">
+      {/* Trust section */}
       <section className="py-14 md:py-16 section-padding border-b border-border/40 bg-muted/30">
         <div className="container-tight max-w-3xl mx-auto text-center">
           <ScrollReveal>
@@ -108,6 +46,7 @@ const Pricing3fRsPage = () => {
         </div>
       </section>
 
+      {/* Market-Entry Banner */}
       <section className="py-12 md:py-16 section-padding">
         <div className="container-tight max-w-3xl mx-auto">
           <ScrollReveal>
@@ -118,119 +57,96 @@ const Pricing3fRsPage = () => {
                   Market-Entry-Angebot
                 </p>
               </div>
-              <p className="text-3xl font-black tracking-tight text-primary md:text-4xl lg:text-5xl">30 % Rabatt in 2026</p>
+              <p className="text-3xl font-black tracking-tight text-primary md:text-4xl lg:text-5xl">20 % Rabatt in 2026</p>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
+                20 % Rabatt in 2026 auf Nutzergebühren, Onboarding, Setup und Datenmigration.
+              </p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
+      {/* Pricing card */}
       <section className="pb-16 md:pb-24 section-padding">
         <div className="container-tight">
           <ScrollReveal>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center mb-3">Preise</h2>
             <p className="text-center text-sm text-muted-foreground mb-10 md:mb-14 max-w-xl mx-auto">
-              Mit dem Market-Entry-Angebot: 30 % Rabatt in 2026 auf Nutzer- und Basispreise (siehe Karten unten).
+              Mit dem Market-Entry-Angebot: 20 % Rabatt in 2026 — auf alles.
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 items-stretch">
-            <ScrollReveal delay={0}>
-              <article className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-8 shadow-sm transition-colors hover:border-primary/25">
-                <div className="mb-4 flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Einstieg</span>
+          <div className="max-w-lg mx-auto">
+            <ScrollReveal>
+              <article className="relative rounded-2xl border-2 border-primary bg-card p-8 md:p-10 shadow-lg shadow-primary/10">
+                {/* Price */}
+                <div className="mb-1">
+                  <p className="mb-3">
+                    <span className="inline-flex rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                      Einstieg 2026
+                    </span>
+                  </p>
+                  <p className="text-3xl font-extrabold tracking-tight text-foreground">
+                    {formatEuro(offerPrice, false)}{" "}
+                    <span className="text-lg font-semibold text-muted-foreground">/ Nutzer / Monat</span>
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    <span className="line-through decoration-muted-foreground/70">{formatEuro(LIST_PRICE, false)}</span>
+                    <span className="mx-1.5 text-muted-foreground/50">·</span>
+                    <span>20 % Rabatt in 2026</span>
+                  </p>
                 </div>
-                <MarketEntryPriceBlock listUserPerMonth={75} />
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground mb-6">
-                  <li>Max. 5 Nutzer</li>
-                  <li>Monatlich kündbar</li>
-                  <li>Keine Setup-Gebühr</li>
-                </ul>
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {launchFeatures.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm font-medium text-foreground/90 mb-0">Perfekt für den schnellen Einstieg</p>
-              </article>
-            </ScrollReveal>
 
-            <ScrollReveal delay={80}>
-              <article className="relative flex h-full flex-col rounded-2xl border-2 border-primary bg-card p-8 shadow-lg shadow-primary/10 transition-colors">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                  Beliebteste Wahl
-                </span>
-                <div className="mb-4 flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-sky-500" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Wachstum</span>
-                </div>
-                <MarketEntryPriceBlock listUserPerMonth={90} />
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2 mt-4">Alles aus Einstieg +</p>
-                <ul className="space-y-2.5 mb-6">
-                  {scaleExtra.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                      <span>{f}</span>
-                    </li>
-                  ))}
+                {/* Features */}
+                <ul className="mt-6 space-y-3">
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>Komplettes Produkt — ATS & CRM in einer Plattform</span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>
+                      <Link to="/features" className="underline underline-offset-2 hover:text-primary transition-colors">
+                        Alle Features
+                      </Link>{" "}
+                      inklusive
+                    </span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>
+                      <Link to="/ai-agents" className="underline underline-offset-2 hover:text-primary transition-colors">
+                        Alle AI-Agenten
+                      </Link>{" "}
+                      inklusive
+                    </span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>Nutzer jederzeit flexibel hinzufügen oder reduzieren</span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>Monatsgenaue Abrechnung — nur aktive Nutzer zahlen</span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>Mindestlaufzeit: 12 Monate</span>
+                  </li>
                 </ul>
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Setup inklusive</p>
-                <ul className="space-y-1.5 text-sm text-muted-foreground mb-3 flex-1">
-                  {scaleSetupIncludes.map((f) => (
-                    <li key={f} className="flex gap-2 pl-1">
-                      <span className="text-primary" aria-hidden>
-                        ·
-                      </span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm text-muted-foreground mb-6">Setup Fee nach Aufwand</p>
-                <p className="text-sm font-medium text-foreground/90">Für wachsende Personalberatungen</p>
-              </article>
-            </ScrollReveal>
 
-            <ScrollReveal delay={160}>
-              <article className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-8 shadow-sm transition-colors hover:border-primary/25">
-                <div className="mb-4 flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-violet-500" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Pro</span>
-                </div>
-                <MarketEntryPriceBlock listUserPerMonth={95} listBase={220} />
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2 mt-3">Alles aus Wachstum +</p>
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {proExtra.map((f) => (
-                    <li key={f} className="flex gap-2.5 text-sm text-muted-foreground">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Setup</p>
-                <ul className="space-y-1.5 text-sm text-muted-foreground mb-6">
+                {/* Separator + extras */}
+                <hr className="my-6 border-border/60" />
+                <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex gap-2 pl-1">
-                    <span className="text-primary" aria-hidden>
-                      ·
-                    </span>
-                    <span>Setup: 5.000–15.000 €</span>
+                    <span className="text-primary" aria-hidden>·</span>
+                    <span>Flexible Datenmigration nach Absprache möglich</span>
                   </li>
                   <li className="flex gap-2 pl-1">
-                    <span className="text-primary" aria-hidden>
-                      ·
-                    </span>
-                    <span>Erweiterte Datenmigration nach Aufwand</span>
-                  </li>
-                  <li className="flex gap-2 pl-1">
-                    <span className="text-primary" aria-hidden>
-                      ·
-                    </span>
-                    <span>Individualisierung nach Aufwand</span>
+                    <span className="text-primary" aria-hidden>·</span>
+                    <span>Individuelles Customizing nach Absprache möglich</span>
                   </li>
                 </ul>
-                <p className="text-sm font-medium text-foreground/90">Maximale Flexibilität &amp; Individualisierung</p>
               </article>
             </ScrollReveal>
           </div>
