@@ -148,7 +148,8 @@ const Pricing3fRsPage = () => {
                 {/* Separator + extras */}
                 <hr className="my-6 border-border/60" />
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Flexible Datenmigration nach Absprache möglich. Individuelles Customizing ebenfalls nach Absprache möglich.
+                  Flexible Datenmigration nach Absprache möglich.<br />
+                  Customizing ebenfalls nach Absprache möglich.
                 </p>
               </article>
             </ScrollReveal>
