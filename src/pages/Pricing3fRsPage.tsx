@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const OFF_2026_FACTOR = 0.8;
 const LIST_PRICE = 125;
+const SETUP_FEE = 380;
 
 function formatEuro(value: number, withDecimals: boolean) {
   return new Intl.NumberFormat("de-DE", {
@@ -15,15 +16,16 @@ function formatEuro(value: number, withDecimals: boolean) {
 }
 
 const trustPoints = [
-  "AI-natives ATS und CRM: Kandidaten, Mandate und Kunden in einer Plattform statt eines fragmentierten Tool-Stacks.",
-  "Keine versteckten Zusatzkosten — ein Produkt, ein Preis, volle Transparenz.",
-  "Routine mit KI entlasten: weniger Admin, mehr Zeit für Beratung, Sourcing und Placements.",
-  "Datenmigration und Einstieg strukturiert: Kerndaten sicher übernommen, ohne monatelange Umstellungsprojekte.",
-  "Alle Features und AI-Agenten sind im Produkt inkludiert — ohne Aufpreis.",
+  "AI-natives ATS und CRM vereint Kandidaten, Mandate und Kunden in einer Plattform statt eines fragmentierten Tool-Stacks.",
+  "Keine versteckten Zusatzkosten. Ein Produkt, ein Preis, volle Transparenz.",
+  "Routine mit KI entlasten bedeutet weniger Admin und mehr Zeit für Beratung, Sourcing und Placements.",
+  "Datenmigration und Einstieg sind strukturiert. Kerndaten werden sicher übernommen, ohne monatelange Umstellungsprojekte.",
+  "Alle Features und AI-Agenten sind im Produkt inkludiert, ohne Aufpreis.",
 ];
 
 const Pricing3fRsPage = () => {
   const offerPrice = LIST_PRICE * OFF_2026_FACTOR;
+  const setupOffer = SETUP_FEE * OFF_2026_FACTOR;
 
   return (
     <div className="min-h-screen pt-24">
@@ -72,7 +74,7 @@ const Pricing3fRsPage = () => {
           <ScrollReveal>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center mb-3">Preise</h2>
             <p className="text-center text-sm text-muted-foreground mb-10 md:mb-14 max-w-xl mx-auto">
-              Mit dem Market-Entry-Angebot: 20 % Rabatt in 2026 — auf alles.
+              Mit dem Market-Entry-Angebot erhalten Sie 20 % Rabatt in 2026 auf alles.
             </p>
           </ScrollReveal>
 
@@ -92,8 +94,7 @@ const Pricing3fRsPage = () => {
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     <span className="line-through decoration-muted-foreground/70">{formatEuro(LIST_PRICE, false)}</span>
-                    <span className="mx-1.5 text-muted-foreground/50">·</span>
-                    <span>20 % Rabatt in 2026</span>
+                    {" "}statt Listenpreis, 20 % Rabatt in 2026.
                   </p>
                 </div>
 
@@ -101,7 +102,7 @@ const Pricing3fRsPage = () => {
                 <ul className="mt-6 space-y-3">
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Komplettes Produkt — ATS & CRM in einer Plattform</span>
+                    <span>Komplettes Produkt mit ATS und CRM in einer Plattform.</span>
                   </li>
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
@@ -109,7 +110,7 @@ const Pricing3fRsPage = () => {
                       <Link to="/features" className="underline underline-offset-2 hover:text-primary transition-colors">
                         Alle Features
                       </Link>{" "}
-                      inklusive
+                      inklusive.
                     </span>
                   </li>
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
@@ -118,35 +119,37 @@ const Pricing3fRsPage = () => {
                       <Link to="/ai-agents" className="underline underline-offset-2 hover:text-primary transition-colors">
                         Alle AI-Agenten
                       </Link>{" "}
-                      inklusive
+                      inklusive.
                     </span>
                   </li>
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Nutzer jederzeit flexibel hinzufügen oder reduzieren</span>
+                    <span>Nutzer jederzeit flexibel hinzufügen oder reduzieren.</span>
                   </li>
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Monatsgenaue Abrechnung — nur aktive Nutzer zahlen</span>
+                    <span>Monatsgenaue Abrechnung, nur aktive Nutzer zahlen.</span>
                   </li>
                   <li className="flex gap-2.5 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Mindestlaufzeit: 12 Monate</span>
+                    <span>Mindestlaufzeit 12 Monate.</span>
+                  </li>
+                  <li className="flex gap-2.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                    <span>
+                      Setup- und Onboarding-Fee einmalig {formatEuro(setupOffer, false)}{" "}
+                      <span className="text-xs text-muted-foreground/70">
+                        (statt <span className="line-through">{formatEuro(SETUP_FEE, false)}</span>, 20 % Rabatt in 2026).
+                      </span>
+                    </span>
                   </li>
                 </ul>
 
                 {/* Separator + extras */}
                 <hr className="my-6 border-border/60" />
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex gap-2 pl-1">
-                    <span className="text-primary" aria-hidden>·</span>
-                    <span>Flexible Datenmigration nach Absprache möglich</span>
-                  </li>
-                  <li className="flex gap-2 pl-1">
-                    <span className="text-primary" aria-hidden>·</span>
-                    <span>Individuelles Customizing nach Absprache möglich</span>
-                  </li>
-                </ul>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Flexible Datenmigration nach Absprache möglich. Individuelles Customizing ebenfalls nach Absprache möglich.
+                </p>
               </article>
             </ScrollReveal>
           </div>
