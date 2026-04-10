@@ -33,7 +33,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Für wen eignet sich plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Für Teams, die strukturiert arbeiten möchten: von der Kandidatenakte über die Suchmandate bis zu E-Mail, Aufgaben und Auswertungen. plyce richtet sich an Personalberatungen und Recruiter, die weniger Tool-Wechsel, mehr durchgängige Prozesse und volle AI-Integration wollen.",
+          text: "plyce richtet sich an Personalberatungen und Recruiting-Teams, die Kandidaten, Projekte, Kunden und Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und ohne Toolwechsel effizient arbeiten möchten.",
         },
       },
       {

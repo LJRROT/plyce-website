@@ -119,28 +119,28 @@ const Index = () => {
                   <div className="grid grid-cols-2 divide-x divide-border/50 overflow-hidden rounded-xl border border-border/55 bg-card/80 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px]">
                     <Link
                       to="/ai-agents"
-                      className="group flex min-h-[4.25rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
+                      className="group flex min-h-[4.75rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
                       aria-label="OpenAI — KI-Modelle"
                     >
                       <img
                         src="/logos/openai-wordmark.svg"
                         alt=""
-                        className="h-7 w-auto max-w-[min(118px,28vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
-                        width={118}
-                        height={28}
+                        className="h-9 w-auto max-w-[min(142px,36vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
+                        width={142}
+                        height={36}
                       />
                     </Link>
                     <Link
                       to="/ai-agents"
-                      className="group flex min-h-[4.25rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
+                      className="group flex min-h-[4.75rem] items-center justify-center px-3 py-4 transition-colors hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/30"
                       aria-label="Mistral AI — KI-Modelle"
                     >
                       <img
                         src="/logos/mistral-wordmark.svg"
                         alt=""
-                        className="h-7 w-auto max-w-[min(138px,30vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
-                        width={138}
-                        height={28}
+                        className="h-9 w-auto max-w-[min(166px,38vw)] object-contain opacity-90 transition-opacity group-hover:opacity-100"
+                        width={166}
+                        height={36}
                       />
                     </Link>
                   </div>
@@ -176,17 +176,15 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    <span className="font-medium text-foreground/90">AI-natives ATS &amp; CRM</span> für
-                    Personalberatungen und Recruiter: Kandidaten, Mandate, Kunden und Kommunikation an einem Ort.
-                  </p>
-                  <p>
-                    KI für Parsing, Matching, Texte und Reporting — eingebaut, ohne Insellösungen.
+                    plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen
+                    Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte
+                    KI-Funktionen z.&nbsp;B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.
                   </p>
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={80}>
-              <div className="flex h-full flex-col rounded-xl border border-border/55 bg-card/80 p-6 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px] md:p-8">
+              <div className="h-full rounded-xl border border-border/55 bg-card/80 p-6 shadow-[0_1px_0_0_hsl(var(--border)/0.4)] backdrop-blur-[2px] md:p-8">
                 <h2
                   id="intro-fuer-wen"
                   className="mb-3 text-balance text-lg font-bold tracking-tight text-foreground md:text-xl"
@@ -195,22 +193,11 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    Für Teams, die von der Akte bis zum Mandat sauber dokumentieren — E-Mail, Aufgaben und Auswertungen
-                    im selben System.
-                  </p>
-                  <p>
-                    Wenn weniger Tool-Wechsel und durchgängige, KI-unterstützte Abläufe für Sie zählen.
+                    plyce richtet sich an Personalberatungen und Recruiting-Teams, die Kandidaten, Projekte, Kunden und
+                    Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse
+                    automatisieren und ohne Toolwechsel effizient arbeiten möchten.
                   </p>
                 </div>
-                <p className="mt-auto border-t border-border/40 pt-6 md:pt-7">
-                  <Link
-                    to="/faq"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-4"
-                  >
-                    Alle Antworten im FAQ
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                  </Link>
-                </p>
               </div>
             </ScrollReveal>
           </div>
