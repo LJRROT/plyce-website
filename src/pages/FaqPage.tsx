@@ -13,11 +13,11 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "Was ist plyce?",
-        a: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
+        a: "Ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
       },
       {
         q: "Für wen eignet sich plyce?",
-        a: "plyce richtet sich an Personalberatungen und Recruiting-Teams, die Kandidaten, Projekte, Kunden und Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und ohne Toolwechsel effizient arbeiten möchten.",
+        a: "Für Personalberatungen und Recruiter, die Kandidaten, Projekte, Kunden und Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und ohne Toolwechsel effizient arbeiten möchten.",
       },
       {
         q: "Muss ich Software installieren?",

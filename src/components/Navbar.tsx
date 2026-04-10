@@ -208,68 +208,18 @@ const Navbar = () => {
         {open && (
           <div className="md:hidden pb-4 pt-2 animate-fade-in">
             <div className="flex flex-col gap-2">
-              {navLinks.map((link) =>
-                link.href === "/faq" ? (
-                  <div key="faq-m" className="flex flex-col gap-1">
-                    <Link
-                      to="/faq"
-                      onClick={() => setOpen(false)}
-                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-accent ${
-                        location.pathname === "/faq" ? "text-primary bg-primary-light" : "text-muted-foreground"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                    <div className="ml-3 space-y-0.5 border-l border-border/60 pl-3">
-                      {faqCategoryNav.map((cat) => (
-                        <Link
-                          key={cat.id}
-                          to={`/faq#${cat.id}`}
-                          onClick={() => setOpen(false)}
-                          className="block rounded-md py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                        >
-                          {cat.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : link.href === "/ai-agents" ? (
-                  <div key="agents-m" className="flex flex-col gap-1">
-                    <Link
-                      to="/ai-agents"
-                      onClick={() => setOpen(false)}
-                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-accent ${
-                        location.pathname === "/ai-agents" ? "text-primary bg-primary-light" : "text-muted-foreground"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                    <div className="ml-3 max-h-[50vh] space-y-0.5 overflow-y-auto overscroll-contain border-l border-border/60 pl-3">
-                      {aiAgentsNav.map((agent) => (
-                        <Link
-                          key={agent.id}
-                          to={`/ai-agents#${agent.id}`}
-                          onClick={() => setOpen(false)}
-                          className="block rounded-md py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                        >
-                          {agent.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    onClick={() => setOpen(false)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-accent ${
-                      location.pathname === link.href ? "text-primary bg-primary-light" : "text-muted-foreground"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-accent ${
+                    location.pathname === link.href ? "text-primary bg-primary-light" : "text-muted-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <div className="flex gap-2 mt-2 px-3">
                 <Button variant="ghost" size="sm" className="flex-1 whitespace-normal text-center" type="button" onClick={openLogin}>
                   Login

@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getSiteUrl } from "@/lib/siteUrl";
 
-/** Primary copy targets: ATS/CRM, Personalberatungen, Recruiter, Bewerbermanagement (DE search intent). */
+/** Primary copy targets: ATS/CRM, Personalberatungen, Recruiter, Bewerbermanagement (DE search intent). ~155 Zeichen für SERP-Snippets. */
 const defaultDescription =
-  "plyce: ATS und CRM speziell für Personalberatungen und Recruiter. Applicant Tracking System (ATS) mit Kandidatenmanagement, Projekten, Pipeline, E-Mail und KI – für den professionellen Einsatz in Deutschland.";
+  "plyce – ATS & CRM für Personalberatungen und Recruiter: Kandidaten, Projekte, Kunden und KI in einer Plattform. Bewerbermanagement mit EU-Hosting und Fokus auf DSGVO.";
 
 type RouteSeo = {
   title: string;
@@ -25,7 +25,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Was ist plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
+          text: "Ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten, Projekte, Kunden und Kommunikation in einem System – ergänzt um integrierte KI-Funktionen z. B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.",
         },
       },
       {
@@ -33,7 +33,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
         name: "Für wen eignet sich plyce?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "plyce richtet sich an Personalberatungen und Recruiting-Teams, die Kandidaten, Projekte, Kunden und Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und ohne Toolwechsel effizient arbeiten möchten.",
+          text: "Für Personalberatungen und Recruiter, die Kandidaten, Projekte, Kunden und Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und ohne Toolwechsel effizient arbeiten möchten.",
         },
       },
       {
@@ -136,6 +136,21 @@ const routeSeo: Record<string, RouteSeo> = {
   },
 };
 
+/** Öffentliche Seiten in logischer Reihenfolge (Produkt → Service → Rechtliches) für strukturierte Daten / Google. */
+const SITE_STRUCTURE_PATHS = [
+  "/",
+  "/features",
+  "/ai-agents",
+  "/faq",
+  "/implementierung",
+  "/data-protection",
+  "/partnerprogramm",
+  "/impressum",
+  "/datenschutz",
+  "/agb",
+  "/sitemap",
+] as const;
+
 const seoKeywords =
   "ATS, CRM, Recruiting Software, Applicant Tracking System, Personalberatung, Personalberatungen, Recruiter, Recruiting-Agentur, Bewerbermanagement, Kandidatenmanagement, Headhunter Software, HR Software Agentur";
 
@@ -175,7 +190,39 @@ function setLinkRel(rel: string, href: string, extraAttrs?: Record<string, strin
   el.href = href;
 }
 
-function setJsonLd(base: string, pathname: string, seo: RouteSeo) {
+function buildSiteStructureItemList(base: string): Record<string, unknown> {
+  const itemListElement: Record<string, unknown>[] = [];
+  let position = 1;
+  for (const p of SITE_STRUCTURE_PATHS) {
+    const conf = routeSeo[p];
+    if (!conf || conf.noindex) continue;
+    const url = p === "/" ? `${base}/` : `${base}${p}`;
+    itemListElement.push({
+      "@type": "ListItem",
+      position: position++,
+      name: conf.breadcrumbLabel,
+      item: url,
+    });
+  }
+  return {
+    "@type": "ItemList",
+    "@id": `${base}/#site-structure`,
+    name: "plyce – Seiten und Bereiche",
+    description:
+      "Strukturierte Übersicht der Website: Produkt (ATS, CRM, KI), Hilfe, Implementierung, Datenschutz sowie Impressum und weitere rechtliche Informationen.",
+    numberOfItems: itemListElement.length,
+    itemListElement,
+  };
+}
+
+/** Kürzerer Seitentitel für JSON-LD name/headline (ohne Pipe-Suffix). */
+function jsonLdPageName(seo: RouteSeo): string {
+  const t = seo.title;
+  const pipe = t.indexOf("|");
+  return (pipe === -1 ? t : t.slice(0, pipe)).trim();
+}
+
+function setJsonLd(base: string, pathname: string, seo: RouteSeo, isKnownRoute: boolean) {
   const id = "plyce-schema-org";
   let el = document.getElementById(id) as HTMLScriptElement | null;
   if (!el) {
@@ -185,24 +232,39 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo) {
     document.head.appendChild(el);
   }
 
+  const pageUrl = pathname === "/" ? `${base}/` : `${base}${pathname}`;
+  const ogImage = `${base}/og-image.png`;
+
   const graph: Record<string, unknown>[] = [
     {
       "@type": "WebSite",
       "@id": `${base}/#website`,
-      url: base,
+      url: `${base}/`,
       name: "plyce",
+      alternateName: ["plyce ATS", "plyce CRM"],
       inLanguage: "de-DE",
       description: defaultDescription,
       publisher: { "@id": `${base}/#organization` },
+      about: { "@id": `${base}/#software` },
     },
     {
       "@type": "Organization",
       "@id": `${base}/#organization`,
       name: "WECO Experts GmbH",
-      url: base,
-      logo: `${base}/plyce-logo-mark.png`,
+      alternateName: "plyce",
+      url: `${base}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${base}/plyce-logo-mark.png`,
+      },
       brand: { "@type": "Brand", name: "plyce" },
       sameAs: ["https://weco-experts.com"],
+      knowsAbout: [
+        "Applicant Tracking System",
+        "Recruiting-Software",
+        "Personalberatung",
+        "Customer-Relationship-Management",
+      ],
     },
     {
       "@type": "SoftwareApplication",
@@ -210,7 +272,7 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo) {
       name: "plyce",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
-      url: base,
+      url: `${base}/`,
       description: defaultDescription,
       featureList: [
         "Applicant Tracking System (ATS)",
@@ -221,13 +283,39 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo) {
         "KI-gestützte Automatisierung",
       ],
       provider: { "@id": `${base}/#organization` },
+      image: ogImage,
     },
+    buildSiteStructureItemList(base),
   ];
 
-  // BreadcrumbList for every page
-  if (pathname !== "/") {
+  if (isKnownRoute && seo.breadcrumbLabel !== "" && !seo.noindex) {
+    const webPage: Record<string, unknown> = {
+      "@type": "WebPage",
+      "@id": pageUrl,
+      url: pageUrl,
+      name: jsonLdPageName(seo),
+      headline: seo.title,
+      description: seo.description,
+      isPartOf: { "@id": `${base}/#website` },
+      about: { "@id": `${base}/#software` },
+      inLanguage: "de-DE",
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ogImage,
+        width: 1200,
+        height: 630,
+      },
+    };
+    if (pathname !== "/") {
+      webPage.breadcrumb = { "@id": `${pageUrl}#breadcrumb` };
+    }
+    graph.push(webPage);
+  }
+
+  if (pathname !== "/" && isKnownRoute && seo.breadcrumbLabel !== "" && !seo.noindex) {
     graph.push({
       "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
       itemListElement: [
         {
           "@type": "ListItem",
@@ -239,13 +327,12 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo) {
           "@type": "ListItem",
           position: 2,
           name: seo.breadcrumbLabel,
-          item: `${base}${pathname}`,
+          item: pageUrl,
         },
       ],
     });
   }
 
-  // Page-specific extra structured data (e.g. FAQPage)
   if (seo.jsonLdExtra) {
     graph.push(...seo.jsonLdExtra());
   }
@@ -306,7 +393,7 @@ const Seo = () => {
     setLinkRel("alternate", url, { hreflang: "x-default" });
 
     // JSON-LD
-    setJsonLd(base, pathname, seo);
+    setJsonLd(base, pathname, seo, isKnownRoute);
   }, [pathname]);
 
   return null;

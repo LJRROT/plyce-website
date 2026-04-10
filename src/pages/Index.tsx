@@ -176,9 +176,9 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    plyce ist ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen
-                    Kandidaten, Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte
-                    KI-Funktionen z.&nbsp;B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.
+                    Ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten,
+                    Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen
+                    z.&nbsp;B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.
                   </p>
                 </div>
               </div>
@@ -193,9 +193,9 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    plyce richtet sich an Personalberatungen und Recruiting-Teams, die Kandidaten, Projekte, Kunden und
-                    Kommunikation in einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse
-                    automatisieren und ohne Toolwechsel effizient arbeiten möchten.
+                    Für Personalberatungen und Recruiter, die Kandidaten, Projekte, Kunden und Kommunikation in
+                    einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und
+                    ohne Toolwechsel effizient arbeiten möchten.
                   </p>
                 </div>
               </div>
