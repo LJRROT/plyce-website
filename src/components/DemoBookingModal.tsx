@@ -20,9 +20,10 @@ type DemoBookingModalProps = {
 
 const DEMO_EMAIL = "mail@plyce.app";
 
+// Relative path = same host as the page (vermeidet www/apex-Mismatch und CORS in Production).
 const demoApiUrl =
   (import.meta.env.VITE_DEMO_REQUEST_API_URL as string | undefined)?.trim() ||
-  "https://www.plyce.app/api/send-demo-request";
+  "/api/send-demo-request";
 
 const scrollLockGapProps = [
   "margin-right",
