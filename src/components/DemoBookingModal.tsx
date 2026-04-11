@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { CheckCircle, AlertCircle } from "lucide-react";
 
 type DemoBookingModalProps = {
   open: boolean;
@@ -19,7 +20,9 @@ type DemoBookingModalProps = {
 
 const DEMO_EMAIL = "mail@plyce.app";
 
-const demoApiUrl = (import.meta.env.VITE_DEMO_REQUEST_API_URL as string | undefined)?.trim() || "/api/send-demo-request";
+const demoApiUrl =
+  (import.meta.env.VITE_DEMO_REQUEST_API_URL as string | undefined)?.trim() ||
+  "/api/send-demo-request";
 
 const scrollLockGapProps = [
   "margin-right",
@@ -32,7 +35,9 @@ const scrollLockGapProps = [
 
 function undoBodyScrollLockGap() {
   const body = document.body;
-  scrollLockGapProps.forEach((prop) => body.style.setProperty(prop, "0", "important"));
+  scrollLockGapProps.forEach((prop) =>
+    body.style.setProperty(prop, "0", "important")
+  );
 }
 
 function clearUndoBodyScrollLockGap() {
@@ -45,7 +50,7 @@ function buildMessageBody(
   email: string,
   company: string,
   phone: string,
-  message: string,
+  message: string
 ) {
   return [
     "Demo-Anfrage über die plyce-Website",
@@ -98,9 +103,16 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
 
   const openMailto = () => {
     const subject = "Demo-Anfrage plyce";
-    const body = buildMessageBody(name.trim(), email.trim(), company.trim(), phone.trim(), message.trim());
-    window.location.href = `mailto:${DEMO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    handleOpenChange(false);
+    const body = buildMessageBody(
+      name.trim(),
+      email.trim(),
+      company.trim(),
+      phone.trim(),
+      message.trim()
+    );
+    window.location.href = `mailto:${DEMO_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -120,7 +132,10 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
     try {
       const res = await fetch(demoApiUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
@@ -129,25 +144,27 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
           message: message.trim(),
         }),
       });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        message?: string;
+      };
+
       if (!res.ok || !data.ok) {
-        // If the server is not configured (503), fall back to mailto automatically
-        if (res.status === 503) {
-          openMailto();
-          return;
-        }
-        const msg = typeof data.message === "string" ? data.message : "Senden ist fehlgeschlagen.";
+        const msg =
+          typeof data.message === "string"
+            ? data.message
+            : `Senden fehlgeschlagen (Status ${res.status}). Bitte versuchen Sie es später erneut.`;
         throw new Error(msg);
       }
+
       setSuccess(true);
-      window.setTimeout(() => handleOpenChange(false), 2000);
     } catch (err) {
-      if (err instanceof TypeError) {
-        // Network error — fall back to mailto
-        openMailto();
-        return;
-      }
-      setError(err instanceof Error ? err.message : "Senden ist fehlgeschlagen. Bitte versuchen Sie es später erneut.");
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.";
+      setError(msg);
     } finally {
       setIsSubmitting(false);
     }
@@ -157,29 +174,40 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
         {success ? (
-          <DialogHeader>
-            <DialogTitle>Vielen Dank</DialogTitle>
-            <DialogDescription>
-              Ihre Demo-Anfrage ist unterwegs. Wir melden uns bei Ihnen.
-            </DialogDescription>
-          </DialogHeader>
+          <div className="flex flex-col items-center justify-center py-8 gap-4 text-center">
+            <div className="rounded-full bg-green-100 p-3">
+              <CheckCircle className="h-10 w-10 text-green-600" />
+            </div>
+            <DialogHeader className="items-center">
+              <DialogTitle className="text-xl">
+                Anfrage erfolgreich gesendet!
+              </DialogTitle>
+              <DialogDescription className="text-base">
+                Vielen Dank — wir melden uns zeitnah bei Ihnen.
+              </DialogDescription>
+            </DialogHeader>
+            <Button
+              className="mt-2"
+              onClick={() => handleOpenChange(false)}
+            >
+              Schließen
+            </Button>
+          </div>
         ) : (
           <>
             <DialogHeader>
-              <DialogTitle>Request Demo</DialogTitle>
+              <DialogTitle>Demo anfragen</DialogTitle>
               <DialogDescription className="text-pretty">
-                Bitte hinterlassen Sie Ihre Kontaktdaten. Wir melden uns zeitnah bei Ihnen.
-                <br />
-                <br />
-                Ihre Anfrage wird direkt an unser Team unter{" "}
-                <a href={`mailto:${DEMO_EMAIL}`} className="font-medium text-primary hover:underline">
-                  {DEMO_EMAIL}
-                </a>{" "}
-                weitergeleitet. Alternativ können Sie Ihr E-Mail-Programm mit einer vorgefertigten Nachricht öffnen.
+                Bitte hinterlassen Sie Ihre Kontaktdaten. Wir melden uns
+                zeitnah bei Ihnen.
               </DialogDescription>
             </DialogHeader>
 
-            <form id="demo-booking-form" onSubmit={handleSubmit} className="space-y-4">
+            <form
+              id="demo-booking-form"
+              onSubmit={handleSubmit}
+              className="space-y-4"
+            >
               <div className="space-y-2">
                 <Label htmlFor="demo-name">Name</Label>
                 <Input
@@ -235,7 +263,9 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="demo-message">Ihre Nachricht (optional)</Label>
+                <Label htmlFor="demo-message">
+                  Ihre Nachricht (optional)
+                </Label>
                 <Textarea
                   id="demo-message"
                   name="message"
@@ -245,23 +275,38 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
                   placeholder="z. B. Teamgröße, gewünschte Themen …"
                 />
               </div>
-              {error ? (
-                <p role="alert" className="text-sm font-medium text-destructive">
-                  {error}
-                </p>
-              ) : null}
+              {error && (
+                <div className="flex items-start gap-2 rounded-md bg-destructive/10 p-3">
+                  <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                  <p role="alert" className="text-sm font-medium text-destructive">
+                    {error}
+                  </p>
+                </div>
+              )}
             </form>
 
             <DialogFooter className="gap-2 sm:gap-0">
-              <Button type="button" variant="outline" onClick={() => handleOpenChange(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => handleOpenChange(false)}
+              >
                 Abbrechen
               </Button>
-              <Button type="submit" form="demo-booking-form" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                form="demo-booking-form"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Wird gesendet …" : "Anfrage senden"}
               </Button>
             </DialogFooter>
             <p className="text-center text-sm text-muted-foreground -mt-1">
-              <button type="button" className="text-primary underline underline-offset-4 hover:text-primary/90" onClick={openMailto}>
+              <button
+                type="button"
+                className="text-primary underline underline-offset-4 hover:text-primary/90"
+                onClick={openMailto}
+              >
                 Stattdessen E-Mail-App öffnen
               </button>
             </p>
