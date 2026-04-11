@@ -131,6 +131,11 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
       if (!res.ok || !data.ok) {
+        // If the server is not configured (503), fall back to mailto automatically
+        if (res.status === 503) {
+          openMailto();
+          return;
+        }
         const msg = typeof data.message === "string" ? data.message : "Senden ist fehlgeschlagen.";
         throw new Error(msg);
       }
@@ -138,12 +143,11 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
       window.setTimeout(() => handleOpenChange(false), 2000);
     } catch (err) {
       if (err instanceof TypeError) {
-        setError(
-          "Verbindung zum Server fehlgeschlagen. Prüfen Sie die Netzwerkverbindung oder nutzen Sie die E-Mail-Alternative unten.",
-        );
-      } else {
-        setError(err instanceof Error ? err.message : "Senden ist fehlgeschlagen. Bitte versuchen Sie es später erneut.");
+        // Network error — fall back to mailto
+        openMailto();
+        return;
       }
+      setError(err instanceof Error ? err.message : "Senden ist fehlgeschlagen. Bitte versuchen Sie es später erneut.");
     } finally {
       setIsSubmitting(false);
     }
