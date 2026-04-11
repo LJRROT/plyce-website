@@ -19,7 +19,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method !== "POST") {
-    return res.status(405).json({ ok: false, message: "Method not allowed" });
+    return json(res, 405, { ok: false, message: "Method not allowed" });
   }
 
   const apiKey = process.env.RESEND_API_KEY?.trim();
@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const to = process.env.DEMO_REQUEST_TO_EMAIL?.trim();
 
   if (!apiKey || !from || !to) {
-    return res.status(503).json({
+    return json(res, 503, {
       ok: false,
       message: "Demo-Anfrage ist derzeit nicht konfiguriert.",
     });
@@ -35,14 +35,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const parsed = validateDemoPayload(req.body);
   if ("error" in parsed) {
-    return res.status(400).json({ ok: false, message: parsed.error });
+    return json(res, 400, { ok: false, message: parsed.error });
   }
 
   const result = await sendDemoViaResend(parsed, { apiKey, from, to });
   if (!result.ok) {
     const status = result.status >= 400 && result.status < 600 ? result.status : 502;
-    return res.status(status).json({ ok: false, message: result.message });
+    return json(res, status, { ok: false, message: result.message });
   }
 
-  return res.status(200).json({ ok: true });
+  return json(res, 200, { ok: true });
 }
