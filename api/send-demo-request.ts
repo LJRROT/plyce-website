@@ -1,10 +1,20 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { sendDemoViaResend, validateDemoPayload } from "../server/sendDemoViaResend";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Accept",
+};
+
+function json(res: VercelResponse, status: number, body: object) {
+  Object.entries(corsHeaders).forEach(([k, v]) => res.setHeader(k, v));
+  return res.status(status).json(body);
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    Object.entries(corsHeaders).forEach(([k, v]) => res.setHeader(k, v));
     return res.status(204).end();
   }
 
