@@ -22,7 +22,7 @@ const DEMO_EMAIL = "mail@plyce.app";
 
 const demoApiUrl =
   (import.meta.env.VITE_DEMO_REQUEST_API_URL as string | undefined)?.trim() ||
-  "/api/send-demo-request";
+  "https://www.plyce.app/api/send-demo-request";
 
 const scrollLockGapProps = [
   "margin-right",
