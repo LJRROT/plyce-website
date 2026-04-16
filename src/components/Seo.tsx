@@ -127,12 +127,11 @@ const routeSeo: Record<string, RouteSeo> = {
     description: "Alle Seiten von plyce – ATS und CRM Software für Personalberatungen und Recruiter.",
     breadcrumbLabel: "Sitemap",
   },
-  "/pricing3fRs": {
-    title: "Preise & Founding Partner | plyce",
+  "/pricing": {
+    title: "Preise – ATS & CRM für Recruiter | plyce",
     description:
-      "Einstieg, Wachstum und Pro: transparente Nutzer- und Basispreise für Personalberatungen und Recruiter. Market-Entry-Angebot mit 30 % Rabatt in 2026.",
+      "Transparente Preise für plyce ATS & CRM: ein Produkt, ein Preis, alle Features und AI Agents inklusive. Market-Entry-Angebot mit 20 % Rabatt in 2026.",
     breadcrumbLabel: "Preise",
-    noindex: true,
   },
 };
 
@@ -141,6 +140,7 @@ const SITE_STRUCTURE_PATHS = [
   "/",
   "/features",
   "/ai-agents",
+  "/pricing",
   "/faq",
   "/implementierung",
   "/data-protection",
@@ -286,6 +286,17 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo, isKnownRoute: 
       image: ogImage,
     },
     buildSiteStructureItemList(base),
+    {
+      "@type": "SiteNavigationElement",
+      "@id": `${base}/#site-navigation`,
+      name: "Hauptnavigation",
+      hasPart: [
+        { "@type": "WebPage", name: "AI Agents", url: `${base}/ai-agents` },
+        { "@type": "WebPage", name: "Features", url: `${base}/features` },
+        { "@type": "WebPage", name: "Preise", url: `${base}/pricing` },
+        { "@type": "WebPage", name: "FAQ", url: `${base}/faq` },
+      ],
+    },
   ];
 
   if (isKnownRoute && seo.breadcrumbLabel !== "" && !seo.noindex) {

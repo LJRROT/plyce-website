@@ -5,6 +5,7 @@ const links = [
   { to: "/", label: "Startseite" },
   { to: "/features", label: "Features" },
   { to: "/ai-agents", label: "AI Agents" },
+  { to: "/pricing", label: "Preise" },
   { to: "/data-protection", label: "Data Protection" },
   { to: "/faq", label: "FAQ" },
   { to: "/implementierung", label: "Implementierungsprozess" },
