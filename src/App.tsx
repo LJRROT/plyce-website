@@ -18,7 +18,7 @@ import SitemapPage from "./pages/SitemapPage";
 import FaqPage from "./pages/FaqPage";
 import ImplementierungPage from "./pages/ImplementierungPage";
 import PartnerprogrammPage from "./pages/PartnerprogrammPage";
-import Pricing3fRsPage from "./pages/Pricing3fRsPage";
+import PricingPage from "./pages/PricingPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -63,7 +63,7 @@ const App = () => (
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/implementierung" element={<ImplementierungPage />} />
           <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
-          <Route path="/pricing3fRs" element={<Pricing3fRsPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
