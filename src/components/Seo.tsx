@@ -286,6 +286,17 @@ function setJsonLd(base: string, pathname: string, seo: RouteSeo, isKnownRoute: 
       image: ogImage,
     },
     buildSiteStructureItemList(base),
+    {
+      "@type": "SiteNavigationElement",
+      "@id": `${base}/#site-navigation`,
+      name: "Hauptnavigation",
+      hasPart: [
+        { "@type": "WebPage", name: "AI Agents", url: `${base}/ai-agents` },
+        { "@type": "WebPage", name: "Features", url: `${base}/features` },
+        { "@type": "WebPage", name: "Preise", url: `${base}/pricing` },
+        { "@type": "WebPage", name: "FAQ", url: `${base}/faq` },
+      ],
+    },
   ];
 
   if (isKnownRoute && seo.breadcrumbLabel !== "" && !seo.noindex) {

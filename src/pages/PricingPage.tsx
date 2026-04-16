@@ -22,7 +22,7 @@ const trustPoints = [
   "Alle Features und AI-Agenten sind im Produkt inkludiert, ohne Aufpreis.",
 ];
 
-const Pricing3fRsPage = () => {
+const PricingPage = () => {
   const offerPrice = LIST_PRICE * OFF_2026_FACTOR;
 
   return (
@@ -150,4 +150,4 @@ const Pricing3fRsPage = () => {
   );
 };
 
-export default Pricing3fRsPage;
+export default PricingPage;
