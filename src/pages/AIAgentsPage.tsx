@@ -173,6 +173,22 @@ const agents: AgentDef[] = [
       "Automatisiert zu einer besseren Datenbasis aus der Korrespondenz",
     ],
   },
+  {
+    id: "ai-meeting-tracker",
+    icon: Video,
+    name: "AI Meeting Tracker",
+    beta: true,
+    tagline:
+      "Meetings aus Google Meet und Microsoft Teams werden automatisch erkannt, analysiert und dem richtigen Kandidaten oder Kontakt zugeordnet",
+    capabilities: [
+      "Automatische Erkennung von Notizen und Transkripten in Google Drive und OneDrive",
+      "KI-Analyse extrahiert relevante Inhalte und Kernaussagen aus dem Meeting",
+      "Automatische Zuordnung zum passenden Kandidaten oder Kontakt",
+      "Speicherung als Aktivität inklusive Zusammenfassung im Profil",
+      "Drive- oder OneDrive-Verbindung im Nutzerprofil notwendig",
+      "Prompt im Bereich Prompt Engineering jederzeit anpassbar",
+    ],
+  },
 ];
 
 export const aiAgentsNav = agents.map(({ id, name }) => ({ id, title: name }));
