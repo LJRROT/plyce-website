@@ -7,7 +7,18 @@ import {
   Briefcase,
   Building2,
   Calendar,
+  CalendarClock,
   CheckSquare,
+  Columns3,
+  LifeBuoy,
+  Link2,
+  MessagesSquare,
+  Pin,
+  RefreshCw,
+  ScanLine,
+  Smartphone,
+  SplitSquareHorizontal,
+  TrendingUp,
   ClipboardList,
   Contact,
   Copy,
@@ -132,6 +143,26 @@ export const featureSections: FeatureSectionDef[] = [
         "Einheitliche Darstellung",
         "Kein manueller Aufwand",
       ]),
+      i(ScanLine, "OCR für Bild-PDFs", "Eingescannte Lebensläufe zuverlässig verarbeiten.", [
+        "Automatische Texterkennung",
+        "Auch fotografierte CVs",
+        "Strukturierte Übernahme",
+      ]),
+      i(RefreshCw, "Nachträgliche CV-Analyse", "Bestehende Profile erneut analysieren.", [
+        "Nur leere Felder werden ergänzt",
+        "Skills intelligent erweitert",
+        "Bestehende Daten bleiben",
+      ]),
+      i(SplitSquareHorizontal, "Lebenslauf neben Dossier", "CV und Dossier-Editor parallel im Blick.", [
+        "Direkte Inhaltsübernahme",
+        "Kein Tab-Wechsel",
+        "Schnellere Dossier-Erstellung",
+      ]),
+      i(Link2, "Direkte Projektzuweisung beim Upload", "Kandidat und Bewerbung in einem Schritt anlegen.", [
+        "Projektauswahl beim Upload",
+        "Bewerbung wird automatisch erstellt",
+        "Saubere Zuordnung",
+      ]),
       i(MapPin, "Umkreissuche", "Regionale Kandidatensuche", [
         "Suche nach Radius",
         "Standortfilter",
@@ -218,6 +249,21 @@ export const featureSections: FeatureSectionDef[] = [
         "Zentrale Ablage",
         "Schnell zugänglich",
         "Saubere Struktur",
+      ]),
+      i(MessagesSquare, "Strukturiertes Bewerber-Feedback", "Feedback direkt am Bewerbungsprozess erfassen.", [
+        "Strukturierte Felder statt Freitext",
+        "Zentral verfügbar",
+        "Auswertbar",
+      ]),
+      i(Pin, "Angepinnte Aktivitäten", "Wichtige Aktivitäten oben halten.", [
+        "Pin-Funktion je Aktivität",
+        "Schneller Zugriff",
+        "Klare Priorisierung",
+      ]),
+      i(CalendarClock, "Aktivitätstyp Meeting", "Meetings mit Datum und Uhrzeit erfassen.", [
+        "Eigener Aktivitätstyp",
+        "Datums- und Uhrzeit-Picker",
+        "Bei Kandidaten und Kontakten",
       ]),
       i(History, "Aktivitätenhistorie Projekte", "Alle Aktionen nachvollziehbar", [
         "Lückenlose Dokumentation",
@@ -322,8 +368,13 @@ export const featureSections: FeatureSectionDef[] = [
     tiles: [
       i(Send, "E-Mail Versand", "Direkte Kommunikation im System", [
         "Versand aus Plyce",
-        "Kein Toolwechsel",
-        "Schnell & einfach",
+        "Neuer Rich-Text-Editor",
+        "Variablen voll unterstützt",
+      ]),
+      i(Smartphone, "WhatsApp Versand", "Direkte WhatsApp-Nachrichten aus dem Kandidatenprofil.", [
+        "Vorlagen mit Variablen",
+        "Personalisierte Ansprache",
+        "Öffnung in WhatsApp Web",
       ]),
       i(Mail, "Multi-Mail", "Massenmails personalisiert", [
         "Mehrere Empfänger",
@@ -352,8 +403,8 @@ export const featureSections: FeatureSectionDef[] = [
       ]),
       i(Zap, "Mail Automationen", "Automatisierte Follow-up-Kadenzen", [
         "Mehrstufige Sequenzen",
+        "Übersichtliche neue UI",
         "Bis zu 10 Touchpoints",
-        "Zeitgesteuert",
       ]),
       i(CheckSquare, "Aufgaben Touchpoints", "Tasks und Mails kombinieren", [
         "Strukturierte Abläufe",
@@ -449,9 +500,14 @@ export const featureSections: FeatureSectionDef[] = [
         "Entwicklung sichtbar",
         "Planung verbessern",
       ]),
-      i(Mic, "Telefon Integration", "Anrufer sofort erkennen", [
-        "Caller Lookup",
-        "Kandidatenzuordnung",
+      i(TrendingUp, "Pipeline Snapshots", "Pipeline-Entwicklung im Zeitverlauf.", [
+        "Snapshots pro Recruiter",
+        "Tendenz-Analyse",
+        "Historische Daten",
+      ]),
+      i(Mic, "Telefon Integration", "VoIP-Lookup-URL für eingehende Anrufe.", [
+        "Caller Lookup per URL",
+        "Automatische Kandidatenzuordnung",
         "Kurze Reaktionszeiten",
       ]),
       i(Zap, "Quick Actions", "Direkte Folgeaktionen", [
@@ -535,6 +591,16 @@ export const featureSections: FeatureSectionDef[] = [
         "JSON Upload",
         "Feld Mapping",
         "Validierung",
+      ]),
+      i(Columns3, "Individuelle Spalten", "Spaltenkonfiguration pro Nutzer.", [
+        "Pro User gespeichert",
+        "Listen individuell anpassbar",
+        "Konsistent über alle Bereiche",
+      ]),
+      i(LifeBuoy, "Helpdesk im Profil", "Direkter Support-Zugang aus dem Profil.", [
+        "Jederzeit erreichbar",
+        "Im Profil integriert",
+        "Schnelle Hilfe",
       ]),
     ],
   },

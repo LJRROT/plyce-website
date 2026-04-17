@@ -12,6 +12,7 @@ import {
   ScanSearch,
   SendHorizontal,
   FileSignature,
+  Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -21,6 +22,7 @@ type AgentDef = {
   name: string;
   tagline: string;
   capabilities: string[];
+  beta?: boolean;
 };
 
 /** Reihenfolge: Kern-Recruiting & Delivery zuerst, dann Kommunikation/Reports, Marketing & BD, Produktivität. */
@@ -171,6 +173,22 @@ const agents: AgentDef[] = [
       "Automatisiert zu einer besseren Datenbasis aus der Korrespondenz",
     ],
   },
+  {
+    id: "ai-meeting-tracker",
+    icon: Video,
+    name: "AI Meeting Tracker",
+    beta: true,
+    tagline:
+      "Meetings aus Google Meet und Microsoft Teams werden automatisch erkannt, analysiert und dem richtigen Kandidaten oder Kontakt zugeordnet",
+    capabilities: [
+      "Automatische Erkennung von Notizen und Transkripten in Google Drive und OneDrive",
+      "KI-Analyse extrahiert relevante Inhalte und Kernaussagen aus dem Meeting",
+      "Automatische Zuordnung zum passenden Kandidaten oder Kontakt",
+      "Speicherung als Aktivität inklusive Zusammenfassung im Profil",
+      "Drive- oder OneDrive-Verbindung im Nutzerprofil notwendig",
+      "Prompt im Bereich Prompt Engineering jederzeit anpassbar",
+    ],
+  },
 ];
 
 export const aiAgentsNav = agents.map(({ id, name }) => ({ id, title: name }));
@@ -248,6 +266,11 @@ const AIAgentsPage = () => {
                         <span className="text-xs font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">
                           Agent #{i + 1}
                         </span>
+                        {agent.beta && (
+                          <span className="text-xs font-semibold text-primary bg-primary-light/60 border border-primary/30 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                            Beta
+                          </span>
+                        )}
                         </div>
                         <p className="text-sm font-medium text-muted-foreground leading-relaxed">{agent.tagline}</p>
                       </div>
