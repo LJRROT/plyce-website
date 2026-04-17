@@ -592,6 +592,16 @@ export const featureSections: FeatureSectionDef[] = [
         "Feld Mapping",
         "Validierung",
       ]),
+      i(Columns3, "Individuelle Spalten", "Spaltenkonfiguration pro Nutzer.", [
+        "Pro User gespeichert",
+        "Listen individuell anpassbar",
+        "Konsistent über alle Bereiche",
+      ]),
+      i(LifeBuoy, "Helpdesk im Profil", "Direkter Support-Zugang aus dem Profil.", [
+        "Jederzeit erreichbar",
+        "Im Profil integriert",
+        "Schnelle Hilfe",
+      ]),
     ],
   },
 ];
