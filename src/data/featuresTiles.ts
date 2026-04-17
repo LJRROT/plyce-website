@@ -500,9 +500,14 @@ export const featureSections: FeatureSectionDef[] = [
         "Entwicklung sichtbar",
         "Planung verbessern",
       ]),
-      i(Mic, "Telefon Integration", "Anrufer sofort erkennen", [
-        "Caller Lookup",
-        "Kandidatenzuordnung",
+      i(TrendingUp, "Pipeline Snapshots", "Pipeline-Entwicklung im Zeitverlauf.", [
+        "Snapshots pro Recruiter",
+        "Tendenz-Analyse",
+        "Historische Daten",
+      ]),
+      i(Mic, "Telefon Integration", "VoIP-Lookup-URL für eingehende Anrufe.", [
+        "Caller Lookup per URL",
+        "Automatische Kandidatenzuordnung",
         "Kurze Reaktionszeiten",
       ]),
       i(Zap, "Quick Actions", "Direkte Folgeaktionen", [
