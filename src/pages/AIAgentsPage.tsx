@@ -267,7 +267,7 @@ const AIAgentsPage = () => {
                           Agent #{i + 1}
                         </span>
                         {agent.beta && (
-                          <span className="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                          <span className="text-xs font-semibold text-primary bg-primary-light/60 border border-primary/30 px-2 py-0.5 rounded-full uppercase tracking-wide">
                             Beta
                           </span>
                         )}
