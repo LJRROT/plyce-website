@@ -143,6 +143,26 @@ export const featureSections: FeatureSectionDef[] = [
         "Einheitliche Darstellung",
         "Kein manueller Aufwand",
       ]),
+      i(ScanLine, "OCR für Bild-PDFs", "Eingescannte Lebensläufe zuverlässig verarbeiten.", [
+        "Automatische Texterkennung",
+        "Auch fotografierte CVs",
+        "Strukturierte Übernahme",
+      ]),
+      i(RefreshCw, "Nachträgliche CV-Analyse", "Bestehende Profile erneut analysieren.", [
+        "Nur leere Felder werden ergänzt",
+        "Skills intelligent erweitert",
+        "Bestehende Daten bleiben",
+      ]),
+      i(SplitSquareHorizontal, "Lebenslauf neben Dossier", "CV und Dossier-Editor parallel im Blick.", [
+        "Direkte Inhaltsübernahme",
+        "Kein Tab-Wechsel",
+        "Schnellere Dossier-Erstellung",
+      ]),
+      i(Link2, "Direkte Projektzuweisung beim Upload", "Kandidat und Bewerbung in einem Schritt anlegen.", [
+        "Projektauswahl beim Upload",
+        "Bewerbung wird automatisch erstellt",
+        "Saubere Zuordnung",
+      ]),
       i(MapPin, "Umkreissuche", "Regionale Kandidatensuche", [
         "Suche nach Radius",
         "Standortfilter",
