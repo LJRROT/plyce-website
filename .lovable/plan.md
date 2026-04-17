@@ -1,70 +1,59 @@
 
 
-## Analyse
+## Analyse: Update-Log vs. Webseite
 
-Der Screenshot zeigt drei Probleme im Google-Suchergebnis:
+Ich habe alle ~30 Features aus deinen Update-Logs gegen `src/data/featuresTiles.ts` (Features-Seite) und `src/pages/AIAgentsPage.tsx` abgeglichen.
 
-1. **Falsches Favicon**: Google zeigt das Lovable-Icon statt des plyce-Logos. Das liegt daran, dass `favicon.ico` (Lovable-Standard) noch im `public/`-Ordner liegt und viele Browser/Google diesen Pfad bevorzugen. Ausserdem fehlt ein optimiertes SVG-Favicon, das Google bevorzugt crawlt.
+### Bereits vorhanden (kein Handlungsbedarf)
+Kandidaten-Matching (Tile "Kandidaten Matching"), Avatar-Extraktion, VoIP/Caller Lookup ("Telefon Integration"), DSGVO-Einwilligung, Multimail, Posteingang Sync, Mail Automationen, Duplikat-Erkennung (3x), Multi-CV Upload, KI Enrichment ("Kandidaten Enrichment"), Bulk Tagging, Boolean Suche, Dossier Generierung, Projekt Reports, Unternehmensreports ("Status-Report Unternehmen"), SEO/Open-Graph Jobs, KI Job Erstellung.
 
-2. **Keine Sitelinks**: Google zeigt keine Unterseiten. Um Sitelinks zu foerdern, braucht es ein `SiteNavigationElement` JSON-LD Schema, das die gewuenschten Seiten (AI Agents, Features, Pricing, FAQ) explizit als Navigation auszeichnet.
+### FEHLT auf der Webseite — wird ergaenzt
 
-3. **Pricing-Seite ist noindex**: Die Route `/pricing3fRs` hat `noindex: true` und einen kryptischen URL-Pfad. Google kann sie nicht indexieren und wird sie nie als Sitelink zeigen.
+**Features-Seite (`src/data/featuresTiles.ts`) — 11 neue Tiles:**
 
----
+| # | Section | Icon | Title | Tagline | Bullets |
+|---|---|---|---|---|---|
+| 1 | email | `MessageSquare` (oder `Smartphone`) | WhatsApp Versand | Direkte WhatsApp-Nachrichten aus dem Kandidatenprofil | Vorlagen mit Variablen / Personalisierte Ansprache / Oeffnung in WhatsApp Web |
+| 2 | kandidaten | `ScanLine` | OCR fuer Bild-PDFs | Eingescannte Lebenslaeufe zuverlaessig verarbeiten | Automatische Texterkennung / Auch fotografierte CVs / Strukturierte Uebernahme |
+| 3 | kandidaten | `RefreshCw` | Nachtraegliche CV-Analyse | Bestehende Profile erneut analysieren | Nur leere Felder werden ergaenzt / Skills intelligent erweitert / Bestehende Daten bleiben |
+| 4 | kandidaten | `SplitSquareHorizontal` | Lebenslauf neben Dossier | CV und Dossier-Editor parallel im Blick | Direkte Inhaltsuebernahme / Kein Tab-Wechsel / Schnellere Dossier-Erstellung |
+| 5 | kandidaten | `Link2` | Direkte Projektzuweisung beim Upload | Kandidat und Bewerbung in einem Schritt anlegen | Projektauswahl beim Upload / Bewerbung wird automatisch erstellt / Saubere Zuordnung |
+| 6 | projekte | `MessagesSquare` | Strukturiertes Bewerber-Feedback | Feedback direkt am Bewerbungsprozess erfassen | Strukturierte Felder statt Freitext / Zentral verfuegbar / Auswertbar |
+| 7 | projekte | `Pin` | Angepinnte Aktivitaeten | Wichtige Aktivitaeten oben halten | Pin-Funktion je Aktivitaet / Schneller Zugriff / Klare Priorisierung |
+| 8 | projekte | `CalendarClock` | Aktivitaetstyp Meeting | Meetings mit Datum und Uhrzeit erfassen | Eigener Aktivitaetstyp / Datums- und Uhrzeit-Picker / Bei Kandidaten und Kontakten |
+| 9 | analytics | `TrendingUp` | Pipeline Snapshots | Pipeline-Entwicklung im Zeitverlauf | Snapshots pro Recruiter / Tendenz-Analyse / Historische Daten |
+| 10 | admin | `Columns3` | Individuelle Spalten | Spaltenkonfiguration pro Nutzer | Pro User gespeichert / Listen individuell anpassbar / Konsistent ueber alle Bereiche |
+| 11 | admin | `LifeBuoy` | Helpdesk im Profil | Direkter Support-Zugang aus dem Profil | Jederzeit erreichbar / Im Profil integriert / Schnelle Hilfe |
 
-## Plan
+Zusaetzlich werde ich diese bestehenden Tiles leicht ergaenzen (Bullet-Update, kein neues Tile):
+- "Mail Automationen": neue UI erwaehnen — Bullet anpassen auf "Uebersichtliche neue UI"
+- Bestehender E-Mail-Editor — neuer Rich-Text-Editor — Tile "E-Mail Versand" Bullets anpassen
+- "Telefon Integration" Tagline klarer auf VoIP-Lookup-URL formulieren
 
-### 1. Favicon-Problem beheben
+### AI Agents-Seite (`src/pages/AIAgentsPage.tsx`)
 
-- `public/favicon.ico` durch das plyce-Logo ersetzen (das hochgeladene `plyce-favicon.png` als `.ico` konvertieren oder das bestehende `favicon.ico` loeschen)
-- Einen zusaetzlichen `<link rel="icon" type="image/svg+xml">` Tag hinzufuegen, falls ein SVG-Logo vorhanden ist (Google bevorzugt SVG)
-- Apple-Touch-Icon hinzufuegen (`<link rel="apple-touch-icon">`) mit `plyce-logo-mark.png`
+**Neuer Agent #11 — AI Meeting Tracker (BETA):**
 
-**Dateien:** `index.html`, `public/favicon.ico` (loeschen/ersetzen)
-
-### 2. Pricing-Route oeffentlich machen
-
-- Route von `/pricing3fRs` zu `/pricing` umbenennen (sauberer URL-Pfad)
-- `noindex: true` entfernen, damit Google die Seite indexieren kann
-- SEO-Eintrag in `Seo.tsx` auf `/pricing` umstellen
-- Route in `App.tsx` anpassen
-- Alle internen Links aktualisieren
-
-**Dateien:** `src/App.tsx`, `src/components/Seo.tsx`, ggf. Navbar/Footer/Sitemap
-
-### 3. SiteNavigationElement JSON-LD hinzufuegen
-
-Im `Seo.tsx` ein `SiteNavigationElement`-Schema zum JSON-LD-Graph hinzufuegen, das die vier gewuenschten Sitelinks signalisiert:
-
-```text
-SiteNavigationElement:
-  - AI Agents    → /ai-agents
-  - Features     → /features
-  - Pricing      → /pricing
-  - FAQ          → /faq
 ```
+id: "ai-meeting-tracker"
+icon: Video (lucide-react)
+name: "AI Meeting Tracker"
+tagline: "Meetings aus Google Meet und Microsoft Teams werden automatisch
+          erkannt, analysiert und dem richtigen Kandidaten oder Kontakt zugeordnet (BETA)"
+capabilities:
+  - Automatische Erkennung von Notizen und Transkripten in Google Drive und OneDrive
+  - KI-Analyse extrahiert relevante Inhalte und Kernaussagen
+  - Automatische Zuordnung zum passenden Kandidaten oder Kontakt
+  - Speicherung als Aktivitaet inklusive Zusammenfassung im Profil
+  - Drive- oder OneDrive-Verbindung im Nutzerprofil
+  - Prompt im Bereich Prompt Engineering anpassbar
+```
+Der Agent wird am Ende der `agents`-Liste eingefuegt. Da `agents.length` dynamisch in der H1 steht ("11 AI Agents erledigen den Rest"), aktualisiert sich die Headline automatisch. Ein dezentes "BETA"-Label wird neben dem Namen ergaenzt (analog zur bestehenden "Agent #N"-Pille, in einer zweiten Pille).
 
-Dies ist das staerkste Signal an Google, welche Seiten als Sitelinks angezeigt werden sollen.
+### Geaenderte Dateien
+- `src/data/featuresTiles.ts` — 11 neue Tiles in den passenden Sections, neue Lucide-Icons importieren
+- `src/pages/AIAgentsPage.tsx` — neuer Agent-Eintrag + Beta-Pille im Markup
 
-**Datei:** `src/components/Seo.tsx`
-
-### 4. Meta-Beschreibungen optimieren
-
-- Startseite: Titel und Description praegnanter fuer SERP-Snippet (max 60 Zeichen Titel, 155 Zeichen Description)
-- `index.html` statische Meta-Tags mit den dynamischen aus `Seo.tsx` synchronisieren (aktuell weichen sie voneinander ab)
-
-**Dateien:** `index.html`, `src/components/Seo.tsx`
-
----
-
-## Technische Details
-
-| Aenderung | Datei(en) |
-|---|---|
-| `favicon.ico` loeschen, Apple-Touch-Icon ergaenzen | `public/favicon.ico`, `index.html` |
-| Route `/pricing3fRs` → `/pricing`, noindex entfernen | `App.tsx`, `Seo.tsx`, Navbar, Footer, Sitemap |
-| `SiteNavigationElement` JSON-LD | `Seo.tsx` |
-| Meta-Tags in `index.html` an `Seo.tsx` angleichen | `index.html` |
-
-**Hinweis**: Google waehlt Sitelinks automatisch. Das `SiteNavigationElement`-Schema und saubere URLs sind die besten Signale, aber eine Garantie gibt es nicht. Die Aenderungen brauchen einige Tage bis Google sie uebernimmt.
+### Formulierungsregel
+Alle Tiles folgen dem bestehenden Schema (Tagline = ein Satz, 3 kurze Bullets, Tonalitaet wie Memory `style/content-tone`: keine Marketing-Floskeln, ganze Aussagen mit Punkt). Die AI-Agent-Capabilities sind volle Saetze ohne Aufzaehlungslogik.
 
