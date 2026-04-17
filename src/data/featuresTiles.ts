@@ -403,8 +403,8 @@ export const featureSections: FeatureSectionDef[] = [
       ]),
       i(Zap, "Mail Automationen", "Automatisierte Follow-up-Kadenzen", [
         "Mehrstufige Sequenzen",
+        "Übersichtliche neue UI",
         "Bis zu 10 Touchpoints",
-        "Zeitgesteuert",
       ]),
       i(CheckSquare, "Aufgaben Touchpoints", "Tasks und Mails kombinieren", [
         "Strukturierte Abläufe",
