@@ -368,8 +368,13 @@ export const featureSections: FeatureSectionDef[] = [
     tiles: [
       i(Send, "E-Mail Versand", "Direkte Kommunikation im System", [
         "Versand aus Plyce",
-        "Kein Toolwechsel",
-        "Schnell & einfach",
+        "Neuer Rich-Text-Editor",
+        "Variablen voll unterstützt",
+      ]),
+      i(Smartphone, "WhatsApp Versand", "Direkte WhatsApp-Nachrichten aus dem Kandidatenprofil.", [
+        "Vorlagen mit Variablen",
+        "Personalisierte Ansprache",
+        "Öffnung in WhatsApp Web",
       ]),
       i(Mail, "Multi-Mail", "Massenmails personalisiert", [
         "Mehrere Empfänger",
