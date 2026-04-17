@@ -22,6 +22,7 @@ type AgentDef = {
   name: string;
   tagline: string;
   capabilities: string[];
+  beta?: boolean;
 };
 
 /** Reihenfolge: Kern-Recruiting & Delivery zuerst, dann Kommunikation/Reports, Marketing & BD, Produktivität. */
