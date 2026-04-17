@@ -250,6 +250,21 @@ export const featureSections: FeatureSectionDef[] = [
         "Schnell zugänglich",
         "Saubere Struktur",
       ]),
+      i(MessagesSquare, "Strukturiertes Bewerber-Feedback", "Feedback direkt am Bewerbungsprozess erfassen.", [
+        "Strukturierte Felder statt Freitext",
+        "Zentral verfügbar",
+        "Auswertbar",
+      ]),
+      i(Pin, "Angepinnte Aktivitäten", "Wichtige Aktivitäten oben halten.", [
+        "Pin-Funktion je Aktivität",
+        "Schneller Zugriff",
+        "Klare Priorisierung",
+      ]),
+      i(CalendarClock, "Aktivitätstyp Meeting", "Meetings mit Datum und Uhrzeit erfassen.", [
+        "Eigener Aktivitätstyp",
+        "Datums- und Uhrzeit-Picker",
+        "Bei Kandidaten und Kontakten",
+      ]),
       i(History, "Aktivitätenhistorie Projekte", "Alle Aktionen nachvollziehbar", [
         "Lückenlose Dokumentation",
         "Historische Übersicht",
