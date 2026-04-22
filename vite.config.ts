@@ -19,6 +19,7 @@ const sitemapRoutes: { loc: string; changefreq: string; priority: string }[] = [
   { loc: "/", changefreq: "weekly", priority: "1.0" },
   { loc: "/features", changefreq: "weekly", priority: "0.95" },
   { loc: "/ai-agents", changefreq: "weekly", priority: "0.95" },
+  { loc: "/pricing", changefreq: "weekly", priority: "0.9" },
   { loc: "/data-protection", changefreq: "monthly", priority: "0.75" },
   { loc: "/faq", changefreq: "monthly", priority: "0.8" },
   { loc: "/implementierung", changefreq: "monthly", priority: "0.75" },
@@ -32,7 +33,7 @@ const sitemapRoutes: { loc: string; changefreq: string; priority: string }[] = [
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  const siteUrl = (env.VITE_SITE_URL || "https://plyce.io").replace(/\/$/, "");
+  const siteUrl = (env.VITE_SITE_URL || "https://www.plyce.app").replace(/\/$/, "");
 
   return {
   server: {
