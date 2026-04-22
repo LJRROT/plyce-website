@@ -32,7 +32,7 @@ const agents: AgentDef[] = [
     icon: ScanSearch,
     name: "AI CV Analyzer",
     tagline:
-      "Strukturierte CV-Auswertung: Berufserfahrung, Ausbildung, Zusammenfassung, Highlight, Tags und Skills",
+      "Analysiert CVs strukturiert, generiert automatisch Tags und Skills und erstellt eine einheitliche Darstellung von Werdegang und Ausbildung.",
     capabilities: [
       "Tags und Skills sowie Kandidatentyp und Seniorität werden aus dem CV abgeleitet",
       "Berufserfahrung, Ausbildung, Zusammenfassung und Highlight als einheitliche Profilteile",
@@ -47,7 +47,7 @@ const agents: AgentDef[] = [
     icon: GitCompare,
     name: "AI Candidate Match",
     tagline:
-      "Relevanzbewertung von Kandidaten zum Mandat mit Score (0–100) und textlicher Begründung",
+      "Relevanzbewertung von Kandidaten zum Mandat mit Score von 0 bis 100 und nachvollziehbarer textlicher Begründung. Ergebnisse fließen direkt in Shortlists, Multimails und Folgeprozesse.",
     capabilities: [
       "Score und Begründung bleiben am Kandidaten dokumentiert",
       "Muss-Skills und Projektanforderungen werden gegeneinander geprüft",
@@ -147,9 +147,9 @@ const agents: AgentDef[] = [
     ],
   },
   {
-    id: "ai-company-enrichment",
+    id: "ai-company-enricher",
     icon: Globe,
-    name: "AI Company Enrichment",
+    name: "AI Company Enricher",
     tagline:
       "Strukturierte Firmendaten aus der Unternehmenswebsite per URL im Profil",
     capabilities: [
