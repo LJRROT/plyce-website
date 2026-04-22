@@ -1,72 +1,47 @@
 
 
-## Analyse: Google Snippet & Favicon-Status
+## Plan: Sitemap-404-Fehler in Google Search Console beheben
 
-Ich habe Live-Site, robots.txt, sitemap.xml und HTML geprüft. Drei kritische Probleme blockieren ein gutes Google-Snippet:
+### Ursache
+Google meldet 404 für `https://www.plyce.app/sitemap.xml`, weil diese URL einen **HTTP 307 Redirect** auf `https://plyce.app/sitemap.xml` zurückgibt (Vercel leitet www → root um). Google Search Console verlangt bei Sitemaps einen direkten 200er ohne Redirect — bei Redirects wird das als allgemeiner HTTP-Fehler/404 gewertet.
 
-### Befund 1 — Falsche Domain in Sitemap & Robots (KRITISCH)
-- `https://www.plyce.app/sitemap.xml` listet alle URLs als `https://plyce.io/...` (falsche Domain!)
-- `https://www.plyce.app/robots.txt` verweist auf `https://plyce.io/sitemap.xml`
-- Ursache: `VITE_SITE_URL` ist nicht gesetzt → Default in `siteUrl.ts` und `vite.config.ts` ist `https://plyce.io`
-- Effekt: Google crawlt die falschen URLs, kanonische Tags zeigen auf `plyce.io`, dadurch wird `plyce.app` nicht sauber indexiert. **Das ist die Hauptursache für ein schwaches SERP-Snippet.**
+Zusätzlich zeigen Sitemap-Inhalt, Canonicals und JSON-LD aktuell auf `https://www.plyce.app/...`, obwohl die echte Primary-Domain (gemäß deiner Antwort) `https://plyce.app` (ohne www) ist.
 
-### Befund 2 — `/pricing` fehlt komplett in der Sitemap
-- In `vite.config.ts` (Zeile 18–30) ist `/pricing` nicht in `sitemapRoutes` aufgenommen, obwohl die Route existiert und indexierbar ist.
-- Effekt: Google findet die Pricing-Seite nicht über die Sitemap → keine Sitelink-Chance.
+### Code-Änderungen
 
-### Befund 3 — Favicon
-- `public/favicon.ico` ist gelöscht (gut, Lovable-Icon weg)
-- `public/plyce-favicon.png` existiert und wird in `index.html` korrekt verlinkt
-- `apple-touch-icon` zeigt auf `plyce-logo-mark.png` (gut)
-- **Aber**: Google bevorzugt eine echte `favicon.ico` ODER ein SVG. Das aktuelle PNG mit 32x32 ist zwar gültig, Google ignoriert es manchmal zugunsten alter Cache-Daten. Empfehlung: zusätzlich eine `favicon.ico` (Multi-Size: 16/32/48) bereitstellen.
+**1. `src/lib/siteUrl.ts`**
+Default-Domain auf `https://plyce.app` (ohne www) umstellen.
 
-### Befund 4 — Snippet-Qualität (Title & Description)
-- Title (`plyce – ATS & CRM für Personalberatungen und Recruiter | Software`) ist mit ~67 Zeichen leicht zu lang → Google kürzt am Pipe.
-- Description ist gut (155 Zeichen), aber der Markenname „plyce" steht am Anfang — kann man emotionaler/CTA-orientierter formulieren.
+**2. `vite.config.ts`**
+Default `siteUrl` ebenfalls auf `https://plyce.app` ändern. Damit generieren `sitemap.xml` und `robots.txt` beim nächsten Build alle URLs ohne `www`.
 
----
+**3. `index.html`**
+- `<link rel="canonical">` von `https://www.plyce.app/` → `https://plyce.app/`
+- `og:url` und alle weiteren absoluten URLs (z. B. `og:image`, `twitter:image`) ebenfalls auf `https://plyce.app/...`
+- `hreflang`-Alternate-Links, falls vorhanden, mit anpassen
 
-## Plan
+**4. `src/components/Seo.tsx`**
+Alle dynamisch gesetzten Canonicals, OG-URLs und JSON-LD-Felder (`url`, `@id`, `WebSite`, `Organization`, `BreadcrumbList`, `WebPage`, `FAQPage`) auf die wwwlose Domain umstellen — automatisch durch `getSiteUrl()`-Aktualisierung, ggf. einzelne hartcodierte Strings prüfen und ersetzen.
 
-### 1. Domain-Konfiguration korrigieren (höchste Priorität)
-- `src/lib/siteUrl.ts`: Default von `https://plyce.io` → `https://www.plyce.app` ändern
-- `vite.config.ts` Zeile 35: Default von `https://plyce.io` → `https://www.plyce.app` ändern
-- Effekt nach Re-Deploy: sitemap.xml, robots.txt, canonical-Tags und JSON-LD zeigen alle auf die korrekte Domain.
+### Was du danach in der Search Console machst (manuell, ohne Code)
 
-### 2. `/pricing` in Sitemap aufnehmen
-- `vite.config.ts` Zeile 21–22: nach `/ai-agents` einfügen:
-  ```
-  { loc: "/pricing", changefreq: "weekly", priority: "0.9" }
-  ```
-
-### 3. Favicon härten
-- Aus dem bestehenden `public/plyce-favicon.png` eine echte `public/favicon.ico` (Multi-Size 16/32/48) generieren
-- In `index.html` zusätzlich verlinken:
-  ```html
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/plyce-favicon.png">
-  ```
-- Reihenfolge so lassen, dass Browser/Google die `.ico` bevorzugt anfragen können.
-
-### 4. Title & Description optimieren für SERP
-- Title (max ~60 Zeichen): `plyce – ATS & CRM für Personalberater und Recruiter`
-- Description (155 Zeichen, mit klarem Nutzen + Vertrauen):
-  `Die KI-native Recruiting-Plattform für Personalberatungen: Kandidaten, Projekte, Kunden und 11 AI Agents in einem System. EU-Hosting, DSGVO-konform.`
-- In `Seo.tsx` `routeSeo["/"]` und in `index.html` (statische Tags) synchron aktualisieren.
-
-### 5. Google Search Console Pflege (Empfehlung, manuell)
-Nach Deploy: in der Google Search Console
-- neue Sitemap einreichen: `https://www.plyce.app/sitemap.xml`
-- URL-Inspection für `/`, `/features`, `/ai-agents`, `/pricing`, `/faq` → „Indexierung beantragen"
-- Bis Google neu crawlt: 3–10 Tage.
+1. **Property anlegen/wählen**: In der Search Console die Property **`https://plyce.app`** (ohne www) anlegen, falls noch nicht vorhanden, und per DNS-TXT oder HTML-Tag verifizieren. Die alte `www.plyce.app`-Property kannst du belassen (sie nimmt den Redirect-Traffic auf), Hauptarbeit findet aber in der wwwlosen Property statt.
+2. **Alte Sitemap-Einreichung entfernen**: In `www.plyce.app`-Property die Sitemap-Einreichung löschen.
+3. **Neue Sitemap einreichen**: In `plyce.app`-Property unter „Sitemaps" eingeben: `sitemap.xml` → Senden. Status sollte nach 1–2 Minuten „Erfolgreich" zeigen mit 12 entdeckten URLs.
+4. **Indexierung anstoßen**: Für `/`, `/features`, `/ai-agents`, `/pricing`, `/faq` jeweils URL-Inspection → „Indexierung beantragen".
 
 ### Geänderte Dateien
 - `src/lib/siteUrl.ts` — Default-Domain
-- `vite.config.ts` — Default-Domain + `/pricing` in Sitemap
-- `index.html` — Title, Description, zusätzlicher Favicon-Link
-- `src/components/Seo.tsx` — Home-Title & Description
-- `public/favicon.ico` — neu generiert aus `plyce-favicon.png`
+- `vite.config.ts` — Default-Domain für Sitemap/Robots
+- `index.html` — alle absoluten URLs (canonical, OG, Twitter)
+- `src/components/Seo.tsx` — JSON-LD und Canonicals
+
+### Verifikation nach Deploy
+Nach Re-Deploy prüfe ich mit `curl`, dass:
+- `https://plyce.app/sitemap.xml` direkt **HTTP 200** liefert (kein Redirect)
+- Inhalt alle URLs auf `https://plyce.app/...` listet
+- `robots.txt` auf `https://plyce.app/sitemap.xml` zeigt
 
 ### Hinweis
-Der wichtigste Hebel ist Punkt 1 (Domain). Solange Sitemap und Canonicals auf `plyce.io` zeigen, kann Google die `plyce.app`-Seite nicht sauber bewerten — egal wie schön Title, Description und Favicon sind.
+Der Redirect `www → root` bleibt auf Vercel-Ebene aktiv und ist gut so — er konsolidiert Traffic auf eine Domain. Wichtig ist nur, dass die *Quelle der Wahrheit* für Google die wwwlose Domain ist, dann gibt es keine Redirects in der Sitemap-Auslieferung.
 
