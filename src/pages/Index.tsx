@@ -210,16 +210,19 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                10 AI Agents arbeiten für dich
+                11 AI Agents arbeiten für dich
               </h2>
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {[
-              { title: "AI CV Analyzer", desc: "Analysiert CVs strukturiert mit Tags und Skills; anonymisiert Kandidaten-, Unternehmens- und Branchenangaben im CV." },
-              { title: "AI Candidate Match", desc: "Bewertet und rankt Kandidaten nach Passung zu einem Projekt (Score 0–100 mit Begründung)." },
+              { title: "AI CV Analyzer", desc: "Analysiert CVs strukturiert, generiert automatisch Tags und Skills und erstellt eine einheitliche Darstellung von Werdegang und Ausbildung." },
+              { title: "AI Candidate Match", desc: "Bewertet und rankt Kandidaten nach Passung zum Projekt mit Score von 0 bis 100 und nachvollziehbarer Begründung. Ergebnisse fließen direkt in Shortlists und Multimails." },
               { title: "AI Dossier Highlights", desc: "Highlights aus Kandidat und Projekt, mit Fokus auf die Passung zur Rolle." },
+              { title: "AI CV Formatter", desc: "Standardisiert das CV-Layout, anonymisiert auf Wunsch und übersetzt per Klick in Deutsch oder Englisch." },
+              { title: "AI Company Enricher", desc: "Reichert Unternehmen automatisch mit strukturierten Firmendaten aus der Unternehmenswebsite an." },
+              { title: "AI Meeting Tracker", desc: "Erkennt Meetings aus Google Meet und Microsoft Teams automatisch, analysiert Transkripte und ordnet sie dem richtigen Kandidaten oder Kontakt zu." },
             ].map((agent, i) => (
               <ScrollReveal key={agent.title} delay={i * 100} className="h-full">
                 <div className="flex h-full flex-col p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10 hover:border-primary/30 transition-all duration-300">
