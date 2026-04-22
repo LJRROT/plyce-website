@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/siteUrl";
 
 /** Primary copy targets: ATS/CRM, Personalberatungen, Recruiter, Bewerbermanagement (DE search intent). ~155 Zeichen für SERP-Snippets. */
 const defaultDescription =
-  "plyce – ATS & CRM für Personalberatungen und Recruiter: Kandidaten, Projekte, Kunden und KI in einer Plattform. Bewerbermanagement mit EU-Hosting und Fokus auf DSGVO.";
+  "Die KI-native Recruiting-Plattform für Personalberatungen: Kandidaten, Projekte, Kunden und 11 AI Agents in einem System. EU-Hosting, DSGVO-konform.";
 
 type RouteSeo = {
   title: string;
@@ -66,7 +66,7 @@ const faqStructuredData = (): Record<string, unknown>[] => [
 
 const routeSeo: Record<string, RouteSeo> = {
   "/": {
-    title: "plyce – ATS & CRM für Personalberatungen und Recruiter | Software",
+    title: "plyce – ATS & CRM für Personalberater und Recruiter",
     description: defaultDescription,
     breadcrumbLabel: "Startseite",
   },
