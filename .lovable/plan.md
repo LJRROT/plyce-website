@@ -1,59 +1,72 @@
 
 
-## Analyse: Update-Log vs. Webseite
+## Analyse: Google Snippet & Favicon-Status
 
-Ich habe alle ~30 Features aus deinen Update-Logs gegen `src/data/featuresTiles.ts` (Features-Seite) und `src/pages/AIAgentsPage.tsx` abgeglichen.
+Ich habe Live-Site, robots.txt, sitemap.xml und HTML geprüft. Drei kritische Probleme blockieren ein gutes Google-Snippet:
 
-### Bereits vorhanden (kein Handlungsbedarf)
-Kandidaten-Matching (Tile "Kandidaten Matching"), Avatar-Extraktion, VoIP/Caller Lookup ("Telefon Integration"), DSGVO-Einwilligung, Multimail, Posteingang Sync, Mail Automationen, Duplikat-Erkennung (3x), Multi-CV Upload, KI Enrichment ("Kandidaten Enrichment"), Bulk Tagging, Boolean Suche, Dossier Generierung, Projekt Reports, Unternehmensreports ("Status-Report Unternehmen"), SEO/Open-Graph Jobs, KI Job Erstellung.
+### Befund 1 — Falsche Domain in Sitemap & Robots (KRITISCH)
+- `https://www.plyce.app/sitemap.xml` listet alle URLs als `https://plyce.io/...` (falsche Domain!)
+- `https://www.plyce.app/robots.txt` verweist auf `https://plyce.io/sitemap.xml`
+- Ursache: `VITE_SITE_URL` ist nicht gesetzt → Default in `siteUrl.ts` und `vite.config.ts` ist `https://plyce.io`
+- Effekt: Google crawlt die falschen URLs, kanonische Tags zeigen auf `plyce.io`, dadurch wird `plyce.app` nicht sauber indexiert. **Das ist die Hauptursache für ein schwaches SERP-Snippet.**
 
-### FEHLT auf der Webseite — wird ergaenzt
+### Befund 2 — `/pricing` fehlt komplett in der Sitemap
+- In `vite.config.ts` (Zeile 18–30) ist `/pricing` nicht in `sitemapRoutes` aufgenommen, obwohl die Route existiert und indexierbar ist.
+- Effekt: Google findet die Pricing-Seite nicht über die Sitemap → keine Sitelink-Chance.
 
-**Features-Seite (`src/data/featuresTiles.ts`) — 11 neue Tiles:**
+### Befund 3 — Favicon
+- `public/favicon.ico` ist gelöscht (gut, Lovable-Icon weg)
+- `public/plyce-favicon.png` existiert und wird in `index.html` korrekt verlinkt
+- `apple-touch-icon` zeigt auf `plyce-logo-mark.png` (gut)
+- **Aber**: Google bevorzugt eine echte `favicon.ico` ODER ein SVG. Das aktuelle PNG mit 32x32 ist zwar gültig, Google ignoriert es manchmal zugunsten alter Cache-Daten. Empfehlung: zusätzlich eine `favicon.ico` (Multi-Size: 16/32/48) bereitstellen.
 
-| # | Section | Icon | Title | Tagline | Bullets |
-|---|---|---|---|---|---|
-| 1 | email | `MessageSquare` (oder `Smartphone`) | WhatsApp Versand | Direkte WhatsApp-Nachrichten aus dem Kandidatenprofil | Vorlagen mit Variablen / Personalisierte Ansprache / Oeffnung in WhatsApp Web |
-| 2 | kandidaten | `ScanLine` | OCR fuer Bild-PDFs | Eingescannte Lebenslaeufe zuverlaessig verarbeiten | Automatische Texterkennung / Auch fotografierte CVs / Strukturierte Uebernahme |
-| 3 | kandidaten | `RefreshCw` | Nachtraegliche CV-Analyse | Bestehende Profile erneut analysieren | Nur leere Felder werden ergaenzt / Skills intelligent erweitert / Bestehende Daten bleiben |
-| 4 | kandidaten | `SplitSquareHorizontal` | Lebenslauf neben Dossier | CV und Dossier-Editor parallel im Blick | Direkte Inhaltsuebernahme / Kein Tab-Wechsel / Schnellere Dossier-Erstellung |
-| 5 | kandidaten | `Link2` | Direkte Projektzuweisung beim Upload | Kandidat und Bewerbung in einem Schritt anlegen | Projektauswahl beim Upload / Bewerbung wird automatisch erstellt / Saubere Zuordnung |
-| 6 | projekte | `MessagesSquare` | Strukturiertes Bewerber-Feedback | Feedback direkt am Bewerbungsprozess erfassen | Strukturierte Felder statt Freitext / Zentral verfuegbar / Auswertbar |
-| 7 | projekte | `Pin` | Angepinnte Aktivitaeten | Wichtige Aktivitaeten oben halten | Pin-Funktion je Aktivitaet / Schneller Zugriff / Klare Priorisierung |
-| 8 | projekte | `CalendarClock` | Aktivitaetstyp Meeting | Meetings mit Datum und Uhrzeit erfassen | Eigener Aktivitaetstyp / Datums- und Uhrzeit-Picker / Bei Kandidaten und Kontakten |
-| 9 | analytics | `TrendingUp` | Pipeline Snapshots | Pipeline-Entwicklung im Zeitverlauf | Snapshots pro Recruiter / Tendenz-Analyse / Historische Daten |
-| 10 | admin | `Columns3` | Individuelle Spalten | Spaltenkonfiguration pro Nutzer | Pro User gespeichert / Listen individuell anpassbar / Konsistent ueber alle Bereiche |
-| 11 | admin | `LifeBuoy` | Helpdesk im Profil | Direkter Support-Zugang aus dem Profil | Jederzeit erreichbar / Im Profil integriert / Schnelle Hilfe |
+### Befund 4 — Snippet-Qualität (Title & Description)
+- Title (`plyce – ATS & CRM für Personalberatungen und Recruiter | Software`) ist mit ~67 Zeichen leicht zu lang → Google kürzt am Pipe.
+- Description ist gut (155 Zeichen), aber der Markenname „plyce" steht am Anfang — kann man emotionaler/CTA-orientierter formulieren.
 
-Zusaetzlich werde ich diese bestehenden Tiles leicht ergaenzen (Bullet-Update, kein neues Tile):
-- "Mail Automationen": neue UI erwaehnen — Bullet anpassen auf "Uebersichtliche neue UI"
-- Bestehender E-Mail-Editor — neuer Rich-Text-Editor — Tile "E-Mail Versand" Bullets anpassen
-- "Telefon Integration" Tagline klarer auf VoIP-Lookup-URL formulieren
+---
 
-### AI Agents-Seite (`src/pages/AIAgentsPage.tsx`)
+## Plan
 
-**Neuer Agent #11 — AI Meeting Tracker (BETA):**
+### 1. Domain-Konfiguration korrigieren (höchste Priorität)
+- `src/lib/siteUrl.ts`: Default von `https://plyce.io` → `https://www.plyce.app` ändern
+- `vite.config.ts` Zeile 35: Default von `https://plyce.io` → `https://www.plyce.app` ändern
+- Effekt nach Re-Deploy: sitemap.xml, robots.txt, canonical-Tags und JSON-LD zeigen alle auf die korrekte Domain.
 
-```
-id: "ai-meeting-tracker"
-icon: Video (lucide-react)
-name: "AI Meeting Tracker"
-tagline: "Meetings aus Google Meet und Microsoft Teams werden automatisch
-          erkannt, analysiert und dem richtigen Kandidaten oder Kontakt zugeordnet (BETA)"
-capabilities:
-  - Automatische Erkennung von Notizen und Transkripten in Google Drive und OneDrive
-  - KI-Analyse extrahiert relevante Inhalte und Kernaussagen
-  - Automatische Zuordnung zum passenden Kandidaten oder Kontakt
-  - Speicherung als Aktivitaet inklusive Zusammenfassung im Profil
-  - Drive- oder OneDrive-Verbindung im Nutzerprofil
-  - Prompt im Bereich Prompt Engineering anpassbar
-```
-Der Agent wird am Ende der `agents`-Liste eingefuegt. Da `agents.length` dynamisch in der H1 steht ("11 AI Agents erledigen den Rest"), aktualisiert sich die Headline automatisch. Ein dezentes "BETA"-Label wird neben dem Namen ergaenzt (analog zur bestehenden "Agent #N"-Pille, in einer zweiten Pille).
+### 2. `/pricing` in Sitemap aufnehmen
+- `vite.config.ts` Zeile 21–22: nach `/ai-agents` einfügen:
+  ```
+  { loc: "/pricing", changefreq: "weekly", priority: "0.9" }
+  ```
 
-### Geaenderte Dateien
-- `src/data/featuresTiles.ts` — 11 neue Tiles in den passenden Sections, neue Lucide-Icons importieren
-- `src/pages/AIAgentsPage.tsx` — neuer Agent-Eintrag + Beta-Pille im Markup
+### 3. Favicon härten
+- Aus dem bestehenden `public/plyce-favicon.png` eine echte `public/favicon.ico` (Multi-Size 16/32/48) generieren
+- In `index.html` zusätzlich verlinken:
+  ```html
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/plyce-favicon.png">
+  ```
+- Reihenfolge so lassen, dass Browser/Google die `.ico` bevorzugt anfragen können.
 
-### Formulierungsregel
-Alle Tiles folgen dem bestehenden Schema (Tagline = ein Satz, 3 kurze Bullets, Tonalitaet wie Memory `style/content-tone`: keine Marketing-Floskeln, ganze Aussagen mit Punkt). Die AI-Agent-Capabilities sind volle Saetze ohne Aufzaehlungslogik.
+### 4. Title & Description optimieren für SERP
+- Title (max ~60 Zeichen): `plyce – ATS & CRM für Personalberater und Recruiter`
+- Description (155 Zeichen, mit klarem Nutzen + Vertrauen):
+  `Die KI-native Recruiting-Plattform für Personalberatungen: Kandidaten, Projekte, Kunden und 11 AI Agents in einem System. EU-Hosting, DSGVO-konform.`
+- In `Seo.tsx` `routeSeo["/"]` und in `index.html` (statische Tags) synchron aktualisieren.
+
+### 5. Google Search Console Pflege (Empfehlung, manuell)
+Nach Deploy: in der Google Search Console
+- neue Sitemap einreichen: `https://www.plyce.app/sitemap.xml`
+- URL-Inspection für `/`, `/features`, `/ai-agents`, `/pricing`, `/faq` → „Indexierung beantragen"
+- Bis Google neu crawlt: 3–10 Tage.
+
+### Geänderte Dateien
+- `src/lib/siteUrl.ts` — Default-Domain
+- `vite.config.ts` — Default-Domain + `/pricing` in Sitemap
+- `index.html` — Title, Description, zusätzlicher Favicon-Link
+- `src/components/Seo.tsx` — Home-Title & Description
+- `public/favicon.ico` — neu generiert aus `plyce-favicon.png`
+
+### Hinweis
+Der wichtigste Hebel ist Punkt 1 (Domain). Solange Sitemap und Canonicals auf `plyce.io` zeigen, kann Google die `plyce.app`-Seite nicht sauber bewerten — egal wie schön Title, Description und Favicon sind.
 
