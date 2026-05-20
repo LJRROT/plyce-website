@@ -97,6 +97,26 @@ const routeSeo: Record<string, RouteSeo> = {
     title: "Impressum | plyce",
     description: "Impressum und Kontakt der WECO Experts GmbH (Marke plyce, ATS/CRM für Personalberatungen und Recruiter).",
     breadcrumbLabel: "Impressum",
+    jsonLdExtra: () => [
+      {
+        "@type": "LocalBusiness",
+        "@id": `${getSiteUrl()}/#localbusiness`,
+        name: "WECO Experts GmbH",
+        alternateName: "plyce",
+        url: `${getSiteUrl()}/`,
+        telephone: "+49 89 370 400 96",
+        email: "mail@weco-experts.com",
+        image: `${getSiteUrl()}/plyce-logo-mark.png`,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Kellerstraße 29",
+          postalCode: "81667",
+          addressLocality: "München",
+          addressRegion: "Bayern",
+          addressCountry: "DE",
+        },
+      },
+    ],
   },
   "/agb": {
     title: "AGB | plyce",
