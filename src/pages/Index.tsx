@@ -176,9 +176,9 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    Ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter. Sie führen Kandidaten,
-                    Projekte, Kunden und Kommunikation in einem System, ergänzt um integrierte KI-Funktionen
-                    z.&nbsp;B. für Parsing, Matching, Texte und Reporting sowie vieles mehr.
+                    Ein cloudbasiertes ATS und CRM für Personalberatungen und Recruiter zur Vermittlung von Freelancern und Festangestellten. 
+                    Verwalte Kandidaten, Projekte, Kunden und Kommunikation zentral in einem System, ergänzt um integrierte KI Funktionen 
+                    für Parsing, Matching, Automatisierungen, Reporting und vieles mehr.
                   </p>
                 </div>
               </div>
@@ -193,9 +193,9 @@ const Index = () => {
                 </h2>
                 <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty text-muted-foreground md:text-[15px] md:leading-relaxed">
                   <p>
-                    Für Personalberatungen und Recruiter, die Kandidaten, Projekte, Kunden und Kommunikation in
-                    einem System bündeln wollen. Ideal für alle, die KI gezielt einsetzen, Prozesse automatisieren und
-                    ohne Toolwechsel effizient arbeiten möchten.
+                    Entwickelt für Personalberatungen, Recruiting Agenturen und Headhunter, die Freelancer und Festangestellte 
+                    effizient vermitteln möchten. Ideal für Teams, die Recruiting Prozesse automatisieren, KI produktiv einsetzen 
+                    und ohne Toolwechsel arbeiten wollen.
                   </p>
                 </div>
               </div>
