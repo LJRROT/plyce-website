@@ -101,10 +101,10 @@ const Index = () => {
             </ScrollReveal>
 
             <ScrollReveal delay={160}>
-              <div className="mx-auto max-w-xl text-center">
+              <div className="mx-auto max-w-xl md:max-w-3xl text-center">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
                   AI-native ATS & CRM für Personalberatungen und Recruiter.<br />
-                  Mehr Placements. Weniger Admin. Festanstellung & Freelance.
+                  <span className="md:whitespace-nowrap">Mehr Placements. Weniger Admin. Festanstellung & Freelance.</span>
                 </p>
 
                 <div className="mx-auto mt-9 max-w-sm">
