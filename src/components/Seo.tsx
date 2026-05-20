@@ -71,9 +71,9 @@ const routeSeo: Record<string, RouteSeo> = {
     breadcrumbLabel: "Startseite",
   },
   "/features": {
-    title: "ATS & CRM Funktionen für Personalberatungen und Recruiter | plyce",
+    title: "ATS & CRM Funktionen für Personalberater | plyce",
     description:
-      "Alle Funktionen: Kandidatenmanagement, Bewerbermanagement, Suchmandate, CRM für Kunden, E-Mail, Karriereseite, Reporting und KI – ATS/CRM für Personalberatungen und Recruiter.",
+      "Alle Funktionen: Kandidaten- und Bewerbermanagement, Suchmandate, Kunden-CRM, E-Mail, Karriereseite, Reporting und KI für Personalberater.",
     breadcrumbLabel: "Features",
   },
   "/ai-agents": {
@@ -97,6 +97,26 @@ const routeSeo: Record<string, RouteSeo> = {
     title: "Impressum | plyce",
     description: "Impressum und Kontakt der WECO Experts GmbH (Marke plyce, ATS/CRM für Personalberatungen und Recruiter).",
     breadcrumbLabel: "Impressum",
+    jsonLdExtra: () => [
+      {
+        "@type": "LocalBusiness",
+        "@id": `${getSiteUrl()}/#localbusiness`,
+        name: "WECO Experts GmbH",
+        alternateName: "plyce",
+        url: `${getSiteUrl()}/`,
+        telephone: "+49 89 370 400 96",
+        email: "mail@weco-experts.com",
+        image: `${getSiteUrl()}/plyce-logo-mark.png`,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Kellerstraße 29",
+          postalCode: "81667",
+          addressLocality: "München",
+          addressRegion: "Bayern",
+          addressCountry: "DE",
+        },
+      },
+    ],
   },
   "/agb": {
     title: "AGB | plyce",

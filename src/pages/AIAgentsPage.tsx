@@ -216,7 +216,7 @@ const AIAgentsPage = () => {
                   <div className="flex items-center justify-center md:justify-start h-10 mb-5">
                     <img
                       src="/logos/openai-wordmark.svg"
-                      alt="OpenAI"
+                      alt="OpenAI Logo Wordmark"
                       className="h-8 w-auto max-w-[160px] object-contain object-left"
                     />
                   </div>

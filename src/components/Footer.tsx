@@ -25,7 +25,7 @@ const Footer = () => {
 
           {/* Product */}
           <div>
-            <h4 className="text-sm font-semibold mb-4">Produkt</h4>
+            <h3 className="text-sm font-semibold mb-4">Produkt</h3>
             <ul className="space-y-2.5">
               <li><Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
               <li>
@@ -40,7 +40,7 @@ const Footer = () => {
 
           {/* Informationen */}
           <div>
-            <h4 className="text-sm font-semibold mb-4">Informationen</h4>
+            <h3 className="text-sm font-semibold mb-4">Informationen</h3>
             <ul className="space-y-2.5">
               <li>
                 <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -67,7 +67,7 @@ const Footer = () => {
 
           {/* Rechtliches */}
           <div>
-            <h4 className="text-sm font-semibold mb-4">Rechtliches</h4>
+            <h3 className="text-sm font-semibold mb-4">Rechtliches</h3>
             <ul className="space-y-2.5">
               <li>
                 <Link to="/agb" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -98,7 +98,7 @@ const Footer = () => {
 
           {/* Kontakt */}
           <div>
-            <h4 className="text-sm font-semibold mb-4">Noch kein Kunde?</h4>
+            <h3 className="text-sm font-semibold mb-4">Noch kein Kunde?</h3>
             <ul className="space-y-2.5">
               <li className="text-sm text-muted-foreground">
                 <a href="tel:+498937040096" className="hover:text-primary transition-colors">

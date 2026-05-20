@@ -1,0 +1,23 @@
+# plyce
+
+> KI-native ATS und CRM Plattform für Personalberatungen, Recruiting Agenturen und Headhunter zur Vermittlung von Freelancern und Festangestellten. Betrieben von der WECO Experts GmbH, München. EU-Hosting in Frankfurt, DSGVO-konform.
+
+plyce bündelt Kandidaten, Projekte, Kunden und Kommunikation in einem System und ergänzt das ATS/CRM um integrierte KI Funktionen für Parsing, Matching, Automatisierungen und Reporting. Die Plattform richtet sich an Recruiting Teams, die Prozesse automatisieren und ohne Toolwechsel arbeiten wollen.
+
+## Pages
+
+- [Startseite](/): Überblick über die KI-native ATS und CRM Plattform plyce.
+- [Features](/features): Funktionen für Kandidaten, Projekte, Kunden, E-Mail, Karriereseite und Reporting.
+- [AI Agents](/ai-agents): Spezialisierte KI Agenten für Parsing, Matching, Dossiers und Sourcing.
+- [Preise](/pricing): Transparente Preise, ein Produkt, alle Features und AI Agents inklusive.
+- [FAQ](/faq): Antworten zu Funktionen, Daten, KI, Integrationen, Vertrag und Einführung.
+- [Implementierung](/implementierung): Onboarding, Datenübernahme und produktiver Start.
+- [Data Protection](/data-protection): DSGVO, EU-Hosting in Frankfurt und Sicherheitsstandards.
+- [Partnerprogramm](/partnerprogramm): Empfehlungs-, Projekt- und Technologiepartnerschaften.
+
+## Optional
+
+- [Impressum](/impressum): Angaben zur WECO Experts GmbH gemäß § 5 TMG.
+- [Datenschutzerklärung](/datenschutz): Informationen zur Verarbeitung personenbezogener Daten.
+- [AGB](/agb): Allgemeine Geschäftsbedingungen für die Nutzung von plyce.
+- [Sitemap](/sitemap): Übersicht aller Hauptseiten.
