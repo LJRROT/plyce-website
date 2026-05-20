@@ -71,9 +71,9 @@ const routeSeo: Record<string, RouteSeo> = {
     breadcrumbLabel: "Startseite",
   },
   "/features": {
-    title: "ATS & CRM Funktionen für Personalberatungen und Recruiter | plyce",
+    title: "ATS & CRM Funktionen für Personalberater | plyce",
     description:
-      "Alle Funktionen: Kandidatenmanagement, Bewerbermanagement, Suchmandate, CRM für Kunden, E-Mail, Karriereseite, Reporting und KI – ATS/CRM für Personalberatungen und Recruiter.",
+      "Alle Funktionen: Kandidaten- und Bewerbermanagement, Suchmandate, Kunden-CRM, E-Mail, Karriereseite, Reporting und KI für Personalberater.",
     breadcrumbLabel: "Features",
   },
   "/ai-agents": {

@@ -120,7 +120,7 @@ const DataProtectionPage = () => {
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light flex-shrink-0">
                       <section.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold">{section.title}</h3>
+                    <h2 className="text-lg font-semibold">{section.title}</h2>
                   </div>
                   <ul className="space-y-2.5">
                     {section.items.map((item) => (
