@@ -104,7 +104,7 @@ const Index = () => {
               <div className="mx-auto max-w-xl text-center">
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
                   AI-native ATS & CRM für Personalberatungen und Recruiter.<br />
-                  Mehr Placements. Weniger Admin.
+                  Mehr Placements. Weniger Admin. Festanstellung & Freelance.
                 </p>
 
                 <div className="mx-auto mt-9 max-w-sm">
