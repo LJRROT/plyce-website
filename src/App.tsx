@@ -19,6 +19,7 @@ import FaqPage from "./pages/FaqPage";
 import ImplementierungPage from "./pages/ImplementierungPage";
 import PartnerprogrammPage from "./pages/PartnerprogrammPage";
 import PricingPage from "./pages/PricingPage";
+import MigrationPage from "./pages/MigrationPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -64,6 +65,7 @@ const App = () => (
           <Route path="/implementierung" element={<ImplementierungPage />} />
           <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/migration" element={<MigrationPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -153,6 +153,13 @@ const routeSeo: Record<string, RouteSeo> = {
       "Transparente Preise für plyce ATS & CRM: ein Produkt, ein Preis, alle Features und AI Agents inklusive. Market-Entry-Angebot mit 20 % Rabatt in 2026.",
     breadcrumbLabel: "Preise",
   },
+  "/migration": {
+    title: "Migration zu plyce – Optionen im Überblick | plyce",
+    description:
+      "Interne Übersicht der drei Migrationsformen zu plyce: Soft Migration, Migration und Enterprise Migration mit Ablauf, Dauer und Komplexität.",
+    breadcrumbLabel: "Migration",
+    noindex: true,
+  },
 };
 
 /** Öffentliche Seiten in logischer Reihenfolge (Produkt → Service → Rechtliches) für strukturierte Daten / Google. */
