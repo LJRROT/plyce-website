@@ -1,9 +1,12 @@
+import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { CheckCircle2, Flame } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const OFF_2026_FACTOR = 0.8;
 const LIST_PRICE = 125;
+const PLYCE_TIME_PRICE = 11;
 
 function formatEuro(value: number, withDecimals: boolean) {
   return new Intl.NumberFormat("de-DE", {
@@ -24,6 +27,7 @@ const trustPoints = [
 
 const PricingPage = () => {
   const offerPrice = LIST_PRICE * OFF_2026_FACTOR;
+  const [tab, setTab] = useState("crm");
 
   return (
     <div className="min-h-screen pt-24">
@@ -46,104 +50,187 @@ const PricingPage = () => {
         </div>
       </section>
 
-      {/* Market-Entry Banner */}
-      <section className="py-12 md:py-16 section-padding">
-        <div className="container-tight max-w-3xl mx-auto">
-          <ScrollReveal>
-            <div className="rounded-2xl border-2 border-primary/35 bg-primary-light/50 p-8 md:p-12 text-center shadow-sm shadow-primary/10">
-              <div className="mb-4 flex items-center justify-center gap-3">
-                <Flame className="h-8 w-8 shrink-0 text-primary md:h-9 md:w-9" aria-hidden />
-                <p className="text-2xl font-extrabold tracking-tight text-foreground md:text-3xl lg:text-4xl">
-                  Market-Entry-Angebot
+      {/* Market-Entry Banner (only for CRM tab) */}
+      {tab === "crm" && (
+        <section className="py-12 md:py-16 section-padding">
+          <div className="container-tight max-w-3xl mx-auto">
+            <ScrollReveal>
+              <div className="rounded-2xl border-2 border-primary/35 bg-primary-light/50 p-8 md:p-12 text-center shadow-sm shadow-primary/10">
+                <div className="mb-4 flex items-center justify-center gap-3">
+                  <Flame className="h-8 w-8 shrink-0 text-primary md:h-9 md:w-9" aria-hidden />
+                  <p className="text-2xl font-extrabold tracking-tight text-foreground md:text-3xl lg:text-4xl">
+                    Market-Entry-Angebot
+                  </p>
+                </div>
+                <p className="text-3xl font-black tracking-tight text-primary md:text-4xl lg:text-5xl">
+                  20 % Rabatt in 2026
                 </p>
+                <p className="mt-3 text-sm text-muted-foreground">Gilt für plyce CRM/ATS Nutzergebühren.</p>
               </div>
-              <p className="text-3xl font-black tracking-tight text-primary md:text-4xl lg:text-5xl">20 % Rabatt in 2026</p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
-      {/* Pricing card */}
-      <section className="pb-16 md:pb-24 section-padding">
+      {/* Pricing tabs */}
+      <section className={`pb-16 md:pb-24 section-padding ${tab === "time" ? "pt-12 md:pt-16" : ""}`}>
         <div className="container-tight">
           <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center mb-3">Preise</h2>
-            <p className="text-center text-sm text-muted-foreground mb-10 md:mb-14 max-w-xl mx-auto">
-              Mit dem Market-Entry-Angebot erhalten Sie 20 % Rabatt in 2026 auf die Nutzergebühren.
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center mb-3">Pricing</h2>
+            <p className="text-center text-sm text-muted-foreground mb-8 md:mb-10 max-w-xl mx-auto">
+              Zwei Produkte, transparent bepreist. Einzeln nutzbar oder nahtlos kombiniert.
             </p>
           </ScrollReveal>
 
-          <div className="max-w-lg mx-auto">
-            <ScrollReveal>
-              <article className="relative rounded-2xl border-2 border-primary bg-card p-8 md:p-10 shadow-lg shadow-primary/10">
-                {/* Price */}
-                <div className="mb-1">
-                  <p className="mb-3">
-                    <span className="inline-flex rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
-                      Einstieg 2026
-                    </span>
-                  </p>
-                  <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-3xl font-extrabold tracking-tight text-foreground tabular-nums">
-                    <span>{formatEuro(offerPrice, false)}</span>
-                    <span className="text-lg font-semibold text-muted-foreground/75 line-through decoration-muted-foreground/60 decoration-2">
-                      {formatEuro(LIST_PRICE, false)}
-                    </span>
-                    <span className="text-lg font-semibold text-muted-foreground">/ Nutzer / Monat</span>
-                  </p>
-                </div>
+          <Tabs value={tab} onValueChange={setTab} className="w-full">
+            <div className="flex justify-center mb-10 md:mb-12">
+              <TabsList className="h-auto p-1.5 grid grid-cols-2 w-full max-w-md">
+                <TabsTrigger value="crm" className="py-2.5 text-sm font-semibold">
+                  plyce CRM/ATS
+                </TabsTrigger>
+                <TabsTrigger value="time" className="py-2.5 text-sm font-semibold">
+                  plyce time
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-                {/* Features */}
-                <ul className="mt-6 space-y-3">
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Komplettes Produkt mit ATS und CRM in einer Plattform</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>
-                      <Link to="/features" className="underline underline-offset-2 hover:text-primary transition-colors">
-                        Alle Features
-                      </Link>{" "}
-                      inklusive
-                    </span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>
-                      <Link to="/ai-agents" className="underline underline-offset-2 hover:text-primary transition-colors">
-                        Alle AI-Agenten
-                      </Link>{" "}
-                      inklusive
-                    </span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Nutzer jederzeit flexibel hinzufügen oder reduzieren</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Monatsgenaue Abrechnung, nur aktive Nutzer zahlen</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Mindestlaufzeit 12 Monate</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Onboarding und Schulung</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Flexible Datenmigration nach Absprache möglich</span>
-                  </li>
-                  <li className="flex gap-2.5 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
-                    <span>Customizing möglich</span>
-                  </li>
-                </ul>
-              </article>
-            </ScrollReveal>
-          </div>
+            <TabsContent value="crm">
+              <div className="max-w-lg mx-auto">
+                <ScrollReveal>
+                  <article className="relative rounded-2xl border-2 border-primary bg-card p-8 md:p-10 shadow-lg shadow-primary/10">
+                    <div className="mb-1">
+                      <p className="mb-3">
+                        <span className="inline-flex rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                          Einstieg 2026
+                        </span>
+                      </p>
+                      <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-3xl font-extrabold tracking-tight text-foreground tabular-nums">
+                        <span>{formatEuro(offerPrice, false)}</span>
+                        <span className="text-lg font-semibold text-muted-foreground/75 line-through decoration-muted-foreground/60 decoration-2">
+                          {formatEuro(LIST_PRICE, false)}
+                        </span>
+                        <span className="text-lg font-semibold text-muted-foreground">/ Nutzer / Monat</span>
+                      </p>
+                    </div>
+
+                    <ul className="mt-6 space-y-3">
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Komplettes Produkt mit ATS und CRM in einer Plattform</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>
+                          <Link to="/features" className="underline underline-offset-2 hover:text-primary transition-colors">
+                            Alle Features
+                          </Link>{" "}
+                          inklusive
+                        </span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>
+                          <Link to="/ai-agents" className="underline underline-offset-2 hover:text-primary transition-colors">
+                            Alle AI-Agenten
+                          </Link>{" "}
+                          inklusive
+                        </span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Nutzer jederzeit flexibel hinzufügen oder reduzieren</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Monatsgenaue Abrechnung, nur aktive Nutzer zahlen</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Mindestlaufzeit 12 Monate</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Onboarding und Schulung</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Flexible Datenmigration nach Absprache möglich</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Customizing möglich</span>
+                      </li>
+                    </ul>
+                  </article>
+                </ScrollReveal>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="time">
+              <div className="max-w-lg mx-auto">
+                <ScrollReveal>
+                  <article className="relative rounded-2xl border-2 border-primary bg-card p-8 md:p-10 shadow-lg shadow-primary/10">
+                    <div className="mb-1">
+                      <p className="mb-3">
+                        <span className="inline-flex rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+                          Pay as you go
+                        </span>
+                      </p>
+                      <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-3xl font-extrabold tracking-tight text-foreground tabular-nums">
+                        <span>{formatEuro(PLYCE_TIME_PRICE, false)}</span>
+                        <span className="text-lg font-semibold text-muted-foreground">/ aktiver Freelancer / Monat</span>
+                      </p>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                        Einfaches Pay-as-you-go Pricing. Du zahlst nur für Freelancer, die im jeweiligen Monat aktiv in
+                        einem Projekt eingesetzt werden oder ein Timesheet einreichen. Wird ein Freelancer nicht
+                        genutzt, entstehen dafür keine Kosten.
+                      </p>
+                    </div>
+
+                    <ul className="mt-6 space-y-3">
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Keine Vertragsbindung, keine Kündigungsfrist</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Freelancer & Project Management</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Timesheet Portal</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Kundenfreigabe ohne Login</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Automatische Reminder</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Credit Notes & Invoices</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>Analytics & Forecasts</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>
+                          Nahtlose Integration in{" "}
+                          <Link to="/plyce-time" className="underline underline-offset-2 hover:text-primary transition-colors">
+                            plyce CRM/ATS
+                          </Link>
+                        </span>
+                      </li>
+                    </ul>
+                  </article>
+                </ScrollReveal>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </div>
