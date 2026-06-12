@@ -51,7 +51,7 @@ const timeTiles: Tile[] = [
   { icon: ReceiptEuro, label: "Credit Notes & Invoices" },
   { icon: BellRing, label: "Automatische Reminder" },
   { icon: BarChart3, label: "Analytics & Forecasts" },
-  { icon: ListChecks, label: "Projektmanagement" },
+  { icon: ListChecks, label: "KI-Vertragsgenerierung" },
 ];
 
 const features = [
