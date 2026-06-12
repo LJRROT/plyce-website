@@ -47,11 +47,11 @@ const middleTiles: Tile[] = [
 
 const timeTiles: Tile[] = [
   { icon: UserCircle, label: "Freelancer Login im Timesheet Portal" },
-  { icon: MailCheck, label: "Kundenfreigabe per E-Mail-Link" },
+  { icon: MailCheck, label: "Time Sheet Approval" },
   { icon: ReceiptEuro, label: "Credit Notes & Invoices" },
   { icon: BellRing, label: "Automatische Reminder" },
   { icon: BarChart3, label: "Analytics & Forecasts" },
-  { icon: ListChecks, label: "KI-Vertragsgenerierung" },
+  { icon: ListChecks, label: "AI Contract Generator" },
 ];
 
 const features = [
