@@ -28,6 +28,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold mb-4">Produkt</h3>
             <ul className="space-y-2.5">
               <li><Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
+              <li><Link to="/plyce-time" className="text-sm text-muted-foreground hover:text-primary transition-colors">plyce time</Link></li>
               <li>
                 <Link to="/pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Preise

@@ -4,6 +4,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 const links = [
   { to: "/", label: "Startseite" },
   { to: "/features", label: "Features" },
+  { to: "/plyce-time", label: "plyce time" },
   { to: "/ai-agents", label: "AI Agents" },
   { to: "/pricing", label: "Preise" },
   { to: "/data-protection", label: "Data Protection" },

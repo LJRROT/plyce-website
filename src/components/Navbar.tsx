@@ -11,6 +11,7 @@ const navLinks = [
   { label: "FAQ", href: "/faq" },
   { label: "AI Agents", href: "/ai-agents" },
   { label: "Features", href: "/features" },
+  { label: "plyce time", href: "/plyce-time" },
   { label: "Data Protection", href: "/data-protection" },
 ];
 

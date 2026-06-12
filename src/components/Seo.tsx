@@ -76,6 +76,12 @@ const routeSeo: Record<string, RouteSeo> = {
       "Alle Funktionen: Kandidaten- und Bewerbermanagement, Suchmandate, Kunden-CRM, E-Mail, Karriereseite, Reporting und KI für Personalberater.",
     breadcrumbLabel: "Features",
   },
+  "/plyce-time": {
+    title: "plyce time – Freelancer Management, Timesheets & Invoicing | plyce",
+    description:
+      "plyce time: Freelancer & Project Management, Timesheet Portal und automatisiertes Invoicing, nahtlos integriert in plyce CRM/ATS. EU-Hosting, DSGVO-konform.",
+    breadcrumbLabel: "plyce time",
+  },
   "/ai-agents": {
     title: "AI Agents im Recruiting: ATS-Automatisierung | plyce",
     description:
@@ -166,6 +172,7 @@ const routeSeo: Record<string, RouteSeo> = {
 const SITE_STRUCTURE_PATHS = [
   "/",
   "/features",
+  "/plyce-time",
   "/ai-agents",
   "/pricing",
   "/faq",

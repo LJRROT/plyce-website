@@ -20,6 +20,7 @@ import ImplementierungPage from "./pages/ImplementierungPage";
 import PartnerprogrammPage from "./pages/PartnerprogrammPage";
 import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
+import PlyceTimePage from "./pages/PlyceTimePage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -55,6 +56,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/plyce-time" element={<PlyceTimePage />} />
           <Route path="/ai-agents" element={<AIAgentsPage />} />
           <Route path="/data-protection" element={<DataProtectionPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
