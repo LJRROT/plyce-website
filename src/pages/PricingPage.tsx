@@ -19,7 +19,7 @@ function formatEuro(value: number, withDecimals: boolean) {
 
 const trustPoints = [
   "AI-natives ATS und CRM vereint Kandidaten, Mandate und Kunden in einer Plattform statt eines fragmentierten Tool-Stacks.",
-  "Keine versteckten Zusatzkosten. Ein Produkt, ein Preis, volle Transparenz.",
+  "Die nahtlose Integration mit plyce time ermöglicht den kompletten Workflow für Freelance-Projekte, von Zeiterfassung über das Timesheet-Portal bis zur automatisierten Rechnungsstellung.",
   "Routine mit KI entlasten bedeutet weniger Admin und mehr Zeit für Beratung, Sourcing und Placements.",
   "Datenmigration und Einstieg sind strukturiert. Kerndaten werden sicher übernommen, ohne monatelange Umstellungsprojekte.",
   "Alle Features und AI-Agenten sind im Produkt inkludiert, ohne Aufpreis.",
