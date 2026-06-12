@@ -22,7 +22,6 @@ const trustPoints = [
   "Die nahtlose Integration mit plyce time ermöglicht den kompletten Workflow für Freelance-Projekte, von Zeiterfassung über das Timesheet-Portal bis zur automatisierten Rechnungsstellung.",
   "Routine mit KI entlasten bedeutet weniger Admin und mehr Zeit für Beratung, Sourcing und Placements.",
   "Datenmigration und Einstieg sind strukturiert. Kerndaten werden sicher übernommen, ohne monatelange Umstellungsprojekte.",
-  "Alle Features und AI-Agenten sind im Produkt inkludiert, ohne Aufpreis.",
 ];
 
 const PricingPage = () => {
