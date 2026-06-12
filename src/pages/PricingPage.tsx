@@ -208,6 +208,10 @@ const PricingPage = () => {
                       </li>
                       <li className="flex gap-2.5 text-sm text-muted-foreground">
                         <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
+                        <span>KI-gestützte Generierung von Berater- und Projektverträgen</span>
+                      </li>
+                      <li className="flex gap-2.5 text-sm text-muted-foreground">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden />
                         <span>Credit Notes & Invoices</span>
                       </li>
                       <li className="flex gap-2.5 text-sm text-muted-foreground">

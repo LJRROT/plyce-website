@@ -66,6 +66,11 @@ const features = [
     text: "Credit Notes und Invoices werden automatisch generiert und versendet. Abrechnung, Gutschriften und Rechnungsprozesse laufen direkt aus dem System heraus.",
   },
   {
+    icon: FileSignature,
+    title: "KI-gestützte Vertragsgenerierung",
+    text: "Berater- und Projektverträge werden automatisiert auf Basis hinterlegter Konditionen und Projektparameter erstellt, ohne manuelle Textarbeit.",
+  },
+  {
     icon: BellRing,
     title: "Automatische Erinnerungen",
     text: "Projektmanager, Freelancer und Kunden erhalten automatisierte Reminder für offene Timesheets, ausstehende Freigaben oder anstehende Abrechnungsschritte.",
