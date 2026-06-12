@@ -182,8 +182,7 @@ const PricingPage = () => {
                       </p>
                       <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                         Einfaches Pay-as-you-go Pricing. Du zahlst nur für Freelancer, die im jeweiligen Monat aktiv in
-                        einem Projekt eingesetzt werden oder ein Timesheet einreichen. Wird ein Freelancer nicht
-                        genutzt, entstehen dafür keine Kosten.
+                        einem Projekt eingesetzt werden.
                       </p>
                     </div>
 
