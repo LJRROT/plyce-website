@@ -21,6 +21,7 @@ import PartnerprogrammPage from "./pages/PartnerprogrammPage";
 import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
 import PlyceTimePage from "./pages/PlyceTimePage";
+import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
