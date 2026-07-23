@@ -181,6 +181,7 @@ const SITE_STRUCTURE_PATHS = [
   "/plyce-time",
   "/ai-agents",
   "/pricing",
+  "/recruiting-software-vergleich",
   "/faq",
   "/implementierung",
   "/data-protection",
