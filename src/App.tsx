@@ -21,6 +21,7 @@ import PartnerprogrammPage from "./pages/PartnerprogrammPage";
 import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
 import PlyceTimePage from "./pages/PlyceTimePage";
+import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -68,6 +69,7 @@ const App = () => (
           <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/migration" element={<MigrationPage />} />
+          <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

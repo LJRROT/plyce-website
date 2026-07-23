@@ -166,6 +166,12 @@ const routeSeo: Record<string, RouteSeo> = {
     breadcrumbLabel: "Migration",
     noindex: true,
   },
+  "/recruiting-software-vergleich": {
+    title: "Recruiting Software Vergleich für Agenturen | plyce",
+    description:
+      "Recruiting Software für Personalberatungen und Headhunter im Vergleich: AI natives ATS/CRM vs. klassische Systeme. Kriterien, Tabelle und FAQ.",
+    breadcrumbLabel: "Recruiting Software Vergleich",
+  },
 };
 
 /** Öffentliche Seiten in logischer Reihenfolge (Produkt → Service → Rechtliches) für strukturierte Daten / Google. */
@@ -175,6 +181,7 @@ const SITE_STRUCTURE_PATHS = [
   "/plyce-time",
   "/ai-agents",
   "/pricing",
+  "/recruiting-software-vergleich",
   "/faq",
   "/implementierung",
   "/data-protection",
