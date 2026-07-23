@@ -7,6 +7,7 @@ const links = [
   { to: "/plyce-time", label: "plyce time" },
   { to: "/ai-agents", label: "AI Agents" },
   { to: "/pricing", label: "Preise" },
+  { to: "/recruiting-software-vergleich", label: "Recruiting Software Vergleich" },
   { to: "/data-protection", label: "Data Protection" },
   { to: "/faq", label: "FAQ" },
   { to: "/implementierung", label: "Implementierungsprozess" },
