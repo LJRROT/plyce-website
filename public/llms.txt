@@ -11,6 +11,7 @@ plyce bündelt Kandidaten, Projekte, Kunden und Kommunikation in einem System un
 - [plyce time](/plyce-time): Freelancer & Project Management, Timesheet Portal und Invoicing, integriert in plyce CRM/ATS.
 - [AI Agents](/ai-agents): Spezialisierte KI Agenten für Parsing, Matching, Dossiers und Sourcing.
 - [Preise](/pricing): Transparente Preise, ein Produkt, alle Features und AI Agents inklusive.
+- [Recruiting Software Vergleich](/recruiting-software-vergleich): Vergleich für Personalberatungen und Headhunter zwischen AI nativem ATS/CRM und klassischen Systemen.
 - [FAQ](/faq): Antworten zu Funktionen, Daten, KI, Integrationen, Vertrag und Einführung.
 - [Implementierung](/implementierung): Onboarding, Datenübernahme und produktiver Start.
 - [Data Protection](/data-protection): DSGVO, EU-Hosting in Frankfurt und Sicherheitsstandards.
