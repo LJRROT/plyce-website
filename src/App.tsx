@@ -69,6 +69,7 @@ const App = () => (
           <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/migration" element={<MigrationPage />} />
+          <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
