@@ -1,66 +1,55 @@
-# Neue Seite: plyce time
+## Überarbeitung `/migration`
 
-Eine vollwertige Marketing-Unterseite für **plyce time** (Freelancer & Project Management, Timesheet Portal, Invoicing) — integriert in plyce CRM/ATS. Eingeordnet in Navigation und SEO zwischen *Features* und *Data Protection*.
+Alle Änderungen in `src/pages/MigrationPage.tsx`. Keine „Empfohlen"-Badges mehr, drei Varianten inhaltlich neu.
 
-## Route & Navigation
-- Neue Route `/plyce-time` in `src/App.tsx`
-- Eintrag in `Navbar` zwischen *Features* und *Data Protection* (Desktop + Mobile Menü)
-- Eintrag im `Footer` Produktbereich
-- Eintrag in `SitemapPage` und `public/llms.txt`
-- Eintrag in `SITE_STRUCTURE_PATHS` in `src/components/Seo.tsx` (gleiche Position)
+### Variante 1 – Quickstart / Migration nachgezogen
+- **Name:** „Quickstart"
+- **Tagline:** „Sofort starten, Daten optional später nachziehen."
+- **Komplexität:** Niedrig
+- **Dauer:** System in 48 Stunden nach Vertragsunterzeichnung
+- **Best for:** Teams, die sofort mit einer sauberen Umgebung starten und Altdaten erst später (oder gar nicht) übernehmen wollen.
+- **Ablauf:**
+  1. Vertragsunterzeichnung (Tag 0)
+  2. Systembereitstellung innerhalb von 48 Stunden inklusive Checkliste
+  3. Kick-off Call zur Abstimmung von Konfiguration, Setup und Onboarding
+  4. Konfiguration, Setup und Onboarding wie im Standardprozess
+  5. Produktiver Start mit sauberer, leerer Umgebung (Clean-Start)
+  6. Optionale Datenmigration zu einem späteren Zeitpunkt, falls Altdaten übernommen werden sollen
+  7. Regulärer Support nach Hypercare
 
-## SEO
-In `src/components/Seo.tsx`:
-- Title: „plyce time – Freelancer Management, Timesheets & Invoicing | plyce"
-- Description (~155 Z.): Freelancer & Project Management, Timesheet Portal und automatisiertes Invoicing — nahtlos integriert in plyce CRM/ATS. EU-Hosting, DSGVO-konform.
-- Breadcrumb-Label: „plyce time"
-- Indexierbar (kein noindex), Canonical, hreflang, JSON-LD via bestehende Mechanik
+### Variante 2 – Soft Migration
+- **Name:** „Soft Migration"
+- **Tagline:** „Onboarding und Migration gemeinsam vorbereitet, Backup zum vereinbarten Zeitpunkt."
+- **Komplexität:** Mittel
+- **Dauer:** mehrere Wochen, Backup-Einspielung innerhalb einer Woche nach vereinbartem Termin
+- **Best for:** Teams, die vorhandene Daten strukturiert übernehmen wollen und Onboarding parallel zur Migrationsvorbereitung durchlaufen.
+- **Ablauf:**
+  1. Vertrag & Kick-off
+  2. Gemeinsames Onboarding und Setup (Pipelines, Rollen, Rechte, Schnittstellen)
+  3. Vereinbarung eines konkreten Zeitpunkts für die Backup-Einspielung
+  4. Bereitstellung des Backups durch den Kunden
+  5. Einspielen der Daten innerhalb einer Woche nach Bereitstellung
+  6. Go-Live mit migriertem Datenbestand, anschließend Hypercare & regulärer Support
 
-## Seitenstruktur `src/pages/PlyceTimePage.tsx`
+### Variante 3 – Enterprise Migration
+- **Name:** „Enterprise Migration"
+- **Tagline:** „Zwei-Schritt-Migration mit Probelauf und geplantem Switch."
+- **Komplexität:** Hoch
+- **Dauer:** mehrere Wochen mit Vorlauf, finaler Switch an einem Tag
+- **Best for:** Größere Organisationen mit umfangreichen Datenbeständen, mehreren Quellsystemen oder hohen Compliance-Anforderungen.
+- **Ablauf (zwei Schritte hervorheben):**
+  1. Vertrag & Kick-off, Migrationsstrategie
+  2. Konfiguration & Einrichtung
+  3. Backup des Bestandssystems (≥ 2 Wochen vor dem finalen Switch)
+  4. **Schritt 1 – Probemigration:** Testlauf zur Validierung von Datenqualität, Mappings und Edge Cases
+  5. Auswertung, Korrekturen, Freigabe
+  6. **Schritt 2 – Produktive Migration am Stichtag X:** dank Testlauf an einem Tag durchführbar, Switch von Alt- auf Neusystem für alle Nutzer
+  7. Go-Live mit erweiterter Hypercare, danach regulärer Support
 
-Layout im bestehenden Design-System (Inter, Emerald Green Primary, ScrollReveal, Card-Patterns wie `FeaturesPage`/`AIAgentsPage`). Volltext-Stil, keine Bullet-Points in Fließtexten (Memory-Regel).
+### Weitere Anpassungen
+- „Empfohlen"-Badge und `highlight`-Styling komplett entfernen; alle drei Karten identisch gestaltet.
+- Komplexitäts-Indikator und Timing-Chips bleiben bestehen.
+- Reihenfolge: Quickstart → Soft Migration → Enterprise Migration.
+- Icons pro Schritt sinnvoll aus dem bestehenden Lucide-Set (`FileSignature`, `Rocket`, `PhoneCall`, `Settings2`, `Database`, `ShieldCheck`, `HardDriveDownload`, `GitMerge`, `LifeBuoy`, `CheckCircle2`).
 
-1. **Hero**
-   - Eyebrow „Teil der plyce Plattform"
-   - H1 „plyce time"
-   - Subline: „Freelancer & Project Management, Timesheet Portal und Invoicing — nahtlos integriert in plyce CRM/ATS."
-   - Beschreibungs-Absatz (aus Briefing)
-   - Primär-CTA „Demo anfragen" (öffnet bestehendes `DemoBookingModal`), Sekundär-Link zu `/features`
-
-2. **Integrations-Visual (nachgebaute Grafik, responsiv)**
-   - Drei Spalten auf Desktop: **plyce CRM/ATS** ← *Automatische Datenübernahme* → **plyce time**
-   - Auf Mobile: vertikal gestapelt mit Pfeil-Icons (`ArrowRight`/`ArrowDown` per Tailwind Breakpoint)
-   - Karten mit Lucide-Icons (Users, Building2, Briefcase, FolderOpen, FileSignature, UserRound für CRM-Seite; Database, Folder, Tag für Mittel-Block; UserCircle, MailCheck, ReceiptEuro, BellRing, BarChart3, ListChecks für time-Seite)
-   - Reiner CSS/SVG-Aufbau, **keine Bilddatei**, damit responsive und themetreu
-
-3. **Kernfunktionen** (5 Cards im Grid 1/2/3 Cols)
-   Titel + Fließtext-Absatz je Funktion:
-   - Automatisierte Zeiterfassung & Freigabe (Clock)
-   - Integriertes Invoicing (ReceiptEuro)
-   - Automatische Erinnerungen (BellRing)
-   - Analytics & Forecasts (BarChart3)
-   - Nahtlose CRM/ATS-Integration (Workflow)
-
-4. **6-Schritte Workflow**
-   Horizontaler Stepper Desktop / vertikale Timeline Mobile:
-   1 Projekt in plyce CRM/ATS anlegen · 2 Daten automatisch an plyce time übergeben · 3 Freelancer erfassen Zeiten · 4 Kunde gibt Timesheets frei · 5 Credit Notes & Invoices automatisch · 6 Analytics & Forecasts liefern Transparenz
-   - Nummerierte Kreise in Brandfarbe, Connector-Linien, Lucide-Icons je Schritt
-
-5. **Positionierung / Closing-Banner**
-   Dunkler Banner mit ShieldCheck-Icon: „Ein System. Kein Doppelaufwand. Mehr Automatisierung." + Positionierungs-Absatz + CTA „Demo anfragen".
-
-## Responsiveness
-- Mobile-first Tailwind Klassen (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`)
-- Integrations-Visual: Flex-Column auf `<lg`, Grid 3-Spalter ab `lg`
-- Stepper: `flex-col` Mobile mit vertikalen Connectoren, `lg:flex-row` Desktop
-- Section-Padding via bestehende `section-padding`/`container-tight` Utilities
-- Test in 375px, 768px, 1280px Viewports
-
-## Geänderte/neue Dateien
-- **neu**: `src/pages/PlyceTimePage.tsx`
-- **edit**: `src/App.tsx` (Route)
-- **edit**: `src/components/Navbar.tsx` (Nav-Eintrag)
-- **edit**: `src/components/Footer.tsx` (Link)
-- **edit**: `src/components/Seo.tsx` (routeSeo + SITE_STRUCTURE_PATHS)
-- **edit**: `src/pages/SitemapPage.tsx`
-- **edit**: `public/llms.txt`
+Kein weiterer Datei-Change nötig (Route, SEO, Navigation bleiben wie sie sind – Seite ist weiterhin noindex).
