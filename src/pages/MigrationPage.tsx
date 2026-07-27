@@ -115,7 +115,7 @@ const variants: Variant[] = [
         icon: Settings2,
         title: "Onboarding & Setup",
         description:
-          "Pipelines, Rollen, Rechte und Schnittstellen werden gemeinsam mit dem Kunden aufgesetzt, sodass das System vollständig für die Migration vorbereitet ist.",
+          "Pipelines, Rollen, Rechte und Schnittstellen richten wir gemeinsam mit Ihnen ein, sodass das System vollständig für die Migration vorbereitet ist.",
       },
       {
         icon: ClipboardCheck,
@@ -127,7 +127,7 @@ const variants: Variant[] = [
         icon: HardDriveDownload,
         title: "Bereitstellung des Backups",
         description:
-          "Der Kunde stellt das Backup des Bestandssystems zum vereinbarten Termin unverschlüsselt und zugänglich bereit.",
+          "Sie stellen das Backup Ihres Bestandssystems zum vereinbarten Termin unverschlüsselt und zugänglich bereit.",
       },
       {
         icon: Database,
