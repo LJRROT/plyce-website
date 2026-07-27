@@ -165,7 +165,7 @@ const variants: Variant[] = [
         icon: Settings2,
         title: "Konfiguration & Einrichtung",
         description:
-          "Das System wird gemeinsam mit dem Kunden vollständig konfiguriert, inklusive Rollen, Rechten, Pipelines und Schnittstellen.",
+          "Das System richten wir gemeinsam mit Ihnen vollständig ein, inklusive Rollen, Rechten, Pipelines und Schnittstellen.",
       },
       {
         icon: ShieldCheck,
@@ -176,10 +176,10 @@ const variants: Variant[] = [
       },
       {
         icon: HardDriveDownload,
-        title: "Schritt 1 – Probemigration",
+        title: "Probemigration (Testlauf)",
         description:
           "Eine vollständige Testmigration prüft Datenqualität, Mappings und Edge Cases unter realen Bedingungen.",
-        timing: "Schritt 1",
+        timing: "Testlauf",
       },
       {
         icon: ClipboardCheck,
@@ -189,10 +189,10 @@ const variants: Variant[] = [
       },
       {
         icon: Database,
-        title: "Schritt 2 – Produktive Migration am Stichtag X",
+        title: "Produktive Migration am Stichtag X",
         description:
           "Dank des vorherigen Testlaufs erfolgt die finale Migration an einem einzigen Tag. Alle Nutzer wechseln zum Stichtag geschlossen vom Alt- auf das neue System.",
-        timing: "Schritt 2 – Stichtag X",
+        timing: "Stichtag X",
       },
       {
         icon: Rocket,
