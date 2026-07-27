@@ -210,6 +210,9 @@ const complexityLabel = (v: Variant["complexityValue"]) => {
 };
 
 const MigrationPage = () => {
+  const [selectedId, setSelectedId] = useState<string>(variants[0].id);
+  const selectedVariant = variants.find((v) => v.id === selectedId) ?? variants[0];
+
   return (
     <div className="min-h-screen pt-24">
       {/* Hero */}
@@ -236,95 +239,117 @@ const MigrationPage = () => {
       {/* Comparison cards */}
       <section className="pb-8 section-padding">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
-            {variants.map((variant, idx) => (
-              <ScrollReveal key={variant.id} delay={idx * 80} className="h-full">
-                <div className="h-full rounded-2xl border border-border/60 bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                      Variante {idx + 1}
-                    </span>
-                  </div>
-                  <h2 className="text-xl font-semibold mb-2">{variant.name}</h2>
-                  <p className="text-sm text-muted-foreground mb-5">{variant.tagline}</p>
-
-                  <div className="space-y-3 border-t border-border/60 pt-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Komplexität</span>
-                      <div className="flex items-center gap-1">
-                        {complexityLabel(variant.complexityValue).map((filled, i) => (
-                          <span
-                            key={i}
-                            className={`h-1.5 w-5 rounded-full ${filled ? "bg-primary" : "bg-muted"}`}
-                          />
-                        ))}
-                        <span className="ml-2 text-xs font-medium text-foreground">{variant.complexity}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-start justify-between gap-3 text-sm">
-                      <span className="text-muted-foreground flex items-center gap-1.5">
-                        <Timer className="h-3.5 w-3.5" /> Dauer
+          <div
+            role="tablist"
+            aria-label="Migrationsvarianten"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch"
+          >
+            {variants.map((variant, idx) => {
+              const isActive = variant.id === selectedId;
+              return (
+                <ScrollReveal key={variant.id} delay={idx * 80} className="h-full">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-controls={`ablauf-${variant.id}`}
+                    onClick={() => setSelectedId(variant.id)}
+                    className={`h-full w-full text-left rounded-2xl border p-6 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                      isActive
+                        ? "border-primary bg-primary-light/40 shadow-lg ring-1 ring-primary/30"
+                        : "border-border/60 bg-card hover:border-primary/30 hover:shadow-md"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                        Variante {idx + 1}
                       </span>
-                      <span className="text-foreground text-right">{variant.duration}</span>
+                      {isActive && (
+                        <span className="text-[11px] font-semibold text-primary bg-primary-light px-2 py-0.5 rounded-full">
+                          Ausgewählt
+                        </span>
+                      )}
                     </div>
-                    <p className="text-sm text-muted-foreground pt-2">{variant.bestFor}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                    <h2 className="text-xl font-semibold mb-2">{variant.name}</h2>
+                    <p className="text-sm text-muted-foreground mb-5">{variant.tagline}</p>
+
+                    <div className="space-y-3 border-t border-border/60 pt-4">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Komplexität</span>
+                        <div className="flex items-center gap-1">
+                          {complexityLabel(variant.complexityValue).map((filled, i) => (
+                            <span
+                              key={i}
+                              className={`h-1.5 w-5 rounded-full ${filled ? "bg-primary" : "bg-muted"}`}
+                            />
+                          ))}
+                          <span className="ml-2 text-xs font-medium text-foreground">{variant.complexity}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start justify-between gap-3 text-sm">
+                        <span className="text-muted-foreground flex items-center gap-1.5">
+                          <Timer className="h-3.5 w-3.5" /> Dauer
+                        </span>
+                        <span className="text-foreground text-right">{variant.duration}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground pt-2">{variant.bestFor}</p>
+                    </div>
+                  </button>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Timelines per variant */}
+      {/* Timeline for selected variant */}
       <section className="py-12 md:py-16 section-padding">
-        <div className="container-wide space-y-16">
-          {variants.map((variant, vIdx) => (
-            <ScrollReveal key={variant.id} delay={vIdx * 60}>
-              <div className="rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
-                  <div>
-                    <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                      Ablauf – {variant.name}
-                    </span>
-                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight mt-1">{variant.name}</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground md:max-w-md md:text-right">{variant.tagline}</p>
-                </div>
-
-                {/* Timeline */}
-                <ol className="relative">
-                  {/* vertical line */}
-                  <span
-                    aria-hidden
-                    className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-border/40"
-                  />
-                  {variant.steps.map((step, sIdx) => (
-                    <li key={`${variant.id}-${sIdx}`} className="relative pl-14 pb-7 last:pb-0">
-                      <span
-                        className="absolute left-0 top-0 h-10 w-10 rounded-xl bg-background border border-primary/30 flex items-center justify-center shadow-sm"
-                        aria-hidden
-                      >
-                        <step.icon className="h-5 w-5 text-primary" />
-                      </span>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
-                        <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                          Schritt {sIdx + 1}
-                        </span>
-                        {step.timing && (
-                          <span className="text-[11px] font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">
-                            {step.timing}
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="text-base font-semibold mb-1">{step.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
-                    </li>
-                  ))}
-                </ol>
+        <div className="container-wide">
+          <div
+            id={`ablauf-${selectedVariant.id}`}
+            role="tabpanel"
+            className="rounded-2xl border border-border/60 bg-muted/20 p-6 md:p-10"
+          >
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  Ablauf – {selectedVariant.name}
+                </span>
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mt-1">{selectedVariant.name}</h3>
               </div>
-            </ScrollReveal>
-          ))}
+              <p className="text-sm text-muted-foreground md:max-w-md md:text-right">{selectedVariant.tagline}</p>
+            </div>
+
+            {/* Timeline */}
+            <ol className="relative">
+              <span
+                aria-hidden
+                className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-border/40"
+              />
+              {selectedVariant.steps.map((step, sIdx) => (
+                <li key={`${selectedVariant.id}-${sIdx}`} className="relative pl-14 pb-7 last:pb-0">
+                  <span
+                    className="absolute left-0 top-0 h-10 w-10 rounded-xl bg-background border border-primary/30 flex items-center justify-center shadow-sm"
+                    aria-hidden
+                  >
+                    <step.icon className="h-5 w-5 text-primary" />
+                  </span>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Schritt {sIdx + 1}
+                    </span>
+                    {step.timing && (
+                      <span className="text-[11px] font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">
+                        {step.timing}
+                      </span>
+                    )}
+                  </div>
+                  <h4 className="text-base font-semibold mb-1">{step.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
