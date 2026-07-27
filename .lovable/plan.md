@@ -1,55 +1,32 @@
-## Überarbeitung `/migration`
+## Änderungen auf `/migration`
 
-Alle Änderungen in `src/pages/MigrationPage.tsx`. Keine „Empfohlen"-Badges mehr, drei Varianten inhaltlich neu.
+### 1. Varianten als klickbare Tabs
+- Die drei Vergleichs-Cards (Quickstart, Soft Migration, Enterprise Migration) werden interaktive Buttons.
+- State `selectedVariant` (Default: `quickstart`).
+- Aktive Card: farblich hervorgehoben (Border in `primary`, dezenter `bg-primary-light`, stärkerer Ring). Inaktive Cards behalten neutrale Optik.
+- Unterhalb wird nur noch der Ablauf der aktiven Variante angezeigt (die anderen Timeline-Blöcke werden ausgeblendet).
+- Cards behalten Tastatur-Fokus (als `<button>` gerendert, `aria-pressed`).
 
-### Variante 1 – Quickstart / Migration nachgezogen
-- **Name:** „Quickstart"
-- **Tagline:** „Sofort starten, Daten optional später nachziehen."
-- **Komplexität:** Niedrig
-- **Dauer:** System in 48 Stunden nach Vertragsunterzeichnung
-- **Best for:** Teams, die sofort mit einer sauberen Umgebung starten und Altdaten erst später (oder gar nicht) übernehmen wollen.
-- **Ablauf:**
-  1. Vertragsunterzeichnung (Tag 0)
-  2. Systembereitstellung innerhalb von 48 Stunden inklusive Checkliste
-  3. Kick-off Call zur Abstimmung von Konfiguration, Setup und Onboarding
-  4. Konfiguration, Setup und Onboarding wie im Standardprozess
-  5. Produktiver Start mit sauberer, leerer Umgebung (Clean-Start)
-  6. Optionale Datenmigration zu einem späteren Zeitpunkt, falls Altdaten übernommen werden sollen
-  7. Regulärer Support nach Hypercare
+### 2. Wording: „der Kunde" → direkte Ansprache
+Der Text richtet sich an den Leser (= Kunde). Vorschlag: durchgehend direkte Ansprache in der Sie-Form, konsistent zum restlichen Wording der Seite.
 
-### Variante 2 – Soft Migration
-- **Name:** „Soft Migration"
-- **Tagline:** „Onboarding und Migration gemeinsam vorbereitet, Backup zum vereinbarten Zeitpunkt."
-- **Komplexität:** Mittel
-- **Dauer:** mehrere Wochen, Backup-Einspielung innerhalb einer Woche nach vereinbartem Termin
-- **Best for:** Teams, die vorhandene Daten strukturiert übernehmen wollen und Onboarding parallel zur Migrationsvorbereitung durchlaufen.
-- **Ablauf:**
-  1. Vertrag & Kick-off
-  2. Gemeinsames Onboarding und Setup (Pipelines, Rollen, Rechte, Schnittstellen)
-  3. Vereinbarung eines konkreten Zeitpunkts für die Backup-Einspielung
-  4. Bereitstellung des Backups durch den Kunden
-  5. Einspielen der Daten innerhalb einer Woche nach Bereitstellung
-  6. Go-Live mit migriertem Datenbestand, anschließend Hypercare & regulärer Support
+Konkrete Ersetzungen:
+- Soft Migration, Schritt „Onboarding & Setup": „…werden gemeinsam mit dem Kunden aufgesetzt…" → „…richten wir gemeinsam mit Ihnen ein…"
+- Soft Migration, Schritt „Bereitstellung des Backups": „Der Kunde stellt das Backup…" → „Sie stellen das Backup Ihres Bestandssystems zum vereinbarten Termin unverschlüsselt und zugänglich bereit."
+- Enterprise Migration, Schritt „Konfiguration & Einrichtung": „…gemeinsam mit dem Kunden vollständig konfiguriert…" → „…richten wir gemeinsam mit Ihnen vollständig ein…"
 
-### Variante 3 – Enterprise Migration
-- **Name:** „Enterprise Migration"
-- **Tagline:** „Zwei-Schritt-Migration mit Probelauf und geplantem Switch."
-- **Komplexität:** Hoch
-- **Dauer:** mehrere Wochen mit Vorlauf, finaler Switch an einem Tag
-- **Best for:** Größere Organisationen mit umfangreichen Datenbeständen, mehreren Quellsystemen oder hohen Compliance-Anforderungen.
-- **Ablauf (zwei Schritte hervorheben):**
-  1. Vertrag & Kick-off, Migrationsstrategie
-  2. Konfiguration & Einrichtung
-  3. Backup des Bestandssystems (≥ 2 Wochen vor dem finalen Switch)
-  4. **Schritt 1 – Probemigration:** Testlauf zur Validierung von Datenqualität, Mappings und Edge Cases
-  5. Auswertung, Korrekturen, Freigabe
-  6. **Schritt 2 – Produktive Migration am Stichtag X:** dank Testlauf an einem Tag durchführbar, Switch von Alt- auf Neusystem für alle Nutzer
-  7. Go-Live mit erweiterter Hypercare, danach regulärer Support
+(Restliche Copy bleibt unverändert.)
 
-### Weitere Anpassungen
-- „Empfohlen"-Badge und `highlight`-Styling komplett entfernen; alle drei Karten identisch gestaltet.
-- Komplexitäts-Indikator und Timing-Chips bleiben bestehen.
-- Reihenfolge: Quickstart → Soft Migration → Enterprise Migration.
-- Icons pro Schritt sinnvoll aus dem bestehenden Lucide-Set (`FileSignature`, `Rocket`, `PhoneCall`, `Settings2`, `Database`, `ShieldCheck`, `HardDriveDownload`, `GitMerge`, `LifeBuoy`, `CheckCircle2`).
+### 3. Doppeltes „Schritt"-Wording in Variante 3
+Enterprise hat oberhalb bereits die Meta-Zeile „Schritt 1", „Schritt 2" … und zusätzlich enthalten Titel 4 und 6 nochmal „Schritt 1 – Probemigration" bzw. „Schritt 2 – Produktive Migration am Stichtag X". Die `timing`-Badges wiederholen das ebenfalls.
 
-Kein weiterer Datei-Change nötig (Route, SEO, Navigation bleiben wie sie sind – Seite ist weiterhin noindex).
+Vorschlag – „Schritt" aus Titeln und Badges entfernen, Phasen-Wording nutzen:
+- Titel „Schritt 1 – Probemigration" → „Probemigration (Testlauf)", Badge `timing`: „Testlauf"
+- Titel „Schritt 2 – Produktive Migration am Stichtag X" → „Produktive Migration am Stichtag X", Badge `timing`: „Stichtag X"
+
+Damit bleibt die Zwei-Schritt-Logik durch die Ablauf-Nummerierung oben klar erkennbar, ohne Dopplung.
+
+### Technische Details
+- Datei: `src/pages/MigrationPage.tsx`.
+- `useState` für aktive Variante hinzufügen, Cards als `<button>` mit Klick-Handler, konditionales Rendering der Timeline-Section (nur aktive Variante).
+- Keine neuen Abhängigkeiten.
