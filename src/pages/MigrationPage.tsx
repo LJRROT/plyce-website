@@ -1,9 +1,9 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import {
   CheckCircle2,
+  ClipboardCheck,
   Database,
   FileSignature,
-  GitMerge,
   HardDriveDownload,
   LifeBuoy,
   PhoneCall,
@@ -30,124 +30,126 @@ type Variant = {
   complexityValue: number; // 1-3
   duration: string;
   bestFor: string;
-  highlight?: boolean;
   steps: Step[];
 };
 
 const variants: Variant[] = [
   {
-    id: "soft",
-    name: "Soft Migration",
-    tagline: "Schnell starten, Daten parallel migrieren.",
+    id: "quickstart",
+    name: "Quickstart",
+    tagline: "Sofort starten, Daten optional später nachziehen.",
     complexity: "Niedrig",
     complexityValue: 1,
-    duration: "ca. 2 Tage bis Go-Live",
+    duration: "System in 48 Stunden nach Vertragsunterzeichnung",
     bestFor:
-      "Geeignet für Teams, die zügig starten wollen und während des laufenden Betriebs migrieren können.",
-    highlight: true,
+      "Geeignet für Teams, die sofort mit einer sauberen Umgebung starten und Altdaten erst zu einem späteren Zeitpunkt oder gar nicht übernehmen möchten.",
     steps: [
       {
         icon: FileSignature,
-        title: "Vertrag unterzeichnen",
+        title: "Vertragsunterzeichnung",
         description:
-          "Mit der Unterzeichnung des Vertrags startet der Prozess und das Setup wird vorbereitet.",
+          "Mit der Unterzeichnung startet der Prozess und das Setup wird unmittelbar vorbereitet.",
         timing: "Tag 0",
       },
       {
         icon: Rocket,
-        title: "System bereitgestellt",
+        title: "Systembereitstellung",
         description:
-          "Innerhalb von zwei Tagen nach Unterschrift erhalten Sie Zugang zum System inklusive einer Checkliste für Konfiguration und Onboarding.",
-        timing: "innerhalb 2 Tagen",
+          "Innerhalb von 48 Stunden nach Vertragsunterzeichnung erhalten Sie Zugang zum System inklusive einer Checkliste für Konfiguration und Onboarding.",
+        timing: "innerhalb 48 Stunden",
       },
       {
         icon: PhoneCall,
         title: "Kick-off Call",
         description:
-          "Gemeinsam gehen wir die Checkliste durch, klären erste Fragen und richten die wichtigsten Einstellungen ein.",
-        timing: "parallel",
+          "Im Kick-off stimmen wir Konfiguration, Setup und Onboarding ab und klären die ersten Schritte gemeinsam.",
+      },
+      {
+        icon: Settings2,
+        title: "Konfiguration, Setup & Onboarding",
+        description:
+          "Konfiguration, Setup und Onboarding werden wie im Standardprozess durchgeführt, damit das System vollständig einsatzbereit ist.",
+      },
+      {
+        icon: Sparkles,
+        title: "Clean-Start im produktiven Betrieb",
+        description:
+          "Sie starten produktiv mit einer sauberen, leeren Umgebung und legen neue Projekte, Kandidaten und Kunden direkt in plyce an.",
       },
       {
         icon: Database,
-        title: "Datenmigration im laufenden Betrieb",
+        title: "Optionale Datenmigration",
         description:
-          "Sobald die Daten bereitgestellt werden, erfolgt die Migration im Hintergrund. Bis dahin legen Consultants und Agency aktuelle Projekte neu an und arbeiten direkt darin.",
-        timing: "sobald Daten vorliegen",
-      },
-      {
-        icon: GitMerge,
-        title: "Automatischer Merge",
-        description:
-          "Nach der Migration werden entstandene Dubletten über eine automatische Merge-Funktion sauber zusammengeführt.",
+          "Bei Bedarf lassen sich Altdaten zu einem späteren Zeitpunkt nachziehen. Diese Migration ist optional und wird separat geplant.",
+        timing: "optional, später",
       },
       {
         icon: LifeBuoy,
         title: "Hypercare & Support",
         description:
-          "Zwei Wochen Hypercare-Phase mit engem Support, danach Übergang in den regulären Support-Modus.",
-        timing: "2 Wochen Hypercare",
+          "Nach der Hypercare-Phase erfolgt der Übergang in den regulären Support-Modus.",
       },
     ],
   },
   {
-    id: "standard",
-    name: "Migration",
-    tagline: "Strukturiert konfigurieren, dann sauber migrieren.",
+    id: "soft",
+    name: "Soft Migration",
+    tagline:
+      "Onboarding und Migration gemeinsam vorbereitet, Backup zum vereinbarten Zeitpunkt.",
     complexity: "Mittel",
     complexityValue: 2,
-    duration: "mehrere Wochen",
+    duration:
+      "mehrere Wochen, Backup-Einspielung innerhalb einer Woche nach vereinbartem Termin",
     bestFor:
-      "Geeignet für Teams, die ihre Konfiguration vor der Datenübernahme vollständig finalisieren möchten.",
+      "Geeignet für Teams, die vorhandene Daten strukturiert übernehmen wollen und das Onboarding parallel zur Migrationsvorbereitung durchlaufen möchten.",
     steps: [
       {
         icon: FileSignature,
         title: "Vertrag & Kick-off",
         description:
-          "Nach Vertragsunterzeichnung erhält der Kunde eine Checkliste und richtet das System eigenständig ein, ohne bereits operativ darin zu arbeiten.",
+          "Nach Vertragsunterzeichnung startet der gemeinsame Kick-off mit Abstimmung von Zeitplan und Verantwortlichkeiten.",
         timing: "Tag 0",
       },
       {
         icon: Settings2,
-        title: "Konfiguration & Einrichtung",
+        title: "Onboarding & Setup",
         description:
-          "Pipelines, Rollen, Rechte und Schnittstellen werden vorbereitet, sodass das System zum Zeitpunkt der Datenmigration vollständig konfiguriert ist.",
-        timing: "Woche 1",
+          "Pipelines, Rollen, Rechte und Schnittstellen werden gemeinsam mit dem Kunden aufgesetzt, sodass das System vollständig für die Migration vorbereitet ist.",
       },
       {
-        icon: LifeBuoy,
-        title: "Hypercare für Konfiguration",
+        icon: ClipboardCheck,
+        title: "Terminvereinbarung Backup",
         description:
-          "Eine Woche später beginnt die Hypercare-Phase, in der offene Fragen zu Konfiguration und Einstellungen gemeinsam geklärt werden.",
-        timing: "ab Woche 2",
+          "Es wird ein konkreter Zeitpunkt für die Bereitstellung und Einspielung des Backups vereinbart.",
+      },
+      {
+        icon: HardDriveDownload,
+        title: "Bereitstellung des Backups",
+        description:
+          "Der Kunde stellt das Backup des Bestandssystems zum vereinbarten Termin unverschlüsselt und zugänglich bereit.",
       },
       {
         icon: Database,
-        title: "Datenmigration",
+        title: "Einspielen der Daten",
         description:
-          "Die Datenmigration erfolgt, sobald die Daten unverschlüsselt und zugänglich bereitgestellt werden. Erst danach beginnt der operative Einsatz.",
-        timing: "nach Bereitstellung der Daten",
+          "Das Backup wird innerhalb einer Woche nach Bereitstellung migriert und in plyce eingespielt.",
+        timing: "innerhalb 1 Woche",
       },
       {
         icon: Rocket,
-        title: "Go-Live",
+        title: "Go-Live, Hypercare & Support",
         description:
-          "Das Team startet produktiv mit vollständig migriertem Datenbestand und finaler Konfiguration.",
-      },
-      {
-        icon: LifeBuoy,
-        title: "Hypercare im Betrieb & Support",
-        description:
-          "Begleitete Einführung im Tagesgeschäft, danach Übergang in den regulären Support-Modus.",
+          "Produktivstart mit migriertem Datenbestand, begleitet durch die Hypercare-Phase, anschließend Übergang in den regulären Support-Modus.",
       },
     ],
   },
   {
     id: "enterprise",
     name: "Enterprise Migration",
-    tagline: "Maximale Sicherheit für komplexe Datenbestände.",
+    tagline: "Zwei-Schritt-Migration mit Probelauf und geplantem Switch.",
     complexity: "Hoch",
     complexityValue: 3,
-    duration: "mehrere Wochen mit Vorlaufzeit",
+    duration: "mehrere Wochen Vorlauf, finaler Switch an einem Tag",
     bestFor:
       "Geeignet für größere Organisationen mit umfangreichen Datenbeständen, mehreren Quellsystemen oder hohen Compliance-Anforderungen.",
     steps: [
@@ -166,22 +168,30 @@ const variants: Variant[] = [
       },
       {
         icon: ShieldCheck,
-        title: "Backup vor der Migration",
+        title: "Backup des Bestandssystems",
         description:
-          "Mindestens zwei Wochen vor der eigentlichen Migration wird ein vollständiges Backup des Bestandssystems erstellt und abgesichert.",
-        timing: "≥ 2 Wochen vorher",
+          "Mindestens zwei Wochen vor dem finalen Switch wird ein vollständiges Backup des Bestandssystems erstellt und abgesichert.",
+        timing: "≥ 2 Wochen vor Switch",
       },
       {
         icon: HardDriveDownload,
-        title: "Probe-Migration & Validierung",
+        title: "Schritt 1 – Probemigration",
         description:
-          "Eine Testmigration prüft Datenqualität, Mappings und Edge-Cases, bevor die Produktivmigration durchgeführt wird.",
+          "Eine vollständige Testmigration prüft Datenqualität, Mappings und Edge Cases unter realen Bedingungen.",
+        timing: "Schritt 1",
+      },
+      {
+        icon: ClipboardCheck,
+        title: "Auswertung & Freigabe",
+        description:
+          "Ergebnisse der Probemigration werden ausgewertet, notwendige Korrekturen umgesetzt und die produktive Migration freigegeben.",
       },
       {
         icon: Database,
-        title: "Produktive Datenmigration",
+        title: "Schritt 2 – Produktive Migration am Stichtag X",
         description:
-          "Die finale Datenmigration erfolgt geplant und kontrolliert, mit Rollback-Option auf das vorab erstellte Backup.",
+          "Dank des vorherigen Testlaufs erfolgt die finale Migration an einem einzigen Tag. Alle Nutzer wechseln zum Stichtag geschlossen vom Alt- auf das neue System.",
+        timing: "Schritt 2 – Stichtag X",
       },
       {
         icon: Rocket,
@@ -228,22 +238,11 @@ const MigrationPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
             {variants.map((variant, idx) => (
               <ScrollReveal key={variant.id} delay={idx * 80} className="h-full">
-                <div
-                  className={`h-full rounded-2xl border bg-card p-6 transition-all duration-300 ${
-                    variant.highlight
-                      ? "border-primary/40 shadow-lg shadow-primary/5"
-                      : "border-border/60 hover:border-primary/30 hover:shadow-lg"
-                  }`}
-                >
+                <div className="h-full rounded-2xl border border-border/60 bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                       Variante {idx + 1}
                     </span>
-                    {variant.highlight && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wide text-primary bg-primary-light px-2 py-0.5 rounded-full">
-                        Empfohlen
-                      </span>
-                    )}
                   </div>
                   <h2 className="text-xl font-semibold mb-2">{variant.name}</h2>
                   <p className="text-sm text-muted-foreground mb-5">{variant.tagline}</p>
