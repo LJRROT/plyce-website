@@ -60,7 +60,7 @@ const Navbar = () => {
             <span className="text-xl font-bold tracking-tight text-foreground">plyce</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-5 lg:gap-7">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-7">
             {navLinks.map((link) =>
               link.href === "/faq" ? (
                 <div key="faq" className="relative" onMouseEnter={() => { setFaqMenuOpen(true); setAgentsMenuOpen(false); }} onMouseLeave={() => setFaqMenuOpen(false)}>
@@ -90,16 +90,16 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <Link to={languageTarget} className="rounded-md border border-border/70 px-2.5 py-1.5 text-xs font-semibold text-muted-foreground hover:text-primary" aria-label={locale === "de" ? "Switch to English" : "Auf Deutsch wechseln"}>{locale === "de" ? "EN" : "DE"}</Link>
             <Button variant="ghost" size="sm" type="button" onClick={() => setLoginOpen(true)}>Login</Button>
             <Button variant="default" size="sm" type="button" onClick={() => setDemoOpen(true)}>{locale === "en" ? "Request Demo" : "Demo anfragen"}</Button>
           </div>
 
-          <button type="button" className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors" onClick={() => setOpen(!open)} aria-label={open ? (locale === "en" ? "Close menu" : "Menü schließen") : (locale === "en" ? "Open menu" : "Menü öffnen")} aria-expanded={open}>{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
+          <button type="button" className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors" onClick={() => setOpen(!open)} aria-label={open ? (locale === "en" ? "Close menu" : "Menü schließen") : (locale === "en" ? "Open menu" : "Menü öffnen")} aria-expanded={open}>{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
         </div>
 
-        {open && <div className="md:hidden pb-4 pt-2 animate-fade-in"><div className="flex flex-col gap-2">
+        {open && <div className="lg:hidden pb-4 pt-2 animate-fade-in"><div className="flex flex-col gap-2">
           {navLinks.map((link) => <Link key={link.href} to={path(link.href)} onClick={() => setOpen(false)} className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-accent ${basePath === link.href ? "text-primary bg-primary-light" : "text-muted-foreground"}`}>{link[locale]}</Link>)}
           <Link to={languageTarget} onClick={() => setOpen(false)} className="mx-3 px-3 py-2 rounded-lg border border-border/70 text-sm font-semibold text-muted-foreground">{locale === "de" ? "English" : "Deutsch"}</Link>
           <div className="flex gap-2 mt-2 px-3"><Button variant="ghost" size="sm" className="flex-1" type="button" onClick={openLogin}>Login</Button><Button variant="default" size="sm" className="flex-1" type="button" onClick={openDemo}>{locale === "en" ? "Request Demo" : "Demo anfragen"}</Button></div>
