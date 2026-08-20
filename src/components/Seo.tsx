@@ -10,6 +10,8 @@ const de: Record<string, RouteSeo> = {
   "/features": { title: "ATS & CRM Funktionen für Personalberater | plyce", description: "Alle Funktionen: Kandidaten- und Bewerbermanagement, Suchmandate, Kunden-CRM, E-Mail, Reporting, Automatisierung und KI für Personalberater." },
   "/plyce-time": { title: "plyce time – Freelancer Management, Timesheets & Invoicing | plyce", description: "Freelancer- und Projektmanagement, Timesheet-Portal und automatisierte Abrechnung, nahtlos integriert in plyce CRM/ATS." },
   "/ai-agents": { title: "14 AI Agents im Recruiting | plyce", description: "AI Agents für CV-Analyse, Matching, Dossiers, Outreach, Reports, Project Briefs, Recording und Summaries direkt im ATS/CRM." },
+  "/team": { title: "Das Team hinter plyce | Recruiting trifft Technologie", description: "Lerne Malin Behrens, Mark Vaughn und Lasse Rothfuss kennen: Recruiting-Erfahrung, Prozesswissen und Software-Architektur hinter der AI-nativen Recruiting-Plattform plyce." },
+  "/careers": { title: "Karriere bei plyce | AI Engineer & Support Engineer", description: "Arbeite Full Remote an AI-nativer Recruiting-Software. Offene Stellen bei plyce: AI Engineer, Support Engineer sowie Initiativbewerbungen." },
   "/data-protection": { title: "DSGVO & Sicherheit für Recruiting-Software | plyce", description: "Datenschutz, EU-orientierte Infrastruktur und sichere Datenhaltung für ATS/CRM in Personalberatungen." },
   "/datenschutz": { title: "Datenschutzerklärung | plyce", description: "Datenschutzerklärung für die plyce Recruiting-Software und Website." },
   "/impressum": { title: "Impressum | plyce", description: "Impressum und Kontakt der WECO Experts GmbH, Betreiberin der Marke plyce." },
@@ -28,6 +30,8 @@ const en: Record<string, RouteSeo> = {
   "/features": { title: "ATS & CRM Features for Recruitment Agencies | plyce", description: "Explore candidate management, projects, client CRM, email, automation, analytics, integrations and AI-native recruiting features." },
   "/plyce-time": { title: "plyce time – Freelancer Management, Timesheets & Invoicing", description: "Manage freelancers, assignments, timesheets, approvals and invoicing with pay-as-you-go pricing and seamless ATS/CRM integration." },
   "/ai-agents": { title: "14 AI Agents for Recruiting | plyce", description: "AI Agents for CV analysis, candidate matching, outreach, project briefs, reports, recording, summaries and more, embedded directly in your ATS/CRM." },
+  "/team": { title: "Meet the Team behind plyce | Recruiting Meets Technology", description: "Meet Malin Behrens, Mark Vaughn and Lasse Rothfuss: recruiting experience, process expertise and software architecture behind the AI-native recruiting platform plyce." },
+  "/careers": { title: "Careers at plyce | AI Engineer & Support Engineer", description: "Join plyce remotely and help build AI-native recruiting software. Open roles include AI Engineer, Support Engineer and open applications." },
   "/data-protection": { title: "Data Protection & GDPR for Recruiting Software | plyce", description: "GDPR-oriented recruiting software with configurable AI providers, structured access controls and EU-focused data strategy." },
   "/datenschutz": { title: "Privacy Policy | plyce", description: "English information about privacy and data processing on the plyce website and recruiting platform." },
   "/impressum": { title: "Legal Notice | plyce", description: "Legal notice and provider information for plyce by WECO Experts GmbH." },
@@ -93,17 +97,50 @@ const Seo = () => {
     setLink("alternate", enUrl, "en");
     setLink("alternate", deUrl, "x-default");
 
+    const graph: Record<string, unknown>[] = [
+      { "@type": "Organization", "@id": `${base}/#organization`, name: "WECO Experts GmbH", alternateName: "plyce", url: `${base}/`, logo: `${base}/plyce-logo-mark.png` },
+      { "@type": "SoftwareApplication", "@id": `${base}/#software`, name: "plyce", applicationCategory: "BusinessApplication", operatingSystem: "Web", url: isEn ? `${base}/en` : `${base}/`, description: seo.description, provider: { "@id": `${base}/#organization` }, featureList: ["Applicant Tracking System", "Recruiting CRM", "Candidate Management", "Project Management", "AI Agents", "Freelancer Management", "Timesheets and Invoicing"] },
+      { "@type": "WebPage", url: currentUrl, name: seo.title, description: seo.description, inLanguage: isEn ? "en" : "de", isPartOf: { "@id": `${base}/#website` } },
+      { "@type": "WebSite", "@id": `${base}/#website`, url: `${base}/`, name: "plyce", inLanguage: ["de", "en"], publisher: { "@id": `${base}/#organization` } },
+    ];
+
+    if (basePath === "/team") {
+      graph.push(
+        { "@type": "Person", name: "Malin Behrens", jobTitle: "Business Analyst", worksFor: { "@id": `${base}/#organization` } },
+        { "@type": "Person", name: "Mark Vaughn", jobTitle: "Technical Advisor / Architect", worksFor: { "@id": `${base}/#organization` } },
+        { "@type": "Person", name: "Lasse Rothfuss", jobTitle: "Product Owner", worksFor: { "@id": `${base}/#organization` } },
+      );
+    }
+
+    if (basePath === "/careers") {
+      const careersUrl = isEn ? `${base}/en/careers` : `${base}/careers`;
+      graph.push(
+        {
+          "@type": "JobPosting",
+          title: "AI Engineer",
+          description: isEn ? "Build AI-native recruiting features with TypeScript, React, PostgreSQL/Supabase, SQL, APIs and LLM integrations." : "Entwickle AI-native Recruiting-Features mit TypeScript, React, PostgreSQL/Supabase, SQL, APIs und LLM-Integrationen.",
+          datePosted: "2026-08-20",
+          directApply: true,
+          jobLocationType: "TELECOMMUTE",
+          url: `${careersUrl}#ai-engineer`,
+          hiringOrganization: { "@id": `${base}/#organization` },
+        },
+        {
+          "@type": "JobPosting",
+          title: "Support Engineer",
+          description: isEn ? "Own first and second level support, troubleshooting, onboarding assistance and the feedback loop between customers and product engineering." : "Übernimm First- und Second-Level-Support, Troubleshooting, Onboarding-Unterstützung und die Feedback-Schleife zwischen Kunden und Product Engineering.",
+          datePosted: "2026-08-20",
+          directApply: true,
+          jobLocationType: "TELECOMMUTE",
+          url: `${careersUrl}#support-engineer`,
+          hiringOrganization: { "@id": `${base}/#organization` },
+        },
+      );
+    }
+
     let schema = document.getElementById("plyce-schema-org") as HTMLScriptElement | null;
     if (!schema) { schema = document.createElement("script"); schema.id = "plyce-schema-org"; schema.type = "application/ld+json"; document.head.appendChild(schema); }
-    schema.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        { "@type": "Organization", "@id": `${base}/#organization`, name: "WECO Experts GmbH", alternateName: "plyce", url: `${base}/`, logo: `${base}/plyce-logo-mark.png` },
-        { "@type": "SoftwareApplication", "@id": `${base}/#software`, name: "plyce", applicationCategory: "BusinessApplication", operatingSystem: "Web", url: isEn ? `${base}/en` : `${base}/`, description: seo.description, provider: { "@id": `${base}/#organization` }, featureList: ["Applicant Tracking System", "Recruiting CRM", "Candidate Management", "Project Management", "AI Agents", "Freelancer Management", "Timesheets and Invoicing"] },
-        { "@type": "WebPage", url: currentUrl, name: seo.title, description: seo.description, inLanguage: isEn ? "en" : "de", isPartOf: { "@id": `${base}/#website` } },
-        { "@type": "WebSite", "@id": `${base}/#website`, url: `${base}/`, name: "plyce", inLanguage: ["de", "en"], publisher: { "@id": `${base}/#organization` } },
-      ],
-    });
+    schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
   }, [pathname]);
 
   return null;
