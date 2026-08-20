@@ -7,6 +7,8 @@ const links = [
   { to: "/plyce-time", label: "plyce time" },
   { to: "/ai-agents", label: "AI Agents" },
   { to: "/pricing", label: "Preise" },
+  { to: "/team", label: "Team" },
+  { to: "/careers", label: "Karriere" },
   { to: "/recruiting-software-vergleich", label: "Recruiting Software Vergleich" },
   { to: "/data-protection", label: "Data Protection" },
   { to: "/faq", label: "FAQ" },
@@ -32,22 +34,11 @@ const SitemapPage = () => {
             <ul className="space-y-1">
               {links.map((item) => (
                 <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    className="flex min-h-11 items-center text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
-                  >
-                    {item.label}
-                  </Link>
+                  <Link to={item.to} className="flex min-h-11 items-center text-sm font-medium text-foreground hover:text-primary transition-colors py-1">{item.label}</Link>
                 </li>
               ))}
               <li>
-                <button
-                  type="button"
-                  className="flex min-h-11 w-full items-center text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
-                  onClick={() => window.dispatchEvent(new Event("plyce-open-cookie-settings"))}
-                >
-                  Cookie-Einstellungen
-                </button>
+                <button type="button" className="flex min-h-11 w-full items-center text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-1" onClick={() => window.dispatchEvent(new Event("plyce-open-cookie-settings"))}>Cookie-Einstellungen</button>
               </li>
             </ul>
           </ScrollReveal>
