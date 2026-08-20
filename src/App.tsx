@@ -22,6 +22,8 @@ import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
 import PlyceTimePage from "./pages/PlyceTimePage";
 import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
+import TeamPage from "./pages/TeamPage";
+import CareersPage from "./pages/CareersPage";
 import NotFound from "./pages/NotFound";
 import { EnglishPageRouter } from "./pages/EnglishPages";
 import { useEffect } from "react";
@@ -71,7 +73,11 @@ const App = () => (
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/migration" element={<MigrationPage />} />
           <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/careers" element={<CareersPage />} />
           <Route path="/en/ai-agents" element={<AIAgentsPage />} />
+          <Route path="/en/team" element={<TeamPage />} />
+          <Route path="/en/careers" element={<CareersPage />} />
           <Route path="/en/*" element={<EnglishPageRouter />} />
           <Route path="/en" element={<EnglishPageRouter />} />
           <Route path="*" element={<NotFound />} />
