@@ -34,10 +34,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold mb-4">{t("Informationen", "Information")}</h3>
+            <h3 className="text-sm font-semibold mb-4">{t("Unternehmen", "Company")}</h3>
             <ul className="space-y-2.5">
+              <li><Link to={href("/team")} className="text-sm text-muted-foreground hover:text-primary transition-colors">Team</Link></li>
+              <li><Link to={href("/careers")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Karriere", "Careers")}</Link></li>
               <li><Link to={href("/faq")} className="text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</Link></li>
-              <li><Link to={href("/data-protection")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Datenschutz EU-DSGVO", "GDPR & Data Protection")}</Link></li>
               <li><Link to={href("/implementierung")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Implementierung", "Implementation")}</Link></li>
               <li><Link to={href("/partnerprogramm")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Partnerprogramm", "Partner program")}</Link></li>
             </ul>
@@ -47,6 +48,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold mb-4">{t("Rechtliches", "Legal")}</h3>
             <ul className="space-y-2.5">
               <li><Link to={href("/agb")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("AGB", "Terms & Conditions")}</Link></li>
+              <li><Link to={href("/datenschutz")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Datenschutzerklärung", "Privacy Policy")}</Link></li>
               <li><button type="button" className="text-sm text-muted-foreground hover:text-primary transition-colors text-left w-full" onClick={() => window.dispatchEvent(new Event("plyce-open-cookie-settings"))}>{t("Cookie-Einstellungen", "Cookie settings")}</button></li>
               <li><Link to={href("/impressum")} className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("Impressum", "Legal Notice")}</Link></li>
               <li><Link to={href("/sitemap")} className="text-sm text-muted-foreground hover:text-primary transition-colors">Sitemap</Link></li>
