@@ -1,320 +1,45 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import {
-  ArrowRight,
-  Briefcase,
-  GitCompare,
-  Globe,
-  Highlighter,
-  Kanban,
-  LayoutTemplate,
-  Presentation,
-  ScanSearch,
-  SendHorizontal,
-  FileSignature,
-  Video,
+  ArrowRight, Briefcase, FileSignature, FileText, GitCompare, Globe, Highlighter,
+  Kanban, LayoutTemplate, Mic, Presentation, ScanSearch, SendHorizontal, Sparkles, Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
-type AgentDef = {
-  id: string;
-  icon: LucideIcon;
-  name: string;
-  tagline: string;
-  capabilities: string[];
-  beta?: boolean;
-};
+type Copy = { tagline: string; capabilities: string[] };
+type AgentDef = { id: string; icon: LucideIcon; name: string; de: Copy; en: Copy; beta?: boolean };
 
-/** Reihenfolge: Kern-Recruiting & Delivery zuerst, dann Kommunikation/Reports, Marketing & BD, Produktivität. */
 const agents: AgentDef[] = [
-  {
-    id: "ai-cv-analyzer",
-    icon: ScanSearch,
-    name: "AI CV Analyzer",
-    tagline:
-      "Analysiert CVs strukturiert, generiert automatisch Tags und Skills und erstellt eine einheitliche Darstellung von Werdegang und Ausbildung.",
-    capabilities: [
-      "Tags und Skills sowie Kandidatentyp und Seniorität werden aus dem CV abgeleitet",
-      "Berufserfahrung, Ausbildung, Zusammenfassung und Highlight als einheitliche Profilteile",
-      "Anonymisierung von Kandidateninformationen sowie von Unternehmens- und Branchenangaben im CV",
-      "Erkennung von Rollenbezeichnungen und fachlichen Schwerpunkten aus dem CV",
-      "Überführung der Daten ins strukturierte Feldmodell statt in Freitext",
-      "Direkte Nutzbarkeit der Profile für Suche, Listen und Matching",
-    ],
-  },
-  {
-    id: "ai-candidate-match",
-    icon: GitCompare,
-    name: "AI Candidate Match",
-    tagline:
-      "Relevanzbewertung von Kandidaten zum Mandat mit Score von 0 bis 100 und nachvollziehbarer textlicher Begründung. Ergebnisse fließen direkt in Shortlists, Multimails und Folgeprozesse.",
-    capabilities: [
-      "Score und Begründung bleiben am Kandidaten dokumentiert",
-      "Muss-Skills und Projektanforderungen werden gegeneinander geprüft",
-      "Shortlists nach Relevanz sortiert, nicht nur alphabetisch",
-      "Erste Vorauswahl ohne Endlosscreening in Tabellen",
-      "Direkte Übernahme der Match-Shortlist in Multimails und Folgeprozesse",
-      "Direkte Verarbeitung auf Kandidaten- und Projektebene in plyce",
-    ],
-  },
-  {
-    id: "ai-outreach-messages",
-    icon: SendHorizontal,
-    name: "AI Outreach Messages",
-    tagline:
-      "Personalisierte, projektspezifische Active-Sourcing-Nachrichten für Xing, LinkedIn und Mailshots",
-    capabilities: [
-      "Ton, Länge und Aufbau pro Nachricht individuell einstellbar",
-      "Mandats- und Projektinfos fließen in die Ansprache ein",
-      "Entwürfe aus Kandidaten- und Projektbezug, ohne ständigen Wechsel zwischen Tools",
-      "Automatische Projektreferenz in der Inhaltsgenerierung",
-      "Planbare Serien bei weiterhin individuellem Inhalt je Kontakt",
-      "Text als prüfbarer Entwurf vor dem Versand",
-    ],
-  },
-  {
-    id: "ai-dossier-highlights",
-    icon: Highlighter,
-    name: "AI Dossier Highlights",
-    tagline:
-      "Kompakte Highlights zur Passung von Kandidat und Projekt",
-    capabilities: [
-      "Kernaussagen statt vollständiger CV-Lektüre",
-      "Schwerpunkt auf Erfahrung, die für dieses Mandat zählt",
-      "Aufbereitete Tonalität und Länge für Entscheider",
-      "Aufbau, Länge und Tonalität individuell einstellbar",
-      "Vorbereitete Argumentationsspitzen für die Kandidatenvorstellung",
-      "Branche und Rolle fließen in die Formulierung ein",
-    ],
-  },
-  {
-    id: "ai-cv-formatter",
-    icon: LayoutTemplate,
-    name: "AI CV Formatter",
-    tagline:
-      "Standardisiertes CV-Layout für Berufserfahrung und Ausbildung inklusive Anonymisierung und Übersetzung DE/EN",
-    capabilities: [
-      "Individuell einstellbare Struktur für Kandidatenvorstellungen",
-      "Automatische Anonymisierung von CVs inklusive Unternehmen und Branchen",
-      "Übersetzung des gesamten CV ins Deutsche und Englische per Klick",
-      "Anreicherung von Berufsstationen im Lebenslauf",
-      "Schneller Übergang von Rohdaten zur versandfertigen Fassung",
-      "Gleicher Qualitätsstandard über alle Profile",
-    ],
-  },
-  {
-    id: "ai-project-report",
-    icon: Presentation,
-    name: "AI Project Report",
-    tagline:
-      "Projektreport aus dem Mandat mit Kandidaten, Interviews, Statusänderungen, Absagen inkl. Gründe und Kennzahlen",
-    capabilities: [
-      "Alle Kandidaten und Stati eines Projekts auf einer Seite",
-      "Sichtbare Mitführung von Interviewterminen und Feedback",
-      "Automatische Ausgabe projektbezogener KPIs",
-      "Generiert HTML und Text zum Kopieren oder zum Versand per E-Mail",
-      "Liefert aus den KPIs eine nachvollziehbare Argumentationsgrundlage für das Kundengespräch",
-      "Inhalt folgt dem Recruiting-Projekt in plyce",
-    ],
-  },
-  {
-    id: "ai-company-status-report",
-    icon: Kanban,
-    name: "AI Company Status Report",
-    tagline:
-      "Zusammenfassung laufender Kundenprojekte: Kandidatenstati und Interviewlage auf einen Blick",
-    capabilities: [
-      "Account-Sicht über mehrere Suchmandate gleichzeitig",
-      "Nachvollziehbar, wo welcher Kandidat im Prozess steht",
-      "Interviewhistorie je Projekt gebündelt",
-      "Vorbereitete Gesprächsgrundlage für den wöchentlichen Kundencall",
-      "Einheitlicher Informationsstand in der internen Kundenabstimmung",
-      "Kein manuelles Zusammenkopieren aus Einzelreports",
-    ],
-  },
-  {
-    id: "ai-job-post-builder",
-    icon: Briefcase,
-    name: "AI Job Post Builder",
-    tagline: "Anonymisierte, publikationsreife Stellenanzeige aus Mandatsdaten",
-    capabilities: [
-      "Anzeigentext aus Rolle, Anforderungen und Rahmen im Projekt",
-      "Sensible Kundendaten bleiben in der Ausschreibung ungenannt",
-      "Angepasste Formulierungen für Jobbörsen und Karriereseite",
-      "Von internem Briefing zur Ausschreibung in wenigen Schritten",
-      "Einheitlicher Stil über alle offenen Rollen",
-      "Aufbau, Struktur und Tonalität individuell einstellbar",
-    ],
-  },
-  {
-    id: "ai-company-enricher",
-    icon: Globe,
-    name: "AI Company Enricher",
-    tagline:
-      "Strukturierte Firmendaten aus der Unternehmenswebsite per URL im Profil",
-    capabilities: [
-      "Branche, Größe und Geschäftsmodell aus öffentlichen Quellen",
-      "Befüllung von Profilfeldern statt manueller Recherche",
-      "Ansprache im BD mit Fakten statt mit Floskeln",
-      "Kurzrecherche vor dem Erstkontakt automatisiert",
-      "Vollständigere Kundenakten ohne Fleißarbeit",
-      "Strukturierte Firmendaten lassen sich direkt in Account und Stammdaten in plyce übernehmen",
-    ],
-  },
-  {
-    id: "ai-signature-parser",
-    icon: FileSignature,
-    name: "AI Signature Parser",
-    tagline: "Strukturierte Kontaktdaten aus E-Mail-Signaturen mit Übernahmevorschlag",
-    capabilities: [
-      "Name, Rolle, Telefon, Mail und Socials strukturiert ausgelesen",
-      "Vorschau vor dem Speichern statt unkontrollierter Übernahme",
-      "Generierung des vollständigen Kontakts in plyce per Klick",
-      "Automatisiert zu einer besseren Datenbasis aus der Korrespondenz",
-    ],
-  },
-  {
-    id: "ai-meeting-tracker",
-    icon: Video,
-    name: "AI Meeting Tracker",
-    beta: true,
-    tagline:
-      "Meetings aus Google Meet und Microsoft Teams werden automatisch erkannt, analysiert und dem richtigen Kandidaten oder Kontakt zugeordnet",
-    capabilities: [
-      "Automatische Erkennung von Notizen und Transkripten in Google Drive und OneDrive",
-      "KI-Analyse extrahiert relevante Inhalte und Kernaussagen aus dem Meeting",
-      "Automatische Zuordnung zum passenden Kandidaten oder Kontakt",
-      "Speicherung als Aktivität inklusive Zusammenfassung im Profil",
-      "Drive- oder OneDrive-Verbindung im Nutzerprofil notwendig",
-      "Prompt im Bereich Prompt Engineering jederzeit anpassbar",
-    ],
-  },
+  { id:"ai-cv-analyzer", icon:ScanSearch, name:"AI CV Analyzer", de:{tagline:"Analysiert CVs strukturiert, generiert automatisch Tags und Skills und erstellt eine einheitliche Darstellung von Werdegang und Ausbildung.",capabilities:["Tags, Skills, Kandidatentyp und Seniorität automatisch ableiten","Berufserfahrung, Ausbildung und Zusammenfassung strukturiert aufbereiten","Kandidaten-, Unternehmens- und Branchenangaben anonymisieren","Profile direkt für Suche, Listen und Matching nutzbar machen"]}, en:{tagline:"Analyzes CVs, automatically generates tags and skills, and creates a consistent structure for experience and education.",capabilities:["Automatically derive tags, skills, candidate type and seniority","Structure work experience, education and summaries","Anonymize candidate, company and industry information","Make profiles directly usable for search, lists and matching"]}},
+  { id:"ai-candidate-match", icon:GitCompare, name:"AI Candidate Match", de:{tagline:"Bewertet die Passung von Kandidaten zu einem Mandat mit Score von 0 bis 100 und nachvollziehbarer Begründung.",capabilities:["Muss-Skills und Projektanforderungen gegeneinander prüfen","Score und Begründung am Kandidaten dokumentieren","Shortlists nach Relevanz priorisieren","Ergebnisse direkt in Folgeprozessen nutzen"]}, en:{tagline:"Evaluates candidate fit for a project with a 0–100 score and a transparent explanation.",capabilities:["Compare must-have skills with project requirements","Store score and reasoning with the candidate","Prioritize shortlists by relevance","Use results directly in downstream workflows"]}},
+  { id:"ai-outreach-messages", icon:SendHorizontal, name:"AI Outreach Messages", de:{tagline:"Erstellt personalisierte, projektspezifische Active-Sourcing-Nachrichten für LinkedIn, Xing und Mailshots.",capabilities:["Ton, Länge und Aufbau individuell steuern","Projektinformationen automatisch einbeziehen","Personalisierte Entwürfe direkt aus Kandidaten- und Projektbezug erstellen","Texte vor dem Versand prüfen und anpassen"]}, en:{tagline:"Creates personalized, project-specific active sourcing messages for LinkedIn, Xing and email campaigns.",capabilities:["Control tone, length and structure","Automatically include project information","Create personalized drafts from candidate and project context","Review and edit messages before sending"]}},
+  { id:"ai-dossier-highlights", icon:Highlighter, name:"AI Dossier Highlights", de:{tagline:"Erstellt kompakte Highlights zur Passung von Kandidat und Projekt.",capabilities:["Relevante Erfahrung statt vollständiger CV-Lektüre hervorheben","Argumente für die Kandidatenvorstellung vorbereiten","Branche und Rolle in die Formulierung einbeziehen","Aufbau, Länge und Tonalität individuell einstellen"]}, en:{tagline:"Creates concise highlights explaining why a candidate fits a specific project.",capabilities:["Highlight relevant experience instead of requiring full CV review","Prepare key arguments for candidate presentations","Include industry and role context","Customize structure, length and tone"]}},
+  { id:"ai-cv-formatter", icon:LayoutTemplate, name:"AI CV Formatter", de:{tagline:"Standardisiert CVs inklusive Anonymisierung und Übersetzung zwischen Deutsch und Englisch.",capabilities:["Einheitliche Struktur für Kandidatenvorstellungen","CVs inklusive Unternehmen und Branchen anonymisieren","Gesamten CV per Klick übersetzen","Rohdaten in eine versandfertige Fassung überführen"]}, en:{tagline:"Standardizes CVs including anonymization and translation between German and English.",capabilities:["Create a consistent structure for candidate presentations","Anonymize CVs including companies and industries","Translate the complete CV with one click","Turn raw data into a presentation-ready version"]}},
+  { id:"ai-project-brief", icon:Sparkles, name:"AI Project Brief", de:{tagline:"Erstellt aus vorhandenen Projektinformationen automatisch ein strukturiertes und vollständiges Projektbriefing.",capabilities:["Unstrukturierte Projektinformationen in ein einheitliches Briefing überführen","Aufgaben, Anforderungen, Rahmenbedingungen und relevante Eckdaten herausarbeiten","Fehlende oder widersprüchliche Informationen schneller sichtbar machen","Projektinformationen als Grundlage für Matching, Outreach und Job Posts vorbereiten"]}, en:{tagline:"Turns existing project information into a structured and complete project brief.",capabilities:["Convert unstructured project information into a consistent brief","Extract responsibilities, requirements, conditions and key facts","Make missing or conflicting information easier to identify","Prepare project data for matching, outreach and job posts"]}},
+  { id:"ai-project-report", icon:Presentation, name:"AI Project Report", de:{tagline:"Erstellt Projektreports mit Kandidaten, Interviews, Statusänderungen, Absagegründen und Kennzahlen.",capabilities:["Kandidaten und Stati eines Projekts zusammenfassen","Interviews und Feedback sichtbar mitführen","Projektbezogene KPIs automatisch ausgeben","Gesprächsgrundlage für Kundenupdates erstellen"]}, en:{tagline:"Creates project reports covering candidates, interviews, status changes, rejection reasons and KPIs.",capabilities:["Summarize candidates and project statuses","Include interviews and feedback","Generate project-specific KPIs","Create a clear basis for client updates"]}},
+  { id:"ai-company-status-report", icon:Kanban, name:"AI Company Status Report", de:{tagline:"Fasst laufende Kundenprojekte, Kandidatenstati und Interviews auf Account-Ebene zusammen.",capabilities:["Mehrere Suchmandate in einer Account-Sicht bündeln","Kandidatenstatus projektübergreifend nachvollziehen","Interviewhistorie zusammenfassen","Wöchentliche Kundenabstimmungen schneller vorbereiten"]}, en:{tagline:"Summarizes active client projects, candidate statuses and interviews at account level.",capabilities:["Combine multiple searches in one account view","Track candidate status across projects","Summarize interview history","Prepare recurring client updates faster"]}},
+  { id:"ai-job-post-builder", icon:Briefcase, name:"AI Job Post Builder", de:{tagline:"Erstellt anonymisierte, publikationsreife Stellenanzeigen direkt aus den Mandatsdaten.",capabilities:["Rolle, Anforderungen und Rahmenbedingungen automatisch verarbeiten","Sensible Kundendaten anonymisieren","Texte für Jobbörsen und Karriereseiten vorbereiten","Stil, Struktur und Tonalität einheitlich halten"]}, en:{tagline:"Creates anonymized, publication-ready job ads directly from project data.",capabilities:["Process role, requirements and conditions automatically","Anonymize sensitive client information","Prepare copy for job boards and career pages","Keep style, structure and tone consistent"]}},
+  { id:"ai-company-enricher", icon:Globe, name:"AI Company Enricher", de:{tagline:"Ergänzt Unternehmensprofile automatisch um strukturierte Firmendaten aus öffentlichen Quellen.",capabilities:["Branche, Größe und Geschäftsmodell recherchieren","Profilfelder statt Freitext befüllen","BD-Vorbereitung mit belastbaren Unternehmensinformationen unterstützen","Kundenakten schneller vervollständigen"]}, en:{tagline:"Enriches company profiles with structured company data from public sources.",capabilities:["Research industry, size and business model","Populate structured profile fields","Support business development with relevant company facts","Complete client records faster"]}},
+  { id:"ai-signature-parser", icon:FileSignature, name:"AI Signature Parser", de:{tagline:"Liest Kontaktdaten aus E-Mail-Signaturen aus und bereitet sie strukturiert zur Übernahme vor.",capabilities:["Name, Rolle, Telefon, E-Mail und Socials erkennen","Vorschau vor dem Speichern anzeigen","Kontakte mit einem Klick in plyce anlegen","Datenqualität aus laufender Korrespondenz verbessern"]}, en:{tagline:"Extracts contact data from email signatures and prepares it for structured import.",capabilities:["Detect name, role, phone, email and social profiles","Show a preview before saving","Create contacts in plyce with one click","Improve data quality from everyday correspondence"]}},
+  { id:"ai-recorder", icon:Mic, name:"AI Recorder", de:{tagline:"Zeichnet Gespräche auf, transkribiert sie und macht die Inhalte direkt für die weitere Arbeit in plyce nutzbar.",capabilities:["Gespräche und Meetings direkt erfassen","Audio automatisch in durchsuchbaren Text umwandeln","Wichtige Gesprächsinhalte dauerhaft dokumentieren","Transkripte als Grundlage für Zusammenfassungen und Folgeaktivitäten nutzen"]}, en:{tagline:"Records conversations, transcribes them and makes the content directly usable in plyce.",capabilities:["Capture conversations and meetings","Automatically convert audio into searchable text","Keep important conversation content documented","Use transcripts for summaries and follow-up activities"]}},
+  { id:"ai-summary", icon:FileText, name:"AI Summary", de:{tagline:"Verdichtet Gesprächsnotizen, Transkripte und andere Inhalte automatisch zu einer klaren, strukturierten Zusammenfassung.",capabilities:["Lange Inhalte auf die wichtigsten Aussagen reduzieren","Entscheidungen, Anforderungen und nächste Schritte herausarbeiten","Einheitliche Zusammenfassungen für Kandidaten- und Kundenkontakte erzeugen","Informationen schneller für Team und Folgeprozesse verfügbar machen"]}, en:{tagline:"Condenses notes, transcripts and other content into a clear, structured summary.",capabilities:["Reduce long content to the most important points","Extract decisions, requirements and next steps","Create consistent summaries for candidate and client interactions","Make information available faster for teams and follow-up workflows"]}},
+  { id:"ai-meeting-tracker", icon:Video, name:"AI Meeting Tracker", beta:true, de:{tagline:"Erkennt Meetings aus Google Meet und Microsoft Teams automatisch, analysiert sie und ordnet sie dem richtigen Datensatz zu.",capabilities:["Notizen und Transkripte in Google Drive und OneDrive erkennen","Relevante Inhalte und Kernaussagen extrahieren","Meeting automatisch Kandidat oder Kontakt zuordnen","Zusammenfassung als Aktivität im Profil speichern"]}, en:{tagline:"Automatically detects Google Meet and Microsoft Teams meetings, analyzes them and assigns them to the correct record.",capabilities:["Detect notes and transcripts in Google Drive and OneDrive","Extract relevant content and key statements","Assign meetings to the right candidate or contact","Store the summary as an activity in the profile"]}},
 ];
 
 export const aiAgentsNav = agents.map(({ id, name }) => ({ id, title: name }));
 
 const AIAgentsPage = () => {
-  return (
-    <div className="min-h-screen pt-24">
-      <section className="py-16 md:py-24 section-padding">
-        <div className="container-tight text-center">
-          <ScrollReveal delay={80}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-2 mb-3 text-gradient-hero text-balance">
-              Konzentriere dich auf das Wesentliche
-              <br />
-              {agents.length} AI Agents erledigen den Rest
-            </h1>
-          </ScrollReveal>
-
-          <ScrollReveal delay={160}>
-            <div className="mt-6 md:mt-8 max-w-4xl mx-auto text-left">
-              <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
-                Ihre Präferenz entscheidet. OpenAI oder Mistral, passend zu DSGVO, Datenstandort und Performance-Anforderungen.
-              </p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="rounded-2xl border border-border/60 bg-card/80 p-8 md:p-9 shadow-sm hover:border-primary/25 transition-colors">
-                  <div className="flex items-center justify-center md:justify-start h-10 mb-5">
-                    <img
-                      src="/logos/openai-wordmark.svg"
-                      alt="OpenAI Logo Wordmark"
-                      className="h-8 w-auto max-w-[160px] object-contain object-left"
-                    />
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    US-amerikanisches High-Performance-Sprachmodell. Stark bei komplexen Texten, Analysen und Generierung im
-                    AI-Agents-Alltag.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-border/60 bg-card/80 p-8 md:p-9 shadow-sm hover:border-primary/25 transition-colors">
-                  <div className="flex items-center justify-center md:justify-start h-10 mb-5">
-                    <img
-                      src="/logos/mistral-wordmark.svg"
-                      alt="Mistral AI"
-                      className="h-8 w-auto max-w-[200px] object-contain object-left"
-                    />
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Europäische Option mit Fokus auf transparente, regulierungsnahe Nutzung. Geeignet, wenn Sie DSGVO und
-                    EU-Datenverarbeitung priorisieren.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className="pb-20 section-padding">
-        <div className="container-tight space-y-6 md:space-y-8">
-          {agents.map((agent, i) => (
-            <ScrollReveal key={agent.name} delay={0}>
-              <article
-                id={agent.id}
-                className="scroll-mt-28 rounded-2xl border border-border/50 bg-card overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300"
-              >
-                <div className="p-8 md:p-10">
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                    <div className="flex-shrink-0">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-light">
-                        <agent.icon className="h-7 w-7 text-primary" />
-                      </div>
-                    </div>
-                    <div className="flex flex-1 min-w-0 flex-col gap-4">
-                      <div className="space-y-2">
-                        <div className="flex flex-wrap items-center gap-2">
-                        <h2 className="text-xl font-bold tracking-tight">{agent.name}</h2>
-                        <span className="text-xs font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">
-                          Agent #{i + 1}
-                        </span>
-                        {agent.beta && (
-                          <span className="text-xs font-semibold text-primary bg-primary-light/60 border border-primary/30 px-2 py-0.5 rounded-full uppercase tracking-wide">
-                            Beta
-                          </span>
-                        )}
-                        </div>
-                        <p className="text-sm font-medium text-muted-foreground leading-relaxed">{agent.tagline}</p>
-                      </div>
-                      <div className="mt-auto border-t border-border/50 pt-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-                        {agent.capabilities.map((cap) => (
-                          <div key={cap} className="flex items-start gap-2 text-sm">
-                            <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                            <span className="text-muted-foreground leading-relaxed">{cap}</span>
-                          </div>
-                        ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-20 section-padding">
-        <div className="container-tight">
-          <ScrollReveal>
-            <div className="rounded-3xl bg-foreground p-12 md:p-16 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-8">
-                Alle AI Agents live erleben
-              </h2>
-              <Button
-                variant="hero"
-                size="lg"
-                type="button"
-                className="border-2 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 whitespace-normal text-center max-sm:px-4 sm:whitespace-nowrap"
-                onClick={() => window.dispatchEvent(new Event("plyce-open-demo-modal"))}
-              >
-                Request Demo <ArrowRight className="h-4 w-4 shrink-0" />
-              </Button>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-    </div>
-  );
+  const { pathname } = useLocation();
+  const isEnglish = pathname.startsWith("/en/");
+  const lang: "de" | "en" = isEnglish ? "en" : "de";
+  return <div className="min-h-screen pt-24">
+    <section className="py-16 md:py-24 section-padding"><div className="container-tight text-center">
+      <ScrollReveal delay={80}><h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-2 mb-3 text-gradient-hero text-balance">{isEnglish ? "Focus on what matters" : "Konzentriere dich auf das Wesentliche"}<br />{agents.length} AI Agents {isEnglish ? "take care of the rest" : "erledigen den Rest"}</h1></ScrollReveal>
+      <ScrollReveal delay={160}><p className="mt-6 text-lg text-muted-foreground text-center max-w-2xl mx-auto leading-relaxed">{isEnglish ? "Choose the AI setup that fits your requirements. OpenAI or Mistral, depending on data protection, data location and performance needs." : "Ihre Präferenz entscheidet. OpenAI oder Mistral, passend zu DSGVO, Datenstandort und Performance-Anforderungen."}</p></ScrollReveal>
+    </div></section>
+    <section className="pb-20 section-padding"><div className="container-tight space-y-6 md:space-y-8">{agents.map((agent,i)=>{const copy=agent[lang];return <ScrollReveal key={agent.id}><article id={agent.id} className="scroll-mt-28 rounded-2xl border border-border/50 bg-card overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300"><div className="p-8 md:p-10"><div className="flex flex-col md:flex-row gap-6 md:gap-10"><div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-light shrink-0"><agent.icon className="h-7 w-7 text-primary" /></div><div className="flex-1 min-w-0"><div className="flex flex-wrap items-center gap-2"><h2 className="text-xl font-bold tracking-tight">{agent.name}</h2><span className="text-xs font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">Agent #{i+1}</span>{agent.beta&&<span className="text-xs font-semibold text-primary bg-primary-light/60 border border-primary/30 px-2 py-0.5 rounded-full uppercase">Beta</span>}</div><p className="text-sm font-medium text-muted-foreground leading-relaxed mt-2">{copy.tagline}</p><div className="mt-4 border-t border-border/50 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">{copy.capabilities.map(cap=><div key={cap} className="flex items-start gap-2 text-sm"><div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"/><span className="text-muted-foreground leading-relaxed">{cap}</span></div>)}</div></div></div></div></article></ScrollReveal>})}</div></section>
+    <section className="py-20 section-padding"><div className="container-tight"><div className="rounded-3xl bg-foreground p-12 md:p-16 text-center"><h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-8">{isEnglish ? "Experience all AI Agents live" : "Alle AI Agents live erleben"}</h2><Button variant="hero" size="lg" type="button" className="border-2 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={()=>window.dispatchEvent(new Event("plyce-open-demo-modal"))}>Request Demo <ArrowRight className="h-4 w-4"/></Button></div></div></section>
+  </div>;
 };
-
 export default AIAgentsPage;
