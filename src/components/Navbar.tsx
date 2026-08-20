@@ -13,6 +13,8 @@ const navLinks = [
   { de: "AI Agents", en: "AI Agents", href: "/ai-agents" },
   { de: "Features", en: "Features", href: "/features" },
   { de: "plyce time", en: "plyce time", href: "/plyce-time" },
+  { de: "Team", en: "Team", href: "/team" },
+  { de: "Karriere", en: "Careers", href: "/careers" },
   { de: "Datenschutz", en: "Data Protection", href: "/data-protection" },
 ];
 
@@ -58,7 +60,7 @@ const Navbar = () => {
             <span className="text-xl font-bold tracking-tight text-foreground">plyce</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-5 lg:gap-7">
             {navLinks.map((link) =>
               link.href === "/faq" ? (
                 <div key="faq" className="relative" onMouseEnter={() => { setFaqMenuOpen(true); setAgentsMenuOpen(false); }} onMouseLeave={() => setFaqMenuOpen(false)}>
@@ -88,7 +90,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
             <Link to={languageTarget} className="rounded-md border border-border/70 px-2.5 py-1.5 text-xs font-semibold text-muted-foreground hover:text-primary" aria-label={locale === "de" ? "Switch to English" : "Auf Deutsch wechseln"}>{locale === "de" ? "EN" : "DE"}</Link>
             <Button variant="ghost" size="sm" type="button" onClick={() => setLoginOpen(true)}>Login</Button>
             <Button variant="default" size="sm" type="button" onClick={() => setDemoOpen(true)}>{locale === "en" ? "Request Demo" : "Demo anfragen"}</Button>
