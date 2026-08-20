@@ -26,26 +26,19 @@ import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
-const ScrollToTop = () => { const { pathname, hash } = useLocation(); useEffect(() => { if (hash) { const id=hash.replace("#",""); const run=()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}; requestAnimationFrame(()=>requestAnimationFrame(run)); } else window.scrollTo(0,0); },[pathname,hash]); return null; };
+const ScrollToTop = () => { const { pathname, hash } = useLocation(); useEffect(() => { document.documentElement.lang = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "de"; if (hash) { const id=hash.replace("#",""); const run=()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}; requestAnimationFrame(()=>requestAnimationFrame(run)); } else window.scrollTo(0,0); },[pathname,hash]); return null; };
+
+const pages = [
+  ["/", <Index />], ["/features", <FeaturesPage />], ["/plyce-time", <PlyceTimePage />], ["/ai-agents", <AIAgentsPage />],
+  ["/data-protection", <DataProtectionPage />], ["/impressum", <ImpressumPage />], ["/datenschutz", <DatenschutzPage />], ["/agb", <AGBPage />],
+  ["/sitemap", <SitemapPage />], ["/faq", <FaqPage />], ["/implementierung", <ImplementierungPage />], ["/partnerprogramm", <PartnerprogrammPage />],
+  ["/pricing", <PricingPage />], ["/migration", <MigrationPage />], ["/recruiting-software-vergleich", <RecruitingSoftwareVergleichPage />],
+] as const;
 
 const App = () => (
   <QueryClientProvider client={queryClient}><TooltipProvider><Toaster /><Sonner /><BrowserRouter><ScrollToTop /><Seo /><Navbar /><Routes>
-    <Route path="/" element={<Index />} />
-    <Route path="/features" element={<FeaturesPage />} />
-    <Route path="/plyce-time" element={<PlyceTimePage />} />
-    <Route path="/ai-agents" element={<AIAgentsPage />} />
-    <Route path="/en/ai-agents" element={<AIAgentsPage />} />
-    <Route path="/data-protection" element={<DataProtectionPage />} />
-    <Route path="/impressum" element={<ImpressumPage />} />
-    <Route path="/datenschutz" element={<DatenschutzPage />} />
-    <Route path="/agb" element={<AGBPage />} />
-    <Route path="/sitemap" element={<SitemapPage />} />
-    <Route path="/faq" element={<FaqPage />} />
-    <Route path="/implementierung" element={<ImplementierungPage />} />
-    <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
-    <Route path="/pricing" element={<PricingPage />} />
-    <Route path="/migration" element={<MigrationPage />} />
-    <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
+    {pages.map(([path, element]) => <Route key={path} path={path} element={element} />)}
+    {pages.map(([path, element]) => <Route key={`en-${path}`} path={path === "/" ? "/en" : `/en${path}`} element={element} />)}
     <Route path="*" element={<NotFound />} />
   </Routes><Footer /><CookieBanner /></BrowserRouter></TooltipProvider></QueryClientProvider>
 );
