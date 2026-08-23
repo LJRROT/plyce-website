@@ -22,6 +22,7 @@ import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
 import PlyceTimePage from "./pages/PlyceTimePage";
 import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
+import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -60,6 +61,7 @@ const App = () => (
           <Route path="/plyce-time" element={<PlyceTimePage />} />
           <Route path="/ai-agents" element={<AIAgentsPage />} />
           <Route path="/data-protection" element={<DataProtectionPage />} />
+          <Route path="/ueber-uns" element={<AboutPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
           <Route path="/agb" element={<AGBPage />} />
