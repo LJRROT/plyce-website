@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Code2, HeartHandshake, UserRound } from "lucide-react";
+import { ArrowRight, Code2, HeartHandshake } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { getLocaleFromPath, localizePath } from "@/lib/locale";
@@ -24,8 +24,8 @@ const TeamPage = () => {
       name: "Mark Vaughn",
       role: "Technical Advisor / Architect",
       text: en
-        ? "For established agencies, data security, system stability and scalability are essential. Mark supports plyce as Technical Advisor and brings more than 20 years of software engineering experience. In his primary role as a Senior Staff Software Engineer in California, he is responsible for the architecture of large international systems. At plyce he strategically validates our AI infrastructure and helps align the platform with enterprise requirements: stable, scalable and GDPR-conscious."
-        : "Gerade für etablierte Agenturen stehen Datensicherheit, Systemstabilität und Skalierbarkeit an erster Stelle. Mark unterstützt plyce als Technical Advisor und bringt über 20 Jahre Erfahrung in der Softwareentwicklung mit. Hauptberuflich ist er als Senior Staff Software Engineer in Kalifornien für die Architektur internationaler Großsysteme verantwortlich. Bei plyce begleitet er die Plattform strategisch, validiert unsere AI-Infrastruktur und unterstützt uns dabei, sie auf Enterprise-Anforderungen auszurichten: stabil, skalierbar und DSGVO-orientiert.",
+        ? "Mark supports plyce as Technical Advisor and Architect and brings more than 20 years of software engineering experience. In his primary role as a Senior Staff Software Engineer in California, he is responsible for the architecture of large international systems. At plyce, his focus is on architecture and software quality. Especially in agentic engineering, the challenge is not only to build powerful AI features, but to turn them into performant, secure and reliable software. Mark reviews our technical foundations, validates critical architectural decisions and helps ensure that the platform remains robust, scalable and maintainable as it grows."
+        : "Mark unterstützt plyce als Technical Advisor und Architect und bringt über 20 Jahre Erfahrung in der Softwareentwicklung mit. Hauptberuflich ist er als Senior Staff Software Engineer in Kalifornien für die Architektur internationaler Großsysteme verantwortlich. Bei plyce liegt sein Fokus auf Architektur und Softwarequalität. Gerade im Agentic Engineering besteht die Herausforderung nicht nur darin, leistungsfähige KI-Funktionen zu entwickeln, sondern daraus performante, sichere und verlässliche Software zu bauen. Mark überprüft unsere technischen Grundlagen, validiert zentrale Architekturentscheidungen und sorgt mit dafür, dass die Plattform auch mit wachsender Komplexität robust, skalierbar und langfristig wartbar bleibt.",
     },
     {
       initials: "LR",
