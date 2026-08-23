@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,16 +22,18 @@ import PricingPage from "./pages/PricingPage";
 import MigrationPage from "./pages/MigrationPage";
 import PlyceTimePage from "./pages/PlyceTimePage";
 import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
-import AboutPage from "./pages/AboutPage";
+import TeamPage from "./pages/TeamPage";
+import CareersPage from "./pages/CareersPage";
 import NotFound from "./pages/NotFound";
+import { EnglishPageRouter } from "./pages/EnglishPages";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
   useEffect(() => {
+    document.documentElement.lang = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "de";
     if (hash) {
       const id = hash.replace("#", "");
       const run = () => {
@@ -61,7 +63,6 @@ const App = () => (
           <Route path="/plyce-time" element={<PlyceTimePage />} />
           <Route path="/ai-agents" element={<AIAgentsPage />} />
           <Route path="/data-protection" element={<DataProtectionPage />} />
-          <Route path="/ueber-uns" element={<AboutPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
           <Route path="/agb" element={<AGBPage />} />
@@ -72,6 +73,13 @@ const App = () => (
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/migration" element={<MigrationPage />} />
           <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/en/ai-agents" element={<AIAgentsPage />} />
+          <Route path="/en/team" element={<TeamPage />} />
+          <Route path="/en/careers" element={<CareersPage />} />
+          <Route path="/en/*" element={<EnglishPageRouter />} />
+          <Route path="/en" element={<EnglishPageRouter />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
