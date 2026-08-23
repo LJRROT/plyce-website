@@ -65,13 +65,15 @@ const TeamPage = () => {
           {people.map((person, index) => (
             <ScrollReveal key={person.name} delay={index * 80} className="h-full">
               <article className="h-full overflow-hidden rounded-3xl border border-border/60 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div className="aspect-[4/3] overflow-hidden border-b border-border/50 bg-muted/30">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="h-full w-full object-cover object-center"
-                    loading="lazy"
-                  />
+                <div className="border-b border-border/50 bg-gradient-to-br from-primary-light via-muted/60 to-background px-6 py-8">
+                  <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border border-border/60 bg-background shadow-sm md:h-32 md:w-32">
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      className="h-full w-full object-cover object-center"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
                 <div className="p-6 md:p-7">
                   <h2 className="text-xl font-bold tracking-tight">{person.name}</h2>
