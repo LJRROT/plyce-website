@@ -18,17 +18,22 @@ function readBody(req: IncomingMessage): Promise<string> {
 const sitemapRoutes: { loc: string; changefreq: string; priority: string }[] = [
   { loc: "/", changefreq: "weekly", priority: "1.0" },
   { loc: "/features", changefreq: "weekly", priority: "0.95" },
+  { loc: "/plyce-time", changefreq: "weekly", priority: "0.95" },
   { loc: "/ai-agents", changefreq: "weekly", priority: "0.95" },
   { loc: "/pricing", changefreq: "weekly", priority: "0.9" },
+  { loc: "/recruiting-software-vergleich", changefreq: "monthly", priority: "0.85" },
   { loc: "/data-protection", changefreq: "monthly", priority: "0.75" },
   { loc: "/faq", changefreq: "monthly", priority: "0.8" },
   { loc: "/implementierung", changefreq: "monthly", priority: "0.75" },
   { loc: "/partnerprogramm", changefreq: "monthly", priority: "0.75" },
+  { loc: "/team", changefreq: "monthly", priority: "0.7" },
+  { loc: "/careers", changefreq: "monthly", priority: "0.7" },
   { loc: "/datenschutz", changefreq: "yearly", priority: "0.35" },
   { loc: "/impressum", changefreq: "yearly", priority: "0.35" },
   { loc: "/agb", changefreq: "yearly", priority: "0.35" },
   { loc: "/sitemap", changefreq: "monthly", priority: "0.3" },
 ];
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
