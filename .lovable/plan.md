@@ -1,32 +1,27 @@
-## Änderungen auf `/migration`
+# Search Console vollständig einrichten (plyce.app über Vercel)
 
-### 1. Varianten als klickbare Tabs
-- Die drei Vergleichs-Cards (Quickstart, Soft Migration, Enterprise Migration) werden interaktive Buttons.
-- State `selectedVariant` (Default: `quickstart`).
-- Aktive Card: farblich hervorgehoben (Border in `primary`, dezenter `bg-primary-light`, stärkerer Ring). Inaktive Cards behalten neutrale Optik.
-- Unterhalb wird nur noch der Ablauf der aktiven Variante angezeigt (die anderen Timeline-Blöcke werden ausgeblendet).
-- Cards behalten Tastatur-Fokus (als `<button>` gerendert, `aria-pressed`).
+## Ausgangslage
 
-### 2. Wording: „der Kunde" → direkte Ansprache
-Der Text richtet sich an den Leser (= Kunde). Vorschlag: durchgehend direkte Ansprache in der Sie-Form, konsistent zum restlichen Wording der Seite.
+- Die produktive Domain `https://plyce.app` (Vercel, Deploy über Git) ist in der Search Console bereits verifiziert, die Sitemap `https://plyce.app/sitemap.xml` ist eingereicht.
+- Der SEO-Check prüft aber die Lovable-Testadresse `https://plyceats.lovable.app` und meldet sie deshalb weiterhin als "nicht verifiziert".
+- Das Verifizierungs-Tag für die Lovable-Adresse liegt bereits im Seitenkopf, ist auf der Lovable-Adresse aber nur nach einem Lovable-Publish sichtbar.
 
-Konkrete Ersetzungen:
-- Soft Migration, Schritt „Onboarding & Setup": „…werden gemeinsam mit dem Kunden aufgesetzt…" → „…richten wir gemeinsam mit Ihnen ein…"
-- Soft Migration, Schritt „Bereitstellung des Backups": „Der Kunde stellt das Backup…" → „Sie stellen das Backup Ihres Bestandssystems zum vereinbarten Termin unverschlüsselt und zugänglich bereit."
-- Enterprise Migration, Schritt „Konfiguration & Einrichtung": „…gemeinsam mit dem Kunden vollständig konfiguriert…" → „…richten wir gemeinsam mit Ihnen vollständig ein…"
+## Was gemacht wird
 
-(Restliche Copy bleibt unverändert.)
+1. Merken (dauerhaft): Produktion läuft über Vercel, maßgebliche Domain für alles SEO-Relevante ist `https://plyce.app`; Lovable-Publish dient nur dem Testen und der Verifizierung der Testadresse.
+2. Prüfen, dass alle SEO-Angaben konsequent auf `https://plyce.app` zeigen: Canonical, Sprachvarianten, Social-Angaben, Sitemap-Adressen und robots-Eintrag. Abweichungen werden korrigiert.
+3. Kontrollieren, dass `https://plyce.app/sitemap.xml` und `https://plyce.app/robots.txt` live erreichbar sind und alle öffentlichen Seiten enthalten (inklusive der neueren Seiten wie plyce time und Recruiting-Software-Vergleich).
+4. Für die Lovable-Testadresse: nach einem Lovable-Publish die Verifizierung bei Google auslösen, die Adresse als Property anlegen und ihre Sitemap einreichen. Damit ist die SEO-Meldung erledigt, ohne dass sich an der Produktion etwas ändert.
+5. Abschließend erneut den Search-Console-Status abfragen und die Meldung als erledigt markieren.
 
-### 3. Doppeltes „Schritt"-Wording in Variante 3
-Enterprise hat oberhalb bereits die Meta-Zeile „Schritt 1", „Schritt 2" … und zusätzlich enthalten Titel 4 und 6 nochmal „Schritt 1 – Probemigration" bzw. „Schritt 2 – Produktive Migration am Stichtag X". Die `timing`-Badges wiederholen das ebenfalls.
+## Wichtig für dich
 
-Vorschlag – „Schritt" aus Titeln und Badges entfernen, Phasen-Wording nutzen:
-- Titel „Schritt 1 – Probemigration" → „Probemigration (Testlauf)", Badge `timing`: „Testlauf"
-- Titel „Schritt 2 – Produktive Migration am Stichtag X" → „Produktive Migration am Stichtag X", Badge `timing`: „Stichtag X"
+- Änderungen an Seitenkopf, Sitemap oder robots wirken auf `plyce.app` erst nach dem nächsten Vercel-Deploy über Git.
+- Schritt 4 braucht einmalig einen Lovable-Publish; das betrifft nur die Testadresse, nicht plyce.app.
 
-Damit bleibt die Zwei-Schritt-Logik durch die Ablauf-Nummerierung oben klar erkennbar, ohne Dopplung.
+## Technische Details
 
-### Technische Details
-- Datei: `src/pages/MigrationPage.tsx`.
-- `useState` für aktive Variante hinzufügen, Cards als `<button>` mit Klick-Handler, konditionales Rendering der Timeline-Section (nur aktive Variante).
-- Keine neuen Abhängigkeiten.
+- `src/lib/siteUrl.ts` und `vite.config.ts` (Sitemap/robots-Generierung) bleiben auf `https://plyce.app` als Basis-URL.
+- `index.html` behält beide `google-site-verification`-Tags.
+- Verifizierung und Sitemap-Einreichung laufen über die verbundene Search-Console-Verbindung (Token holen, `webResource` verifizieren, Property anlegen, Sitemap einreichen).
+- Kein Wechsel des Sitemap-Mechanismus; die bestehende Build-Generierung bleibt.
