@@ -2,6 +2,7 @@ import fs from "node:fs";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import path from "node:path";
 import { defineConfig, loadEnv } from "vite";
+import { seoRoutes } from "./src/lib/seo";
 import react from "@vitejs/plugin-react-swc";
 import { componentTagger } from "lovable-tagger";
 import { sendDemoViaResend, validateDemoPayload } from "./server/sendDemoViaResend";
@@ -15,31 +16,12 @@ function readBody(req: IncomingMessage): Promise<string> {
   });
 }
 
-const sitemapRoutes: { loc: string; changefreq: string; priority: string }[] = [
-  { loc: "/", changefreq: "weekly", priority: "1.0" },
-  { loc: "/features", changefreq: "weekly", priority: "0.95" },
-  { loc: "/plyce-time", changefreq: "weekly", priority: "0.95" },
-  { loc: "/ai-agents", changefreq: "weekly", priority: "0.95" },
-  { loc: "/pricing", changefreq: "weekly", priority: "0.9" },
-  { loc: "/recruiting-software-vergleich", changefreq: "monthly", priority: "0.85" },
-  { loc: "/data-protection", changefreq: "monthly", priority: "0.75" },
-  { loc: "/faq", changefreq: "monthly", priority: "0.8" },
-  { loc: "/implementierung", changefreq: "monthly", priority: "0.75" },
-  { loc: "/partnerprogramm", changefreq: "monthly", priority: "0.75" },
-  { loc: "/team", changefreq: "monthly", priority: "0.7" },
-  { loc: "/careers", changefreq: "monthly", priority: "0.7" },
-  { loc: "/datenschutz", changefreq: "yearly", priority: "0.35" },
-  { loc: "/impressum", changefreq: "yearly", priority: "0.35" },
-  { loc: "/agb", changefreq: "yearly", priority: "0.35" },
-  { loc: "/sitemap", changefreq: "monthly", priority: "0.3" },
-];
-
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const siteUrl = (env.VITE_SITE_URL || "https://plyce.app").replace(/\/$/, "");
 
+  let isSsrBuild = false;
   return {
   server: {
     host: "::",
@@ -120,24 +102,27 @@ export default defineConfig(({ mode }) => {
     },
     {
       name: "seo-sitemap-robots",
+      configResolved(config) { isSsrBuild = Boolean(config.build.ssr); },
       closeBundle() {
+        if (isSsrBuild) return;
         const outDir = path.resolve(__dirname, "dist");
         if (!fs.existsSync(outDir)) return;
 
-        const lastmod = new Date().toISOString().slice(0, 10);
-        const urlEntries = sitemapRoutes
-          .map(
-            (r) => `  <url>
-    <loc>${r.loc === "/" ? `${siteUrl}/` : `${siteUrl}${r.loc}`}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority}</priority>
-  </url>`,
-          )
-          .join("\n");
-
+        const escapeXml = (value: string) => value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+        const urlEntries = seoRoutes.filter((route) => !route.noindex).map(({ path: route }) => {
+          const isEn = route === "/en" || route.startsWith("/en/");
+          const dePath = isEn ? route.slice(3) || "/" : route;
+          const enPath = dePath === "/" ? "/en" : `/en${dePath}`;
+          const url = `${siteUrl}${route}`;
+          return `  <url>
+    <loc>${escapeXml(url)}</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="${escapeXml(`${siteUrl}${dePath}`)}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(`${siteUrl}${enPath}`)}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${siteUrl}${dePath}`)}" />
+  </url>`;
+        }).join("\n");
         const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urlEntries}
 </urlset>
 `;

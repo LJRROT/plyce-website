@@ -48,45 +48,45 @@ const ScrollToTop = () => {
   return null;
 };
 
-const App = () => (
+export const AppContent = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Seo />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/plyce-time" element={<PlyceTimePage />} />
-          <Route path="/ai-agents" element={<AIAgentsPage />} />
-          <Route path="/data-protection" element={<DataProtectionPage />} />
-          <Route path="/impressum" element={<ImpressumPage />} />
-          <Route path="/datenschutz" element={<DatenschutzPage />} />
-          <Route path="/agb" element={<AGBPage />} />
-          <Route path="/sitemap" element={<SitemapPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/implementierung" element={<ImplementierungPage />} />
-          <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/migration" element={<MigrationPage />} />
-          <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/careers" element={<CareersPage />} />
-          <Route path="/en/ai-agents" element={<AIAgentsPage />} />
-          <Route path="/en/team" element={<TeamPage />} />
-          <Route path="/en/careers" element={<CareersPage />} />
-          <Route path="/en/*" element={<EnglishPageRouter />} />
-          <Route path="/en" element={<EnglishPageRouter />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <CookieBanner />
-      </BrowserRouter>
+      <ScrollToTop />
+      <Seo />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/plyce-time" element={<PlyceTimePage />} />
+        <Route path="/ai-agents" element={<AIAgentsPage />} />
+        <Route path="/data-protection" element={<DataProtectionPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/datenschutz" element={<DatenschutzPage />} />
+        <Route path="/agb" element={<AGBPage />} />
+        <Route path="/sitemap" element={<SitemapPage />} />
+        <Route path="/faq" element={<FaqPage />} />
+        <Route path="/implementierung" element={<ImplementierungPage />} />
+        <Route path="/partnerprogramm" element={<PartnerprogrammPage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/migration" element={<MigrationPage />} />
+        <Route path="/recruiting-software-vergleich" element={<RecruitingSoftwareVergleichPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/en/ai-agents" element={<AIAgentsPage />} />
+        <Route path="/en/team" element={<TeamPage />} />
+        <Route path="/en/careers" element={<CareersPage />} />
+        <Route path="/en/*" element={<EnglishPageRouter />} />
+        <Route path="/en" element={<EnglishPageRouter />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+      <CookieBanner />
     </TooltipProvider>
   </QueryClientProvider>
 );
+
+const App = () => <BrowserRouter><AppContent /></BrowserRouter>;
 
 export default App;
