@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import LoginModal from "@/components/LoginModal";
 import DemoBookingModal from "@/components/DemoBookingModal";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { faqCategoryNav } from "@/pages/FaqPage";
+import { getFaqCategoryNav } from "@/lib/faq";
 import { aiAgentsNav } from "@/pages/AIAgentsPage";
 import { getLocaleFromPath, localizePath, stripLocalePrefix } from "@/lib/locale";
 
@@ -27,6 +27,7 @@ const Navbar = () => {
   const location = useLocation();
   const locale = getLocaleFromPath(location.pathname);
   const basePath = stripLocalePrefix(location.pathname);
+  const faqCategoryNav = getFaqCategoryNav(locale);
   const path = (href: string) => localizePath(href, locale);
   const languageTarget = `${localizePath(location.pathname, locale === "de" ? "en" : "de")}${location.hash}`;
 
