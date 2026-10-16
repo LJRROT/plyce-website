@@ -21,6 +21,9 @@ for (const url of urls) {
   const schema = html.match(/<script id="plyce-schema-org" type="application\/ld\+json">([\s\S]*?)<\/script>/);
   assert.ok(schema, `${path}: structured data available without JavaScript`);
   JSON.parse(schema[1]);
+  if (path === "/faq" || path === "/en/faq") {
+    assert.equal((html.match(/data-faq-answer=/g) || []).length, 26, `${path}: all answers must be present without JavaScript`);
+  }
   for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"?#]+)(?:[?#][^"]*)?"/g)) await access(`dist${match[1]}`);
   console.log(`SEO OK ${path}`);
 }
