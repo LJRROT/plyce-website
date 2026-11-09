@@ -63,7 +63,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-border"><p className="text-center text-xs text-muted-foreground leading-relaxed sm:text-left">© {new Date().getFullYear()} plyce · {t("Alle Rechte vorbehalten", "All rights reserved")}</p></div>
+        <div className="mt-12 pt-8 border-t border-border"><p className="text-center text-xs text-muted-foreground leading-relaxed sm:text-left">© <span suppressHydrationWarning>{new Date().getFullYear()}</span> plyce · {t("Alle Rechte vorbehalten", "All rights reserved")}</p></div>
       </div>
     </footer>
   );

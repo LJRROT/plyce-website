@@ -1,3 +1,4 @@
+import FaqPage from "./FaqPage";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -79,17 +80,7 @@ export const EnglishPlyceTimePage = () => (
   </PageShell>
 );
 
-export const EnglishFaqPage = () => (
-  <PageShell title="Frequently asked questions" intro="Answers about plyce, implementation, AI, data protection, pricing and daily use.">
-    <StandardSections sections={[
-      { title: "Product", bullets: ["plyce is an AI-native ATS and CRM for recruitment agencies and recruiters.", "It supports both permanent and freelance recruitment.", "CRM/ATS and plyce time can be used independently or together."] },
-      { title: "AI Agents", bullets: ["AI Agents are embedded directly in recruiting workflows.", "Prompts can be configured through Prompt Engineering.", "Depending on configuration, OpenAI or Mistral can be used.", "AI-generated output remains reviewable before use."] },
-      { title: "Implementation & migration", bullets: ["Existing candidate, company, contact, project and activity data can be migrated.", "The migration scope is agreed before implementation.", "Onboarding and training are part of the rollout."] },
-      { title: "Security & GDPR", bullets: ["Role-based access and structured consent workflows are supported.", "Data-protection requirements are considered throughout the product architecture.", "Customers can choose AI-provider setups according to their requirements."] },
-      { title: "Pricing", bullets: ["CRM/ATS is priced per active user.", "plyce time is priced per active freelancer per month.", "Custom migration or development is scoped separately where required."] },
-    ]}/>
-  </PageShell>
-);
+export const EnglishFaqPage = FaqPage;
 
 export const EnglishMigrationPage = () => (
   <PageShell title="Data migration to plyce" intro="Move your recruiting data into plyce with a structured and transparent migration process.">

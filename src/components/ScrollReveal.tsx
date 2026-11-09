@@ -27,6 +27,7 @@ const ScrollReveal = ({ children, className = "", delay = 0, direction = "up" }:
   return (
     <div
       ref={ref}
+      data-scroll-reveal=""
       className={`${className} ${visible ? animClass : "opacity-0"}`}
       style={visible ? { animationDelay: `${delay}ms` } : undefined}
     >

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import LoginModal from "@/components/LoginModal";
 import DemoBookingModal from "@/components/DemoBookingModal";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { faqCategoryNav } from "@/pages/FaqPage";
+import { getFaqCategoryNav } from "@/lib/faq";
 import { aiAgentsNav } from "@/pages/AIAgentsPage";
 import { getLocaleFromPath, localizePath, stripLocalePrefix } from "@/lib/locale";
 
@@ -27,6 +27,7 @@ const Navbar = () => {
   const location = useLocation();
   const locale = getLocaleFromPath(location.pathname);
   const basePath = stripLocalePrefix(location.pathname);
+  const faqCategoryNav = getFaqCategoryNav(locale);
   const path = (href: string) => localizePath(href, locale);
   const languageTarget = `${localizePath(location.pathname, locale === "de" ? "en" : "de")}${location.hash}`;
 
@@ -77,12 +78,12 @@ const Navbar = () => {
               ) : link.href === "/ai-agents" ? (
                 <div key="agents" className="relative" onMouseEnter={() => { setAgentsMenuOpen(true); setFaqMenuOpen(false); }} onMouseLeave={() => setAgentsMenuOpen(false)}>
                   <div className="flex items-center gap-0.5">
-                    <Link to={path("/ai-agents")} className={`text-sm font-medium transition-colors hover:text-primary ${basePath === "/ai-agents" ? "text-primary" : "text-muted-foreground"}`}>{link[locale]}</Link>
-                    <ChevronDown className={`h-3.5 w-3.5 shrink-0 opacity-70 ${basePath === "/ai-agents" || agentsMenuOpen ? "text-primary" : "text-muted-foreground"}`} aria-hidden />
+                    <Link to={path("/ai-agents")} className={`text-sm font-medium transition-colors hover:text-primary ${basePath.startsWith("/ai-agents") ? "text-primary" : "text-muted-foreground"}`}>{link[locale]}</Link>
+                    <ChevronDown className={`h-3.5 w-3.5 shrink-0 opacity-70 ${basePath.startsWith("/ai-agents") || agentsMenuOpen ? "text-primary" : "text-muted-foreground"}`} aria-hidden />
                   </div>
                   <div role="menu" className={`absolute left-1/2 top-full z-50 min-w-[min(100vw-2rem,300px)] max-w-[min(100vw-2rem,340px)] -translate-x-1/2 pt-2 transition-[opacity,visibility] duration-150 ${agentsMenuOpen ? "visible pointer-events-auto opacity-100" : "invisible pointer-events-none opacity-0"}`}>
                     <div className="max-h-[min(70vh,28rem)] overflow-y-auto overscroll-contain rounded-xl border border-border/60 bg-popover py-1.5 shadow-lg shadow-black/10">
-                      {aiAgentsNav.map((agent) => <Link key={agent.id} to={`${path("/ai-agents")}#${agent.id}`} role="menuitem" className="block px-4 py-2.5 text-sm text-foreground/90 transition-colors hover:bg-accent hover:text-primary" onClick={() => setAgentsMenuOpen(false)}>{agent.title}</Link>)}
+                      {aiAgentsNav.map((agent) => <Link key={agent.id} to={`${path("/ai-agents")}/${agent.id}`} role="menuitem" className="block px-4 py-2.5 text-sm text-foreground/90 transition-colors hover:bg-accent hover:text-primary" onClick={() => setAgentsMenuOpen(false)}>{agent.title}</Link>)}
                     </div>
                   </div>
                 </div>
