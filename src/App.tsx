@@ -10,6 +10,7 @@ import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
 import FeaturesPage from "./pages/FeaturesPage";
 import AIAgentsPage from "./pages/AIAgentsPage";
+import AIAgentDetailPage from "./pages/AIAgentDetailPage";
 import DataProtectionPage from "./pages/DataProtectionPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
@@ -61,6 +62,7 @@ export const AppContent = () => (
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/plyce-time" element={<PlyceTimePage />} />
         <Route path="/ai-agents" element={<AIAgentsPage />} />
+        <Route path="/ai-agents/:id" element={<AIAgentDetailPage />} />
         <Route path="/data-protection" element={<DataProtectionPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/datenschutz" element={<DatenschutzPage />} />
@@ -75,6 +77,7 @@ export const AppContent = () => (
         <Route path="/team" element={<TeamPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/en/ai-agents" element={<AIAgentsPage />} />
+        <Route path="/en/ai-agents/:id" element={<AIAgentDetailPage />} />
         <Route path="/en/team" element={<TeamPage />} />
         <Route path="/en/careers" element={<CareersPage />} />
         <Route path="/en/*" element={<EnglishPageRouter />} />
