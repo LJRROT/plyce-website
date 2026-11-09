@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, ExternalLink, Sparkl
 import { agents } from "./AIAgentsPage";
 import { agentSeoFocus } from "@/data/agentSeo";
 import { agentArticles } from "@/data/agentArticles";
+import { agentLinkedInSource } from "@/data/agentLinkedInSource";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -19,6 +20,7 @@ const AIAgentDetailPage = () => {
   const current = agentSeoFocus[agent.id];
   const copy = agent[lang];
   const article = agentArticles[agent.id];
+  const linkedInSource = agentLinkedInSource[agent.id];
   const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
   return <main className="min-h-screen pt-24">
     <section className="section-padding py-14 md:py-20 border-b border-border/50">
@@ -45,6 +47,22 @@ const AIAgentDetailPage = () => {
         <ul className="grid md:grid-cols-2 gap-5">{copy.capabilities.map(item => <li key={item} className="flex gap-3"><CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0 text-primary"/><span className="leading-relaxed">{item}</span></li>)}</ul>
       </div></ScrollReveal>
       <ScrollReveal><div className="max-w-3xl"><h2 className="text-2xl md:text-3xl font-bold mb-4">{en ? "Integrated into your workflow" : "Direkt in den Recruiting-Workflow integriert"}</h2><p className="text-muted-foreground leading-relaxed text-base md:text-lg">{en ? `The ${agent.name} works in the context of the relevant records in plyce. Instead of switching to a separate AI tool and manually copying information back and forth, recruiting teams can use the result within their existing ATS and CRM processes. AI-generated output should be checked before external use.` : `Der ${agent.name} arbeitet im Kontext der relevanten Datensätze in plyce. Statt zwischen separaten KI-Tools und dem ATS zu wechseln, können Recruiting-Teams die Ergebnisse direkt in ihren bestehenden Prozessen nutzen. KI-generierte Ergebnisse sollten vor der externen Verwendung geprüft werden.`}</p></div></ScrollReveal>
+      {linkedInSource && !en && <ScrollReveal><article className="rounded-3xl border border-border/60 bg-card p-7 md:p-10" aria-label="Fachartikel über diesen AI Agent">
+        <div className="mb-8 pb-7 border-b border-border/60">
+          <p className="text-xs uppercase font-bold tracking-wide text-primary mb-3">Fachlicher Hintergrund aus unserer LinkedIn-Serie</p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-snug">{linkedInSource.title}</h2>
+          <p className="mt-3 text-sm text-muted-foreground">Wie dieser Agent im Recruiting-Alltag eingesetzt wird – anhand unseres Originalartikels aus der plyce AI-Agent-Serie.</p>
+        </div>
+        <div className="max-w-3xl space-y-4">
+          {linkedInSource.blocks.map((part, index) => part.kind === "heading" ? (
+            <h3 key={index} className="text-xl md:text-2xl font-bold tracking-tight pt-5">{part.text}</h3>
+          ) : part.kind === "listItem" ? (
+            <div key={index} className="flex items-start gap-3"><span className="text-primary font-semibold" aria-hidden="true">•</span><p className="text-base text-muted-foreground leading-relaxed">{part.text}</p></div>
+          ) : (
+            <p key={index} className="text-base text-muted-foreground leading-relaxed">{part.text}</p>
+          ))}
+        </div>
+      </article></ScrollReveal>}
       {article && <ScrollReveal><aside className="rounded-2xl border border-border/60 bg-card p-7 md:p-9">
         <h2 className="text-2xl font-bold tracking-tight mb-3">{en ? "More on LinkedIn" : "Fachartikel auf LinkedIn"}</h2>
         <p className="text-muted-foreground leading-relaxed mb-4">{en ? "Read the original article by plyce on LinkedIn." : "Lies den Originalartikel von plyce auf LinkedIn."}</p>
