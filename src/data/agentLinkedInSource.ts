@@ -522,5 +522,395 @@ export const agentLinkedInSource: Record<string, AgentLinkedInSource> = {
         "text": "Genau dafür bauen wir plyce."
       }
     ]
+  },
+  "ai-cv-formatter": {
+    "title": "Agent #5 – AI CV Formatter",
+    "publishedAt": "August 5, 2026",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Ein guter Kandidat sollte nicht an einem schlecht aufbereiteten CV scheitern."
+      },
+      {
+        "kind": "paragraph",
+        "text": "In der Personalberatung geht es nicht nur darum, passende Kandidaten zu finden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Es geht auch darum, sie professionell, einheitlich und kundengerecht vorzustellen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Und genau hier entsteht oft unnötiger Aufwand."
+      },
+      {
+        "kind": "paragraph",
+        "text": "CVs kommen in unterschiedlichen Formaten. Berufsstationen sind uneinheitlich beschrieben. Ausbildung und Projekterfahrung sind nicht sauber strukturiert. Kandidateninformationen müssen anonymisiert werden. Unternehmensnamen oder Branchenangaben sollen entfernt werden. Profile müssen teilweise auf Deutsch oder Englisch vorbereitet werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das kostet Zeit."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Vor allem dann, wenn mehrere Kandidaten für ein Mandat vorgestellt werden und alle Profile denselben Qualitätsstandard haben sollen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier setzt der AI CV Formatter – Agent #5 von plyce an."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Agent unterstützt dabei, Lebensläufe in ein einheitliches, professionelles Format zu überführen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dazu gehören:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Standardisierte Berufserfahrung. Strukturierte Ausbildung. Einheitliche Kandidatenvorstellungen. Anonymisierung von Kandidateninformationen. Anonymisierung von Unternehmen und Branchen. Übersetzung des CVs ins Deutsche oder Englische. Anreicherung von Berufsstationen. Schneller Übergang von Rohdaten zur versandfertigen Fassung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Vorteil:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Recruiter müssen nicht jedes Profil manuell neu formatieren."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Sie können sich stärker auf die inhaltliche Bewertung konzentrieren:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Passt der Kandidat zum Mandat? Welche Erfahrung ist wirklich relevant? Wie sollte das Profil beim Kunden positioniert werden? Welche Argumente sprechen für die Vorstellung?"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI CV Formatter sorgt für mehr Geschwindigkeit, mehr Einheitlichkeit und einen professionellen Qualitätsstandard über alle Profile hinweg."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Nicht als Ersatz für die finale Prüfung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Sondern als Unterstützung auf dem Weg vom Roh-CV zur sauberen Kandidatenvorstellung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau dafür bauen wir plyce."
+      }
+    ]
+  },
+  "ai-project-brief": {
+    "title": "AI Project Brief – Agent #6: Vom Placement zum Vertragsentwurf",
+    "publishedAt": "September 9, 2026",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Wenn ein Freelancer platziert wird, ist der wichtigste Teil im Recruiting geschafft."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Aber operativ beginnt genau dann der nächste kritische Schritt:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Die Vertragsunterlagen müssen erstellt werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für den Kunden. Für den Freelancer. Mit den richtigen Konditionen. Mit der richtigen Laufzeit. Mit den richtigen Raten. Mit dem passenden Einsatzort. Mit sauberer Projektbeschreibung. Mit klar definiertem Scope. Und idealerweise ohne jedes Mal alles manuell aus verschiedenen Quellen zusammenzutragen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier entsteht in vielen Personalberatungen unnötiger Aufwand."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Denn die relevanten Informationen sind meistens bereits vorhanden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das Projekt ist angelegt. Der Kunde ist verknüpft. Der Kandidat beziehungsweise Freelancer ist verknüpft. Laufzeit, Auslastung, Einsatzort, Raten und Rahmenbedingungen sind im System dokumentiert."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Trotzdem werden Vertragsdaten häufig noch manuell übertragen, geprüft, kopiert und in Vorlagen eingefügt."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das kostet Zeit. Es ist fehleranfällig. Und es bindet Ressourcen genau an der Stelle, an der Geschwindigkeit und Genauigkeit besonders wichtig sind."
+      },
+      {
+        "kind": "heading",
+        "text": "AI Project Brief – Agent #6"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Brief von plyce aggregiert alle vertragsrelevanten Informationen aus Projekt, Kandidat und Kunde und erstellt daraus versandfertige Vertragsentwürfe für Freelance-Einsätze."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dazu gehören insbesondere:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Projekt-, Kandidaten- und Kundendaten. Laufzeit und Projektzeitraum. Auslastung und Einsatzmodell. Einsatzort und Remote-Anteil. Kundenrate und Beraterkonditionen. Projektbeschreibung und Scope. Rollenbeschreibung und Aufgaben. Compliance-relevante Hinweise und Formulierungen. Sprache Deutsch oder Englisch. Kundenspezifische Vertragsvorlagen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Agent erstellt auf dieser Basis wahlweise einen Projektvertrag für den Kunden und einen Beratervertrag für den Freelancer."
+      },
+      {
+        "kind": "heading",
+        "text": "Warum das im Freelance-Geschäft so wichtig ist"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Im Freelance-Recruiting entscheidet nicht nur die Qualität des Matchings."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Entscheidend ist auch, wie sauber und schnell der operative Prozess nach dem Placement läuft."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Wenn Vertragsunterlagen manuell erstellt werden, entstehen typische Risiken:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Daten werden falsch übertragen. Raten werden verwechselt. Laufzeiten stimmen nicht exakt überein. Projektbeschreibungen sind uneinheitlich. Scope und Aufgaben bleiben zu unscharf. Kundenindividuelle Vorlagen werden nicht sauber berücksichtigt. Compliance-relevante Punkte werden zu spät geprüft."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Brief reduziert genau diese Reibung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Nicht, indem er den Menschen aus dem Prozess nimmt."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Sondern indem er die vorhandenen Informationen strukturiert zusammenführt und daraus einen prüfbaren, professionellen Vertragsentwurf vorbereitet."
+      },
+      {
+        "kind": "heading",
+        "text": "Vertragsvorlagen bleiben kundenspezifisch"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ein wichtiger Punkt:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Jede Personalberatung und jeder Kunde arbeitet mit eigenen Vertragsstandards."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Deshalb geht es nicht darum, generische Verträge aus dem Nichts zu erzeugen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "In plyce können kundenspezifische Vertragsvorlagen hinterlegt werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Brief nutzt diese Vorlagen und befüllt sie mit den passenden Informationen aus dem Projekt, dem Kundenprofil und dem Freelancer-Profil."
+      },
+      {
+        "kind": "paragraph",
+        "text": "So entsteht ein Vertragsentwurf, der zur eigenen Struktur, zum eigenen Prozess und zu den individuellen Kundenanforderungen passt."
+      },
+      {
+        "kind": "heading",
+        "text": "Mehr als nur Stammdaten"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Agent berücksichtigt nicht nur Rahmendaten und Konditionen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Er unterstützt auch bei der Formulierung einer passenden Project Description und eines klaren Project Scope."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Gerade im Freelance-Umfeld ist das wichtig."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Denn eine gute Projektbeschreibung sollte nicht nur formal korrekt sein, sondern auch fachlich nachvollziehbar und compliance-sensibel formuliert werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dazu gehören unter anderem klare Aufgabenbeschreibungen, projektbezogene Zielsetzungen und eine saubere Abgrenzung der Tätigkeit."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Auch Themen wie Scheinselbstständigkeit und weitere compliance-relevante Aspekte müssen im Prozess mitgedacht werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Brief hilft dabei, diese Punkte frühzeitig strukturiert zu berücksichtigen."
+      },
+      {
+        "kind": "heading",
+        "text": "Das Ziel"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Anspruch ist nicht, Vertragsprüfung oder rechtliche Verantwortung vollständig zu ersetzen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Anspruch ist, den Weg vom Placement zum Vertragsentwurf deutlich effizienter, strukturierter und sicherer zu machen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für Personalberatungen bedeutet das:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Weniger manuelles Kopieren. Weniger Fehlerquellen. Schnellere Vertragserstellung. Einheitlichere Vertragsqualität. Bessere Nutzung vorhandener Projektdaten. Mehr Sicherheit im operativen Freelance-Prozess."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Recruiter oder die verantwortliche Fachperson prüft den Entwurf final."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Aber die Vorarbeit entsteht automatisch aus den Informationen, die ohnehin bereits in plyce vorhanden sind."
+      },
+      {
+        "kind": "heading",
+        "text": "Vom Recruiting-System zum operativen Workflow-System"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau das ist der Unterschied zwischen klassischer Verwaltung und moderner Recruiting-Software."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ein ATS oder CRM sollte nicht nur Daten speichern."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Es sollte aus vorhandenen Daten operative Arbeitsschritte vorbereiten."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Brief ist dafür ein gutes Beispiel:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Aus Projekt, Kunde und Freelancer wird nicht nur ein Datensatz."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Es entsteht ein konkreter nächster Arbeitsschritt."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ein prüfbarer Vertragsentwurf."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für den Kunden. Für den Freelancer. Auf Deutsch oder Englisch. Auf Basis der passenden Vorlage. Mit den relevanten Konditionen und Projektinformationen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "So wird aus einem Placement schneller ein sauber gestarteter Freelance-Einsatz."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau dafür bauen wir plyce."
+      }
+    ]
+  },
+  "ai-project-report": {
+    "title": "#7 AI Project Report: Vom Recruiting-Prozess zum strukturierten Kundenupdate",
+    "publishedAt": "September 24, 2026",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Ein laufendes Recruiting-Projekt produziert ständig neue Informationen: Kandidaten werden geprüft, Interviews geführt, Status geändert, Feedback dokumentiert und Absagen ausgesprochen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Spätestens vor dem nächsten Kundencall beginnt häufig das Zusammensuchen dieser Informationen aus ATS, E-Mails, Gesprächsnotizen und Kandidatenprofilen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier setzt der AI Project Report – Agent #7 von plyce an."
+      },
+      {
+        "kind": "heading",
+        "text": "Alle Projektinformationen auf einen Blick"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Agent erstellt aus den vorhandenen Projektdaten automatisch einen strukturierten Report mit:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Kandidaten und aktuellen Stati. Interviews und Interviewterminen. Feedback und Statusänderungen. Absagen und Absagegründen. Projektbezogenen Kennzahlen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "So entsteht ein aktueller Überblick über das gesamte Mandat, ohne Informationen manuell zusammenkopieren zu müssen."
+      },
+      {
+        "kind": "heading",
+        "text": "Eine bessere Grundlage für Kundenupdates"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Was ist seit dem letzten Gespräch passiert? Wer wurde vorgestellt? Wer befindet sich im Interview? Wo fehlt Feedback? Warum sind Kandidaten ausgeschieden?"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Report bereitet diese Informationen direkt aus dem laufenden Recruiting-Prozess auf."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Zusätzlich werden projektbezogene KPIs sichtbar. So lässt sich beispielsweise erkennen, wie viele Kandidaten geprüft und vorgestellt wurden, wie sich die Pipeline entwickelt und an welchen Stellen Kandidaten aus dem Prozess ausscheiden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dadurch wird aus einem Statusbericht eine fundierte Gesprächsgrundlage für den Kunden."
+      },
+      {
+        "kind": "heading",
+        "text": "Direkt aus dem Projekt in plyce"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der entscheidende Punkt: Die Informationen müssen nicht zusätzlich gepflegt werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Kandidatenstatus, Interviews, Feedback, Aktivitäten und Absagegründe entstehen ohnehin während der täglichen Arbeit in plyce."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Project Report aggregiert diese Daten und macht daraus einen strukturierten, aktuellen Projektüberblick."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Weniger Reporting-Aufwand. Mehr Transparenz. Bessere Kundenupdates."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Statt vor jedem Kundencall Informationen zusammenzusuchen, steht die Gesprächsgrundlage direkt im Projekt zur Verfügung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau dafür bauen wir plyce."
+      }
+    ]
   }
 };
