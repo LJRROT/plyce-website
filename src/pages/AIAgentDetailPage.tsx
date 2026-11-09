@@ -4,6 +4,7 @@ import { agents } from "./AIAgentsPage";
 import { agentSeoFocus } from "@/data/agentSeo";
 import { agentArticles } from "@/data/agentArticles";
 import { agentLinkedInSource } from "@/data/agentLinkedInSource";
+import { agentSourceInsightsEn } from "@/data/agentSourceInsightsEn";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -21,6 +22,7 @@ const AIAgentDetailPage = () => {
   const copy = agent[lang];
   const article = agentArticles[agent.id];
   const linkedInSource = agentLinkedInSource[agent.id];
+  const englishInsight = agentSourceInsightsEn[agent.id];
   const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
   return <main className="min-h-screen pt-24">
     <section className="section-padding py-14 md:py-20 border-b border-border/50">
@@ -62,6 +64,13 @@ const AIAgentDetailPage = () => {
             <p key={index} className="text-base text-muted-foreground leading-relaxed">{part.text}</p>
           ))}
         </div>
+      </article></ScrollReveal>}
+      {en && englishInsight && <ScrollReveal><article className="rounded-3xl border border-border/60 bg-card p-7 md:p-10" aria-label="Extended editorial context">
+        <p className="text-xs uppercase font-bold tracking-wide text-primary mb-3">From our LinkedIn AI Agent series</p>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">{englishInsight.title}</h2>
+        <div className="max-w-3xl space-y-4">{englishInsight.paragraphs.map((paragraph, index) =>
+          <p key={index} className="text-base text-muted-foreground leading-relaxed">{paragraph}</p>
+        )}</div>
       </article></ScrollReveal>}
       {article && <ScrollReveal><aside className="rounded-2xl border border-border/60 bg-card p-7 md:p-9">
         <h2 className="text-2xl font-bold tracking-tight mb-3">{en ? "More on LinkedIn" : "Fachartikel auf LinkedIn"}</h2>
