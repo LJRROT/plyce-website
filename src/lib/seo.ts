@@ -1,6 +1,9 @@
 import { getSiteUrl } from "./siteUrl";
 import { stripLocalePrefix } from "./locale";
 import { agentSeoFocus, agentSeoNames } from "../data/agentSeo";
+import { agentLinkedInSource } from "../data/agentLinkedInSource";
+import { agentSourceInsightsEn } from "../data/agentSourceInsightsEn";
+import { dossierArticle } from "../data/dossierArticle";
 
 type RouteSeo = { title: string; description: string; noindex?: boolean };
 
@@ -46,13 +49,18 @@ const en: Record<string, RouteSeo> = {
 
 for (const [id, focus] of Object.entries(agentSeoFocus)) {
   const key = `/ai-agents/${id}`;
+  const germanArticle = agentLinkedInSource[id];
+  const englishArticle = agentSourceInsightsEn[id];
+  const titleDe = id === "ai-dossier-highlights" ? dossierArticle.de.title : (germanArticle?.title || focus.de);
+  const titleEn = id === "ai-dossier-highlights" ? dossierArticle.en.title : (englishArticle?.title || focus.en);
+  const firstParagraph = germanArticle?.blocks.find((block) => block.kind === "paragraph")?.text;
   de[key] = {
-    title: `${focus.de} | plyce`,
-    description: `${agentSeoNames[id]} von plyce. ${focus.challengeDe}`.slice(0, 160),
+    title: `${titleDe} | plyce`,
+    description: `${agentSeoNames[id]}: ${firstParagraph || focus.challengeDe}`.slice(0, 160),
   };
   en[key] = {
-    title: `${focus.en} | plyce`,
-    description: `${agentSeoNames[id]} by plyce. ${focus.challengeEn}`.slice(0, 160),
+    title: `${titleEn} | plyce`,
+    description: `${agentSeoNames[id]}: ${englishArticle?.paragraphs[0] || focus.challengeEn}`.slice(0, 160),
   };
 }
 
