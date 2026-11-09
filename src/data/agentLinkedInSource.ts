@@ -912,5 +912,91 @@ export const agentLinkedInSource: Record<string, AgentLinkedInSource> = {
         "text": "Genau dafür bauen wir plyce."
       }
     ]
+  },
+  "ai-cv-analyzer": {
+    "title": "AI CV Analyzer: Vom Lebenslauf zum strukturierten Kandidatenprofil",
+    "publishedAt": "2026-06-18",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Lebensläufe sind im Recruiting eine der wichtigsten Informationsquellen. Gleichzeitig sind sie oft sehr unterschiedlich aufgebaut, schwer vergleichbar und in vielen Systemen am Ende nur als Datei oder Freitext abgelegt."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier setzt der AI CV Analyzer an."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI CV Analyzer liest Lebensläufe automatisch aus und überführt die relevanten Informationen in ein strukturiertes Kandidatenprofil. Aus unübersichtlichen CVs werden einheitliche, vergleichbare und direkt nutzbare Daten."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das bedeutet konkret:"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ein Lebenslauf wird nicht nur hochgeladen und gespeichert. Er wird analysiert, verstanden und in klare Profilbestandteile zerlegt. Berufserfahrung, Ausbildung, Zusammenfassung und Highlights werden automatisch erkannt und in einer einheitlichen Struktur dargestellt."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Gleichzeitig leitet die KI relevante Tags, Skills, Rollenbezeichnungen, Kandidatentyp und Seniorität aus dem CV ab. Dadurch entstehen Profile, die nicht nur sauber dokumentiert sind, sondern auch sofort für Suche, Listen und Matching genutzt werden können."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ein weiterer wichtiger Punkt ist die Anonymisierung. Personenbezogene Informationen sowie Unternehmens- und Branchenangaben können automatisiert geschützt werden. Das macht den Prozess professioneller, konsistenter und besser geeignet für datenschutzkonforme Recruiting-Abläufe."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der eigentliche Mehrwert liegt aber in der Datenqualität."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Statt Lebensläufe als unstrukturierte Dokumente oder lange Freitextfelder zu verwalten, werden alle relevanten Informationen in ein klares Feldmodell überführt. Dadurch werden Kandidatenprofile vergleichbar, filterbar und für KI-basierte Prozesse nutzbar."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das verbessert nicht nur die interne Arbeit im Recruiting. Es schafft auch die Grundlage für bessere Shortlists, präzisere Kandidatensuchen und nachvollziehbarere Matches."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der Workflow ist dabei bewusst schlank:"
+      },
+      {
+        "kind": "listItem",
+        "text": "CV hochladen"
+      },
+      {
+        "kind": "listItem",
+        "text": "KI analysiert den Lebenslauf"
+      },
+      {
+        "kind": "listItem",
+        "text": "Daten werden strukturiert"
+      },
+      {
+        "kind": "listItem",
+        "text": "sensible Informationen werden anonymisiert"
+      },
+      {
+        "kind": "listItem",
+        "text": "Tags, Skills und Seniorität werden abgeleitet"
+      },
+      {
+        "kind": "listItem",
+        "text": "ein einheitliches Kandidatenprofil entsteht"
+      },
+      {
+        "kind": "listItem",
+        "text": "das Profil ist direkt für Suche, Listen und Matching nutzbar"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für Recruiting-Teams bedeutet das weniger manuelle Datenpflege, bessere Datenqualität und deutlich schnellere Prozesse."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Bessere Daten führen zu besseren Entscheidungen. Und bessere Entscheidungen führen zu besseren Besetzungen."
+      }
+    ]
   }
 };
