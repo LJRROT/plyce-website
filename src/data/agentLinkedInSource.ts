@@ -998,5 +998,133 @@ export const agentLinkedInSource: Record<string, AgentLinkedInSource> = {
         "text": "Bessere Daten führen zu besseren Entscheidungen. Und bessere Entscheidungen führen zu besseren Besetzungen."
       }
     ]
+  },
+  "ai-candidate-match": {
+    "title": "AI Candidate Match: Relevanz statt Bauchgefühl",
+    "publishedAt": "2026-06-19",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Im Recruiting ist nicht der Mangel an Daten das Problem. Das Problem ist, aus vielen Kandidaten schnell die richtigen herauszufiltern."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier setzt AI Candidate Match in plyce an."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Agent bewertet, wie gut ein Kandidat zu einem konkreten Mandat passt. Nicht nur über Schlagworte, sondern entlang der tatsächlichen Anforderungen der Rolle."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Dabei werden Muss-Skills, Projekterfahrung, fachliche Schwerpunkte, Seniorität und relevante Rahmenbedingungen strukturiert mit dem Mandat abgeglichen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das Ergebnis ist ein Match Score von 0 bis 100 inklusive nachvollziehbarer textlicher Begründung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "So wird aus einer langen Kandidatenliste eine priorisierte Shortlist."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Nicht alphabetisch sortiert. Nicht rein nach Bauchgefühl. Sondern nach Relevanz zum konkreten Mandat."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der große Vorteil: Die Bewertung bleibt direkt am Kandidaten dokumentiert und kann im weiteren Prozess genutzt werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für Shortlists. Für Multimails. Für interne Abstimmungen. Für die nächste Ansprache."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Recruiter sehen schneller, welche Kandidaten wirklich relevant sind und warum."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das ersetzt nicht die finale Entscheidung. Aber es reduziert Endlosscreening, Tabellenvergleiche und manuelle Vorauswahl deutlich."
+      },
+      {
+        "kind": "paragraph",
+        "text": "AI Candidate Match hilft Recruiting-Teams, schneller von “viele mögliche Profile” zu “die besten Kandidaten für dieses Mandat” zu kommen."
+      }
+    ]
+  },
+  "ai-outreach-messages": {
+    "title": "AI Outreach Messages: Vom Projektbriefing zum fertigen Anschreiben",
+    "publishedAt": "2026-06-25",
+    "blocks": [
+      {
+        "kind": "paragraph",
+        "text": "Gute Active-Sourcing-Nachrichten beginnen nicht mit Copy-Paste."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Sie beginnen mit einem klaren Verständnis der Rolle."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Was ist das Projekt? Welche Aufgaben sind relevant? Welche Skills werden gesucht? Was macht die Position interessant? Und wie soll die Ansprache klingen?"
+      },
+      {
+        "kind": "paragraph",
+        "text": "Genau hier setzt AI Outreach Messages in plyce an."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der AI Agent erstellt automatisch ein Anschreiben auf Basis der vorhandenen Projektinformationen und der Stellenbeschreibung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das Ziel ist, aus dem Mandat heraus eine saubere, professionelle und verwendbare Ansprache zu erzeugen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Für Xing. Für LinkedIn. Für Mailshots."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Ton, Länge und Aufbau der Nachricht können eingestellt werden. Dadurch kann die Ansprache je nach Kanal, Zielgruppe und Recruiting-Stil angepasst werden."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Kurz und direkt. Etwas ausführlicher. Formeller. Oder lockerer."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Der große Vorteil: Recruiter müssen nicht mehr jedes Mal aus Projektbriefing, Stellenbeschreibung und alten Vorlagen manuell eine neue Nachricht bauen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "plyce nutzt die vorhandenen Projektinformationen direkt für die Texterstellung."
+      },
+      {
+        "kind": "paragraph",
+        "text": "So entsteht ein prüfbarer Entwurf, der vor dem Versand kontrolliert, angepasst und freigegeben werden kann."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Das spart Zeit, reduziert manuelle Routinearbeit und sorgt gleichzeitig für mehr Konsistenz in der Kommunikation."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Gerade bei mehreren Rollen, wechselnden Projekten oder wiederkehrenden Active-Sourcing-Kampagnen ist das ein echter Vorteil."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Die Nachricht bleibt unter Kontrolle des Recruiters. Aber der erste saubere Entwurf entsteht automatisch."
+      },
+      {
+        "kind": "paragraph",
+        "text": "AI Outreach Messages hilft Recruiting-Teams, schneller vom Projektbriefing zur versandbereiten Ansprache zu kommen."
+      },
+      {
+        "kind": "paragraph",
+        "text": "Recruiting-Kommunikation soll nicht jedes Mal bei null starten. Sie soll schneller, strukturierter und professioneller werden."
+      }
+    ]
   }
 };
