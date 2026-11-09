@@ -1,5 +1,7 @@
 import { getSiteUrl } from "./siteUrl";
 import { stripLocalePrefix } from "./locale";
+import { agents } from "../pages/AIAgentsPage";
+import { agentSeoFocus } from "../pages/AIAgentDetailPage";
 
 type RouteSeo = { title: string; description: string; noindex?: boolean };
 
@@ -43,6 +45,19 @@ const en: Record<string, RouteSeo> = {
   "/recruiting-software-vergleich": { title: "Recruiting Software Comparison for Agencies | plyce", description: "Key criteria for comparing modern ATS and CRM platforms for recruitment agencies and staffing firms." },
 };
 
+for (const agent of agents) {
+  const key = `/ai-agents/${agent.id}`;
+  const focus = agentSeoFocus[agent.id];
+  de[key] = {
+    title: `${focus.de} | plyce`,
+    description: `${agent.name} von plyce: ${agent.de.tagline} KI direkt im ATS und CRM für Personalberatungen nutzen.`.slice(0, 160),
+  };
+  en[key] = {
+    title: `${focus.en} | plyce`,
+    description: `${agent.name} by plyce: ${agent.en.tagline} AI integrated into ATS and CRM for recruitment agencies.`.slice(0, 160),
+  };
+}
+
 export const seoRoutes = Object.entries(de).flatMap(([path, seo]) => [
   { path, noindex: Boolean(seo.noindex) },
   { path: path === "/" ? "/en" : `/en${path}`, noindex: Boolean(seo.noindex) },
@@ -69,6 +84,19 @@ export function getPageSeo(pathname: string) {
     { "@type": "WebPage", url: currentUrl, name: seo.title, description: seo.description, inLanguage: isEn ? "en" : "de", isPartOf: { "@id": `${base}/#website` } },
     { "@type": "WebSite", "@id": `${base}/#website`, url: `${base}/`, name: "plyce", inLanguage: ["de", "en"], publisher: { "@id": `${base}/#organization` } },
   ];
+
+  if (basePath.startsWith("/ai-agents/") && known) {
+    const agent = agents.find((entry) => basePath === `/ai-agents/${entry.id}`);
+    if (agent) {
+      graph.push({
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "AI Agents", item: `${base}${isEn ? "/en" : ""}/ai-agents` },
+          { "@type": "ListItem", position: 2, name: agent.name, item: currentUrl },
+        ],
+      });
+    }
+  }
 
   if (basePath === "/team") {
     graph.push(
