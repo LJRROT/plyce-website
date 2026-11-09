@@ -3,7 +3,7 @@ import { readFile, access } from "node:fs/promises";
 
 const sitemap = await readFile("dist/sitemap.xml", "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-assert.equal(urls.length, 32, "Sitemap should contain 16 DE and 16 EN indexable pages");
+assert.equal(urls.length, 60, "Sitemap should contain 30 DE and 30 EN indexable pages");
 assert.equal(new Set(urls).size, urls.length, "No duplicate sitemap URLs");
 const getPage = (path) => path === "/" ? "dist/index.html" : `dist${path}/index.html`;
 for (const url of urls) {
@@ -36,4 +36,4 @@ assert.match(await readFile("dist/404.html", "utf8"), /content="noindex, nofollo
 const config = JSON.parse(await readFile("vercel.json", "utf8"));
 assert.ok(!config.rewrites, "No catch-all rewrite that turns missing URLs into HTTP 200");
 assert.equal(config.trailingSlash, false);
-console.log("Verified all 32 sitemap URLs, both noindex migration pages and custom 404.");
+console.log("Verified all 60 sitemap URLs, both noindex migration pages and custom 404.");
