@@ -1,27 +1,11 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Sparkles } from "lucide-react";
 import { agents } from "./AIAgentsPage";
+import { agentSeoFocus } from "@/data/agentSeo";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 
-const focus: Record<string, { de: string; en: string; challengeDe: string; challengeEn: string }> = {
-  "ai-cv-analyzer": { de: "Lebensläufe automatisch analysieren und Kandidatenprofile strukturieren", en: "Automate CV analysis and structure candidate profiles", challengeDe: "Lebensläufe kommen in unterschiedlichen Formaten und mit sehr verschiedenen Detailgraden an. Wer Skills, Stationen und Ausbildung manuell überträgt, verliert Zeit und erzeugt uneinheitliche Profile.", challengeEn: "CVs vary in format and detail. Manually extracting skills, work history and education takes time and creates inconsistent records." },
-  "ai-candidate-match": { de: "KI-Kandidatenmatching: passende Kandidaten schneller erkennen", en: "AI candidate matching for better shortlists", challengeDe: "In großen Kandidatenpools ist die Auswahl oft aufwendig. Einzelne Keywords reichen nicht aus, um Anforderungen und relevante Erfahrung fundiert zu vergleichen.", challengeEn: "Finding relevant candidates in a large database is difficult. Keywords alone rarely explain fit against a complete requirement profile." },
-  "ai-outreach-messages": { de: "Active Sourcing mit KI: Kandidaten individuell ansprechen", en: "AI-powered active sourcing and personalised outreach", challengeDe: "Persönliche Anschreiben kosten Zeit. Standardnachrichten hingegen passen häufig nicht zu Projekt, Kandidat und Ansprachekanal.", challengeEn: "Personalised outreach takes time, while generic messages often fail to reflect the candidate, role and channel." },
-  "ai-dossier-highlights": { de: "Kandidatendossiers und Profil-Highlights mit KI erstellen", en: "Create candidate dossier highlights with AI", challengeDe: "Kunden benötigen eine nachvollziehbare Einordnung der Passung. Für jede Vorstellung die relevanten CV-Abschnitte neu zusammenzufassen, ist arbeitsintensiv.", challengeEn: "Clients need a clear reason why a candidate fits. Summarising relevant CV details for every submission is repetitive." },
-  "ai-cv-formatter": { de: "Lebensläufe formatieren, anonymisieren und übersetzen", en: "Format, anonymise and translate CVs with AI", challengeDe: "Unterschiedliche CV-Layouts, sensible Angaben und Sprachversionen erschweren die professionelle Kandidatenvorstellung.", challengeEn: "Inconsistent CV layouts, sensitive details and language versions make client-ready profiles hard to prepare." },
-  "ai-project-brief": { de: "Projekt- und Beraterverträge aus Recruiting-Daten vorbereiten", en: "Prepare project and freelancer contracts from recruiting data", challengeDe: "Nach einer Freelance-Vermittlung müssen Konditionen aus Projekt-, Kunden- und Kandidatendaten in Verträge übernommen werden. Manuelle Übertragungen sind aufwendig und fehleranfällig.", challengeEn: "After a freelance placement, contract details must be combined from assignment, client and candidate records. Manual transfers are repetitive and error-prone." },
-  "ai-project-report": { de: "Recruiting-Projektreports und Kundenupdates automatisieren", en: "Automate recruiting project reports and client updates", challengeDe: "Vor einem Kundentermin müssen Kandidatenstatus, Interviews und Feedback häufig aus mehreren Ansichten zusammengesucht werden.", challengeEn: "Before client calls, recruiters often need to gather candidate statuses, interview activity and feedback from several places." },
-  "ai-company-status-report": { de: "Kundenstatus und mehrere Recruiting-Projekte zusammenfassen", en: "Summarise client accounts and recruiting projects", challengeDe: "Bei Kunden mit mehreren Mandaten fehlt häufig ein schneller Gesamtüberblick über Fortschritt und offene Schritte.", challengeEn: "For clients with multiple assignments, getting a consolidated view of progress and next steps can be challenging." },
-  "ai-job-post-builder": { de: "Stellenanzeigen mit KI aus Projektdaten erstellen", en: "Generate job advertisements from project data with AI", challengeDe: "Projektinformationen liegen im ATS bereits vor, müssen für Stellenanzeigen aber oft erneut formuliert und gegebenenfalls anonymisiert werden.", challengeEn: "Job details already exist in the ATS but are often copied and rewritten to create publishable advertisements." },
-  "ai-company-enricher": { de: "Firmendaten automatisch recherchieren und CRM-Profile anreichern", en: "Enrich CRM company records automatically with AI", challengeDe: "Unternehmensdaten müssen für Business Development häufig manuell recherchiert, geprüft und in einzelne CRM-Felder übertragen werden.", challengeEn: "Business development teams often research companies manually and transfer details into CRM fields one by one." },
-  "ai-signature-parser": { de: "Kontaktdaten aus E-Mail-Signaturen automatisch übernehmen", en: "Extract CRM contacts from email signatures with AI", challengeDe: "Neue Kontakte entstehen häufig aus E-Mails. Werden Signaturen manuell übertragen, bleiben Profile unvollständig oder werden gar nicht angelegt.", challengeEn: "New contacts often arrive through email. Manual data entry leads to incomplete or missing CRM records." },
-  "ai-meeting-tracker": { de: "Recruiting-Meetings automatisch dokumentieren", en: "Automatically document recruiting meetings", challengeDe: "Notizen und Transkripte aus Gesprächen liegen häufig außerhalb des ATS. Ohne Zuordnung fehlt der Zusammenhang zum jeweiligen Kontakt oder Kandidaten.", challengeEn: "Meeting notes and transcripts often live outside the ATS, disconnected from the relevant candidate or contact." },
-  "ai-recorder": { de: "Spracheingabe und KI-Diktat im Recruiting-CRM", en: "AI dictation and voice input inside your recruiting CRM", challengeDe: "Recruiter schreiben täglich viele Kommentare, E-Mails und Aufgaben. Lange Texte per Tastatur zu erfassen kostet wertvolle Zeit.", challengeEn: "Recruiters write comments, emails and tasks throughout the day. Typing longer updates takes time." },
-  "ai-summary": { de: "CRM-Historien und Kommunikation mit KI zusammenfassen", en: "Summarise CRM activity histories with AI", challengeDe: "Bei langen Kandidaten- oder Kundenhistorien ist es schwierig, schnell die wichtigsten Kontakte, Entscheidungen und nächsten Schritte zu erfassen.", challengeEn: "Long candidate and client histories make it hard to understand key interactions, decisions and next steps quickly." },
-};
 
-export const agentSeoFocus = focus;
 
 const AIAgentDetailPage = () => {
   const { id } = useParams();
@@ -31,7 +15,7 @@ const AIAgentDetailPage = () => {
   const prefix = en ? "/en" : "";
   const agent = agents.find((item) => item.id === id);
   if (!agent) return <div className="min-h-screen pt-32 section-padding container-tight"><h1 className="text-3xl font-bold">{en ? "Agent not found" : "Agent nicht gefunden"}</h1><Link className="text-primary underline" to={prefix + "/ai-agents"}>{en ? "Back to AI Agents" : "Zurück zur Übersicht"}</Link></div>;
-  const current = focus[agent.id];
+  const current = agentSeoFocus[agent.id];
   const copy = agent[lang];
   const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
   return <main className="min-h-screen pt-24">
