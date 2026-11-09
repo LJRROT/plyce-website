@@ -1,7 +1,8 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, ExternalLink, Sparkles } from "lucide-react";
 import { agents } from "./AIAgentsPage";
 import { agentSeoFocus } from "@/data/agentSeo";
+import { agentArticles } from "@/data/agentArticles";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -17,6 +18,7 @@ const AIAgentDetailPage = () => {
   if (!agent) return <div className="min-h-screen pt-32 section-padding container-tight"><h1 className="text-3xl font-bold">{en ? "Agent not found" : "Agent nicht gefunden"}</h1><Link className="text-primary underline" to={prefix + "/ai-agents"}>{en ? "Back to AI Agents" : "Zurück zur Übersicht"}</Link></div>;
   const current = agentSeoFocus[agent.id];
   const copy = agent[lang];
+  const article = agentArticles[agent.id];
   const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
   return <main className="min-h-screen pt-24">
     <section className="section-padding py-14 md:py-20 border-b border-border/50">
@@ -43,6 +45,11 @@ const AIAgentDetailPage = () => {
         <ul className="grid md:grid-cols-2 gap-5">{copy.capabilities.map(item => <li key={item} className="flex gap-3"><CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0 text-primary"/><span className="leading-relaxed">{item}</span></li>)}</ul>
       </div></ScrollReveal>
       <ScrollReveal><div className="max-w-3xl"><h2 className="text-2xl md:text-3xl font-bold mb-4">{en ? "Integrated into your workflow" : "Direkt in den Recruiting-Workflow integriert"}</h2><p className="text-muted-foreground leading-relaxed text-base md:text-lg">{en ? `The ${agent.name} works in the context of the relevant records in plyce. Instead of switching to a separate AI tool and manually copying information back and forth, recruiting teams can use the result within their existing ATS and CRM processes. AI-generated output should be checked before external use.` : `Der ${agent.name} arbeitet im Kontext der relevanten Datensätze in plyce. Statt zwischen separaten KI-Tools und dem ATS zu wechseln, können Recruiting-Teams die Ergebnisse direkt in ihren bestehenden Prozessen nutzen. KI-generierte Ergebnisse sollten vor der externen Verwendung geprüft werden.`}</p></div></ScrollReveal>
+      {article && <ScrollReveal><aside className="rounded-2xl border border-border/60 bg-card p-7 md:p-9">
+        <h2 className="text-2xl font-bold tracking-tight mb-3">{en ? "More on LinkedIn" : "Fachartikel auf LinkedIn"}</h2>
+        <p className="text-muted-foreground leading-relaxed mb-4">{en ? "Read the original article by plyce on LinkedIn." : "Lies den Originalartikel von plyce auf LinkedIn."}</p>
+        <a href={article.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">{article.title} <ExternalLink className="w-4 h-4" aria-hidden /></a>
+      </aside></ScrollReveal>}
       <ScrollReveal><div><h2 className="text-2xl md:text-3xl font-bold mb-6">{en ? "Explore related AI Agents" : "Weitere passende AI Agents"}</h2><div className="grid gap-4 md:grid-cols-3">{related.map(item => <Link key={item.id} to={prefix + "/ai-agents/" + item.id} className="rounded-2xl border border-border/60 bg-card p-6 hover:border-primary/40 hover:shadow-md transition-all"><div className="text-xs text-primary font-semibold mb-2">Agent #{item.number}</div><h3 className="text-lg font-bold mb-2">{item.name}</h3><p className="text-sm text-muted-foreground leading-relaxed">{item[lang].tagline}</p><span className="mt-4 inline-flex items-center text-primary font-semibold text-sm">{en ? "Learn more" : "Mehr erfahren"} <ArrowRight className="h-4 w-4 ml-2"/></span></Link>)}</div></div></ScrollReveal>
       <ScrollReveal><Link to={prefix + "/ai-agents"} className="inline-flex items-center text-primary font-semibold gap-2 hover:underline"><ArrowLeft className="h-4 w-4"/>{en ? "Back to all AI Agents" : "Zur Übersicht aller AI Agents"}</Link></ScrollReveal>
     </div></section>
