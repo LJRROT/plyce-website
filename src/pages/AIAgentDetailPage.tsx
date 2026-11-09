@@ -25,7 +25,7 @@ const AIAgentDetailPage = () => {
           <Link className="hover:text-primary" to={prefix + "/ai-agents"}>AI Agents</Link><ChevronRight className="h-4 w-4"/><span aria-current="page">{agent.name}</span>
         </nav>
         <ScrollReveal>
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary-light px-3 py-1.5 text-primary text-sm font-semibold mb-5"><agent.icon className="h-4 w-4"/> Agent #{agent.number}{agent.beta ? " · Beta" : ""}</div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary-light px-3 py-1.5 text-primary text-sm font-semibold mb-5"><agent.icon className="h-4 w-4"/> Agent #{agent.number}</div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient-hero text-balance leading-tight max-w-4xl">{current[lang]}</h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{copy.tagline}</p>
           <div className="mt-8 flex flex-wrap gap-3">
