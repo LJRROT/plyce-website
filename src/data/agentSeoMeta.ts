@@ -100,7 +100,7 @@ export const agentSeoMeta: Record<string, { de: AgentSeoLocale; en: AgentSeoLoca
   "ai-job-post-builder": {
     "de": {
       "h1": "Stellenanzeigen und Stellenbeschreibungen mit KI erstellen",
-      "seoTitle": "Stellenanzeigen mit KI erstellen | AI Job Post Builder | plyce",
+      "seoTitle": "Stellenanzeigen mit KI erstellen | Job Post Builder | plyce",
       "metaDescription": "Aus dem Kundenbriefing zur fertigen Stellenbeschreibung: AI Job Post Builder erstellt und strukturiert Stellenanzeigen direkt im Recruiting-ATS."
     },
     "en": {

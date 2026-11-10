@@ -3,7 +3,7 @@ export const editorialBatch3: Record<string, AgentEditorial> = {
   "ai-job-post-builder": {
     "de": {
       "h1": "Stellenanzeigen und Stellenbeschreibungen mit KI erstellen",
-      "seoTitle": "Stellenanzeigen mit KI erstellen | AI Job Post Builder | plyce",
+      "seoTitle": "Stellenanzeigen mit KI erstellen | Job Post Builder | plyce",
       "metaDescription": "Aus dem Kundenbriefing zur fertigen Stellenbeschreibung: AI Job Post Builder erstellt und strukturiert Stellenanzeigen direkt im Recruiting-ATS.",
       "intro": [
         "Ein Stellenprofil entsteht selten in einem Schritt. Informationen kommen aus Kundenbriefings, internen Notizen, Projektunterlagen und Rückfragen. Anschließend müssen daraus klare Aufgaben, Anforderungen und ein überzeugender, veröffentlichbarer Text werden.",
