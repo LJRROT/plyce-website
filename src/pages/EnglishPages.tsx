@@ -1,4 +1,5 @@
 import FaqPage from "./FaqPage";
+import { aiAgentsNav } from "@/data/agentNav";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -134,11 +135,44 @@ export const EnglishLegalPage = ({ kind }: { kind: "imprint" | "privacy" | "term
     title: "Terms and Conditions", intro: "English translation for information purposes. The German terms and conditions remain authoritative.",
     sections: [{ title: "Scope", text: "These terms govern the contractual use of plyce services unless otherwise agreed in an individual contract." }, { title: "Service and availability", text: "The contractual scope, licences, support and service levels are defined by the applicable order and agreement." }, { title: "Customer obligations", text: "Customers are responsible for lawful use, authorised user access and the accuracy of data entered into the service." }, { title: "Liability and term", text: "Liability, contract term, termination and related legal provisions follow the German contractual documents and applicable law." }]
   };
-  return <PageShell title={content.title} intro={content.intro}><StandardSections sections={content.sections}/></PageShell>;
+  return <PageShell title={content.title} intro={content.intro}><StandardSections export const EnglishSitemapPage = () => {
+  const mainPages = [
+    { path: "", name: "Home" }, { path: "/features", name: "Features" },
+    { path: "/ai-agents", name: "AI Agents" }, { path: "/plyce-time", name: "plyce time" },
+    { path: "/pricing", name: "Pricing" }, { path: "/recruiting-software-vergleich", name: "Recruiting software comparison" },
+    { path: "/faq", name: "FAQ" }, { path: "/implementierung", name: "Implementation" },
+    { path: "/partnerprogramm", name: "Partner programme" }, { path: "/data-protection", name: "Data protection" },
+    { path: "/team", name: "Team" }, { path: "/careers", name: "Careers" },
+    { path: "/agb", name: "Terms" }, { path: "/datenschutz", name: "Privacy" },
+    { path: "/impressum", name: "Legal notice" },
+  ];
+  return (
+    <PageShell title="Site index" intro="Browse key product pages and all 14 AI Agent guides.">
+      <section className="py-12 section-padding">
+        <div className="container-tight max-w-3xl">
+          <h2 className="mb-4 text-xl font-bold">Products and information</h2>
+          <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+            {mainPages.map(page => (
+              <li key={page.path}>
+                <Link to={"/en" + page.path} className="flex min-h-11 items-center text-sm font-medium text-foreground hover:text-primary">{page.name}</Link>
+              </li>
+            ))}
+          </ul>
+          <h2 className="mb-4 mt-10 text-xl font-bold">14 AI Agents</h2>
+          <ul className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+            {aiAgentsNav.map(agent => (
+              <li key={agent.id}>
+                <Link to={"/en/ai-agents/" + agent.id} className="flex min-h-11 items-center text-sm font-medium text-foreground hover:text-primary">{agent.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </PageShell>
+  );
 };
 
-export const EnglishSitemapPage = () => (
-  <PageShell title="Sitemap"><StandardSections sections={[{ title: "Product", bullets: ["Home", "Features", "AI Agents", "plyce time", "Pricing"] }, { title: "Information", bullets: ["FAQ", "Implementation", "Migration", "Partner program", "Data Protection"] }, { title: "Legal", bullets: ["Terms and Conditions", "Privacy Policy", "Legal Notice"] }]}/></PageShell>
+Policy", "Legal Notice"] }]}/></PageShell>
 );
 
 export const EnglishComparisonPage = () => (
