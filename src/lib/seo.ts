@@ -110,7 +110,7 @@ export function getPageSeo(pathname: string) {
         mainEntityOfPage: currentUrl,
         inLanguage: isEn ? "en" : "de",
         ...(articleImage ? { image: [articleImage] } : {}),
-        ...(source?.publishedAt && /^\\d{4}-\\d{2}-\\d{2}$/.test(source.publishedAt) ? { datePublished: source.publishedAt } : {}),
+        ...(source?.publishedAt && /^\d{4}-\d{2}-\d{2}$/.test(source.publishedAt) ? { datePublished: source.publishedAt } : {}),
         author: { "@id": `${base}/#organization` },
         publisher: { "@id": `${base}/#organization` },
       });
