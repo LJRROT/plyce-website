@@ -27,6 +27,33 @@ for (const url of urls) {
   for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"?#]+)(?:[?#][^"]*)?"/g)) await access(`dist${match[1]}`);
   console.log(`SEO OK ${path}`);
 }
+
+const agentIds = [
+  "ai-cv-analyzer", "ai-candidate-match", "ai-outreach-messages", "ai-dossier-highlights",
+  "ai-cv-formatter", "ai-project-brief", "ai-project-report", "ai-company-status-report",
+  "ai-job-post-builder", "ai-company-enricher", "ai-signature-parser", "ai-meeting-tracker",
+  "ai-recorder", "ai-summary",
+];
+for (const id of agentIds) {
+  for (const locale of ["de", "en"]) {
+    const path = `${locale === "en" ? "/en" : ""}/ai-agents/${id}`;
+    const html = await readFile(getPage(path), "utf8");
+    assert.ok((html.match(/<h2(?:\\s|>)/g) || []).length >= 5, `${path}: detailed editorial structure`);
+    assert.ok((html.match(/<h3(?:\\s|>)/g) || []).length >= 5, `${path}: FAQ and related agent headings`);
+    assert.ok(html.includes(locale === "en" ? "Frequently asked questions" : "Häufige Fragen"), `${path}: visible FAQ content`);
+    assert.ok(!html.includes("Fachlicher Hintergrund aus unserer LinkedIn-Serie"), `${path}: no duplicate editorial blocks`);
+    assert.ok(!html.includes("So unterstützt der AI Agent"), `${path}: no generic promotional template`);
+    assert.ok(html.includes(`/ai-agents/${id}`), `${path}: canonical agent URL`);
+    if (id === "ai-dossier-highlights") {
+      assert.ok(!html.includes("images/ai-agents/ai-dossier-highlights.webp"), `${path}: no placeholder illustration`);
+    } else {
+      assert.ok(html.includes(`/images/ai-agents/${id}.webp`), `${path}: dedicated cover illustration`);
+      await access(`dist/images/ai-agents/${id}.webp`);
+    }
+  }
+}
+console.log("Verified 14 bilingual AI Agent articles: headings, FAQs, illustrations and useful content.");
+
 for (const path of ["/migration", "/en/migration"]) {
   const html = await readFile(getPage(path), "utf8");
   assert.match(html, /content="noindex, nofollow"/, `${path}: retain intentional exclusion`);

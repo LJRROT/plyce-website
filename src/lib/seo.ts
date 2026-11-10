@@ -1,9 +1,7 @@
 import { getSiteUrl } from "./siteUrl";
 import { stripLocalePrefix } from "./locale";
 import { agentSeoFocus, agentSeoNames } from "../data/agentSeo";
-import { agentLinkedInSource } from "../data/agentLinkedInSource";
-import { agentSourceInsightsEn } from "../data/agentSourceInsightsEn";
-import { dossierArticle } from "../data/dossierArticle";
+import { agentEditorial } from "../data/agentEditorial";
 
 type RouteSeo = { title: string; description: string; noindex?: boolean };
 
@@ -47,22 +45,12 @@ const en: Record<string, RouteSeo> = {
   "/recruiting-software-vergleich": { title: "Recruiting Software Comparison for Agencies | plyce", description: "Key criteria for comparing modern ATS and CRM platforms for recruitment agencies and staffing firms." },
 };
 
-for (const [id, focus] of Object.entries(agentSeoFocus)) {
+for (const [id, editorial] of Object.entries(agentEditorial)) {
   const key = `/ai-agents/${id}`;
-  const germanArticle = agentLinkedInSource[id];
-  const englishArticle = agentSourceInsightsEn[id];
-  const titleDe = id === "ai-dossier-highlights" ? dossierArticle.de.title : (germanArticle?.title || focus.de);
-  const titleEn = id === "ai-dossier-highlights" ? dossierArticle.en.title : (englishArticle?.title || focus.en);
-  const firstParagraph = germanArticle?.blocks.find((block) => block.kind === "paragraph")?.text;
-  de[key] = {
-    title: `${titleDe} | plyce`,
-    description: `${agentSeoNames[id]}: ${firstParagraph || focus.challengeDe}`.slice(0, 160),
-  };
-  en[key] = {
-    title: `${titleEn} | plyce`,
-    description: `${agentSeoNames[id]}: ${englishArticle?.paragraphs[0] || focus.challengeEn}`.slice(0, 160),
-  };
+  de[key] = { title: editorial.de.seoTitle, description: editorial.de.metaDescription };
+  en[key] = { title: editorial.en.seoTitle, description: editorial.en.metaDescription };
 }
+
 
 export const seoRoutes = Object.entries(de).flatMap(([path, seo]) => [
   { path, noindex: Boolean(seo.noindex) },
@@ -97,11 +85,7 @@ export function getPageSeo(pathname: string) {
   if (basePath.startsWith("/ai-agents/") && known) {
     const agentId = basePath.replace("/ai-agents/", "");
     if (agentSeoFocus[agentId]) {
-      const source = agentLinkedInSource[agentId];
-      const articleHeadline = agentId === "ai-dossier-highlights"
-        ? dossierArticle[isEn ? "en" : "de"].title
-        : isEn ? agentSourceInsightsEn[agentId]?.title || agentSeoNames[agentId]
-        : source?.title || agentSeoNames[agentId];
+      const articleHeadline = agentEditorial[agentId]?.[isEn ? "en" : "de"].h1 || agentSeoNames[agentId];
       const articleImage = agentId === "ai-dossier-highlights" ? undefined : imageUrl;
       graph.push({
         "@type": "Article",
@@ -110,7 +94,7 @@ export function getPageSeo(pathname: string) {
         mainEntityOfPage: currentUrl,
         inLanguage: isEn ? "en" : "de",
         ...(articleImage ? { image: [articleImage] } : {}),
-        ...(source?.publishedAt && /^\d{4}-\d{2}-\d{2}$/.test(source.publishedAt) ? { datePublished: source.publishedAt } : {}),
+        dateModified: "2026-11-10",
         author: { "@id": `${base}/#organization` },
         publisher: { "@id": `${base}/#organization` },
       });
