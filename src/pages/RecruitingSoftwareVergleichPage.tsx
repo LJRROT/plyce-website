@@ -16,7 +16,7 @@ const comparison: Row[] = [
   },
   {
     feature: "KI Funktionsumfang",
-    plyce: "11 spezialisierte AI Agents für CV Parsing, Matching, Dossiers, Sourcing, Kommunikation und Reporting.",
+    plyce: "14 spezialisierte AI Agents für CV Parsing, Matching, Dossiers, Sourcing, Kommunikation und Reporting.",
     traditional: "Einzelne KI Add-ons, oft als Zusatzmodul mit Aufpreis.",
     generic: "Basisfunktionen wie CV Parsing und einfache Suchvorschläge.",
   },
@@ -203,7 +203,7 @@ const RecruitingSoftwareVergleichPage = () => {
               Warum ein AI natives ATS und CRM für Agenturen den Unterschied macht
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Klassische Recruiting Software wurde in einer Zeit entwickelt, in der KI ein Zusatzfeature war. plyce dreht dieses Verhältnis um. Elf spezialisierte AI Agents arbeiten entlang des gesamten Recruiting Prozesses, vom Parsing eines Lebenslaufs über Matching und Dossiererstellung bis zu Reporting und Sourcing. Das reduziert Adminaufwand deutlich und verschafft Beratern mehr Zeit für Gespräche mit Kandidaten und Kunden.
+              Klassische Recruiting Software wurde in einer Zeit entwickelt, in der KI ein Zusatzfeature war. plyce dreht dieses Verhältnis um. Vierzehn spezialisierte AI Agents arbeiten entlang des gesamten Recruiting Prozesses, vom Parsing eines Lebenslaufs über Matching und Dossiererstellung bis zu Reporting und Sourcing. Das reduziert Adminaufwand deutlich und verschafft Beratern mehr Zeit für Gespräche mit Kandidaten und Kunden.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6">
               Für Agenturen, die Freelance und Festanstellung parallel vermitteln, kommt mit plyce time ein integrierter Workflow für Projektverträge, Timesheets und Invoicing hinzu. Damit entsteht ein durchgängiger Prozess von der Kandidatengewinnung bis zur Rechnungsstellung, ohne Wechsel in ein zweites Tool.
