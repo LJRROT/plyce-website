@@ -5,47 +5,72 @@ import { agentArticles } from "@/data/agentArticles";
 import { agentLinkedInSource, type ArticleContentBlock } from "@/data/agentLinkedInSource";
 import { agentSourceInsightsEn } from "@/data/agentSourceInsightsEn";
 import { additionalAgentArticle } from "@/data/additionalAgentArticle";
+import ScrollReveal from "@/components/ScrollReveal";
 
-const agentImages: Record<string, string> = {
-  "ai-cv-analyzer": "/images/ai-agents/ai-cv-analyzer.webp",
-  "ai-candidate-match": "/images/ai-agents/ai-candidate-match.webp",
-  "ai-outreach-messages": "/images/ai-agents/ai-outreach-messages.webp",
-  "ai-cv-formatter": "/images/ai-agents/ai-cv-formatter.webp",
-  "ai-project-brief": "/images/ai-agents/ai-project-brief.webp",
-  "ai-project-report": "/images/ai-agents/ai-project-report.webp",
-  "ai-company-status-report": "/images/ai-agents/ai-company-status-report.webp",
-  "ai-job-post-builder": "/images/ai-agents/ai-job-post-builder.webp",
-  "ai-company-enricher": "/images/ai-agents/ai-company-enricher.webp",
-  "ai-signature-parser": "/images/ai-agents/ai-signature-parser.webp",
-  "ai-meeting-tracker": "/images/ai-agents/ai-meeting-tracker.webp",
-  "ai-recorder": "/images/ai-agents/ai-recorder.webp",
-  "ai-summary": "/images/ai-agents/ai-summary.webp",
+const imageFiles: Record<string, string> = {
+  "ai-cv-analyzer": "ai-cv-analyzer.webp",
+  "ai-candidate-match": "ai-candidate-match.webp",
+  "ai-outreach-messages": "ai-outreach-messages.webp",
+  "ai-cv-formatter": "ai-cv-formatter.webp",
+  "ai-project-brief": "ai-project-brief.webp",
+  "ai-project-report": "ai-project-report.webp",
+  "ai-company-status-report": "ai-company-status-report.webp",
+  "ai-job-post-builder": "ai-job-post-builder.webp",
+  "ai-company-enricher": "ai-company-enricher.webp",
+  "ai-signature-parser": "ai-signature-parser.webp",
+  "ai-meeting-tracker": "ai-meeting-tracker.webp",
+  "ai-recorder": "ai-recorder.webp",
+  "ai-summary": "ai-summary.webp",
 };
 
-const dossierContentDe: ArticleContentBlock[] = [
-  { kind: "paragraph", text: "Ein guter Kandidat braucht mehr als einen aussagekräftigen Lebenslauf. Für die Vorstellung beim Kunden ist entscheidend, warum seine Erfahrung zum konkreten Mandat passt." },
-  { kind: "paragraph", text: "Im Recruiting entsteht diese Einordnung häufig manuell: Projekterfahrung prüfen, fachliche Schwerpunkte heraussuchen, relevante Stationen gewichten und die wichtigsten Argumente für die Kandidatenvorstellung formulieren." },
-  { kind: "paragraph", text: "Hier unterstützt AI Dossier Highlights von plyce. Der Agent fasst die relevanten Stärken eines Kandidaten im Kontext der offenen Position zusammen und bereitet daraus kompakte, nachvollziehbare Profil-Highlights auf." },
-  { kind: "heading", text: "Relevanz statt vollständiger CV-Nacherzählung" },
-  { kind: "paragraph", text: "Nicht jede Station im Lebenslauf ist für jedes Mandat relevant. AI Dossier Highlights fokussiert auf die Erfahrung, Kenntnisse und fachlichen Schwerpunkte, die für die konkrete Rolle entscheidend sind." },
-  { kind: "paragraph", text: "Rolle, Branche und Projektanforderungen können in die Formulierung einfließen. Aufbau, Länge und Tonalität lassen sich an den gewünschten Stil der Personalberatung anpassen." },
-  { kind: "heading", text: "Eine bessere Grundlage für Kandidatenvorstellungen" },
-  { kind: "paragraph", text: "Die generierten Highlights unterstützen Recruiter bei der Vorbereitung von Kandidatenprofilen, Shortlists und Kundenpräsentationen. Sie ersetzen nicht die fachliche Prüfung, sondern machen die entscheidenden Argumente schneller sichtbar." },
-  { kind: "paragraph", text: "Das Ergebnis: weniger manuelles Zusammenfassen, ein konsistenterer Qualitätsstandard und eine klarere Einordnung der Kandidatenpassung." },
-];
+const dossierCopy = {
+  de: [
+    "Im Recruiting reicht es nicht, den Lebenslauf eines Kandidaten weiterzuleiten. Kunden möchten schnell erkennen, weshalb ein Profil fachlich und persönlich zu einem konkreten Mandat passt.",
+    "Der AI Dossier Highlights Agent von plyce erstellt eine kompakte, nachvollziehbare Zusammenfassung der besonders relevanten Erfahrungen. Dafür werden Kandidateninformationen im Kontext der jeweiligen Projektanforderungen betrachtet.",
+    "Der Agent identifiziert zentrale berufliche Stationen, fachliche Schwerpunkte und Qualifikationen, die für das Mandat sprechen. Dabei geht es nicht darum, den gesamten CV erneut zu erzählen, sondern die entscheidenden Argumente für die Kandidatenvorstellung sichtbar zu machen.",
+    "Rolle, Branche und Anforderungsprofil fließen in die Formulierung ein. Aufbau, Länge und Tonalität lassen sich an den Stil der Personalberatung und die Erwartungen des Kunden anpassen.",
+    "So entsteht ein klar strukturierter Ausgangspunkt für eine professionelle Kandidatenpräsentation. Der Recruiter prüft die Aussagen und entscheidet, wie das Profil beim Kunden positioniert wird.",
+    "Der Mehrwert liegt in einer schnelleren Vorbereitung, konsistenteren Dossiers und einer verständlichen Begründung der fachlichen Passung."
+  ],
+  en: [
+    "In recruitment, sending a CV is rarely enough. Clients want to understand quickly why a candidate is relevant to a particular assignment.",
+    "The AI Dossier Highlights Agent in plyce prepares concise and explainable highlights based on candidate information and the requirements of the role.",
+    "It identifies the most relevant experience, career milestones and qualifications rather than reproducing the full CV. The focus is on the key arguments supporting a candidate presentation.",
+    "Role, industry and assignment context inform the wording. Teams can adapt structure, length and tone to match their way of presenting candidates.",
+    "Recruiters review the draft and remain responsible for positioning the candidate with the client. The result is faster preparation, more consistent dossiers and a clearer explanation of fit."
+  ],
+};
 
-const renderBlocks = (blocks: ArticleContentBlock[]) =>
-  blocks.map((part, index) =>
-    part.kind === "heading" ? (
-      <h2 key={index} className="text-2xl md:text-[1.8rem] font-bold tracking-tight text-foreground pt-6 pb-1">{part.text}</h2>
+const ArticleBody = ({ blocks }: { blocks: ArticleContentBlock[] }) => (
+  <div className="mx-auto w-full max-w-3xl space-y-5 text-base md:text-lg leading-8 text-foreground/85">
+    {blocks.map((part, index) => part.kind === "heading" ? (
+      <h2 key={index} className="pt-5 text-2xl font-bold tracking-tight text-foreground md:text-3xl leading-snug">{part.text}</h2>
     ) : part.kind === "listItem" ? (
-      <p key={index} className="flex items-start gap-3 text-[1.05rem] leading-8 text-muted-foreground">
-        <span aria-hidden="true" className="text-primary font-bold">•</span><span>{part.text}</span>
-      </p>
+      <div key={index} className="flex items-start gap-3 pl-1"><span className="mt-1 font-bold text-primary" aria-hidden="true">•</span><p>{part.text}</p></div>
     ) : (
-      <p key={index} className="text-[1.05rem] leading-8 text-muted-foreground">{part.text}</p>
-    )
+      <p key={index}>{part.text}</p>
+    ))}
+  </div>
+);
+
+const ArticleImage = ({ id, name }: { id: string; name: string }) => {
+  const file = imageFiles[id];
+  if (!file) return null;
+  return (
+    <figure className="mx-auto mb-10 w-full max-w-5xl md:mb-14">
+      <img
+        src={`/images/ai-agents/${file}`}
+        alt={`${name}: Visualisierung des Ablaufs und der Ergebnisse in plyce`}
+        width={id === "ai-cv-analyzer" || id === "ai-candidate-match" ? 1736 : 1122}
+        height={id === "ai-cv-analyzer" || id === "ai-candidate-match" ? 906 : 1402}
+        loading="eager"
+        decoding="async"
+        className="block h-auto w-full rounded-2xl border border-border/30 bg-white object-contain"
+        onError={(event) => { event.currentTarget.style.display = "none"; }}
+      />
+    </figure>
   );
+};
 
 const AIAgentDetailPage = () => {
   const { id } = useParams();
@@ -54,88 +79,93 @@ const AIAgentDetailPage = () => {
   const lang = en ? "en" : "de";
   const prefix = en ? "/en" : "";
   const agent = agents.find((item) => item.id === id);
+
   if (!agent) {
-    return <main className="min-h-screen pt-32 section-padding container-tight">
+    return <main className="container-tight min-h-screen pt-32 section-padding">
       <h1 className="text-3xl font-bold">{en ? "Agent not found" : "Agent nicht gefunden"}</h1>
-      <Link className="text-primary underline" to={prefix + "/ai-agents"}>{en ? "Back to AI Agents" : "Zurück zur Übersicht"}</Link>
+      <Link to={prefix + "/ai-agents"} className="mt-4 inline-flex text-primary underline">{en ? "Back to all AI Agents" : "Zurück zu allen AI Agents"}</Link>
     </main>;
   }
 
-  const article = agentArticles[agent.id];
-  const source = agentLinkedInSource[agent.id];
-  const english = agentSourceInsightsEn[agent.id];
-  const relatedArticle = agent.id === additionalAgentArticle.agentId ? additionalAgentArticle : null;
-  const imagePath = agentImages[agent.id];
-  const title = agent.name;
-  const related = agents.filter((item) => item.id !== agent.id)
-    .sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number))
-    .slice(0, 3);
+  const article = agentLinkedInSource[agent.id];
+  const originalLink = agentArticles[agent.id];
+  const englishContent = agentSourceInsightsEn[agent.id];
+  const isDossier = agent.id === "ai-dossier-highlights";
+  const secondArticle = agent.id === additionalAgentArticle.agentId ? additionalAgentArticle : null;
+  const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
+  const articleTitle = en ? agent.name : article?.title.replace(/^#?\d+\s*[:.\-–]?\s*/, "") ?? agent.name;
 
   return <main className="min-h-screen pt-24">
-    <article className="section-padding py-12 md:py-20">
+    <section className="section-padding py-12 md:py-16">
       <div className="container-tight">
-        <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-sm text-muted-foreground mb-10">
+        <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <Link to={prefix + "/ai-agents"} className="hover:text-primary">AI Agents</Link>
-          <ChevronRight aria-hidden="true" className="w-4 h-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <span aria-current="page">{agent.name}</span>
         </nav>
-        <header className="max-w-4xl mx-auto text-center">
-          <span className="inline-flex items-center rounded-full bg-primary-light px-4 py-1.5 text-sm font-semibold text-primary mb-5">Agent #{agent.number}</span>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-balance leading-tight">{title}</h1>
+
+        <header className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-primary">AI Agent #{agent.number}</p>
+          <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">{articleTitle}</h1>
         </header>
 
-        {imagePath && (
-          <figure className="mt-9 md:mt-12 max-w-5xl mx-auto">
-            <img src={imagePath} alt={en ? `${agent.name} workflow illustration` : `Ablauf und Funktionen des ${agent.name}`} className="block w-full h-auto rounded-2xl border border-border/40" loading="eager" decoding="async" />
-          </figure>
+        <ArticleImage id={agent.id} name={agent.name} />
+
+        {en ? (
+          <ScrollReveal>
+            <article className="mx-auto max-w-3xl space-y-5 text-base leading-8 text-foreground/85 md:text-lg">
+              {isDossier ? dossierCopy.en.map(text => <p key={text}>{text}</p>) : englishContent ? (
+                <>
+                  <h2 className="mb-5 text-2xl font-bold text-foreground md:text-3xl">{englishContent.title}</h2>
+                  {englishContent.paragraphs.map(text => <p key={text}>{text}</p>)}
+                </>
+              ) : null}
+            </article>
+          </ScrollReveal>
+        ) : (
+          <ScrollReveal>
+            {isDossier ? (
+              <article className="mx-auto max-w-3xl space-y-5 text-base leading-8 text-foreground/85 md:text-lg">
+                {dossierCopy.de.map(text => <p key={text}>{text}</p>)}
+              </article>
+            ) : article ? <ArticleBody blocks={article.blocks} /> : null}
+          </ScrollReveal>
         )}
 
-        <div className="mx-auto max-w-3xl mt-12 md:mt-16 space-y-5">
-          {en ? (
-            english ? <>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-5">{english.title}</h2>
-              {english.paragraphs.map((paragraph, index) => <p key={index} className="text-[1.05rem] leading-8 text-muted-foreground">{paragraph}</p>)}
-            </> : <>
-              <p className="text-[1.05rem] leading-8 text-muted-foreground">{agent.en.tagline}</p>
-              <ul className="space-y-3 list-disc pl-6">{agent.en.capabilities.map((item) => <li key={item} className="text-[1.05rem] leading-8 text-muted-foreground">{item}</li>)}</ul>
-            </>
-          ) : renderBlocks(source?.blocks ?? dossierContentDe)}
+        {secondArticle && <ScrollReveal>
+          <section className="mx-auto mt-16 max-w-3xl border-t border-border pt-12">
+            <h2 className="mb-6 text-2xl font-bold tracking-tight text-foreground md:text-3xl">{en ? "Job descriptions and job advertisements" : secondArticle.title}</h2>
+            {en ? (
+              <p className="text-base leading-8 text-foreground/85 md:text-lg">The AI Job Post Builder also supports turning client briefs into structured, reviewable job descriptions. The same workflow was previously described on LinkedIn under the name AI Job Description Generator.</p>
+            ) : <ArticleBody blocks={secondArticle.blocks} />}
+            <a href={secondArticle.url} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+              {en ? "Original LinkedIn article" : "Originalbeitrag auf LinkedIn"} <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </section>
+        </ScrollReveal>}
 
-          {relatedArticle && <>
-            <h2 className="text-2xl md:text-[1.8rem] font-bold tracking-tight pt-8">{en ? "From client brief to structured job description" : "Vom Kundenbriefing zur professionellen Stellenbeschreibung"}</h2>
-            {en
-              ? <p className="text-[1.05rem] leading-8 text-muted-foreground">The AI Job Post Builder also covers the first step of creating structured role descriptions from client briefs, project details and requirements. The text can be adjusted for tone, length, permanent positions or freelance assignments and checked before publication.</p>
-              : renderBlocks(relatedArticle.blocks)}
-          </>}
+        {originalLink && <div className="mx-auto mt-12 max-w-3xl border-t border-border pt-6">
+          <a href={originalLink.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+            {en ? "Read the original article on LinkedIn" : "Originalartikel auf LinkedIn"} <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>}
 
-          {(article || relatedArticle) && <div className="pt-8 mt-8 border-t border-border/60">
-            <p className="text-sm text-muted-foreground mb-3">{en ? "Original publication" : "Originalveröffentlichung"}</p>
-            <div className="flex flex-col gap-3">
-              {article && <a href={article.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2 font-semibold text-primary hover:underline">
-                <span>{article.title}</span><ExternalLink aria-hidden="true" className="w-4 h-4 mt-1 shrink-0" />
-              </a>}
-              {relatedArticle && <a href={relatedArticle.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2 font-semibold text-primary hover:underline">
-                <span>{relatedArticle.title}</span><ExternalLink aria-hidden="true" className="w-4 h-4 mt-1 shrink-0" />
-              </a>}
-            </div>
-          </div>}
+        <div className="mx-auto mt-16 max-w-5xl border-t border-border pt-10 md:mt-20">
+          <h2 className="mb-6 text-2xl font-bold text-foreground">{en ? "More AI Agents" : "Weitere AI Agents"}</h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {related.map(item => <Link key={item.id} to={prefix + "/ai-agents/" + item.id} className="group rounded-2xl border border-border/70 bg-card p-6 transition-colors hover:border-primary/50">
+              <span className="mb-2 block text-xs font-semibold text-primary">Agent #{item.number}</span>
+              <h3 className="mb-2 font-bold text-foreground">{item.name}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{item[lang].tagline}</p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:underline">
+                {en ? "Read article" : "Artikel lesen"} <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>)}
+          </div>
+          <Link to={prefix + "/ai-agents"} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />{en ? "All AI Agents" : "Alle AI Agents"}
+          </Link>
         </div>
-      </div>
-    </article>
-
-    <section className="section-padding py-12 md:py-16 border-t border-border/60" aria-labelledby="related-agent-heading">
-      <div className="container-tight">
-        <h2 id="related-agent-heading" className="text-2xl font-bold tracking-tight mb-6">{en ? "Explore related AI Agents" : "Weitere passende AI Agents"}</h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {related.map((item) => <Link key={item.id} to={prefix + "/ai-agents/" + item.id} className="rounded-2xl border border-border/60 bg-card p-6 hover:border-primary/40 hover:shadow-sm transition-all">
-            <p className="text-xs font-semibold text-primary mb-2">Agent #{item.number}</p>
-            <h3 className="text-lg font-bold mb-2">{item.name}</h3>
-            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary">{en ? "Learn more" : "Mehr erfahren"} <ArrowRight aria-hidden="true" className="w-4 h-4" /></span>
-          </Link>)}
-        </div>
-        <Link to={prefix + "/ai-agents"} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
-          <ArrowLeft aria-hidden="true" className="w-4 h-4" />{en ? "All AI Agents" : "Alle AI Agents"}
-        </Link>
       </div>
     </section>
   </main>;
