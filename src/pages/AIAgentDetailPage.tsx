@@ -56,7 +56,7 @@ const AIAgentDetailPage = () => {
         <article>
           <header className="mx-auto mb-8 max-w-4xl text-center md:mb-12">
             <p className="mb-3 text-sm font-bold uppercase tracking-widest text-primary">plyce · AI Agent #{agent.number}</p>
-            <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">{content.h1}</h1>
+            <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-gradient-hero md:text-5xl lg:text-6xl">{content.h1}</h1>
             <p className="mt-5 text-sm text-muted-foreground">{en ? "An in-depth product guide from plyce" : "Praxiswissen für Personalberatungen und Recruiting-Teams"}</p>
           </header>
 
@@ -81,7 +81,7 @@ const AIAgentDetailPage = () => {
 
             {content.sections.map((section, sectionIndex) => (
               <section key={section.heading} className="mb-12">
-                <h2 className="mb-5 text-balance text-2xl font-bold leading-snug tracking-tight text-foreground md:text-3xl">{section.heading}</h2>
+                <h2 className="mb-5 text-balance text-2xl font-bold leading-snug tracking-tight text-gradient-hero md:text-3xl">{section.heading}</h2>
                 <div className="space-y-5 text-base leading-8 text-foreground/85 md:text-lg">
                   {section.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
                 </div>
@@ -94,7 +94,7 @@ const AIAgentDetailPage = () => {
             ))}
 
             <section className="my-14 rounded-3xl border border-primary/20 bg-primary/[0.04] px-6 py-8 md:px-9 md:py-10">
-              <h2 className="mb-4 text-balance text-2xl font-bold leading-snug tracking-tight text-foreground md:text-3xl">{content.workflow.heading}</h2>
+              <h2 className="mb-4 text-balance text-2xl font-bold leading-snug tracking-tight text-gradient-hero md:text-3xl">{content.workflow.heading}</h2>
               <p className="mb-6 leading-8 text-foreground/85">{content.workflow.context}</p>
               <ol className="space-y-5">
                 {content.workflow.steps.map((step, index) => <li key={step} className="flex gap-4">
@@ -106,11 +106,11 @@ const AIAgentDetailPage = () => {
             </section>
 
             <section aria-labelledby="agent-faq-title" className="my-14">
-              <h2 id="agent-faq-title" className="mb-7 text-2xl font-bold tracking-tight text-foreground md:text-3xl">{en ? "Frequently asked questions" : "Häufige Fragen"}</h2>
+              <h2 id="agent-faq-title" className="mb-7 text-2xl font-bold tracking-tight text-gradient-hero md:text-3xl">{en ? "Frequently asked questions" : "Häufige Fragen"}</h2>
               <div className="divide-y divide-border/70 border-y border-border/70">
                 {content.faqs.map(faq => (
                   <div key={faq.question} className="py-5">
-                    <h3 className="mb-2 text-lg font-semibold leading-snug text-foreground">{faq.question}</h3>
+                    <h3 className="mb-2 text-lg font-semibold leading-snug text-gradient-hero">{faq.question}</h3>
                     <p className="leading-7 text-foreground/80">{faq.answer}</p>
                   </div>
                 ))}
@@ -132,7 +132,7 @@ const AIAgentDetailPage = () => {
         </article>
 
         <aside className="mx-auto mt-16 max-w-5xl border-t border-border pt-10 md:mt-20">
-          <h2 className="mb-6 text-2xl font-bold text-foreground">{en ? "Related AI Agents" : "Thematisch passende AI Agents"}</h2>
+          <h2 className="mb-6 text-2xl font-bold text-gradient-hero">{en ? "Related AI Agents" : "Thematisch passende AI Agents"}</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {related.map(item => (
               <Link key={item.id} to={prefix + "/ai-agents/" + item.id} className="group rounded-2xl border border-border/70 bg-card p-6 transition-colors hover:border-primary/50">
