@@ -135,7 +135,10 @@ export const EnglishLegalPage = ({ kind }: { kind: "imprint" | "privacy" | "term
     title: "Terms and Conditions", intro: "English translation for information purposes. The German terms and conditions remain authoritative.",
     sections: [{ title: "Scope", text: "These terms govern the contractual use of plyce services unless otherwise agreed in an individual contract." }, { title: "Service and availability", text: "The contractual scope, licences, support and service levels are defined by the applicable order and agreement." }, { title: "Customer obligations", text: "Customers are responsible for lawful use, authorised user access and the accuracy of data entered into the service." }, { title: "Liability and term", text: "Liability, contract term, termination and related legal provisions follow the German contractual documents and applicable law." }]
   };
-  return <PageShell title={content.title} intro={content.intro}><StandardSections export const EnglishSitemapPage = () => {
+  return <PageShell title={content.title} intro={content.intro}><StandardSections sections={content.sections}/></PageShell>;
+};
+
+export const EnglishSitemapPage = () => {
   const mainPages = [
     { path: "", name: "Home" }, { path: "/features", name: "Features" },
     { path: "/ai-agents", name: "AI Agents" }, { path: "/plyce-time", name: "plyce time" },
@@ -171,9 +174,6 @@ export const EnglishLegalPage = ({ kind }: { kind: "imprint" | "privacy" | "term
     </PageShell>
   );
 };
-
-Policy", "Legal Notice"] }]}/></PageShell>
-);
 
 export const EnglishComparisonPage = () => (
   <PageShell title="Recruiting software comparison" intro="What modern recruitment agencies should look for when comparing ATS and CRM platforms.">
