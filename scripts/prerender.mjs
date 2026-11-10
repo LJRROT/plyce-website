@@ -37,7 +37,7 @@ try {
   const head = template.replace(/<title>[\s\S]*?<\/title>/gi, "")
     .replace(/<meta\s+(?=[^>]*(?:name|property)=["'](?:description|robots|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi, "");
   for (const path of [...seoRoutes.map((route) => route.path), "/404"]) {
-    const { html, metadata } = render(path);
+    const { html, metadata } = await render(path);
     const document = head.replace(/<html[^>]*>/, `<html lang="${metadata.isEn ? "en" : "de"}">`)
       .replace("</head>", () => `${renderHead(metadata)}\n</head>`)
       .replace('<div id="root"></div>', () => `<div id="root">${html}</div>`);

@@ -7,27 +7,27 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import CookieBanner from "@/components/CookieBanner";
-import Index from "./pages/Index";
-import FeaturesPage from "./pages/FeaturesPage";
-import AIAgentsPage from "./pages/AIAgentsPage";
-import AIAgentDetailPage from "./pages/AIAgentDetailPage";
-import DataProtectionPage from "./pages/DataProtectionPage";
-import ImpressumPage from "./pages/ImpressumPage";
-import DatenschutzPage from "./pages/DatenschutzPage";
-import AGBPage from "./pages/AGBPage";
-import SitemapPage from "./pages/SitemapPage";
-import FaqPage from "./pages/FaqPage";
-import ImplementierungPage from "./pages/ImplementierungPage";
-import PartnerprogrammPage from "./pages/PartnerprogrammPage";
-import PricingPage from "./pages/PricingPage";
-import MigrationPage from "./pages/MigrationPage";
-import PlyceTimePage from "./pages/PlyceTimePage";
-import RecruitingSoftwareVergleichPage from "./pages/RecruitingSoftwareVergleichPage";
-import TeamPage from "./pages/TeamPage";
-import CareersPage from "./pages/CareersPage";
-import NotFound from "./pages/NotFound";
-import { EnglishPageRouter } from "./pages/EnglishPages";
-import { useEffect } from "react";
+const Index = lazy(() => import("./pages/Index"));
+const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
+const AIAgentsPage = lazy(() => import("./pages/AIAgentsPage"));
+const AIAgentDetailPage = lazy(() => import("./pages/AIAgentDetailPage"));
+const DataProtectionPage = lazy(() => import("./pages/DataProtectionPage"));
+const ImpressumPage = lazy(() => import("./pages/ImpressumPage"));
+const DatenschutzPage = lazy(() => import("./pages/DatenschutzPage"));
+const AGBPage = lazy(() => import("./pages/AGBPage"));
+const SitemapPage = lazy(() => import("./pages/SitemapPage"));
+const FaqPage = lazy(() => import("./pages/FaqPage"));
+const ImplementierungPage = lazy(() => import("./pages/ImplementierungPage"));
+const PartnerprogrammPage = lazy(() => import("./pages/PartnerprogrammPage"));
+const PricingPage = lazy(() => import("./pages/PricingPage"));
+const MigrationPage = lazy(() => import("./pages/MigrationPage"));
+const PlyceTimePage = lazy(() => import("./pages/PlyceTimePage"));
+const RecruitingSoftwareVergleichPage = lazy(() => import("./pages/RecruitingSoftwareVergleichPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
+const CareersPage = lazy(() => import("./pages/CareersPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const EnglishPageRouter = lazy(() => import("./pages/EnglishPages").then((module) => ({ default: module.EnglishPageRouter })));
+import { lazy, Suspense, useEffect } from "react";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +57,7 @@ export const AppContent = () => (
       <ScrollToTop />
       <Seo />
       <Navbar />
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/features" element={<FeaturesPage />} />
@@ -84,6 +85,7 @@ export const AppContent = () => (
         <Route path="/en" element={<EnglishPageRouter />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
       <Footer />
       <CookieBanner />
     </TooltipProvider>

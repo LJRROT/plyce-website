@@ -5,7 +5,7 @@ import LoginModal from "@/components/LoginModal";
 import DemoBookingModal from "@/components/DemoBookingModal";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { getFaqCategoryNav } from "@/lib/faq";
-import { aiAgentsNav } from "@/pages/AIAgentsPage";
+import { aiAgentsNav } from "@/data/agentNav";
 import { getLocaleFromPath, localizePath, stripLocalePrefix } from "@/lib/locale";
 
 const navLinks = [
