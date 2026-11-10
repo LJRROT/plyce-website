@@ -82,7 +82,10 @@ export function getPageSeo(pathname: string) {
   const currentUrl = `${base}${pathname === "/" ? "/" : pathname}`;
   const deUrl = basePath === "/" ? `${base}/` : `${base}${basePath}`;
   const enUrl = basePath === "/" ? `${base}/en` : `${base}/en${basePath}`;
-  const imageUrl = `${base}/og-image.png`;
+  const agentIdForImage = basePath.startsWith("/ai-agents/") ? basePath.slice("/ai-agents/".length) : null;
+  const imageUrl = agentIdForImage && agentIdForImage !== "ai-dossier-highlights" && Boolean(agentSeoFocus[agentIdForImage])
+    ? `${base}/images/ai-agents/${agentIdForImage}.webp`
+    : `${base}/og-image.png`;
 
   const graph: Record<string, unknown>[] = [
     { "@type": "Organization", "@id": `${base}/#organization`, name: "WECO Experts GmbH", alternateName: "plyce", url: `${base}/`, logo: `${base}/plyce-logo-mark.png` },
@@ -94,6 +97,23 @@ export function getPageSeo(pathname: string) {
   if (basePath.startsWith("/ai-agents/") && known) {
     const agentId = basePath.replace("/ai-agents/", "");
     if (agentSeoFocus[agentId]) {
+      const source = agentLinkedInSource[agentId];
+      const articleHeadline = agentId === "ai-dossier-highlights"
+        ? dossierArticle[isEn ? "en" : "de"].title
+        : isEn ? agentSourceInsightsEn[agentId]?.title || agentSeoNames[agentId]
+        : source?.title || agentSeoNames[agentId];
+      const articleImage = agentId === "ai-dossier-highlights" ? undefined : imageUrl;
+      graph.push({
+        "@type": "Article",
+        headline: articleHeadline,
+        description: seo.description,
+        mainEntityOfPage: currentUrl,
+        inLanguage: isEn ? "en" : "de",
+        ...(articleImage ? { image: [articleImage] } : {}),
+        ...(source?.publishedAt && /^\\d{4}-\\d{2}-\\d{2}$/.test(source.publishedAt) ? { datePublished: source.publishedAt } : {}),
+        author: { "@id": `${base}/#organization` },
+        publisher: { "@id": `${base}/#organization` },
+      });
       graph.push({
         "@type": "BreadcrumbList",
         itemListElement: [
