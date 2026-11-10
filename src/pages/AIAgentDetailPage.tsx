@@ -5,6 +5,7 @@ import { agentArticles } from "@/data/agentArticles";
 import { agentLinkedInSource, type ArticleContentBlock } from "@/data/agentLinkedInSource";
 import { agentSourceInsightsEn } from "@/data/agentSourceInsightsEn";
 import { additionalAgentArticle } from "@/data/additionalAgentArticle";
+import { dossierArticle } from "@/data/dossierArticle";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const imageFiles: Record<string, string> = {
@@ -23,22 +24,21 @@ const imageFiles: Record<string, string> = {
   "ai-summary": "ai-summary.webp",
 };
 
-const dossierCopy = {
-  de: [
-    "Im Recruiting reicht es nicht, den Lebenslauf eines Kandidaten weiterzuleiten. Kunden möchten schnell erkennen, weshalb ein Profil fachlich und persönlich zu einem konkreten Mandat passt.",
-    "Der AI Dossier Highlights Agent von plyce erstellt eine kompakte, nachvollziehbare Zusammenfassung der besonders relevanten Erfahrungen. Dafür werden Kandidateninformationen im Kontext der jeweiligen Projektanforderungen betrachtet.",
-    "Der Agent identifiziert zentrale berufliche Stationen, fachliche Schwerpunkte und Qualifikationen, die für das Mandat sprechen. Dabei geht es nicht darum, den gesamten CV erneut zu erzählen, sondern die entscheidenden Argumente für die Kandidatenvorstellung sichtbar zu machen.",
-    "Rolle, Branche und Anforderungsprofil fließen in die Formulierung ein. Aufbau, Länge und Tonalität lassen sich an den Stil der Personalberatung und die Erwartungen des Kunden anpassen.",
-    "So entsteht ein klar strukturierter Ausgangspunkt für eine professionelle Kandidatenpräsentation. Der Recruiter prüft die Aussagen und entscheidet, wie das Profil beim Kunden positioniert wird.",
-    "Der Mehrwert liegt in einer schnelleren Vorbereitung, konsistenteren Dossiers und einer verständlichen Begründung der fachlichen Passung."
-  ],
-  en: [
-    "In recruitment, sending a CV is rarely enough. Clients want to understand quickly why a candidate is relevant to a particular assignment.",
-    "The AI Dossier Highlights Agent in plyce prepares concise and explainable highlights based on candidate information and the requirements of the role.",
-    "It identifies the most relevant experience, career milestones and qualifications rather than reproducing the full CV. The focus is on the key arguments supporting a candidate presentation.",
-    "Role, industry and assignment context inform the wording. Teams can adapt structure, length and tone to match their way of presenting candidates.",
-    "Recruiters review the draft and remain responsible for positioning the candidate with the client. The result is faster preparation, more consistent dossiers and a clearer explanation of fit."
-  ],
+
+const imageSizes: Record<string, { width: number; height: number }> = {
+  "ai-cv-analyzer": { width: 1500, height: 783 },
+  "ai-candidate-match": { width: 1736, height: 906 },
+  "ai-outreach-messages": { width: 1279, height: 720 },
+  "ai-cv-formatter": { width: 1122, height: 1402 },
+  "ai-project-brief": { width: 1122, height: 1402 },
+  "ai-project-report": { width: 1122, height: 1402 },
+  "ai-company-status-report": { width: 1122, height: 1402 },
+  "ai-job-post-builder": { width: 1122, height: 1402 },
+  "ai-company-enricher": { width: 1122, height: 1402 },
+  "ai-signature-parser": { width: 1672, height: 941 },
+  "ai-meeting-tracker": { width: 1122, height: 1402 },
+  "ai-recorder": { width: 1491, height: 1055 },
+  "ai-summary": { width: 1491, height: 1055 },
 };
 
 const ArticleBody = ({ blocks }: { blocks: ArticleContentBlock[] }) => (
@@ -56,17 +56,17 @@ const ArticleBody = ({ blocks }: { blocks: ArticleContentBlock[] }) => (
 const ArticleImage = ({ id, name }: { id: string; name: string }) => {
   const file = imageFiles[id];
   if (!file) return null;
+  const size = imageSizes[id];
   return (
     <figure className="mx-auto mb-10 w-full max-w-5xl md:mb-14">
       <img
         src={`/images/ai-agents/${file}`}
         alt={`${name}: Visualisierung des Ablaufs und der Ergebnisse in plyce`}
-        width={id === "ai-cv-analyzer" || id === "ai-candidate-match" ? 1736 : 1122}
-        height={id === "ai-cv-analyzer" || id === "ai-candidate-match" ? 906 : 1402}
+        width={size.width}
+        height={size.height}
         loading="eager"
         decoding="async"
         className="block h-auto w-full rounded-2xl border border-border/30 bg-white object-contain"
-        onError={(event) => { event.currentTarget.style.display = "none"; }}
       />
     </figure>
   );
@@ -93,7 +93,7 @@ const AIAgentDetailPage = () => {
   const isDossier = agent.id === "ai-dossier-highlights";
   const secondArticle = agent.id === additionalAgentArticle.agentId ? additionalAgentArticle : null;
   const related = agents.filter(item => item.id !== agent.id).sort((a, b) => Math.abs(a.number - agent.number) - Math.abs(b.number - agent.number)).slice(0, 3);
-  const articleTitle = en ? agent.name : article?.title.replace(/^#?\d+\s*[:.\-–]?\s*/, "") ?? agent.name;
+  const articleTitle = isDossier ? dossierArticle[lang].title : en ? agent.name : article?.title.replace(/^#?\d+\s*[:.\-–]?\s*/, "") ?? agent.name;
 
   return <main className="min-h-screen pt-24">
     <section className="section-padding py-12 md:py-16">
@@ -114,7 +114,7 @@ const AIAgentDetailPage = () => {
         {en ? (
           <ScrollReveal>
             <article className="mx-auto max-w-3xl space-y-5 text-base leading-8 text-foreground/85 md:text-lg">
-              {isDossier ? dossierCopy.en.map(text => <p key={text}>{text}</p>) : englishContent ? (
+              {isDossier ? <ArticleBody blocks={dossierArticle.en.blocks} /> : englishContent ? (
                 <>
                   <h2 className="mb-5 text-2xl font-bold text-foreground md:text-3xl">{englishContent.title}</h2>
                   {englishContent.paragraphs.map(text => <p key={text}>{text}</p>)}
@@ -126,7 +126,7 @@ const AIAgentDetailPage = () => {
           <ScrollReveal>
             {isDossier ? (
               <article className="mx-auto max-w-3xl space-y-5 text-base leading-8 text-foreground/85 md:text-lg">
-                {dossierCopy.de.map(text => <p key={text}>{text}</p>)}
+                <ArticleBody blocks={dossierArticle.de.blocks} />
               </article>
             ) : article ? <ArticleBody blocks={article.blocks} /> : null}
           </ScrollReveal>
