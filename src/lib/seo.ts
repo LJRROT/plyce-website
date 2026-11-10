@@ -1,7 +1,7 @@
 import { getSiteUrl } from "./siteUrl";
 import { stripLocalePrefix } from "./locale";
 import { agentSeoFocus, agentSeoNames } from "../data/agentSeo";
-import { agentEditorial } from "../data/agentEditorial";
+import { agentSeoMeta } from "../data/agentSeoMeta";
 
 type RouteSeo = { title: string; description: string; noindex?: boolean };
 
@@ -9,7 +9,7 @@ const de: Record<string, RouteSeo> = {
   "/": { title: "plyce – ATS & CRM für Personalberater und Recruiter", description: "Die KI-native Recruiting-Plattform für Personalberatungen: Kandidaten, Projekte, Kunden und 14 AI Agents in einem System. EU-Hosting und DSGVO-orientierte Prozesse." },
   "/features": { title: "ATS & CRM Funktionen für Personalberater | plyce", description: "Alle Funktionen: Kandidaten- und Bewerbermanagement, Suchmandate, Kunden-CRM, E-Mail, Reporting, Automatisierung und KI für Personalberater." },
   "/plyce-time": { title: "plyce time – Freelancer Management, Timesheets & Invoicing | plyce", description: "Freelancer- und Projektmanagement, Timesheet-Portal und automatisierte Abrechnung, nahtlos integriert in plyce CRM/ATS." },
-  "/ai-agents": { title: "14 AI Agents im Recruiting | plyce", description: "AI Agents für CV-Analyse, Matching, Dossiers, Outreach, Reports, Project Briefs, Recording und Summaries direkt im ATS/CRM." },
+  "/ai-agents": { title: "KI-Agenten für Recruiting & Personalberatung | plyce", description: "14 KI-Agenten für Personalberatung und Recruiting: CV Parsing, Matching, Active Sourcing, Stellenanzeigen und Reporting direkt im plyce ATS/CRM." },
   "/team": { title: "Das Team hinter plyce | Recruiting trifft Technologie", description: "Lerne Malin Behrens, Mark Vaughn und Lasse Rothfuss kennen: Recruiting-Erfahrung, Prozesswissen und Software-Architektur hinter der AI-nativen Recruiting-Plattform plyce." },
   "/careers": { title: "Karriere bei plyce | AI Engineer & Support Engineer", description: "Arbeite Full Remote an AI-nativer Recruiting-Software. Offene Stellen bei plyce: AI Engineer, Support Engineer sowie Initiativbewerbungen." },
   "/data-protection": { title: "DSGVO & Sicherheit für Recruiting-Software | plyce", description: "Datenschutz, EU-orientierte Infrastruktur und sichere Datenhaltung für ATS/CRM in Personalberatungen." },
@@ -29,7 +29,7 @@ const en: Record<string, RouteSeo> = {
   "/": { title: "plyce – AI-native ATS & CRM for Recruitment Agencies", description: "AI-native recruiting platform for agencies and recruiters: candidates, jobs, clients and 14 AI Agents in one system. More placements, less admin." },
   "/features": { title: "ATS & CRM Features for Recruitment Agencies | plyce", description: "Explore candidate management, projects, client CRM, email, automation, analytics, integrations and AI-native recruiting features." },
   "/plyce-time": { title: "plyce time – Freelancer Management, Timesheets & Invoicing", description: "Manage freelancers, assignments, timesheets, approvals and invoicing with pay-as-you-go pricing and seamless ATS/CRM integration." },
-  "/ai-agents": { title: "14 AI Agents for Recruiting | plyce", description: "AI Agents for CV analysis, candidate matching, outreach, project briefs, reports, recording, summaries and more, embedded directly in your ATS/CRM." },
+  "/ai-agents": { title: "14 AI Agents for Recruitment Agencies | plyce", description: "AI recruiting agents for CV parsing, candidate matching, sourcing, job ads, project reporting and CRM automation in the plyce platform." },
   "/team": { title: "Meet the Team behind plyce | Recruiting Meets Technology", description: "Meet Malin Behrens, Mark Vaughn and Lasse Rothfuss: recruiting experience, process expertise and software architecture behind the AI-native recruiting platform plyce." },
   "/careers": { title: "Careers at plyce | AI Engineer & Support Engineer", description: "Join plyce remotely and help build AI-native recruiting software. Open roles include AI Engineer, Support Engineer and open applications." },
   "/data-protection": { title: "Data Protection & GDPR for Recruiting Software | plyce", description: "GDPR-oriented recruiting software with configurable AI providers, structured access controls and EU-focused data strategy." },
@@ -45,7 +45,7 @@ const en: Record<string, RouteSeo> = {
   "/recruiting-software-vergleich": { title: "Recruiting Software Comparison for Agencies | plyce", description: "Key criteria for comparing modern ATS and CRM platforms for recruitment agencies and staffing firms." },
 };
 
-for (const [id, editorial] of Object.entries(agentEditorial)) {
+for (const [id, editorial] of Object.entries(agentSeoMeta)) {
   const key = `/ai-agents/${id}`;
   de[key] = { title: editorial.de.seoTitle, description: editorial.de.metaDescription };
   en[key] = { title: editorial.en.seoTitle, description: editorial.en.metaDescription };
@@ -85,7 +85,7 @@ export function getPageSeo(pathname: string) {
   if (basePath.startsWith("/ai-agents/") && known) {
     const agentId = basePath.replace("/ai-agents/", "");
     if (agentSeoFocus[agentId]) {
-      const articleHeadline = agentEditorial[agentId]?.[isEn ? "en" : "de"].h1 || agentSeoNames[agentId];
+      const articleHeadline = agentSeoMeta[agentId]?.[isEn ? "en" : "de"].h1 || agentSeoNames[agentId];
       const articleImage = agentId === "ai-dossier-highlights" ? undefined : imageUrl;
       graph.push({
         "@type": "Article",
