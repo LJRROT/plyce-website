@@ -38,7 +38,55 @@ const AIAgentsPage = () => {
       <ScrollReveal delay={80}><h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-snug pb-2 mb-3 text-gradient-hero text-balance">{isEnglish ? "Focus on what matters" : "Konzentriere dich auf das Wesentliche"}<br />{agents.length} AI Agents {isEnglish ? "take care of the rest" : "erledigen den Rest"}</h1></ScrollReveal>
       <ScrollReveal delay={160}><p className="mt-6 text-lg text-muted-foreground text-center max-w-2xl mx-auto leading-relaxed">{isEnglish ? "Choose the AI setup that fits your requirements. OpenAI or Mistral, depending on data protection, data location and performance needs." : "Ihre Präferenz entscheidet. OpenAI oder Mistral, passend zu DSGVO, Datenstandort und Performance-Anforderungen."}</p></ScrollReveal>
     </div></section>
-    <section className="pb-20 section-padding"><div className="container-tight space-y-6 md:space-y-8">{agents.map((agent)=>{const copy=agent[lang];return <ScrollReveal key={agent.id}><Link to={`${isEnglish ? "/en" : ""}/ai-agents/${agent.id}`} className="block group"><article id={agent.id} className="scroll-mt-28 rounded-2xl border border-border/50 bg-card overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all duration-300"><div className="p-8 md:p-10"><div className="flex flex-col md:flex-row gap-6 md:gap-10"><div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-light shrink-0"><agent.icon className="h-7 w-7 text-primary" /></div><div className="flex-1 min-w-0"><div className="flex flex-wrap items-center gap-2"><h2 className="text-xl font-bold tracking-tight">{agent.name}</h2><span className="text-xs font-medium text-primary bg-primary-light px-2 py-0.5 rounded-full">Agent #{agent.number}</span></div><p className="text-sm font-medium text-muted-foreground leading-relaxed mt-2">{copy.tagline}</p><div className="mt-4 border-t border-border/50 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">{copy.capabilities.map(cap=><div key={cap} className="flex items-start gap-2 text-sm"><div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0"/><span className="text-muted-foreground leading-relaxed">{cap}</span></div>)}</div></div></div></div><div className="px-8 pb-7 md:px-10 flex items-center justify-end gap-2 text-sm font-semibold text-primary group-hover:underline">{isEnglish ? "Read more" : "Mehr erfahren"} <ArrowRight className="h-4 w-4" /></div></article></Link></ScrollReveal>})}</div></section>
+    <section className="pb-20 section-padding">
+      <div className="container-tight grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+        {agents.map((agent) => {
+          const copy = agent[lang];
+          return (
+            <ScrollReveal key={agent.id} className="h-full">
+              <Link
+                to={`${isEnglish ? "/en" : ""}/ai-agents/${agent.id}`}
+                className="group block h-full"
+              >
+                <article
+                  id={agent.id}
+                  className="flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
+                >
+                  <div className="flex-1 p-6 md:p-7">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-light">
+                        <agent.icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h2 className="text-lg font-bold tracking-tight md:text-xl">{agent.name}</h2>
+                          <span className="rounded-full bg-primary-light px-2 py-0.5 text-xs font-medium text-primary">
+                            Agent #{agent.number}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{copy.tagline}</p>
+                      </div>
+                    </div>
+                    <ul className="mt-5 space-y-2.5 border-t border-border/50 pt-5">
+                      {copy.capabilities.map((cap) => (
+                        <li key={cap} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex items-center justify-end gap-2 px-6 pb-6 text-sm font-semibold text-primary group-hover:underline md:px-7">
+                    {isEnglish ? "Read more" : "Mehr erfahren"}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </div>
+                </article>
+              </Link>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+    </section>
     <section className="py-20 section-padding"><div className="container-tight"><div className="rounded-3xl bg-foreground p-12 md:p-16 text-center"><h2 className="text-3xl md:text-4xl font-bold text-primary-foreground tracking-tight mb-8">{isEnglish ? "Experience all AI Agents live" : "Alle AI Agents live erleben"}</h2><Button variant="hero" size="lg" type="button" className="border-2 border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={()=>window.dispatchEvent(new Event("plyce-open-demo-modal"))}>Request Demo <ArrowRight className="h-4 w-4"/></Button></div></div></section>
   </div>;
 };
