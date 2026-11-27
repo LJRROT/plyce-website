@@ -2,40 +2,77 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { localizePath } from "@/lib/locale";
+import { canUseWebsiteAnalytics, setAnalyticsConsent, trackPageView } from "@/lib/analytics";
+
+const cookieConsentKey = "plyce-cookie-consent";
+const analyticsConsentKey = "plyce-google-analytics-consent";
+const defaultPreferences = { necessary: true, analytics: false, marketing: false };
+
+function readPreferences(key: string): typeof defaultPreferences | null {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const saved = JSON.parse(raw);
+    return { necessary: true, analytics: saved.analytics === true, marketing: saved.marketing === true };
+  } catch {
+    return null;
+  }
+}
 
 const CookieBanner = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const en = pathname === "/en" || pathname.startsWith("/en/");
   const [visible, setVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [preferences, setPreferences] = useState({ necessary: true, analytics: false, marketing: false });
+  const [preferences, setPreferences] = useState(defaultPreferences);
+  const [analyticsConsent, setAnalyticsConsentValue] = useState(false);
+  const analyticsAvailable = canUseWebsiteAnalytics();
+  const consentKey = analyticsAvailable ? analyticsConsentKey : cookieConsentKey;
 
   useEffect(() => {
-    const consent = localStorage.getItem("plyce-cookie-consent");
-    if (!consent) {
+    const consent = readPreferences(consentKey);
+    if (consent) {
+      setAnalyticsConsentValue(consent.analytics);
+    } else {
       const timer = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [consentKey]);
+
+  useEffect(() => {
+    setAnalyticsConsent(analyticsConsent);
+    trackPageView(pathname, search);
+  }, [analyticsConsent, pathname, search]);
 
   useEffect(() => {
     const openFromFooter = () => {
-      const raw = localStorage.getItem("plyce-cookie-consent");
-      if (raw) {
-        try {
-          const parsed = JSON.parse(raw) as { analytics?: boolean; marketing?: boolean };
-          setPreferences({ necessary: true, analytics: !!parsed.analytics, marketing: !!parsed.marketing });
-        } catch {}
-      }
+      setPreferences(readPreferences(consentKey) ?? defaultPreferences);
       setVisible(true);
       setShowSettings(true);
     };
+    const syncConsent = (event: StorageEvent) => {
+      if (event.key !== consentKey && event.key !== null) return;
+      const saved = readPreferences(consentKey) ?? defaultPreferences;
+      setAnalyticsConsent(saved.analytics);
+      setAnalyticsConsentValue(saved.analytics);
+      setPreferences(saved);
+    };
     window.addEventListener("plyce-open-cookie-settings", openFromFooter);
-    return () => window.removeEventListener("plyce-open-cookie-settings", openFromFooter);
-  }, []);
+    window.addEventListener("storage", syncConsent);
+    return () => {
+      window.removeEventListener("plyce-open-cookie-settings", openFromFooter);
+      window.removeEventListener("storage", syncConsent);
+    };
+  }, [consentKey]);
 
-  const store = (value: { necessary: boolean; analytics: boolean; marketing: boolean }) => {
-    localStorage.setItem("plyce-cookie-consent", JSON.stringify(value));
+  const store = (value: typeof defaultPreferences) => {
+    try {
+      localStorage.setItem(consentKey, JSON.stringify(value));
+    } catch {
+      // Apply the choice for the current visit even if storage is unavailable.
+    }
+    setAnalyticsConsent(value.analytics);
+    setAnalyticsConsentValue(value.analytics);
     setVisible(false);
     setShowSettings(false);
   };
@@ -52,7 +89,9 @@ const CookieBanner = () => {
           <div className="overflow-y-auto overscroll-contain px-4 pt-4 pb-2 sm:px-6 sm:pt-6 md:px-8 md:pt-8">
             <h3 id="cookie-banner-title" className="text-base sm:text-lg font-semibold mb-2">{en ? "Cookie settings" : "Cookie-Einstellungen"}</h3>
             <p className="text-sm text-muted-foreground mb-4 max-w-2xl leading-relaxed">
-              {en ? "We use cookies to optimise our website and service. You can choose which categories you allow." : "Wir verwenden Cookies, um unsere Website und unseren Service zu optimieren. Sie können selbst entscheiden, welche Kategorien Sie zulassen."}
+              {analyticsAvailable
+                ? (en ? "With your consent, we use Google Analytics to measure website use. You can change your choice at any time in Cookie settings." : "Mit Ihrer Einwilligung messen wir die Nutzung der Website mit Google Analytics. Ihre Auswahl können Sie jederzeit in den Cookie-Einstellungen ändern.")
+                : (en ? "We use cookies to optimise our website and service. You can choose which categories you allow." : "Wir verwenden Cookies, um unsere Website und unseren Service zu optimieren. Sie können selbst entscheiden, welche Kategorien Sie zulassen.")}
             </p>
             {showSettings && (
               <div className="mb-2 space-y-2 sm:space-y-3">
@@ -62,7 +101,7 @@ const CookieBanner = () => {
                 </label>
                 <label className="flex items-start gap-3 p-3 rounded-xl bg-muted/50 cursor-pointer touch-manipulation">
                   <input type="checkbox" checked={preferences.analytics} onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })} className="rounded accent-primary h-4 w-4 mt-0.5 shrink-0" />
-                  <div><span className="text-sm font-medium">{en ? "Analytics" : "Analyse"}</span><span className="text-xs text-muted-foreground block leading-snug">{en ? "Helps us understand how the website is used" : "Hilft uns die Nutzung der Website zu verstehen"}</span></div>
+                  <div><span className="text-sm font-medium">{en ? "Analytics" : "Analyse"}</span><span className="text-xs text-muted-foreground block leading-snug">{analyticsAvailable ? (en ? "Google Analytics measures how visitors find and use this website and request a demo." : "Google Analytics misst, wie Besucher die Website finden, nutzen und eine Demo anfragen.") : (en ? "Helps us understand how the website is used" : "Hilft uns die Nutzung der Website zu verstehen")}</span></div>
                 </label>
                 <label className="flex items-start gap-3 p-3 rounded-xl bg-muted/50 cursor-pointer touch-manipulation">
                   <input type="checkbox" checked={preferences.marketing} onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })} className="rounded accent-primary h-4 w-4 mt-0.5 shrink-0" />

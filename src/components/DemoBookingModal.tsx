@@ -1,5 +1,6 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import {
   Dialog,
   DialogContent,
@@ -36,9 +37,13 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const formStarted = useRef(false);
 
   useLayoutEffect(() => {
-    if (!open) return;
+    if (!open) {
+      formStarted.current = false;
+      return;
+    }
     undoBodyScrollLockGap();
     const id = requestAnimationFrame(() => undoBodyScrollLockGap());
     return () => { cancelAnimationFrame(id); clearUndoBodyScrollLockGap(); };
@@ -81,6 +86,7 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
         throw new Error(typeof data.message === "string" ? data.message : (en ? `Sending failed (status ${res.status}). Please try again later.` : `Senden fehlgeschlagen (Status ${res.status}). Bitte versuchen Sie es später erneut.`));
       }
       setSuccess(true);
+      trackAnalyticsEvent("generate_lead");
     } catch (err) {
       setError(err instanceof Error ? err.message : (en ? "Sending failed. Please try again later." : "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut."));
     } finally { setIsSubmitting(false); }
@@ -104,7 +110,9 @@ const DemoBookingModal = ({ open, onOpenChange }: DemoBookingModalProps) => {
               <DialogTitle>{en ? "Request a demo" : "Demo anfragen"}</DialogTitle>
               <DialogDescription className="text-pretty">{en ? "Leave your contact details and we will get back to you shortly." : "Bitte hinterlassen Sie Ihre Kontaktdaten. Wir melden uns zeitnah bei Ihnen."}</DialogDescription>
             </DialogHeader>
-            <form id="demo-booking-form" onSubmit={handleSubmit} className="space-y-4">
+            <form id="demo-booking-form" onSubmit={handleSubmit} onChange={() => {
+              if (!formStarted.current) formStarted.current = trackAnalyticsEvent("demo_form_start");
+            }} className="space-y-4">
               <div className="space-y-2"><Label htmlFor="demo-name">Name</Label><Input id="demo-name" name="name" type="text" autoComplete="name" required value={name} onChange={(e) => { setName(e.target.value); if (error) setError(""); }} placeholder={en ? "First and last name" : "Vor- und Nachname"} /></div>
               <div className="space-y-2"><Label htmlFor="demo-email">Email</Label><Input id="demo-email" name="email" type="email" autoComplete="email" required value={email} onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }} placeholder="name@company.com" /></div>
               <div className="space-y-2"><Label htmlFor="demo-company">{en ? "Company (optional)" : "Firma (optional)"}</Label><Input id="demo-company" name="company" type="text" autoComplete="organization" value={company} onChange={(e) => setCompany(e.target.value)} /></div>

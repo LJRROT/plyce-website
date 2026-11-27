@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
+import { measurementId } from "@/lib/analytics";
 
 const PageShell = ({ title, intro, children }: { title: string; intro?: string; children: React.ReactNode }) => (
   <div className="min-h-screen pt-24">
@@ -135,7 +136,40 @@ export const EnglishLegalPage = ({ kind }: { kind: "imprint" | "privacy" | "term
     title: "Terms and Conditions", intro: "English translation for information purposes. The German terms and conditions remain authoritative.",
     sections: [{ title: "Scope", text: "These terms govern the contractual use of plyce services unless otherwise agreed in an individual contract." }, { title: "Service and availability", text: "The contractual scope, licences, support and service levels are defined by the applicable order and agreement." }, { title: "Customer obligations", text: "Customers are responsible for lawful use, authorised user access and the accuracy of data entered into the service." }, { title: "Liability and term", text: "Liability, contract term, termination and related legal provisions follow the German contractual documents and applicable law." }]
   };
-  return <PageShell title={content.title} intro={content.intro}><StandardSections sections={content.sections}/></PageShell>;
+  return (
+    <PageShell title={content.title} intro={content.intro}>
+      <StandardSections sections={content.sections} />
+      {kind === "privacy" && measurementId && (
+        <section className="section-padding pb-16">
+          <div className="container-tight space-y-3">
+            <h2 className="text-xl font-semibold">Google Analytics</h2>
+            <p>
+              With your consent, we use Google Analytics from Google Ireland Limited to measure website reach,
+              usage and demo requests. Google processes pseudonymous cookie identifiers, pages visited, traffic
+              sources, active engagement time, browser and device information, and demo form interactions.
+              Demo form contents are excluded from Google Analytics.
+            </p>
+            <p>
+              The legal bases are section 25(1) of the German TDDDG and Article 6(1)(a) GDPR. Analytics cookies
+              expire within 60 days. You can withdraw consent at any time via Cookie settings in the footer.
+              Withdrawal stops future collection and removes the Analytics cookies.
+            </p>
+            <p>
+              Google processes the data on our behalf. Data may be processed outside the EEA. Google describes
+              the applicable safeguards in its{" "}
+              <a className="text-primary hover:underline" href="https://business.safety.google/adsdatatransfers/">
+                information on international data transfers
+              </a>{" "}
+              and explains retention periods in{" "}
+              <a className="text-primary hover:underline" href="https://support.google.com/analytics/answer/7667196?hl=en">
+                Google Analytics Help
+              </a>.
+            </p>
+          </div>
+        </section>
+      )}
+    </PageShell>
+  );
 };
 
 export const EnglishSitemapPage = () => {
