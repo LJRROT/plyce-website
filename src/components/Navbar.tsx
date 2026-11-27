@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import LoginModal from "@/components/LoginModal";
 import DemoBookingModal from "@/components/DemoBookingModal";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { getFaqCategoryNav } from "@/lib/faq";
 import { aiAgentsNav } from "@/data/agentNav";
@@ -32,13 +33,16 @@ const Navbar = () => {
   const languageTarget = `${localizePath(location.pathname, locale === "de" ? "en" : "de")}${location.hash}`;
 
   const openLogin = () => { setOpen(false); setLoginOpen(true); };
-  const openDemo = () => { setOpen(false); setDemoOpen(true); };
+  const openDemo = useCallback(() => {
+    trackAnalyticsEvent("demo_cta_click");
+    setOpen(false);
+    setDemoOpen(true);
+  }, []);
 
   useEffect(() => {
-    const onOpenDemo = () => setDemoOpen(true);
-    window.addEventListener("plyce-open-demo-modal", onOpenDemo);
-    return () => window.removeEventListener("plyce-open-demo-modal", onOpenDemo);
-  }, []);
+    window.addEventListener("plyce-open-demo-modal", openDemo);
+    return () => window.removeEventListener("plyce-open-demo-modal", openDemo);
+  }, [openDemo]);
 
   useEffect(() => {
     if (!open) return;
@@ -94,7 +98,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <Link to={languageTarget} className="rounded-md border border-border/70 px-2.5 py-1.5 text-xs font-semibold text-muted-foreground hover:text-primary" aria-label={locale === "de" ? "Switch to English" : "Auf Deutsch wechseln"}>{locale === "de" ? "EN" : "DE"}</Link>
             <Button variant="ghost" size="sm" type="button" onClick={() => setLoginOpen(true)}>Login</Button>
-            <Button variant="default" size="sm" type="button" onClick={() => setDemoOpen(true)}>{locale === "en" ? "Request Demo" : "Demo anfragen"}</Button>
+            <Button variant="default" size="sm" type="button" onClick={openDemo}>{locale === "en" ? "Request Demo" : "Demo anfragen"}</Button>
           </div>
 
           <button type="button" className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors" onClick={() => setOpen(!open)} aria-label={open ? (locale === "en" ? "Close menu" : "Menü schließen") : (locale === "en" ? "Open menu" : "Menü öffnen")} aria-expanded={open}>{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
