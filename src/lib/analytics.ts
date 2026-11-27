@@ -85,6 +85,8 @@ export function trackPageView(pathname: string, search: string) {
     gtag("config", measurementId, {
       send_page_view: false,
       cookie_domain: "none",
+      cookie_expires: 60 * 24 * 60 * 60,
+      cookie_update: false,
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
     });

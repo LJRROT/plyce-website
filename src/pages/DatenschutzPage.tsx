@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import { measurementId } from "@/lib/analytics";
 
 const DatenschutzPage = () => {
   return (
@@ -150,7 +151,7 @@ const DatenschutzPage = () => {
                 <p className="mb-3">
                   Wir setzen Cookies und ähnliche Technologien ein, soweit dies für den Betrieb der Website technisch
                   erforderlich ist (z. B. Sitzung, Sicherheit, Spracheinstellung). Darüber hinaus verwenden wir nur mit
-                  Ihrer Einwilligung nach § 25 TTDSG / Art. 6 Abs. 1 lit. a DSGVO solche Technologien, die nicht streng
+                  Ihrer Einwilligung nach § 25 TDDDG / Art. 6 Abs. 1 lit. a DSGVO solche Technologien, die nicht streng
                   notwendig sind (z. B. Statistik, Marketing).
                 </p>
                 <p>
@@ -164,6 +165,34 @@ const DatenschutzPage = () => {
                   </button>{" "}
                   anpassen oder widerrufen.
                 </p>
+                {measurementId && (
+                  <>
+                    <h3 className="mt-4 mb-2 font-semibold text-foreground">Google Analytics</h3>
+                    <p className="mb-3">
+                      Mit Ihrer Einwilligung nutzen wir Google Analytics von Google Ireland Limited zur Reichweitenmessung
+                      und zur Auswertung der Website-Nutzung und von Demo-Anfragen. Dazu verarbeitet Google
+                      pseudonyme Cookie-Kennungen, aufgerufene Seiten, Besuchsquellen, aktive Nutzungsdauer,
+                      technische Browser- und Geräteinformationen sowie Interaktionen mit dem Demo-Formular.
+                      Inhalte des Formulars werden nicht an Google Analytics übermittelt.
+                    </p>
+                    <p className="mb-3">
+                      Rechtsgrundlagen sind § 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO. Die Analytics-Cookies
+                      laufen spätestens nach 60 Tagen ab. Sie können die Einwilligung jederzeit mit Wirkung für die
+                      Zukunft in den Cookie-Einstellungen widerrufen. Dabei werden die Analytics-Cookies gelöscht.
+                    </p>
+                    <p>
+                      Google verarbeitet die Daten in unserem Auftrag. Eine Verarbeitung außerhalb des EWR ist
+                      möglich. Informationen zu den dabei verwendeten Garantien stellt Google unter{" "}
+                      <a className="text-primary hover:underline" href="https://business.safety.google/adsdatatransfers/">
+                        internationalen Datentransfers
+                      </a>{" "}
+                      bereit. Einzelheiten zu den Aufbewahrungsfristen finden Sie in der{" "}
+                      <a className="text-primary hover:underline" href="https://support.google.com/analytics/answer/7667196?hl=de">
+                        Google-Analytics-Hilfe
+                      </a>.
+                    </p>
+                  </>
+                )}
               </section>
 
               <section>
